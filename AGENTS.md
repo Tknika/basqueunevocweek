@@ -31,15 +31,16 @@ There is no test suite. **A change is verified when:**
 
 ## Conventions
 
-- **Template layout (Hugo ≥ 0.146):** `layouts/baseof.html`, `home.html`, `page.html`, `404.html`, with `_partials/`, `_shortcodes/` and `_markup/`.
-- **Menus come from front matter** (`menus: main`, ordered by `weight`).
+- **Template layout (Hugo ≥ 0.146):** `layouts/baseof.html`, `home.html`, `section.html`, `page.html`, `404.html`, with `_partials/`, `_shortcodes/` and `_markup/`.
+- **Site map:** home; programme (a section with one page per day: 11, 12 and 13 May); speakers; Youth Camp; press area; practical information.
+- **Menus come from front matter** (`menus: main`, ordered by `weight`). The days hang from the programme with `parent: programme` (the `identifier` of the section, the same in every language).
 - **Design tokens:** `paper`, `paper-200`, `pine-900`, `pine-700`, `muted`, `coral`, plus `font-display`. Don't introduce new hex colours in templates; add a token to `@theme`.
 - **Components** live in `@layer components` in `main.css`: `container-site`, `eyebrow`, `prose-site`. In Tailwind v4 you can't `@apply` a custom component class.
 - Light theme only, by design (`color-scheme: light`). Respect `prefers-reduced-motion`.
 
 ## Open items
 
-- All event content (dates, venue, programme, partners, contact): unknown, shown as "coming soon".
+- Event content (year, venue, programme, speakers, Youth Camp, press area, practical information): unknown, shown as "coming soon". Only the days (11, 12 and 13 May) are known.
 - `params.noindex = true` while the site is a placeholder: set it to `false` at launch.
 - Legal pages (legal notice, privacy, cookies) are missing and need to be added before launch.
 - The production domain is not decided; the site lives at `tknika.github.io/basqueunevocweek/`.

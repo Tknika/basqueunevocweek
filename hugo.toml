@@ -10,8 +10,6 @@ disableKinds = ["taxonomy", "term"]
 [params]
   # Asks search engines not to index the site. Set to false when the real content is published.
   noindex = true
-  # Contact address shown on the contact page. Leave empty until it is decided.
-  email = ""
 
   # Logos shown in the footer, in this order. Without `logo`, the name is shown as text.
   [[params.organizers]]
@@ -27,7 +25,7 @@ disableKinds = ["taxonomy", "term"]
     [languages.eu.params]
       description = "Basque UNEVOC Week"
       # Shown on the home page. Leave empty to show "Laster".
-      dates = ""
+      dates = "Maiatzak 11-13"
       venue = ""
   [languages.es]
     label = "Español"
@@ -35,7 +33,7 @@ disableKinds = ["taxonomy", "term"]
     contentDir = "content/es"
     [languages.es.params]
       description = "Basque UNEVOC Week"
-      dates = ""
+      dates = "11-13 de mayo"
       venue = ""
   [languages.en]
     label = "English"
@@ -43,7 +41,7 @@ disableKinds = ["taxonomy", "term"]
     contentDir = "content/en"
     [languages.en.params]
       description = "Basque UNEVOC Week"
-      dates = ""
+      dates = "11-13 May"
       venue = ""
 
 [markup.goldmark.renderer]

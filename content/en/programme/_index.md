@@ -1,8 +1,10 @@
 ---
 title: "Programme"
 translationKey: programme
-weight: 2
-menus: main
+weight: 1
+menus:
+  main:
+    identifier: programme
 ---
 
 {{< soon >}}

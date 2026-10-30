@@ -21,7 +21,7 @@ The site opens at <http://localhost:1313/basqueunevocweek/>.
 | What | Where |
 | --- | --- |
 | Texts of each page | `content/eu`, `content/es`, `content/en` |
-| Dates, venue, contact, organisers | `hugo.toml` |
+| Dates, venue, organisers | `hugo.toml` |
 | Interface texts | `themes/basqueunevocweek/i18n` |
 | Design | `themes/basqueunevocweek/assets/css/main.css` |
 | Templates | `themes/basqueunevocweek/layouts` |

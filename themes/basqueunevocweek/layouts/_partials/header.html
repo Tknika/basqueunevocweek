@@ -3,21 +3,42 @@
   <div class="container-site flex items-center justify-between gap-4 py-4">
     <a href="{{ site.Home.RelPermalink }}" class="font-display text-lg font-medium">{{ site.Title }}</a>
     <div class="flex items-center gap-6">
-      <nav class="hidden md:block" aria-label="{{ i18n "menu" }}">
+      <nav class="hidden lg:block" aria-label="{{ i18n "menu" }}">
         <ul class="flex items-center gap-6 text-sm font-semibold">
           {{ range site.Menus.main }}
-            <li><a href="{{ .URL }}" class="transition hover:text-coral{{ if $page.IsMenuCurrent "main" . }} text-coral{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+            {{ $current := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
+            <li class="group relative">
+              <a href="{{ .URL }}" class="transition hover:text-coral{{ if $current }} text-coral{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+              {{ if .HasChildren }}
+                <div class="invisible absolute left-0 top-full z-10 pt-2 group-focus-within:visible group-hover:visible">
+                  <ul class="grid gap-2 whitespace-nowrap border border-pine-900 bg-paper px-4 py-3">
+                    {{ range .Children }}
+                      <li><a href="{{ .URL }}" class="transition hover:text-coral{{ if $page.IsMenuCurrent "main" . }} text-coral{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                    {{ end }}
+                  </ul>
+                </div>
+              {{ end }}
+            </li>
           {{ end }}
         </ul>
       </nav>
       {{ partial "lang-switcher.html" . }}
     </div>
   </div>
-  <details class="container-site pb-3 md:hidden">
+  <details class="container-site pb-3 lg:hidden">
     <summary class="cursor-pointer text-sm font-semibold">{{ i18n "menu" }}</summary>
     <ul class="mt-2 grid gap-2 text-lg">
       {{ range site.Menus.main }}
-        <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-coral" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        <li>
+          <a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-coral" aria-current="page"{{ end }}>{{ .Name }}</a>
+          {{ if .HasChildren }}
+            <ul class="mt-2 grid gap-2 pl-4 text-base">
+              {{ range .Children }}
+                <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-coral" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+              {{ end }}
+            </ul>
+          {{ end }}
+        </li>
       {{ end }}
     </ul>
   </details>

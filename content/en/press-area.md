@@ -1,6 +1,6 @@
 ---
-title: "Contact"
-translationKey: contact
+title: "Press area"
+translationKey: press
 weight: 4
 menus: main
 ---

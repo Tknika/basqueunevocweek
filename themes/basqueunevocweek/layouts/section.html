@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="container-site py-14 md:py-20">
+  <h1 class="text-5xl leading-tight sm:text-6xl">{{ .Title }}</h1>
+  <div class="prose-site mt-8">{{ .Content }}</div>
+  <ul class="mt-12 border-t border-pine-900/25">
+    {{ range .Pages }}
+      <li class="border-b border-pine-900/25">
+        <a href="{{ .RelPermalink }}" class="group flex items-baseline justify-between gap-4 py-5 font-display text-3xl transition hover:text-coral sm:text-4xl">
+          {{ .Title }}
+          <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span>
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</article>
+{{ end }}

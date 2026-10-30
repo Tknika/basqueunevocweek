@@ -1,7 +1,7 @@
 ---
 title: "Practical information"
 translationKey: practical
-weight: 3
+weight: 5
 menus: main
 ---
 
