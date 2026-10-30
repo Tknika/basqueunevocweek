@@ -1,0 +1,75 @@
+baseURL = "https://tknika.github.io/basqueunevocweek/"
+title = "Basque UNEVOC Week"
+theme = "basqueunevocweek"
+
+defaultContentLanguage = "eu"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  # Asks search engines not to index the site. Set to false when the real content is published.
+  noindex = true
+  # Contact address shown on the contact page. Leave empty until it is decided.
+  email = ""
+
+  # Logos shown in the footer, in this order. Without `logo`, the name is shown as text.
+  [[params.organizers]]
+    name = "Tknika"
+    logo = "images/logo-tknika.png"
+    url = "https://tknika.eus/"
+
+[languages]
+  [languages.eu]
+    label = "Euskara"
+    weight = 1
+    contentDir = "content/eu"
+    [languages.eu.params]
+      description = "Basque UNEVOC Week"
+      # Shown on the home page. Leave empty to show "Laster".
+      dates = ""
+      venue = ""
+  [languages.es]
+    label = "Español"
+    weight = 2
+    contentDir = "content/es"
+    [languages.es.params]
+      description = "Basque UNEVOC Week"
+      dates = ""
+      venue = ""
+  [languages.en]
+    label = "English"
+    weight = 3
+    contentDir = "content/en"
+    [languages.en.params]
+      description = "Basque UNEVOC Week"
+      dates = ""
+      venue = ""
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# --- Tailwind CSS v4 (https://gohugo.io/functions/css/tailwindcss/) ---
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = "assets/notwatching/hugo_stats\\.json"
+    target = "css"
+
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    disableWatch = true
+    source = "hugo_stats.json"
+    target = "assets/notwatching/hugo_stats.json"
+
+[outputs]
+  home = ["html"]
+  section = ["html"]
+
+# Allow the Tailwind CLI (npm package)
+[security.exec]
+  allow = ['^git$', '^node$', '^tailwindcss$']

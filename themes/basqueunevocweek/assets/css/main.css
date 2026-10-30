@@ -1,0 +1,86 @@
+@import "tailwindcss";
+/* Classes used in rendered pages are collected by Hugo (build.buildStats) */
+@source "hugo_stats.json";
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Sans";
+  src: url("../fonts/instrument-sans-latin-wght-normal.woff2") format("woff2-variations");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+
+  --color-paper: #f6f1e7;
+  --color-paper-200: #e7dfcd;
+  --color-pine-900: #12322b;   /* text and dark surfaces */
+  --color-pine-700: #1f5247;
+  --color-muted: #4f625c;      /* secondary text (5.5:1 on paper) */
+  --color-coral: #b23f1c;      /* accent (5.1:1 on paper) */
+}
+
+@layer base {
+  html {
+    font-size: 106.25%; /* 17px base */
+    scroll-behavior: smooth;
+    color-scheme: light;
+  }
+  body {
+    @apply bg-paper text-pine-900 font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display font-medium tracking-tight;
+  }
+  ::selection {
+    @apply bg-pine-900 text-paper;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-coral;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold tracking-wide text-coral;
+  }
+
+  .prose-site {
+    @apply max-w-2xl text-lg leading-relaxed;
+  }
+  .prose-site > * + * {
+    @apply mt-5;
+  }
+  .prose-site h2 {
+    @apply mt-12 text-3xl;
+  }
+  .prose-site h3 {
+    @apply mt-8 text-xl;
+  }
+  .prose-site a {
+    @apply text-coral underline underline-offset-3 hover:text-pine-900;
+  }
+  .prose-site ul {
+    @apply list-disc pl-6;
+  }
+  .prose-site ol {
+    @apply list-decimal pl-6;
+  }
+}

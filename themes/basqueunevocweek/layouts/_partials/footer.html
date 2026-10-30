@@ -1,0 +1,14 @@
+<footer class="bg-pine-900 text-paper">
+  <div class="container-site flex flex-wrap items-center justify-between gap-6 py-8">
+    <p class="text-sm font-semibold">{{ i18n "organiser" }}</p>
+    <ul class="flex flex-wrap items-center gap-8">
+      {{ range $o := site.Params.organizers }}
+        <li>
+          <a href="{{ $o.url }}" rel="noopener">
+            {{ with $o.logo }}<img src="{{ . | relURL }}" alt="{{ $o.name }}" class="h-10 w-auto">{{ else }}{{ $o.name }}{{ end }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</footer>
