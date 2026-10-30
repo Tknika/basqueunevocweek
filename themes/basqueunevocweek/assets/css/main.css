@@ -3,8 +3,8 @@
 @source "hugo_stats.json";
 
 @font-face {
-  font-family: "Fraunces";
-  src: url("../fonts/fraunces-latin-wght-normal.woff2") format("woff2-variations");
+  font-family: "Outfit";
+  src: url("../fonts/outfit-latin-wght-normal.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-display: swap;
 }
@@ -18,14 +18,12 @@
 
 @theme {
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
-  --color-paper: #f6f1e7;
-  --color-paper-200: #e7dfcd;
-  --color-pine-900: #12322b;   /* text and dark surfaces */
-  --color-pine-700: #1f5247;
-  --color-muted: #4f625c;      /* secondary text (5.5:1 on paper) */
-  --color-coral: #b23f1c;      /* accent (5.1:1 on paper) */
+  --color-navy: #0a2a5e;    /* text and footer */
+  --color-azure: #0f62c0;   /* main brand surface (5.7:1 with white) */
+  --color-mist: #eaf3fc;    /* soft surface */
+  --color-pink: #c2257a;    /* accent (5.2:1 on white) */
 }
 
 @layer base {
@@ -35,16 +33,16 @@
     color-scheme: light;
   }
   body {
-    @apply bg-paper text-pine-900 font-sans antialiased;
+    @apply bg-white text-navy font-sans antialiased;
   }
   h1, h2, h3 {
-    @apply font-display font-medium tracking-tight;
+    @apply font-display font-bold tracking-tight;
   }
   ::selection {
-    @apply bg-pine-900 text-paper;
+    @apply bg-pink text-white;
   }
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-coral;
+    @apply outline-2 outline-offset-2 outline-pink;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -58,8 +56,13 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
-  .eyebrow {
-    @apply text-sm font-semibold tracking-wide text-coral;
+  /* The slanted white strip of the event's poster */
+  .tape {
+    @apply inline-block -rotate-3 bg-white px-5 py-2 font-display text-lg font-bold tracking-wide text-pink uppercase;
+  }
+
+  .pill {
+    @apply inline-block rounded-full bg-white px-7 py-3 font-display text-3xl font-bold text-pink sm:text-4xl;
   }
 
   .prose-site {
@@ -75,7 +78,7 @@
     @apply mt-8 text-xl;
   }
   .prose-site a {
-    @apply text-coral underline underline-offset-3 hover:text-pine-900;
+    @apply text-azure underline underline-offset-3 hover:text-pink;
   }
   .prose-site ul {
     @apply list-disc pl-6;

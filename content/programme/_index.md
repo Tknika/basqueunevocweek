@@ -1,6 +1,5 @@
 ---
 title: "Programme"
-translationKey: programme
 weight: 1
 menus:
   main:

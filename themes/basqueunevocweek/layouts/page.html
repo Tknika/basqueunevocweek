@@ -1,18 +1,18 @@
 {{ define "main" }}
-<article class="container-site py-14 md:py-20">
+{{ partial "page-header.html" . }}
+<div class="container-site py-12 md:py-16">
   {{ $page := . }}
   {{ with .Parent }}
     {{ if not .IsHome }}
       {{- /* Subpages (the days of the programme): link back to the section and to their siblings. */ -}}
       <nav class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold" aria-label="{{ .Title }}">
-        <a href="{{ .RelPermalink }}" class="text-coral hover:text-pine-900">{{ .Title }}</a>
+        <a href="{{ .RelPermalink }}" class="text-pink hover:text-navy">{{ .Title }}</a>
         {{ range .Pages }}
-          <a href="{{ .RelPermalink }}" class="transition hover:text-coral{{ if eq . $page }} underline underline-offset-3{{ end }}"{{ if eq . $page }} aria-current="page"{{ end }}>{{ .Title }}</a>
+          <a href="{{ .RelPermalink }}" class="transition hover:text-pink{{ if eq . $page }} underline underline-offset-3{{ end }}"{{ if eq . $page }} aria-current="page"{{ end }}>{{ .Title }}</a>
         {{ end }}
       </nav>
     {{ end }}
   {{ end }}
-  <h1 class="text-5xl leading-tight sm:text-6xl">{{ .Title }}</h1>
-  <div class="prose-site mt-8">{{ .Content }}</div>
-</article>
+  <div class="prose-site">{{ .Content }}</div>
+</div>
 {{ end }}

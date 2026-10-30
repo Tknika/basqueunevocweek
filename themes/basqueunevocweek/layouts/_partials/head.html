@@ -3,12 +3,9 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 {{ $desc := .Description | default site.Params.description | plainify | truncate 160 }}
 <meta name="description" content="{{ $desc }}">
-<meta name="theme-color" content="#f6f1e7">
+<meta name="theme-color" content="#0f62c0">
 {{ if site.Params.noindex }}<meta name="robots" content="noindex">{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
-{{ range .AllTranslations }}
-  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
-{{ end }}
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.Title }}">
@@ -18,5 +15,5 @@
 <meta property="og:locale" content="{{ site.Language.Lang }}">
 
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
-<link rel="preload" href="{{ "fonts/fraunces-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "fonts/outfit-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ partial "css.html" . }}

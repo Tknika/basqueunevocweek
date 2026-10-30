@@ -2,47 +2,35 @@ baseURL = "https://tknika.github.io/basqueunevocweek/"
 title = "Basque UNEVOC Week"
 theme = "basqueunevocweek"
 
-defaultContentLanguage = "eu"
-defaultContentLanguageInSubdir = false
+defaultContentLanguage = "en"
 enableRobotsTXT = true
 disableKinds = ["taxonomy", "term"]
 
 [params]
+  description = "Tknika UNEVOC centre 10th Anniversary & Open Days 2027. 11-13 May 2027, Donostia · San Sebastian."
   # Asks search engines not to index the site. Set to false when the real content is published.
   noindex = true
+  # Shown on the home page.
+  tagline = "Tknika UNEVOC centre 10th Anniversary & Open Days 2027"
+  dates = "11-13 May 2027"
+  venue = "Donostia · San Sebastian"
 
-  # Logos shown in the footer, in this order. Without `logo`, the name is shown as text.
+  # Shown in the footer, in this order. Without `logo`, the name is shown as text.
+  [[params.organizers]]
+    name = "UNESCO-UNEVOC Network Member"
+    url = "https://unevoc.unesco.org/"
+  [[params.organizers]]
+    name = "FP Euskadi"
+    logo = "images/logo-fp-euskadi.png"
+    url = "https://www.fpeuskadi.eus/"
   [[params.organizers]]
     name = "Tknika"
     logo = "images/logo-tknika.png"
     url = "https://tknika.eus/"
-
-[languages]
-  [languages.eu]
-    label = "Euskara"
-    weight = 1
-    contentDir = "content/eu"
-    [languages.eu.params]
-      description = "Basque UNEVOC Week"
-      # Shown on the home page. Leave empty to show "Laster".
-      dates = "Maiatzak 11-13"
-      venue = ""
-  [languages.es]
-    label = "Español"
-    weight = 2
-    contentDir = "content/es"
-    [languages.es.params]
-      description = "Basque UNEVOC Week"
-      dates = "11-13 de mayo"
-      venue = ""
-  [languages.en]
-    label = "English"
-    weight = 3
-    contentDir = "content/en"
-    [languages.en.params]
-      description = "Basque UNEVOC Week"
-      dates = "11-13 May"
-      venue = ""
+  [[params.organizers]]
+    name = "Basque Government, Department of Education"
+    logo = "images/logo-eusko-jaurlaritza-white.png"
+    url = "https://www.euskadi.eus/"
 
 [markup.goldmark.renderer]
   unsafe = true

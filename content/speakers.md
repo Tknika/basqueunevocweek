@@ -1,6 +1,5 @@
 ---
-title: "Ponentes"
-translationKey: speakers
+title: "Speakers"
 weight: 2
 menus: main
 ---

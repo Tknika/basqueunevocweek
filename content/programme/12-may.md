@@ -1,7 +1,6 @@
 ---
-title: "11 May"
-translationKey: day-11
-weight: 1
+title: "12 May"
+weight: 2
 menus:
   main:
     parent: programme

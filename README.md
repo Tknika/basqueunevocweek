@@ -1,9 +1,6 @@
 # Basque UNEVOC Week
 
-Website of the Basque UNEVOC Week. Static site built with [Hugo](https://gohugo.io/) and Tailwind CSS v4, published on GitHub Pages.
-
-- Languages: Basque (`/`), Spanish (`/es/`), English (`/en/`)
-- Published at: <https://tknika.github.io/basqueunevocweek/>
+Website of the Basque UNEVOC Week: Tknika UNEVOC centre 10th Anniversary & Open Days 2027, 11-13 May 2027, Donostia · San Sebastian. Static site in English, built with [Hugo](https://gohugo.io/) and Tailwind CSS v4.
 
 ## Run it locally
 
@@ -20,10 +17,9 @@ The site opens at <http://localhost:1313/basqueunevocweek/>.
 
 | What | Where |
 | --- | --- |
-| Texts of each page | `content/eu`, `content/es`, `content/en` |
-| Dates, venue, organisers | `hugo.toml` |
-| Interface texts | `themes/basqueunevocweek/i18n` |
+| Texts of each page | `content/` |
+| Dates, venue, tagline, organisers | `hugo.toml` |
 | Design | `themes/basqueunevocweek/assets/css/main.css` |
 | Templates | `themes/basqueunevocweek/layouts` |
 
-Every push to `main` is built and published by `.github/workflows/pages.yml`. Rules for contributors are in [AGENTS.md](AGENTS.md).
+Every push to `main` is built by `.github/workflows/pages.yml`, which also publishes it once GitHub Pages is enabled. Rules for contributors are in [AGENTS.md](AGENTS.md).
