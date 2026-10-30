@@ -1,5 +1,5 @@
 baseURL = "https://tknika.github.io/basqueunevocweek/"
-title = "Basque UNEVOC Week"
+title = "Tknika UNEVOC centre 10th Anniversary & Open Days 2027"
 theme = "basqueunevocweek"
 
 defaultContentLanguage = "en"
@@ -11,13 +11,15 @@ disableKinds = ["taxonomy", "term"]
   # Asks search engines not to index the site. Set to false when the real content is published.
   noindex = true
   # Shown on the home page.
-  tagline = "Tknika UNEVOC centre 10th Anniversary & Open Days 2027"
   dates = "11-13 May 2027"
   venue = "Donostia · San Sebastian"
 
   # Shown in the footer, in this order. Without `logo`, the name is shown as text.
   [[params.organizers]]
     name = "UNESCO-UNEVOC Network Member"
+    logo = "images/logo-unevoc-network.png"
+    # The logo is blue: it goes on a white plaque in the blue footer.
+    plaque = true
     url = "https://unevoc.unesco.org/"
   [[params.organizers]]
     name = "FP Euskadi"

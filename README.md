@@ -1,6 +1,6 @@
-# Basque UNEVOC Week
+# Tknika UNEVOC centre 10th Anniversary & Open Days 2027
 
-Website of the Basque UNEVOC Week: Tknika UNEVOC centre 10th Anniversary & Open Days 2027, 11-13 May 2027, Donostia · San Sebastian. Static site in English, built with [Hugo](https://gohugo.io/) and Tailwind CSS v4.
+Website of the event, 11-13 May 2027, Donostia · San Sebastian. Static site in English, built with [Hugo](https://gohugo.io/) and Tailwind CSS v4.
 
 ## Run it locally
 
@@ -18,7 +18,7 @@ The site opens at <http://localhost:1313/basqueunevocweek/>.
 | What | Where |
 | --- | --- |
 | Texts of each page | `content/` |
-| Dates, venue, tagline, organisers | `hugo.toml` |
+| Title, dates, venue, organisers | `hugo.toml` |
 | Design | `themes/basqueunevocweek/assets/css/main.css` |
 | Templates | `themes/basqueunevocweek/layouts` |
 

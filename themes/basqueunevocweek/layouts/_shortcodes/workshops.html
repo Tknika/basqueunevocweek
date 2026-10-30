@@ -1,0 +1,12 @@
+{{- /* The workshops in data/workshops.yaml, each one collapsible. */ -}}
+<div class="grid gap-3">
+  {{ range hugo.Data.workshops }}
+    <details class="rounded-xl bg-mist text-graphite px-5 py-4">
+      <summary class="cursor-pointer text-graphite font-display text-lg font-semibold">{{ .code }}. {{ .title }}</summary>
+      <p class="mt-3 text-base"><strong>Speakers:</strong> {{ .speakers }}</p>
+      {{ with .moderator }}<p class="mt-1 text-base"><strong>Moderator:</strong> {{ . }}</p>{{ end }}
+      <p class="mt-1 text-base"><strong>Organisation:</strong> {{ .organisation }}</p>
+      <p class="mt-3 text-base leading-relaxed">{{ .description }}</p>
+    </details>
+  {{ end }}
+</div>

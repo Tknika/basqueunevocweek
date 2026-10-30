@@ -4,7 +4,7 @@ Instructions for AI coding agents (and humans) working on this repository. Read 
 
 ## Project in one paragraph
 
-English-only static site for the Basque UNEVOC Week (Tknika UNEVOC centre 10th Anniversary & Open Days 2027, 11-13 May 2027, Donostia · San Sebastian), built with **Hugo ≥ 0.146 (extended)** and **Tailwind CSS v4 via npm**, using a custom theme in `themes/basqueunevocweek`. The workflow in `.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`. It shares its technology with the `cyberlehia` site but not its design or content: keep the two separate.
+English-only static site for the Tknika UNEVOC centre 10th Anniversary & Open Days 2027 (11-13 May 2027, Donostia · San Sebastian; the site has no name of its own), built with **Hugo ≥ 0.146 (extended)** and **Tailwind CSS v4 via npm**, using a custom theme in `themes/basqueunevocweek`. The workflow in `.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`. It shares its technology with the `cyberlehia` site but not its design or content: keep the two separate.
 
 ## Commands
 
@@ -22,7 +22,7 @@ There is no test suite. **A change is verified when:**
 ## Hard rules
 
 1. **English only.** Don't add languages or a language switcher unless asked. Interface text lives directly in the layouts.
-2. **Don't invent facts.** Programme, speakers and practical details come from the organisers. While a fact is unknown, use `{{< soon >}}` in Markdown. Dates, venue and tagline are params in `hugo.toml`.
+2. **Don't invent facts.** Programme, speakers and practical details come from the organisers. While a fact is unknown, use `{{< soon >}}` in Markdown. Dates and venue are params in `hugo.toml`.
 3. **Never hardcode URLs** in templates: use `.RelPermalink`, `relURL` or `relLangURL`, and pass asset paths without a leading `/`. In Markdown, write internal links as `/path/`.
 4. **Tailwind: npm only.** Tailwind v4 is configured in CSS (`@theme` in `assets/css/main.css`). No PostCSS, `tailwind.config.js` or extra npm packages unless asked.
 5. **Keep it static and light.** No tracking scripts and no third-party requests; fonts are self-hosted in the theme. There is no JavaScript so far (the mobile menu is a `<details>`).
@@ -33,16 +33,16 @@ There is no test suite. **A change is verified when:**
 - **Template layout (Hugo ≥ 0.146):** `layouts/baseof.html`, `home.html`, `section.html`, `page.html`, `404.html`, with `_partials/`, `_shortcodes/` and `_markup/`.
 - **Site map:** home; programme (a section with one page per day: 11, 12 and 13 May); speakers; Youth Camp; press area; practical information.
 - **Menus come from front matter** (`menus: main`, ordered by `weight`). The days hang from the programme with `parent: programme`.
-- **Organisers** are listed in `hugo.toml` (`params.organizers`), in footer order. The footer is dark, so logos must be the white versions.
-- **Design tokens:** `navy`, `azure`, `mist`, `pink`, plus `font-display`. Don't introduce new hex colours in templates; add a token to `@theme`. The exception is `_partials/folds.html`, whose decorative shapes use fixed colours.
-- **Design:** it follows the event's poster loosely (blue, flowing folds, slanted white strip, white date pill with pink text) in a cleaner way.
-- **Components** live in `@layer components` in `main.css`: `container-site`, `tape`, `pill`, `prose-site`. In Tailwind v4 you can't `@apply` a custom component class.
+- **Organisers** are listed in `hugo.toml` (`params.organizers`), in footer order. The footer is blue, so logos must be the white versions, or use `plaque = true` to sit on a white background.
+- **Design tokens:** palette: `azure` (dominant), `graphite`, `pink`, `lime`, plus white and the `mist` tint.
+- **Colour rule:** `pink` and `lime` never touch `azure`. They appear only on `graphite` or on white, as small accents.
+- **Design:** it follows the event's poster loosely (blue, flowing folds); the home follows cyberlehia: a full-width photo fading into the colour with an overlapping panel.
+- **Components** live in `@layer components` in `main.css`: `container-site`, `prose-site`. In Tailwind v4 you can't `@apply` a custom component class.
 - Light theme only, by design (`color-scheme: light`). Respect `prefers-reduced-motion`.
 
 ## Open items
 
-- Event content (programme, speakers, Youth Camp, press area, practical information): unknown, shown as "Details will be published soon".
-- UNESCO-UNEVOC logo: shown as text until the original file is available, in a white version for the dark footer.
+- Programme, speakers, Youth Camp and practical information are filled from the 2026 PDF and marked with `{{< edition2026 >}}`: replace them and remove the shortcode when the 2027 data arrives. People and workshops live in `data/`. The press area is still empty.
 - FP Euskadi logo is a small 111×109 PNG; replace it with an SVG or larger PNG if available.
 - `params.noindex = true` while the site is a placeholder: set it to `false` at launch.
 - Legal pages (legal notice, privacy, cookies) are missing and need to be added before launch.

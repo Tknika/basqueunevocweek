@@ -3,7 +3,7 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 {{ $desc := .Description | default site.Params.description | plainify | truncate 160 }}
 <meta name="description" content="{{ $desc }}">
-<meta name="theme-color" content="#0f62c0">
+<meta name="theme-color" content="#126ab4">
 {{ if site.Params.noindex }}<meta name="robots" content="noindex">{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
 

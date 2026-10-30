@@ -20,10 +20,11 @@
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
 
-  --color-navy: #0a2a5e;    /* text and footer */
-  --color-azure: #0f62c0;   /* main brand surface (5.7:1 with white) */
+  --color-graphite: #46464d; /* text and dark surfaces */
+  --color-azure: #126ab4;   /* unevoc: main brand surface */
   --color-mist: #eaf3fc;    /* soft surface */
-  --color-pink: #c2257a;    /* accent (5.2:1 on white) */
+  --color-pink: #a34068;    /* fp: accent */
+  --color-lime: #c3d13a;    /* tknika: surfaces and lines only, low contrast as text on white */
 }
 
 @layer base {
@@ -33,7 +34,7 @@
     color-scheme: light;
   }
   body {
-    @apply bg-white text-navy font-sans antialiased;
+    @apply bg-white text-graphite font-sans antialiased;
   }
   h1, h2, h3 {
     @apply font-display font-bold tracking-tight;
@@ -56,14 +57,6 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* The slanted white strip of the event's poster */
-  .tape {
-    @apply inline-block -rotate-3 bg-white px-5 py-2 font-display text-lg font-bold tracking-wide text-pink uppercase;
-  }
-
-  .pill {
-    @apply inline-block rounded-full bg-white px-7 py-3 font-display text-3xl font-bold text-pink sm:text-4xl;
-  }
 
   .prose-site {
     @apply max-w-2xl text-lg leading-relaxed;
@@ -72,10 +65,10 @@
     @apply mt-5;
   }
   .prose-site h2 {
-    @apply mt-12 text-3xl;
+    @apply mt-12 text-3xl text-graphite;
   }
   .prose-site h3 {
-    @apply mt-8 text-xl;
+    @apply mt-8 text-xl text-graphite;
   }
   .prose-site a {
     @apply text-azure underline underline-offset-3 hover:text-pink;
@@ -85,5 +78,15 @@
   }
   .prose-site ol {
     @apply list-decimal pl-6;
+  }
+  .prose-site table {
+    @apply block w-full overflow-x-auto border-collapse text-base sm:table;
+  }
+  .prose-site th,
+  .prose-site td {
+    @apply border-b border-current/20 py-3 pr-4 text-left align-top;
+  }
+  .prose-site td:first-child {
+    @apply font-semibold whitespace-nowrap;
   }
 }

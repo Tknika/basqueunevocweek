@@ -1,11 +1,11 @@
-<footer class="bg-navy text-white">
+<footer class="border-t-4 border-lime bg-graphite text-white">
   <div class="container-site py-10">
     <p class="text-sm font-semibold">Organised by</p>
     <ul class="mt-6 flex flex-wrap items-center gap-x-10 gap-y-6">
       {{ range $o := site.Params.organizers }}
         <li>
           <a href="{{ $o.url }}" rel="noopener" class="block">
-            {{ with $o.logo }}<img src="{{ . | relURL }}" alt="{{ $o.name }}" class="h-12 w-auto">{{ else }}<span class="font-display text-lg font-semibold">{{ $o.name }}</span>{{ end }}
+            {{ with $o.logo }}<img src="{{ . | relURL }}" alt="{{ $o.name }}" class="{{ if $o.plaque }}h-24 rounded-lg bg-white p-2{{ else }}h-12{{ end }} w-auto">{{ else }}<span class="font-display text-lg font-semibold">{{ $o.name }}</span>{{ end }}
           </a>
         </li>
       {{ end }}

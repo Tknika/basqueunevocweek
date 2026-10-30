@@ -4,4 +4,6 @@ weight: 2
 menus: main
 ---
 
-{{< soon >}}
+{{< edition2026 >}}
+
+{{< speakers >}}
