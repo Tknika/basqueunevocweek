@@ -17,7 +17,7 @@
                 <span class="flex size-12 items-center justify-center shape-cube bg-pink font-display text-sm text-white">or</span>
               </div>
             {{ end }}
-            <article class="relative isolate flex flex-col overflow-hidden bg-haze p-6 text-base text-nobility sm:p-8">
+            <article class="relative isolate flex flex-col overflow-hidden bg-haze p-6 text-base sm:p-8">
               {{- /* The workshop's code, very large and faint, cut off by the corner of the box. Screen readers get it with the title. */ -}}
               <span class="absolute -top-3 -right-2 -z-10 font-display text-8xl leading-none whitespace-nowrap text-azure/15 select-none" aria-hidden="true">{{ $workshop.code }}</span>
               <div class="flex items-end gap-1.5" aria-hidden="true"><span class="shape-cube h-4 w-7 bg-pink"></span><span class="shape-cube-alt h-3 w-4 bg-lime"></span></div>
@@ -40,7 +40,7 @@
               </ul>
 
               <details class="mt-auto border-t border-nobility/15 pt-3">
-                <summary class="cursor-pointer text-sm font-semibold">About this workshop</summary>
+                <summary class="cursor-pointer text-sm font-semibold text-nobility transition hover:text-pink">About this workshop</summary>
                 <p class="mt-2 text-sm leading-relaxed">{{ $workshop.description }}</p>
               </details>
             </article>

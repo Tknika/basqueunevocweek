@@ -2,10 +2,10 @@
 {{ partial "page-header.html" . }}
 
 <nav class="container-site flex flex-wrap gap-2 pt-10 text-sm font-semibold" aria-label="{{ .Title }}">
-  <a href="#getting-there" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Getting to the Kursaal</a>
-  <a href="#where-to-stay" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Where to stay</a>
-  {{ with .Params.next_weekend }}<a href="#next-weekend" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">{{ .eyebrow }}</a>{{ end }}
-  <a href="#places" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Places of interest</a>
+  <a href="#getting-there" class="border border-nobility px-4 py-2 text-nobility transition hover:border-pink hover:bg-pink hover:text-white">Getting to the Kursaal</a>
+  <a href="#where-to-stay" class="border border-nobility px-4 py-2 text-nobility transition hover:border-pink hover:bg-pink hover:text-white">Where to stay</a>
+  {{ with .Params.next_weekend }}<a href="#next-weekend" class="border border-nobility px-4 py-2 text-nobility transition hover:border-pink hover:bg-pink hover:text-white">{{ .eyebrow }}</a>{{ end }}
+  <a href="#places" class="border border-nobility px-4 py-2 text-nobility transition hover:border-pink hover:bg-pink hover:text-white">Places of interest</a>
 </nav>
 
 {{ with .Params.venue }}
@@ -52,7 +52,7 @@
         {{ end }}
       </div>
       {{ with .link }}
-        <a href="{{ .url }}" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 border border-nobility px-4 py-2 text-sm font-semibold transition hover:border-pink hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>
+        <a href="{{ .url }}" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 border border-nobility px-4 py-2 text-sm font-semibold text-nobility transition hover:border-pink hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>
       {{ end }}
     </div>
   </section>

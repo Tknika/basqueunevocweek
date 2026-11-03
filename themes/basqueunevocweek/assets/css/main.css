@@ -53,7 +53,7 @@
     color-scheme: light;
   }
   body {
-    @apply bg-white text-nobility font-sans antialiased;
+    @apply bg-white text-azure font-sans antialiased; /* texts in UNEVOC azure; links dark blue (nobility), pink on hover */
     font-synthesis-weight: none; /* Krona One has one weight: never fake a bold */
   }
   h1 {
@@ -165,13 +165,13 @@
     @apply mt-5;
   }
   .prose-site h2 {
-    @apply mt-14 text-4xl text-nobility;
+    @apply mt-14 text-4xl;
   }
   .prose-site h3 {
-    @apply mt-10 text-3xl tracking-[-0.025em] text-nobility;
+    @apply mt-10 text-3xl tracking-[-0.025em];
   }
   .prose-site a {
-    @apply underline underline-offset-3 hover:text-azure;
+    @apply text-nobility underline underline-offset-3 hover:text-pink;
   }
   .prose-site ul {
     @apply list-disc pl-6;
