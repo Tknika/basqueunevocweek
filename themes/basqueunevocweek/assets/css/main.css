@@ -107,6 +107,10 @@
       clip-path: polygon(0 0, 100% 0, 100% 100%, 47% 100%, 43% calc(100% - 11rem), 0 calc(100% - 8.5rem));
     }
   }
+  /* Inner page headers: the bottom edge leans like the roof of the cube, rising to the right */
+  .shape-header {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 4rem), 0 100%);
+  }
   /* The second photo: the top edge leans like the roof of the cube */
   .shape-roof {
     clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);

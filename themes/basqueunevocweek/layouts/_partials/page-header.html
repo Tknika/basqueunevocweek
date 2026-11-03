@@ -1,7 +1,7 @@
-{{- /* The title of an inner page, large, on the light sky tint, next to a photo cut as a leaning cube (the brand shape), with two small shards in pink and lime. The photo is `header_image` in the front matter, or the Kursaal against the sky. Days of the programme show the programme and the weekday above the title and their headline below. */ -}}
+{{- /* The title of an inner page, large, on the light sky tint (its bottom edge leaning, .shape-header), next to a photo cut as a leaning cube (the brand shape), with two small shards in pink and lime. The photo is `header_image` in the front matter, or the Kursaal against the sky. Days of the programme show the programme and the weekday above the title and their headline below. */ -}}
 {{ $image := .Params.header_image | default "images/kursaal-sky-1200.jpg" }}
-<section class="overflow-hidden bg-haze">
-  <div class="container-site grid items-center gap-10 pt-12 pb-14 md:pt-16 lg:grid-cols-[3fr_2fr] lg:gap-16 lg:pb-20">
+<section class="shape-header overflow-hidden bg-haze">
+  <div class="container-site grid items-center gap-10 pt-12 pb-24 md:pt-16 lg:grid-cols-[3fr_2fr] lg:gap-16 lg:pb-28">
     <div>
       {{ with .Params.weekday }}
         <p class="text-sm font-semibold tracking-widest uppercase"><a href="{{ $.Parent.RelPermalink }}" class="text-nobility transition hover:text-pink">{{ $.Parent.Title }}</a> · {{ . }}</p>
