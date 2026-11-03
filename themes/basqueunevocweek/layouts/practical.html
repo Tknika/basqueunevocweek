@@ -4,6 +4,7 @@
 <nav class="container-site flex flex-wrap gap-2 pt-10 text-sm font-semibold" aria-label="{{ .Title }}">
   <a href="#getting-there" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Getting to the Kursaal</a>
   <a href="#where-to-stay" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Where to stay</a>
+  {{ with .Params.next_weekend }}<a href="#next-weekend" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">{{ .eyebrow }}</a>{{ end }}
   <a href="#places" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Places of interest</a>
 </nav>
 
@@ -57,6 +58,26 @@
   </section>
 {{ end }}
 
+{{- /* Another event worth staying for, on the UNEVOC azure, between where to stay and the places of interest (at the end of the page it ran into the blue footer), with its photo cut as a leaning cube */ -}}
+{{ with .Params.next_weekend }}
+  <section id="next-weekend" class="bg-azure py-14 text-white md:py-20">
+    <div class="container-site grid items-center gap-10 lg:grid-cols-2 lg:gap-x-16">
+      <h2 class="text-5xl leading-[1.02] sm:text-6xl lg:col-span-2 lg:text-7xl">{{ .eyebrow }}</h2>
+      <figure class="relative">
+        <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="shape-cube-alt aspect-[4/3] w-full object-cover">
+        <span class="shape-cube absolute -bottom-3 right-[10%] h-10 w-16 bg-pink" aria-hidden="true"></span>
+        <span class="shape-cube-alt absolute -bottom-6 right-[calc(10%+4.5rem)] h-6 w-9 bg-lime" aria-hidden="true"></span>
+        {{ with .credit }}<figcaption class="mt-8 text-sm text-white/80">{{ . }}</figcaption>{{ end }}
+      </figure>
+      <div>
+        <p class="text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .title }}</p>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed">{{ .text }}</p>
+        {{ with .link }}<a href="{{ .url }}" rel="noopener" class="mt-8 inline-flex items-center gap-3 bg-white px-6 py-3 font-semibold text-nobility transition hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>{{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}
+
 {{ with .Params.interest }}
   <section id="places" class="container-site py-12 md:py-16">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl">Places of interest</h2>
@@ -79,7 +100,7 @@
 {{ end }}
 
 {{ with .Content }}
-  <div class="container-site border-t border-nobility/15 py-12">
+  <div class="container-site py-12">
     <div class="prose-site">{{ . }}</div>
   </div>
 {{ end }}

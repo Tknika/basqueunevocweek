@@ -54,8 +54,14 @@ interest:
     text: "The museum of Basque society, in a former convent in the Old Town."
   - name: "Tabakalera"
     text: "Centre for contemporary culture in a former tobacco factory, by the train station."
+next_weekend:
+  eyebrow: "The weekend after"
+  title: "Euskelec, the Basque electric vehicle championship"
+  text: "Teams of students from vocational training centres design and build a 100% electric vehicle and race it on an urban circuit, with slalom, acceleration, braking and endurance tests. In 2026 it took place in the Plaza de la Virgen Blanca in Vitoria-Gasteiz. Stay a few more days and come and see it."
+  link:
+    text: "Visit euskelec.eus"
+    url: "https://euskelec.eus/en/"
+  image: "images/euskelec-race.jpg"
+  alt: "Students’ electric race cars between red and white barriers in the Plaza de la Virgen Blanca, Vitoria-Gasteiz"
+  credit: "Photo: Euskelec."
 ---
-
-For anything else, write to [international@tknika.eus](mailto:international@tknika.eus).
-
-“Funded by the European Union. Views and opinions expressed are however, those of the author(s) only and do not necessarily reflect those of the European Union or the European Education and Culture Executive Agency (EACEA). Neither the European Union nor EACEA can be held responsible for them”
