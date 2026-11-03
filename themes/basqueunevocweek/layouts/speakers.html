@@ -13,8 +13,8 @@
     (dict "id" "panel" "label" "Panel" "count" (add (len $moderators) (len $panellists)))
     (dict "id" "workshops" "label" "Workshops" "count" (len $workshoppers))
   }}
-    <a href="#{{ .id }}" class="group flex items-baseline justify-between gap-4 border-t-2 border-nobility py-4 transition hover:border-pink">
-      <span class="text-2xl font-semibold tracking-tight transition group-hover:text-pink">{{ .label }}</span>
+    <a href="#{{ .id }}" class="group flex items-baseline justify-between gap-4 border-t-2 border-nobility py-4 transition hover:border-azure">
+      <span class="text-2xl font-semibold tracking-tight transition group-hover:text-azure">{{ .label }}</span>
       <span class="font-display text-3xl text-azure">{{ .count }}</span>
     </a>
   {{ end }}
@@ -63,7 +63,7 @@
             {{ end }}
           </ul>
           <details class="mt-4">
-            <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold transition hover:text-pink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> About the speakers</summary>
+            <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold transition hover:text-azure [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> About the speakers</summary>
             <dl class="mt-4 grid gap-4">
               {{ range $names }}
                 {{ with where $people "name" . }}{{ with index . 0 }}

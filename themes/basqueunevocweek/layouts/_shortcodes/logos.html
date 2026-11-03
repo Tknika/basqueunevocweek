@@ -16,7 +16,7 @@
           {{ range $downloads }}
             {{ $size := imageConfig (path.Join "themes/basqueunevocweek/static" .file) }}
             <li>
-              <a href="{{ .file | relURL }}" download class="flex items-center justify-between gap-4 border-b border-nobility/15 py-2 text-sm text-nobility no-underline transition hover:text-pink">
+              <a href="{{ .file | relURL }}" download class="flex items-center justify-between gap-4 border-b border-nobility/15 py-2 text-sm text-nobility no-underline transition hover:text-azure">
                 <span><span class="font-semibold">{{ .label }}</span> · PNG, {{ $size.Width }} × {{ $size.Height }} px</span>
                 <span aria-hidden="true" class="font-semibold text-pink">↓</span>
               </a>

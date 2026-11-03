@@ -150,7 +150,7 @@
     @apply mt-10 text-3xl tracking-[-0.025em] text-nobility;
   }
   .prose-site a {
-    @apply text-azure underline underline-offset-3 hover:text-pink;
+    @apply underline underline-offset-3 hover:text-azure;
   }
   .prose-site ul {
     @apply list-disc pl-6;

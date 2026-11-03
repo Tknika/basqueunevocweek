@@ -12,13 +12,13 @@
               {{- /* A page for another audience: it stands apart from the rest of the menu. */ -}}
               <a href="{{ .URL }}" class="flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 transition text-white hover:bg-nobility{{ if $current }} relative after:absolute after:inset-x-4 after:-bottom-2 after:h-0.5 after:bg-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}<span class="text-xs font-medium">{{ .Page.Params.highlight }}</span></a>
             {{ else }}
-            <a href="{{ .URL }}" class="block border-b-2 py-1 transition hover:border-nobility {{ if $current }}border-pink{{ else }}border-transparent{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+            <a href="{{ .URL }}" class="block border-b-2 py-1 transition hover:border-azure hover:text-azure {{ if $current }}border-pink{{ else }}border-transparent{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
             {{ end }}
             {{ if and .HasChildren (not $page.IsHome) }}
               <div class="invisible absolute left-0 top-full pt-2 group-focus-within:visible group-hover:visible">
                 <ul class="grid gap-2 bg-white px-4 py-3 whitespace-nowrap shadow-lg ring-1 ring-nobility/10">
                   {{ range .Children }}
-                    <li><a href="{{ .URL }}" class="transition hover:text-pink{{ if $page.IsMenuCurrent "main" . }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                    <li><a href="{{ .URL }}" class="transition hover:text-azure{{ if $page.IsMenuCurrent "main" . }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
                   {{ end }}
                 </ul>
               </div>
@@ -28,7 +28,7 @@
       </ul>
     </nav>
     <details class="lg:hidden">
-      <summary class="flex cursor-pointer list-none items-center gap-2 border border-current px-4 py-1.5 text-base font-semibold [&::-webkit-details-marker]:hidden">
+      <summary class="flex cursor-pointer list-none items-center gap-2 border border-current px-4 py-1.5 text-base font-semibold transition hover:border-pink hover:bg-pink hover:text-white [&::-webkit-details-marker]:hidden">
         <svg viewBox="0 0 20 20" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
         Menu
       </summary>

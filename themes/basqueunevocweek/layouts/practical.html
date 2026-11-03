@@ -16,7 +16,7 @@
         <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[4/3] w-full shape-cube object-cover">
         <p class="mt-5 text-2xl font-semibold tracking-tight">{{ .name }}</p>
         <p class="mt-1 text-lg">{{ .address }}</p>
-        <a href="{{ .map }}" rel="noopener" class="mt-4 inline-flex items-center gap-2 bg-pink px-4 py-2 text-sm font-semibold text-white transition hover:bg-nobility">See it on the map <span aria-hidden="true">→</span></a>
+        <a href="{{ .map }}" target="_blank" rel="noopener" class="mt-4 inline-flex items-center gap-2 bg-nobility px-4 py-2 text-sm font-semibold text-white transition hover:bg-pink">See it on the map <span aria-hidden="true">→</span></a>
       </div>
       <div class="grid gap-4">
         {{ range $.Params.getting_there }}
@@ -52,7 +52,7 @@
         {{ end }}
       </div>
       {{ with .link }}
-        <a href="{{ .url }}" rel="noopener" class="mt-8 inline-flex items-center gap-2 border border-nobility px-4 py-2 text-sm font-semibold transition hover:border-pink hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>
+        <a href="{{ .url }}" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-2 border border-nobility px-4 py-2 text-sm font-semibold transition hover:border-pink hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>
       {{ end }}
     </div>
   </section>
@@ -72,7 +72,7 @@
       <div>
         <p class="text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .title }}</p>
         <p class="mt-6 max-w-xl text-lg leading-relaxed">{{ .text }}</p>
-        {{ with .link }}<a href="{{ .url }}" rel="noopener" class="mt-8 inline-flex items-center gap-3 bg-white px-6 py-3 font-semibold text-nobility transition hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>{{ end }}
+        {{ with .link }}<a href="{{ .url }}" target="_blank" rel="noopener" class="mt-8 inline-flex items-center gap-3 bg-white px-6 py-3 font-semibold text-nobility transition hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>{{ end }}
       </div>
     </div>
   </section>

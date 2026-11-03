@@ -5,5 +5,5 @@
   {{- $p := strings.TrimPrefix "/" .Destination -}}
   {{- if path.Ext $u.Path -}}{{- $href = $p | relURL -}}{{- else -}}{{- $href = $p | relLangURL -}}{{- end -}}
 {{- end -}}
-<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $u.IsAbs }} rel="noopener"{{ end }}>{{ .Text }}</a>
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if in (slice "http" "https") $u.Scheme }} target="_blank" rel="noopener"{{ end }}>{{ .Text }}</a>
 {{- /**/ -}}
