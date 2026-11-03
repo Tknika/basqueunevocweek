@@ -45,10 +45,11 @@
     {{ range $w := hugo.Data.workshops }}
       {{ $names := split $w.speakers ", " }}
       {{ with $w.moderator }}{{ $names = $names | append . }}{{ end }}
-      <li class="grid gap-6 border-t border-nobility/15 py-8 lg:grid-cols-[7rem_2fr_3fr] lg:gap-10">
-        <p class="font-display text-4xl leading-none text-azure">{{ $w.code }}</p>
-        <div>
-          <h3 class="text-xl leading-snug">{{ $w.title }}</h3>
+      <li class="relative isolate grid gap-6 overflow-hidden border-t border-nobility/15 py-8 lg:grid-cols-[2fr_3fr] lg:gap-10">
+        {{- /* The code, very large and faint behind the title, as on the 12 May workshops. Screen readers get it with the title. */ -}}
+        <span class="absolute top-1 left-0 -z-10 font-display text-8xl leading-none whitespace-nowrap text-azure/15 select-none" aria-hidden="true">{{ $w.code }}</span>
+        <div class="pt-10">
+          <h3 class="text-xl leading-snug"><span class="sr-only">{{ $w.code }}: </span>{{ $w.title }}</h3>
           <p class="mt-1 text-sm font-semibold text-nobility/60">{{ $w.organisation }}</p>
         </div>
         <div>
