@@ -133,8 +133,12 @@
     clip-path: polygon(33.33% 0, 100% 0, 100% 100%, 0 100%);
   }
 
+  /* Text keeps a readable width; blocks marked .prose-wide (logos, workshops) use the whole width of the page */
   .prose-site {
-    @apply max-w-2xl text-lg leading-relaxed;
+    @apply text-lg leading-relaxed;
+  }
+  .prose-site > :not(.prose-wide) {
+    @apply max-w-2xl;
   }
   .prose-site > * + * {
     @apply mt-5;

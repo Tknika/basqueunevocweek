@@ -1,7 +1,7 @@
 {{- /* The workshops in data/workshops.yaml, by `session`: the two of a session run at the same time, so people choose one. Photos come from data/speakers.yaml. */ -}}
 {{ $people := hugo.Data.speakers }}
 {{ $workshops := hugo.Data.workshops }}
-<div class="grid gap-10">
+<div class="prose-wide grid gap-10">
   {{ range $session := seq (div (add (len $workshops) 1) 2) }}
     {{ with where $workshops "session" $session }}
       <section aria-label="Session {{ $session }}">
