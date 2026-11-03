@@ -1,0 +1,20 @@
+{{- /* The organisers' logos from hugo.toml, to download. Each is shown on the background it is made for: those with `plaque` are for light backgrounds, the rest are white versions for dark ones. */ -}}
+<ul class="grid list-none gap-4 pl-0 text-base sm:grid-cols-2">
+  {{ range $o := site.Params.organizers }}
+    {{ with .logo }}
+      {{ $size := imageConfig (path.Join "themes/basqueunevocweek/static" .) }}
+      <li class="overflow-hidden bg-haze">
+        <div class="flex h-40 items-center justify-center p-6 {{ if $o.plaque }}bg-white{{ else }}bg-nobility{{ end }}">
+          <img src="{{ . | relURL }}" alt="" loading="lazy" class="max-h-24 w-auto max-w-full">
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 p-5">
+          <div>
+            <p class="font-semibold leading-snug">{{ $o.name }}</p>
+            <p class="text-sm">PNG, {{ $size.Width }} × {{ $size.Height }} px, for {{ if $o.plaque }}light{{ else }}dark{{ end }} backgrounds</p>
+          </div>
+          <a href="{{ . | relURL }}" download class="rounded-full bg-pink px-4 py-2 text-sm font-semibold text-white no-underline transition hover:bg-nobility hover:text-white">Download ↓</a>
+        </div>
+      </li>
+    {{ end }}
+  {{ end }}
+</ul>

@@ -3,9 +3,9 @@
 @source "hugo_stats.json";
 
 @font-face {
-  font-family: "Outfit";
-  src: url("../fonts/outfit-latin-wght-normal.woff2") format("woff2-variations");
-  font-weight: 100 900;
+  font-family: "Krona One";
+  src: url("../fonts/krona-one-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
   font-display: swap;
 }
 
@@ -18,26 +18,53 @@
 
 @theme {
   --font-sans: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Krona One", ui-sans-serif, system-ui, sans-serif; /* graphic, one weight: only for big moments */
 
-  --color-graphite: #46464d; /* text and dark surfaces */
+  --color-nobility: #181848; /* text and dark surfaces */
   --color-azure: #126ab4;   /* unevoc: main brand surface */
   --color-mist: #eaf3fc;    /* soft surface */
   --color-pink: #a34068;    /* fp: accent */
   --color-lime: #c3d13a;    /* tknika: surfaces and lines only, low contrast as text on white */
+  --color-purple: #4837ce;  /* balances the blue (7.6:1 with white) */
+  --color-sky: #b1c8ce;     /* the sky in the Kursaal photos */
+  --color-haze: #eef3f4;    /* a very light sky: soft surface on the home */
+}
+
+/* A neon sign that stutters now and then */
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @layer base {
   html {
     font-size: 106.25%; /* 17px base */
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem; /* the sticky header must not cover section links */
     color-scheme: light;
   }
   body {
-    @apply bg-white text-graphite font-sans antialiased;
+    @apply bg-white text-nobility font-sans antialiased;
+    font-synthesis-weight: none; /* Krona One has one weight: never fake a bold */
   }
-  h1, h2, h3 {
-    @apply font-display font-bold tracking-tight;
+  h1 {
+    @apply font-semibold tracking-[-0.035em];
+  }
+  h2 {
+    @apply font-semibold tracking-[-0.03em];
+  }
+  h3, h4 {
+    @apply font-semibold tracking-tight;
   }
   ::selection {
     @apply bg-pink text-white;
@@ -53,10 +80,108 @@
 }
 
 @layer components {
+  /* Inner pages use the width of the window too, like the home, up to a very wide screen */
   .container-site {
-    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full max-w-[96rem] px-4 sm:px-6 lg:px-8;
+  }
+  /* The home page uses the whole width of the window, with the same side margins */
+  .container-wide {
+    @apply w-full px-4 sm:px-6 lg:px-8;
   }
 
+  /* The brand shape: the leaning glass cubes of the Kursaal, used to cut photos and as small coloured shards, as texurabranding.com does with its logo */
+  .shape-cube {
+    clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);
+  }
+  .shape-cube-alt {
+    clip-path: polygon(0 5%, 93% 0, 100% 95%, 6% 100%);
+  }
+  .shape-cube-tall {
+    clip-path: polygon(0 0, 88% 4%, 100% 100%, 9% 96%);
+  }
+  /* The first photo on the home, with a leaning cube bitten out of its lower left corner, where the dates go */
+  .shape-hero {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 82% 100%, 76% calc(100% - 9.5rem), 0 calc(100% - 7.5rem));
+  }
+  @media (width >= 64rem) {
+    .shape-hero {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 47% 100%, 43% calc(100% - 11rem), 0 calc(100% - 8.5rem));
+    }
+  }
+  /* The second photo: the top edge leans like the roof of the cube */
+  .shape-roof {
+    clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* Youth Camp only: neon signs on a dark grid. Each tone is a glowing text and a glowing frame. */
+  .neon-text-pink {
+    color: #ff7ab8;
+    text-shadow: 0 0 2px #fff, 0 0 10px #ff2f8e, 0 0 24px #ff2f8e, 0 0 48px #ff2f8e;
+  }
+  .neon-text-cyan {
+    color: #8ff8ff;
+    text-shadow: 0 0 2px #fff, 0 0 10px #18e0ff, 0 0 24px #18e0ff, 0 0 48px #18e0ff;
+  }
+  .neon-text-lime {
+    color: #e6ff7a;
+    text-shadow: 0 0 2px #fff, 0 0 10px #c8ef1e, 0 0 24px #c8ef1e, 0 0 48px #9ccf00;
+  }
+  .neon-box-pink {
+    border: 2px solid #ff7ab8;
+    box-shadow: 0 0 8px #ff2f8e, 0 0 24px #ff2f8e80, inset 0 0 14px #ff2f8e60;
+  }
+  .neon-box-cyan {
+    border: 2px solid #8ff8ff;
+    box-shadow: 0 0 8px #18e0ff, 0 0 24px #18e0ff80, inset 0 0 14px #18e0ff60;
+  }
+  .neon-box-lime {
+    border: 2px solid #e6ff7a;
+    box-shadow: 0 0 8px #c8ef1e, 0 0 24px #c8ef1e80, inset 0 0 14px #c8ef1e60;
+  }
+  .neon-grid {
+    background-image:
+      radial-gradient(ellipse at 70% 0%, #ff2f8e33, transparent 55%),
+      radial-gradient(ellipse at 10% 100%, #18e0ff2e, transparent 50%),
+      linear-gradient(#18e0ff1a 1px, transparent 1px),
+      linear-gradient(90deg, #18e0ff1a 1px, transparent 1px);
+    background-size: auto, auto, 48px 48px, 48px 48px;
+  }
+  .neon-rule {
+    border-block: 2px solid #8ff8ff;
+    box-shadow: 0 0 10px #18e0ff, inset 0 0 10px #18e0ff60;
+  }
+  .flicker {
+    animation: flicker 6s linear infinite;
+  }
+  .marquee {
+    animation: marquee 32s linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee,
+    .flicker {
+      animation: none;
+    }
+  }
+
+  /* A drawing that fades away towards the left, where the title of the page goes, and into the page below */
+  .fade-drawing {
+    mask-image: linear-gradient(to left, black 35%, transparent 90%), linear-gradient(to bottom, black 35%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  /* Two photos sharing a box, split by a diagonal from 60% at the top to 40% at the bottom */
+  .diagonal-left,
+  .diagonal-right {
+    @apply absolute inset-y-0 h-full w-3/5 object-cover;
+  }
+  .diagonal-left {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 66.67% 100%, 0 100%);
+  }
+  .diagonal-right {
+    right: 0;
+    clip-path: polygon(33.33% 0, 100% 0, 100% 100%, 0 100%);
+  }
 
   .prose-site {
     @apply max-w-2xl text-lg leading-relaxed;
@@ -65,10 +190,10 @@
     @apply mt-5;
   }
   .prose-site h2 {
-    @apply mt-12 text-3xl text-graphite;
+    @apply mt-14 text-4xl text-nobility;
   }
   .prose-site h3 {
-    @apply mt-8 text-xl text-graphite;
+    @apply mt-10 text-3xl tracking-[-0.025em] text-nobility;
   }
   .prose-site a {
     @apply text-azure underline underline-offset-3 hover:text-pink;

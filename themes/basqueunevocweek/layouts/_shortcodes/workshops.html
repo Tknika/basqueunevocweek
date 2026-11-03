@@ -1,12 +1,52 @@
-{{- /* The workshops in data/workshops.yaml, each one collapsible. */ -}}
-<div class="grid gap-3">
-  {{ range hugo.Data.workshops }}
-    <details class="rounded-xl bg-mist text-graphite px-5 py-4">
-      <summary class="cursor-pointer text-graphite font-display text-lg font-semibold">{{ .code }}. {{ .title }}</summary>
-      <p class="mt-3 text-base"><strong>Speakers:</strong> {{ .speakers }}</p>
-      {{ with .moderator }}<p class="mt-1 text-base"><strong>Moderator:</strong> {{ . }}</p>{{ end }}
-      <p class="mt-1 text-base"><strong>Organisation:</strong> {{ .organisation }}</p>
-      <p class="mt-3 text-base leading-relaxed">{{ .description }}</p>
-    </details>
+{{- /* The workshops in data/workshops.yaml, by `session`: the two of a session run at the same time, so people choose one. Photos come from data/speakers.yaml. */ -}}
+{{ $people := hugo.Data.speakers }}
+{{ $workshops := hugo.Data.workshops }}
+<div class="grid gap-10">
+  {{ range $session := seq (div (add (len $workshops) 1) 2) }}
+    {{ with where $workshops "session" $session }}
+      <section aria-label="Session {{ $session }}">
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <p class="font-display text-lg whitespace-nowrap">Session {{ $session }}</p>
+          <span class="hidden h-0.5 flex-1 bg-nobility/15 sm:block" aria-hidden="true"></span>
+          <p class="text-sm font-semibold text-pink">At the same time: choose one</p>
+        </div>
+        <div class="mt-4 grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
+          {{ range $w, $workshop := . }}
+            {{ if $w }}
+              <div class="flex items-center justify-center">
+                <span class="flex size-12 items-center justify-center rounded-full bg-pink font-display text-sm text-white">or</span>
+              </div>
+            {{ end }}
+            <article class="relative isolate flex flex-col overflow-hidden bg-haze p-6 text-base text-nobility sm:p-8">
+              {{- /* The workshop's code, very large and faint, cut off by the corner of the box. Screen readers get it with the title. */ -}}
+              <span class="absolute -top-3 -right-2 -z-10 font-display text-8xl leading-none whitespace-nowrap text-azure/15 select-none" aria-hidden="true">{{ $workshop.code }}</span>
+              <div class="flex items-end gap-1.5" aria-hidden="true"><span class="shape-cube h-4 w-7 bg-pink"></span><span class="shape-cube-alt h-3 w-4 bg-lime"></span></div>
+              <h4 class="mt-12 text-xl leading-snug font-semibold"><span class="sr-only">{{ $workshop.code }}: </span>{{ $workshop.title }}</h4>
+              <p class="mt-1 text-sm font-semibold text-azure">{{ $workshop.organisation }}</p>
+
+              <ul class="mt-4 mb-4 grid list-none grid-cols-2 gap-x-3 gap-y-3 pl-0 sm:grid-cols-3">
+                {{ range $i, $name := split $workshop.speakers ", " }}
+                  <li class="flex items-center gap-2 text-sm leading-tight font-medium">
+                    {{ partial "avatar.html" (dict "name" $name "index" $i "class" "size-10 text-xs" "photo" (index (where $people "name" $name) 0).photo) }}
+                    {{ $name }}
+                  </li>
+                {{ end }}
+                {{ with $workshop.moderator }}
+                  <li class="flex items-center gap-2 text-sm leading-tight font-medium">
+                    {{ partial "avatar.html" (dict "name" . "index" 3 "class" "size-10 text-xs" "photo" (index (where $people "name" .) 0).photo) }}
+                    <span>{{ . }}<span class="block text-xs font-semibold text-pink">Moderator</span></span>
+                  </li>
+                {{ end }}
+              </ul>
+
+              <details class="mt-auto border-t border-nobility/15 pt-3">
+                <summary class="cursor-pointer text-sm font-semibold">About this workshop</summary>
+                <p class="mt-2 text-sm leading-relaxed">{{ $workshop.description }}</p>
+              </details>
+            </article>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
   {{ end }}
 </div>

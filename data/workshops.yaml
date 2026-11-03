@@ -1,72 +1,86 @@
 - code: WS1
+  session: 1
   title: "From Skills to Applied Research Ecosystems: Bridging the SME Innovation Gap through VET-UAS Integration"
   speakers: Elina Pylkkänen, Georgios Zisimos, Ola Kukkasniemi
   moderator: Carlo Ferretti
   organisation: European Training Foundation (ETF)
   description: This session unveils the findings of the MOSAIC paper, exploring how Europe can transform Vocational Education and Training (VET) and Universities of Applied Sciences (UAS) into permanent engines for SME innovation. Inspired by the Canadian CCTT model, the presentation tracks a journey from international benchmarking to operational pilots in Finland. The workshop concludes with a cross-regional dialogue, connecting these insights to the established excellence of the Basque Country to define a new European architecture for productivity and economic growth.
 - code: WS2
+  session: 1
   title: "LCAMP Collaborative Learning Factory. Future Outlook"
   speakers: Unai Ziarsolo, Liher Errasti
   organisation: Tknika
   description: In this session, we present the outcomes of the Collaborative Learning Factory work in LCAMP and discuss future opportunities.
 - code: WS3
+  session: 2
   title: "AR Welding Simulation for Digital Skills Training"
   speakers: Juan Vega, Antonio Fernández
   organisation: Seabery
   description: This workshop demonstrates how augmented reality welding simulators can enhance learner-centric training and professional upskilling. Participants will engage hands-on with AR tools, exploring practical exercises that improve welding techniques, foster digital skills, and showcase how technology supports personalized learning in advanced manufacturing contexts.
 - code: WS4
+  session: 2
   title: "LCAMP Making the Skills Profiler Work for Everyone"
   speakers: Mikel Arza, Aljaž Leben, Rikardo Lamadrid
   organisation: Tknika and KIC
   description: "Part 1: Systems Architecture & Logic. A deep dive into the inner workings and structural framework of the Skills Profiler. Part 2: Live Interaction & UX Stress-Test. A hands-on collaborative session where the audience engages directly with the tool to identify real-world wins and friction points."
 - code: WS5
+  session: 3
   title: "How to build demand-driven ecosystems to shape Lifelong Learning"
   speakers: Anneloes van Delft, Tim van der Voord
   organisation: Platform Talent voor Technologie
   description: How do you ensure that Lifelong Learning (LLL) does not remain a collection of isolated courses or well-intended initiatives? How do you take labour market needs and employee challenges as your starting point? And how do you collaborate effectively with educational institutions and industry? In this interactive workshop, you will learn how. Using the “Learning and Innovating” toolkit, we explore how to build a powerful ecosystem in which working, learning, and innovating come together. Participants will work hands-on with a fictional case and practise formulating a value proposition and translating it into a concrete intervention. Throughout the session, we introduce practical tools that can be directly applied in your own context.
 - code: WS6
+  session: 3
   title: "LCAMP Dynamic Observatory on Advanced Manufacturing: a track towards automatisation of regular surveys"
   speakers: Pascal Pichoutou
   moderator: Hervé Danton
   organisation: Mecanic Vallée
   description: WP3 teams will present tracks on automatisation of regular surveys on LCAMP Dynamic Observatory on Advanced Manufacturing by AI new tools.
 - code: WS7
+  session: 4
   title: "LCAMP SME-VET connection in Applied Research"
   speakers: Samuel Nazzareno Monaco, Iñigo Mujika, Miren Canellada, Gorka Goikoetxea, Aratz Etxeberria, Haritz Izagirre
   organisation: Tknika and AFIL
   description: Explanation of tasks in WP4 and WP7 (SME-VET Connection and Open Innovation Community). Different examples of projects done in WP4, SME-VET Connection. Brief reflection of the WPs with the audience.
 - code: WS8
+  session: 4
   title: "Co-Designing Learning Ecosystems for Human–AI Teams"
   speakers: Daniela De Lucia, Laura Rocchitelli
   organisation: Rold Academy
   description: Emerging technologies are radically transforming the way we work and collaborate. This is not simply about adopting new tools, but about redefining the very concept of competence in environments where humans and AI agents operate as integrated systems. The workshop will serve as a co-design space in which participants collaboratively develop training pathways capable of integrating technical and transversal competencies into a coherent framework, preparing individuals to collaborate effectively within hybrid human–AI teams, and fostering adaptive capabilities in rapidly evolving professional environments.
 - code: WS9
+  session: 5
   title: "Digital Twins on Smart Manufacturing"
   speakers: Annalisa Rizzo, Xabier Ugarte
   moderator: Anabel Menica
   organisation: APRO Formazione and Politeknika Txorierri
   description: Brief presentation followed by a practical, hands-on activity and virtual lab. Final questions and remarks.
 - code: WS10
+  session: 5
   title: "Drones, AI and 5G"
   speakers: Ander Garcia
   organisation: Drone by Drone
   description: Show the possibilities of drones in industry using AI and 5G connectivity.
 - code: WS11
+  session: 6
   title: "Digitalisation: its positive and less positive impact on Mental Health and well-being at work"
   speakers: Violaine Roggeri
   organisation: European Agency for Safety and Health at Work (EU-OSHA)
   description: EU-OSHA contributes the occupational safety and health perspective on the relationship between digital technologies at work and psychosocial risks. The workshop addresses both the positive and negative impacts of digitalisation on workers’ mental health, including the benefits of digital technologies for work organisation and flexibility, psychosocial risks associated with digital work, exposure to cyberviolence, including its gender dimension, and sectors where cyberviolence is particularly prevalent.
 - code: WS12
+  session: 6
   title: "The future of Digital Twin in the era of AI"
   speakers: Mikel Ayani
   organisation: Virtualware Sweden AB - Simumatik
   description: We will discuss why Digital Twins will become even more important in the era of AI and AGI.
 - code: WS13
+  session: 7
   title: "S.T.E.A.M. ∩ feminism"
   speakers: Leyre Diego, Beatriz Medrano
   organisation: CIFP Barakaldo LHII
   description: The attendants will be able to put into practice critical thinking and best uses for gender justice in VET.
 - code: WS14
+  session: 7
   title: "EduBox, an opportunity for curriculum innovation"
   speakers: Jan Meca
   organisation: Moravian-Silesian Technological Academy

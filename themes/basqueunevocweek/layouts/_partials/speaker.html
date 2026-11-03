@@ -1,0 +1,19 @@
+{{- /* A person from data/speakers.yaml. Without `photo`, their initials on a brand colour. Takes person, index, and optionally dark (on a tinted band: a white card) and badge. */ -}}
+{{ $p := .person }}
+{{ $role := $p.role }}
+{{ $badge := .badge }}
+{{ with findRE `^WS\d+( moderator)?\. ` $role 1 }}
+  {{ $badge = strings.TrimSuffix ". " (index . 0) }}
+  {{ $role = strings.TrimPrefix (index . 0) $role }}
+{{ end }}
+<article class="mb-4 break-inside-avoid p-6 {{ if .dark }}bg-white{{ else }}bg-haze{{ end }}">
+  <div class="flex items-center gap-4">
+    {{ partial "avatar.html" (dict "name" $p.name "photo" $p.photo "index" .index "shaped" true "class" "size-24 text-2xl") }}
+    <div>
+      {{ with $badge }}<p class="mb-1 text-xs font-bold tracking-wide uppercase text-pink">{{ . }}</p>{{ end }}
+      <h3 class="text-xl leading-tight font-semibold">{{ $p.name }}</h3>
+    </div>
+  </div>
+  {{ with $role }}<p class="mt-4 text-sm font-semibold text-azure">{{ . }}</p>{{ end }}
+  {{ with $p.bio }}<p class="mt-2 text-base leading-relaxed">{{ . }}</p>{{ end }}
+</article>

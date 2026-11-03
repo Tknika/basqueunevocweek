@@ -1,0 +1,58 @@
+{{ define "main" }}
+{{- /* Youth Camp speaks to students, not to the rest of the event's audience: its own loud look, as neon signs on a dark grid (the neon classes in main.css). Pink, cyan and lime take turns through the cards. */ -}}
+{{ $tones := slice "pink" "cyan" "lime" }}
+<div class="bg-[#07071a] text-white">
+  <section class="neon-grid overflow-hidden">
+    <div class="container-site py-16 md:py-24">
+      <h1 class="neon-text-pink flicker font-display font-normal tracking-tight text-6xl leading-none sm:text-8xl lg:text-9xl">{{ .Title }}</h1>
+      <p class="mt-8 max-w-2xl text-xl font-semibold sm:text-2xl">{{ .Params.intro }}</p>
+      <div class="mt-10 flex flex-wrap gap-5">
+        {{ range $i, $t := .Params.tracks }}
+          {{ $tone := cond (eq $i 0) "pink" "cyan" }}
+          <a href="#{{ $t.id }}" class="neon-box-{{ $tone }} block rounded-xl px-6 py-4 transition hover:bg-white/10">
+            <span class="neon-text-{{ $tone }} block font-display text-lg">{{ $t.audience }}</span>
+            <span class="mt-1 block text-sm font-semibold">{{ $t.level }} · {{ $t.dates }}</span>
+          </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <div class="neon-rule overflow-hidden py-3" aria-hidden="true">
+    <div class="marquee flex w-max font-display text-lg">
+      {{ range seq 2 }}
+        <div class="flex shrink-0">
+          {{ range $.Params.topics }}<span class="neon-text-lime px-5 whitespace-nowrap">{{ . }}</span><span class="neon-text-pink">✦</span>{{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
+
+  {{ range $i, $t := .Params.tracks }}
+    <section id="{{ $t.id }}" class="{{ if $i }}bg-[#0d0b24]{{ end }} py-14 md:py-20">
+      <div class="container-site">
+        <p class="neon-box-lime neon-text-lime inline-block rounded-full px-4 py-2 font-display text-sm">{{ $t.audience }} · {{ $t.level }}</p>
+        <h2 class="mt-6 max-w-4xl font-display text-3xl leading-tight font-normal sm:text-4xl">{{ $t.title }}</h2>
+        <p class="neon-text-cyan mt-3 text-xl font-semibold">{{ $t.dates }}</p>
+        {{ with $t.note }}<p class="mt-2 max-w-2xl text-lg text-white/80">{{ . }}</p>{{ end }}
+
+        <ol class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {{ range $d, $day := $t.days }}
+            {{ $tone := index $tones (mod (add $d $i) 3) }}
+            <li class="neon-box-{{ $tone }} rounded-xl bg-white/5 p-6">
+              <div class="flex items-baseline gap-3">
+                <span class="neon-text-{{ $tone }} font-display text-5xl">{{ .number }}</span>
+                <span class="font-semibold">{{ .weekday }}</span>
+              </div>
+              {{ with .place }}<p class="mt-4 text-lg leading-snug font-bold">{{ . }}</p>{{ end }}
+              {{ with .text }}<p class="mt-2 leading-relaxed text-white/85">{{ . }}</p>{{ end }}
+              {{ with .morning }}<p class="neon-text-{{ $tone }} mt-4 text-sm font-bold">Morning</p><p class="leading-relaxed text-white/85">{{ . }}</p>{{ end }}
+              {{ with .afternoon }}<p class="neon-text-{{ $tone }} mt-3 text-sm font-bold">Afternoon</p><p class="leading-relaxed text-white/85">{{ . }}</p>{{ end }}
+            </li>
+          {{ end }}
+        </ol>
+      </div>
+    </section>
+  {{ end }}
+</div>
+{{ end }}

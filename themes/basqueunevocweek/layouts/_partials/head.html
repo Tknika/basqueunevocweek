@@ -14,6 +14,10 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:locale" content="{{ site.Language.Lang }}">
 
+{{- /* The leaning cube of the Kursaal. favicon.svg is the source; the ICO and PNG copies, drawn from it, are for browsers that do not show SVG icons. */}}
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
-<link rel="preload" href="{{ "fonts/outfit-latin-wght-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32.png" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+<link rel="preload" href="{{ "fonts/krona-one-latin-400-normal.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 {{ partial "css.html" . }}

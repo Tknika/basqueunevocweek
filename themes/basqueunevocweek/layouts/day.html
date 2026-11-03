@@ -1,0 +1,136 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<div class="container-site pt-12 md:pt-16">
+  {{ partial "day-nav.html" . }}
+</div>
+
+{{ with .Params.morning }}
+  <section id="morning" class="container-site pb-14 md:pb-20">
+    <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+      <h2 class="text-5xl sm:text-6xl lg:text-7xl">Morning</h2>
+      {{ with .time }}<p class="text-xl font-semibold text-pink">{{ . }}</p>{{ end }}
+    </div>
+    {{ with .intro }}<p class="mt-3 text-lg">{{ . }}</p>{{ end }}
+
+    {{ with .conference }}
+      <div class="mt-8 grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-12">
+        <div class="lg:sticky lg:top-24 lg:self-start">
+          <h3 class="text-3xl leading-tight">{{ .title }}</h3>
+          <p class="mt-2 font-semibold text-pink">{{ .venue }}</p>
+          <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="mt-6 aspect-[4/3] w-full shape-cube object-cover">
+        </div>
+        {{ partial "sessions.html" .sessions }}
+      </div>
+    {{ end }}
+
+    {{- /* The headers share a grid row through subgrid, so the photos start at the same height whatever the titles' length. */ -}}
+    {{ with .options }}<div class="mt-8 grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:gap-x-6 lg:gap-y-0">
+      {{ range $i, $o := . }}
+        {{ if $i }}
+          <div class="flex items-center justify-center lg:row-span-2 lg:self-center">
+            <span class="flex size-12 items-center justify-center rounded-full bg-pink font-display text-sm text-white">or</span>
+          </div>
+        {{ end }}
+        <article class="flex flex-col lg:row-span-2 lg:grid lg:grid-rows-subgrid lg:gap-0">
+          <header class="bg-haze p-6 sm:px-8">
+            <p class="text-sm font-semibold text-pink">Option {{ add $i 1 }}</p>
+            <h3 class="mt-1 text-3xl">{{ $o.title }}</h3>
+            {{ with $o.when }}<p class="mt-2 font-semibold text-azure">{{ . }}</p>{{ end }}
+          </header>
+          <div class="overflow-hidden bg-haze lg:self-start">
+            {{ with $o.centres }}
+              {{- /* The photos share one box, split by a diagonal. */ -}}
+              <div class="relative aspect-[2/1] overflow-hidden">
+                {{ range $c, $centre := . }}
+                  <img src="{{ $centre.image | relURL }}" alt="{{ $centre.alt }}" loading="lazy" class="{{ if $c }}diagonal-right{{ else }}diagonal-left{{ end }}">
+                {{ end }}
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="absolute inset-0 size-full" aria-hidden="true" focusable="false"><line x1="60" y1="0" x2="40" y2="100" stroke="#fff" stroke-width="4" vector-effect="non-scaling-stroke"/></svg>
+              </div>
+              <ul class="grid grid-cols-2 gap-4 p-6 sm:px-8">
+                {{ range . }}
+                  <li>
+                    <p class="text-lg font-semibold sm:text-xl">{{ .name }}</p>
+                    <a href="{{ .url }}" rel="noopener" class="mt-1 block text-sm wrap-anywhere text-azure underline underline-offset-3 hover:text-pink">{{ strings.TrimPrefix "www." (urls.Parse .url).Host }}</a>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ else }}
+              {{ with $o.image }}
+                <figure>
+                  <img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="aspect-[2/1] w-full object-cover">
+                  {{ with $o.credit }}<figcaption class="px-6 pt-2 text-xs text-nobility/70 sm:px-8">{{ . }}</figcaption>{{ end }}
+                </figure>
+              {{ end }}
+              {{ with $o.sessions }}
+                <div class="p-6 sm:px-8">{{ partial "sessions.html" . }}</div>
+              {{ end }}
+              {{ with $o.groups }}<div class="grid gap-8 p-6 sm:px-8">
+                {{ range . }}
+                  <div>
+                    <div class="flex items-center gap-4">
+                      <h4 class="text-xl font-bold">{{ .title }}</h4>
+                      <span class="h-0.5 flex-1 bg-pink" aria-hidden="true"></span>
+                    </div>
+                    <ul class="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+                      {{ range .items }}
+                        <li class="flex gap-2"><span class="font-bold text-pink" aria-hidden="true">›</span>{{ . }}</li>
+                      {{ end }}
+                    </ul>
+                  </div>
+                {{ end }}
+              </div>{{ end }}
+            {{ end }}
+          </div>
+        </article>
+      {{ end }}
+    </div>{{ end }}
+  </section>
+{{ end }}
+
+{{ with .Params.lunch }}
+  {{- /* Lunch separates the morning from the afternoon, on the sky of the Kursaal photos. */ -}}
+  <div id="lunch" class="bg-sky">
+    <div class="container-site flex flex-wrap items-center gap-x-4 gap-y-1 py-8">
+      <svg viewBox="0 0 24 24" class="size-8 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3"/><path d="M17 21v-7M17 14c-2 0-3-2-3-5.500S15.500 3 17 3Z"/></svg>
+      <p class="font-display text-2xl sm:text-3xl">Lunch</p>
+      <span class="flex items-end gap-1.5" aria-hidden="true"><span class="shape-cube h-4 w-7 bg-pink"></span><span class="shape-cube-alt h-3 w-4 bg-lime"></span></span>
+      <p class="text-xl font-semibold sm:ml-auto">{{ . }}</p>
+    </div>
+  </div>
+{{ end }}
+
+{{ with $.Content }}
+  <section id="afternoon" class="container-site py-14 md:py-20">
+    <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+      <h2 class="text-5xl sm:text-6xl lg:text-7xl">Afternoon</h2>
+      {{ with $.Params.afternoon_time }}<p class="text-xl font-semibold text-pink">{{ . }}</p>{{ end }}
+    </div>
+    <div class="prose-site mt-6 max-w-none">{{ . }}</div>
+  </section>
+{{ end }}
+
+{{ with .Params.afternoon }}
+  <section id="afternoon" class="container-site pb-14 md:pb-20">
+    <div class="border-t border-nobility/15 pt-14 md:pt-20">
+      <h2 class="text-5xl sm:text-6xl lg:text-7xl">Afternoon</h2>
+      <div class="mt-8 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <p class="text-3xl font-semibold tracking-tight text-pink">{{ .eyebrow }}</p>
+          <h3 class="mt-2 text-3xl leading-tight">{{ .title }}</h3>
+          {{ with .text }}<p class="mt-5 text-lg leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+        {{ with .images }}
+          {{ with index . 0 }}
+            <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[3/2] w-full shape-cube object-cover">
+          {{ end }}
+        {{ end }}
+      </div>
+      {{ with .images }}{{ with after 1 . }}<div class="mt-6 grid gap-6{{ if gt (len .) 1 }} sm:grid-cols-[2fr_1fr]{{ end }}">
+        {{ range . }}
+          <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[3/2] w-full shape-cube object-cover sm:aspect-auto sm:h-80">
+        {{ end }}
+      </div>{{ end }}{{ end }}
+    </div>
+  </section>
+{{ end }}
+{{ end }}

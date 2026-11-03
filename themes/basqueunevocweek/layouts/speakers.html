@@ -1,0 +1,38 @@
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+{{ $people := hugo.Data.speakers }}
+{{ $conference := where $people "group" "conference" }}
+{{ $moderators := where $people "group" "moderator" }}
+{{ $panellists := where $people "group" "panellist" }}
+{{ $workshops := where $people "group" "workshops" }}
+
+<nav class="container-site flex flex-wrap gap-2 pt-10 text-sm font-semibold" aria-label="{{ .Title }}">
+  <a href="#conference" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Conference</a>
+  <a href="#panel" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Panel</a>
+  <a href="#workshops" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Workshops</a>
+</nav>
+
+<section id="conference" class="container-site py-12 md:py-16">
+  <h2 class="text-4xl sm:text-5xl lg:text-6xl">Conference</h2>
+  <div class="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
+    {{ range $i, $p := $conference }}{{ partial "speaker.html" (dict "person" $p "index" $i) }}{{ end }}
+  </div>
+</section>
+
+<section id="panel" class="bg-haze py-12 md:py-16">
+  <div class="container-site">
+    <h2 class="text-4xl sm:text-5xl lg:text-6xl">Panel</h2>
+    <div class="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
+      {{ range $i, $p := $moderators }}{{ partial "speaker.html" (dict "person" $p "index" $i "dark" true "badge" "Moderator") }}{{ end }}
+      {{ range $i, $p := $panellists }}{{ partial "speaker.html" (dict "person" $p "index" (add $i 1) "dark" true "badge" "Panellist") }}{{ end }}
+    </div>
+  </div>
+</section>
+
+<section id="workshops" class="container-site py-12 md:py-16">
+  <h2 class="text-4xl sm:text-5xl lg:text-6xl">Workshops</h2>
+  <div class="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
+    {{ range $i, $p := $workshops }}{{ partial "speaker.html" (dict "person" $p "index" $i) }}{{ end }}
+  </div>
+</section>
+{{ end }}

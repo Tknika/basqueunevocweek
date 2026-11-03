@@ -16,6 +16,10 @@ disableKinds = ["taxonomy", "term"]
 
   # Shown in the footer, in this order. Without `logo`, the name is shown as text.
   [[params.organizers]]
+    name = "Basque Government, Department of Education"
+    logo = "images/logo-eusko-jaurlaritza-white.png"
+    url = "https://www.euskadi.eus/"
+  [[params.organizers]]
     name = "UNESCO-UNEVOC Network Member"
     logo = "images/logo-unevoc-network.png"
     # The logo is blue: it goes on a white plaque in the blue footer.
@@ -29,10 +33,6 @@ disableKinds = ["taxonomy", "term"]
     name = "Tknika"
     logo = "images/logo-tknika.png"
     url = "https://tknika.eus/"
-  [[params.organizers]]
-    name = "Basque Government, Department of Education"
-    logo = "images/logo-eusko-jaurlaritza-white.png"
-    url = "https://www.euskadi.eus/"
 
 [markup.goldmark.renderer]
   unsafe = true

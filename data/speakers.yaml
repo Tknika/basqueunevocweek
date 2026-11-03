@@ -1,129 +1,175 @@
 - name: Begoña Pedrosa
+  group: conference
+  photo: images/speakers/begona-pedrosa.jpg
   role: Minister of Education, Department of Education, Basque Government
   bio: Minister of Education of the Basque Government since June 2024, and previously Viceminister of Education and Dean of the Faculty of Humanities and Education Sciences of Mondragon University. Holds a degree in English Philology, a PhD in Applied Linguistics (Doctor Europeus) from UPV-EHU, a Master of Arts from the University of Illinois and an MBA from Mondragon University.
 - name: Anna Banczyk
+  group: conference
   role: Head of Unit for Vocational Education and Training, Skills Portability and Cedefop, DG Employment, Social Affairs and Inclusion, European Commission
 - name: Elina Pylkkänen
+  group: conference
   role: Under-Secretary of State at the Ministry of Economic Affairs and Employment in Finland
   bio: Holds a doctoral degree in economics and has worked in international and domestic roles as a researcher, economist, economic policy specialist and director of a research institute.
 - name: Georgios Zisimos
+  group: conference
   role: Head of Human Capital Development Policy Advice Unit, European Training Foundation (ETF)
   bio: An educationist who has held various positions in education and training, including member of the cabinet of the EU Commissioner in charge of education, youth, culture, multilingualism and sport.
 - name: Inge Gorostiaga
+  group: conference
   role: Director of Digital Transformation and Advanced Learning, Department of Education, Basque Government
   bio: Holds a Bachelor’s Degree in Business Administration and Management from the UPV (Sarriko) and a Diploma in Teaching, specializing in English, from the BAM University School of Teacher Training.
 - name: El Iza Mohamedou
+  group: conference
   role: Head of the Centre for Skills, OECD
   bio: Leads the OECD centre that supports countries in achieving better economic and social outcomes through a whole-of-government approach to skills policies. More than 30 years of international experience, with a PhD in Economics, an MBA in International Business and a BA in Economics.
 - name: Alessandro Marini
+  group: conference
   role: Cluster Manager, AFIL - Lombardy Intelligent Factory Association
   bio: Also President of Brescia Mobilità, CEO and Partner of SMH Group, Partner at Studio Maruggi and Managing Partner of Quantra. Holds a Master’s degree in Mechanical Engineering and a PhD in Information Engineering from the University of Brescia, where he is a lecturer in digital.
 - name: Klaus-Dieter Rupp
+  group: conference
   role: Professor, Duale Hochschule Baden-Württemberg
   bio: Professor of industrial engineering since 2000 and winner of the Baden-Württemberg State Teaching Prize in 2011. Focuses on automation and robotics, research programmes and curriculum development at DHBW-Heidenheim.
 - name: Richard Gale
-  role: Panel moderator. Director of Camosun Innovates, Camosun College, Canada
+  group: moderator
+  role: Director of Camosun Innovates, Camosun College, Canada
   bio: Leads an advanced manufacturing team supporting applied research for Western Canada and beyond, and co-leads the WFCP Applied Research Affinity Group. Former Vice President Academic, Provost and Acting President of Capilano University.
 - name: Kenneth Barrientos
-  role: Panellist. Head of the UNEVOC Network Secretariat
+  group: panellist
+  role: Head of the UNEVOC Network Secretariat
   bio: Leads the SDGs and Greening TVET thematic programme of UNESCO-UNEVOC. Joined UNEVOC in 2013 and has worked in education, environment and TVET for over 25 years.
 - name: Cynthia Woolderink
-  role: Panellist. Chairperson of EBBD
+  group: panellist
+  role: Chairperson of EBBD
   bio: Coordinator of international studies and international affairs at Rijn IJssel, a regional VET centre in Arnhem. Chairperson since 2021 of EBBD, the European association in charge of the joint European EBBD certificate.
 - name: Daniel Kehl
-  role: Panellist. Principal of GBS St. Gallen
+  group: panellist
+  role: Principal of GBS St. Gallen
   bio: President of the Swiss National Board of EfVET and board member of EfVET, and board member of the Swiss VET directors conference, responsible for exchange and mobility.
 - name: Tim van der Voord
-  role: Panellist and WS5. Project manager at Katapult, Platform Talent voor Technologie
+  group: panellist
+  role: Also in WS5. Project manager at Katapult, Platform Talent voor Technologie
   bio: Develops and supports programmes in the Netherlands that strengthen skills development and innovation through public-private partnerships.
 - name: Jon Labaka
+  group: conference
+  photo: images/speakers/jon-labaka.jpg
   role: Vice Minister of Vocational Education and Training, Department of Education, Basque Government
   bio: Executive Director of Tknika until September 2024. Has a background in Engineering and has held different roles at Basque VET centres.
 - name: Carlo Ferretti
+  group: workshops
   role: WS1 moderator. Head of Research and Innovation, Materahub
   bio: Researcher in cultural economics and socio-cultural project designer, working at the intersection of research, European policy and innovation.
 - name: Ola Kukkasniemi
+  group: workshops
   role: WS1. Founder and CEO of Wooden Oy
   bio: Finnish furniture entrepreneur who promotes “digital craftsmanship”, and a partner in MOSAIC, a Centre of Vocational Excellence focused on arts, crafts and design.
 - name: Unai Ziarsolo
+  group: workshops
   role: WS2. Scientific coordinator of LCAMP, Tknika
   bio: Mechanical engineer with over 20 years’ experience in VET, bridging education, research and industry collaboration.
 - name: Liher Errasti
+  group: workshops
   role: WS2. Tknika
   bio: Mechanical engineer and lecturer in Advanced Manufacturing specialization programmes, involved in coordinating SCLF, an initiative to integrate Learning Factories into Basque VET.
 - name: Juan Vega
+  group: workshops
   role: WS3. Regional Manager for Iberia, Seabery
   bio: MSc in Industrial Engineering, leading initiatives that connect Industry 4.0 and Learning Factories with vocational education and advanced manufacturing.
 - name: Antonio Fernández
+  group: workshops
   role: WS3. Business & Partnerships Director, Seabery
   bio: Leads global channel development and strategic partnerships for AR-based simulation in manufacturing and vocational education.
 - name: Mikel Arza
+  group: workshops
   role: WS4. Tknika
   bio: Mechanical engineer and VET teacher in Energy Systems since 2010, specializing in thermal and renewable energy design and taking part in innovation projects and Erasmus+ initiatives.
 - name: Aljaž Leben
+  group: workshops
   role: WS4. Digital Solutions Associate, Knowledge Innovation Centre (KIC)
   bio: Works on skills frameworks, personalised learning pathways and digital tools, and has been a core contributor to several Erasmus+ projects.
 - name: Rikardo Lamadrid
+  group: workshops
   role: WS4. Tknika
   bio: Expert in Basque VET, former president of Ikaslan Gipuzkoa and Director of Technology and Advanced Learning at the Basque Government’s Vice-Ministry of Vocational Training, and European Project Manager on initiatives such as LCAMP CoVE.
 - name: Anneloes van Delft
+  group: workshops
   role: WS5. Project leader, Platform Talent voor Technologie
   bio: Works on lifelong learning and workplace innovation, and is involved in two European projects on workplace innovation and Industry 5.0.
 - name: Pascal Pichoutou
+  group: workshops
   role: WS6. Mecanic Vallée
   bio: Expert in digital transformation and industrial information systems, with 30 years of experience in production, supply chain and IT.
 - name: Hervé Danton
+  group: workshops
   role: WS6 moderator. General Manager, Mecanic Vallée
   bio: Manages a business cluster of 225 members in aeronautics, energies and defence.
 - name: Samuel Nazzareno Monaco
+  group: workshops
   role: WS7. Communication & Institutional Affairs Manager, AFIL
   bio: Works on European projects, including LCAMP, and supports the cluster’s stakeholders in identifying needs and priorities in Advanced Manufacturing in Lombardy.
 - name: Iñigo Mujika
+  group: workshops
   role: WS7. TKgune programme, Tknika
   bio: Mechanical engineer and coordinator of applied research in the TKgune programme at Oteitza VET School since 2015.
 - name: Miren Canellada
+  group: workshops
   role: WS7. Tkgune programme, Tknika
   bio: PhD in Polymers, specialised in non-metallic materials, teacher and coordinator of innovation projects at Tknika since 2009.
 - name: Gorka Goikoetxea
+  group: workshops
   role: WS7. TKgune programme
   bio: Mechanical engineer at Zulaibar Vocational Training School since 2015, and TKgune programme coordinator since 2023.
 - name: Aratz Etxeberria
+  group: workshops
   role: WS7. Oteitza Lizeo Politeknikoa
   bio: Teacher of manufacturing and automation for 18 years, developing applied innovation projects with companies since 2015.
 - name: Haritz Izagirre
+  group: workshops
   role: WS7. TKgune programme, Tknika
   bio: Technical specialist in electrical machinery and industrial electronics, and VET teacher since 2009.
 - name: Daniela De Lucia
+  group: workshops
   role: WS8. Director, Rold Academy
   bio: Designs and delivers training for company employees and the external ecosystem, oversees funded projects and coordinates ROLD’s Sustainability Committee.
 - name: Laura Rocchitelli
+  group: workshops
   role: WS8. Rold Academy
 - name: Annalisa Rizzo
+  group: workshops
   role: WS9. EU Project Manager and Proposal Writer, APRO Formazione
   bio: Master’s degree in Intercultural Communication, with 10 years in private-sector innovation and over 4 years in vocational training project management.
 - name: Xabier Ugarte
+  group: workshops
   role: WS9. Head of Operations, Politeknika Txorierri
   bio: Mining Engineer specialised in Energy Resources and teacher for over 15 years, responsible for implementing the Digitalization Plan at Txorierri.
 - name: Anabel Menica
+  group: workshops
   role: WS9 moderator. Director of Strategy & Innovation, Politeknika Txorierri
   bio: Master’s degree in Education, with over 17 years of experience as a project manager.
 - name: Ander Garcia
+  group: workshops
   role: WS10. Technical Director, Drone by Drone
   bio: Aeronautical Technical Engineer and certified UAS pilot since 2015, with experience in project management for AENA.
 - name: Violaine Roggeri
+  group: workshops
   role: WS11. Communications Officer, EU-OSHA
   bio: Communications professional working on awareness-raising and promotion campaigns across Europe.
 - name: Mikel Ayani
+  group: workshops
   role: WS12. Product Owner of Simumatik, Virtualware
   bio: Works with companies and integrators to accelerate virtual commissioning and smarter manufacturing.
 - name: Leyre Diego
+  group: workshops
   role: WS13. CIFP Barakaldo LHII
   bio: Psychologist with a Master’s in Speech Therapy, school counsellor and teacher currently focusing on gender studies.
 - name: Beatriz Medrano
+  group: workshops
   role: WS13. CIFP Barakaldo LHII
   bio: Sociologist and social educator with two master’s degrees in equality and gender studies, currently a gender equality teacher.
 - name: Jan Meca
+  group: workshops
   role: WS14. CEO, Moravian-Silesian Technology Academy
   bio: Headmaster of the Secondary Technical School and Business Academy in Bruntál, working since 2022 on the TPA Innovation Centre for the Transformation of Education.
 - name: Miren Bilbao Larrauri
+  group: visits
   role: Company visits. Director of the Araba Technology Park

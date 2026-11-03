@@ -1,0 +1,26 @@
+{{- /* A timetable: a slice of sessions with time, title and optional people; those with `break` (registration, coffee or lunch) stand out in pink. */ -}}
+<ol class="grid gap-3">
+  {{ range . }}
+    {{ if .break }}
+      <li class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-pink px-5 py-3 text-white">
+        {{ if eq .break "coffee" }}
+          <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3v2.5M12.500 3v2.5"/></svg>
+        {{ else if eq .break "lunch" }}
+          <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3"/><path d="M17 21v-7M17 14c-2 0-3-2-3-5.500S15.500 3 17 3Z"/></svg>
+        {{ else }}
+          <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="7" width="14" height="14" rx="2"/><path d="M12 7V3"/><circle cx="12" cy="12.500" r="2"/><path d="M8.500 18a3.500 3.500 0 0 1 7 0"/></svg>
+        {{ end }}
+        <span class="text-lg font-semibold">{{ .title }}</span>
+        <span class="ml-auto text-sm font-semibold">{{ .time }}</span>
+      </li>
+    {{ else }}
+      <li class="grid gap-x-5 gap-y-1 border-b border-nobility/15 px-1 pb-3 sm:grid-cols-[6.5rem_1fr]">
+        <p class="pt-1 text-sm font-semibold text-pink">{{ .time }}</p>
+        <div>
+          <h4 class="text-lg leading-snug font-semibold">{{ .title }}</h4>
+          {{ with .people }}<p class="mt-1 text-base leading-relaxed">{{ . }}</p>{{ end }}
+        </div>
+      </li>
+    {{ end }}
+  {{ end }}
+</ol>

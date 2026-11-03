@@ -1,16 +1,22 @@
 {{ $page := . }}
-<header class="text-graphite">
-  <div class="container-site flex items-center justify-between gap-4 py-4">
-    <a href="{{ site.Home.RelPermalink }}" class="font-display text-xl font-bold text-azure"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
+{{- /* Light, with dark text. On the home it is transparent, over the sky of the first photo; elsewhere it sticks to the top on large screens. */ -}}
+<header class="{{ if $page.IsHome }}absolute inset-x-0 top-0{{ else }}relative border-b border-nobility/10 bg-white/90 backdrop-blur lg:sticky lg:top-0{{ end }} z-50 text-nobility">
+  <div class="container-wide flex items-center justify-between gap-4 py-4 lg:h-18 lg:py-0">
+    <a href="{{ site.Home.RelPermalink }}" class="font-display text-xl"{{ if .IsHome }} aria-current="page"{{ end }}>Home</a>
     <nav class="hidden lg:block" aria-label="Main">
-      <ul class="flex items-center gap-6 text-sm font-semibold">
+      <ul class="flex items-center gap-8 text-base font-semibold">
         {{ range site.Menus.main }}
           {{ $current := or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }}
           <li class="group relative">
-            <a href="{{ .URL }}" class="transition hover:text-pink{{ if $current }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
-            {{ if .HasChildren }}
-              <div class="invisible absolute left-0 top-full z-10 pt-2 group-focus-within:visible group-hover:visible">
-                <ul class="grid gap-2 whitespace-nowrap rounded-lg bg-white px-4 py-3 shadow-lg ring-1 ring-graphite/10">
+            {{ if .Page.Params.highlight }}
+              {{- /* A page for another audience: it stands apart from the rest of the menu. */ -}}
+              <a href="{{ .URL }}" class="flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 transition text-white hover:bg-nobility{{ if $current }} ring-2 ring-nobility ring-offset-2{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}<span class="text-xs font-medium">{{ .Page.Params.highlight }}</span></a>
+            {{ else }}
+            <a href="{{ .URL }}" class="block border-b-2 py-1 transition hover:border-nobility {{ if $current }}border-pink{{ else }}border-transparent{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{ end }}
+            {{ if and .HasChildren (not $page.IsHome) }}
+              <div class="invisible absolute left-0 top-full pt-2 group-focus-within:visible group-hover:visible">
+                <ul class="grid gap-2 bg-white px-4 py-3 whitespace-nowrap shadow-lg ring-1 ring-nobility/10">
                   {{ range .Children }}
                     <li><a href="{{ .URL }}" class="transition hover:text-pink{{ if $page.IsMenuCurrent "main" . }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
                   {{ end }}
@@ -21,22 +27,29 @@
         {{ end }}
       </ul>
     </nav>
+    <details class="lg:hidden">
+      <summary class="flex cursor-pointer list-none items-center gap-2 rounded-full border border-current px-4 py-1.5 text-base font-semibold [&::-webkit-details-marker]:hidden">
+        <svg viewBox="0 0 20 20" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+        Menu
+      </summary>
+      <ul class="absolute inset-x-0 top-full grid gap-3 border-t border-nobility/10 bg-white px-4 py-5 text-lg font-semibold shadow-lg sm:px-6">
+        {{ range site.Menus.main }}
+          <li>
+            {{ if .Page.Params.highlight }}
+              <a href="{{ .URL }}" class="inline-flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 text-white"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}<span class="text-xs font-medium">{{ .Page.Params.highlight }}</span></a>
+            {{ else }}
+            <a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink" aria-current="page"{{ end }}>{{ .Name }}</a>
+            {{ end }}
+            {{ if .HasChildren }}
+              <ul class="mt-2 grid gap-2 pl-4 text-base font-medium">
+                {{ range .Children }}
+                  <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+    </details>
   </div>
-  <details class="container-site pb-3 lg:hidden">
-    <summary class="cursor-pointer text-sm font-semibold">Menu</summary>
-    <ul class="mt-2 grid gap-2 text-lg">
-      {{ range site.Menus.main }}
-        <li>
-          <a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink" aria-current="page"{{ end }}>{{ .Name }}</a>
-          {{ if .HasChildren }}
-            <ul class="mt-2 grid gap-2 pl-4 text-base">
-              {{ range .Children }}
-                <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink" aria-current="page"{{ end }}>{{ .Name }}</a></li>
-              {{ end }}
-            </ul>
-          {{ end }}
-        </li>
-      {{ end }}
-    </ul>
-  </details>
 </header>

@@ -1,0 +1,9 @@
+{{- /* A person's picture: their photo, or their initials on a brand colour. Takes name, index, class (the size and font size) and optionally photo. Round, unless `shaped` is set: then a half circle, flat on the side of the name. */ -}}
+{{ $colours := slice "bg-azure" "bg-purple" "bg-pink" "bg-nobility" }}
+{{ $shape := cond (.shaped | default false) "rounded-l-full" "rounded-full" }}
+{{ $names := split .name " " }}
+{{ with .photo }}
+  <img src="{{ . | relURL }}" alt="" loading="lazy" class="{{ $.class }} {{ $shape }} shrink-0 object-cover">
+{{ else }}
+  <span class="{{ .class }} {{ $shape }} {{ index $colours (mod .index 4) }} flex shrink-0 items-center justify-center font-display text-white" aria-hidden="true">{{ substr (index $names 0) 0 1 }}{{ substr (index $names (sub (len $names) 1)) 0 1 }}</span>
+{{ end }}

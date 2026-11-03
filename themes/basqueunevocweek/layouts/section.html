@@ -2,13 +2,28 @@
 {{ partial "page-header.html" . }}
 <div class="container-site py-12 md:py-16">
   <div class="prose-site">{{ .Content }}</div>
-  <ul class="mt-10 grid gap-4 sm:grid-cols-3">
-    {{ range .Pages }}
-      <li>
-        <a href="{{ .RelPermalink }}" class="group flex h-full items-center justify-between gap-4 rounded-xl bg-mist px-6 py-6 font-display text-2xl font-semibold text-graphite transition hover:bg-azure hover:text-white">
-          {{ .Title }}
-          <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span>
-        </a>
+  {{- /* The days as large rows, with their photo cut as a leaning cube. The title's link covers the whole row (after:inset-0); the part links sit above it, because links can't be nested. */ -}}
+  <ul class="mt-12 border-b border-nobility/15">
+    {{ range $i, $day := .Pages }}
+      <li class="group relative grid items-center gap-6 border-t border-nobility/15 py-8 md:grid-cols-[14rem_1fr_auto] md:gap-10 lg:grid-cols-[18rem_1fr_auto]">
+        {{ with .Params.header_image }}
+          <span class="{{ if modBool $i 2 }}shape-cube{{ else }}shape-cube-alt{{ end }} block overflow-hidden">
+            <img src="{{ . | relURL }}" alt="" loading="lazy" class="aspect-[16/9] w-full object-cover transition duration-700 group-hover:scale-105 motion-reduce:transition-none md:aspect-[4/3]">
+          </span>
+        {{ end }}
+        <div>
+          <p class="text-sm font-semibold tracking-widest uppercase">{{ .Params.weekday }}</p>
+          <h2 class="mt-2 font-display text-4xl font-normal tracking-normal transition group-hover:text-azure sm:text-5xl"><a href="{{ .RelPermalink }}" class="after:absolute after:inset-0">{{ .Title }}</a></h2>
+          <p class="mt-3 text-xl font-semibold text-nobility/70">{{ .Params.headline }}</p>
+        </div>
+        <div class="flex items-center justify-between gap-6 md:justify-end">
+          <ul class="relative z-10 flex gap-2 text-sm font-semibold">
+            {{ range .Params.parts }}
+              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}" class="block rounded-full border border-current px-3 py-1 transition hover:border-pink hover:bg-pink hover:text-white">{{ . }}</a></li>
+            {{ end }}
+          </ul>
+          <span aria-hidden="true" class="text-3xl transition group-hover:translate-x-1 group-hover:text-pink motion-reduce:transition-none">→</span>
+        </div>
       </li>
     {{ end }}
   </ul>
