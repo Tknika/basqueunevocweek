@@ -30,16 +30,6 @@
   --color-haze: #eef3f4;    /* a very light sky: soft surface on the home */
 }
 
-/* A neon sign that stutters now and then */
-@keyframes flicker {
-  0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    opacity: 1;
-  }
-  20%, 24%, 55% {
-    opacity: 0.45;
-  }
-}
-
 @keyframes marquee {
   to {
     transform: translateX(-50%);
@@ -113,52 +103,12 @@
     clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
   }
 
-  /* Youth Camp only: neon signs on a dark grid. Each tone is a glowing text and a glowing frame. */
-  .neon-text-pink {
-    color: #ff7ab8;
-    text-shadow: 0 0 2px #fff, 0 0 10px #ff2f8e, 0 0 24px #ff2f8e, 0 0 48px #ff2f8e;
-  }
-  .neon-text-cyan {
-    color: #8ff8ff;
-    text-shadow: 0 0 2px #fff, 0 0 10px #18e0ff, 0 0 24px #18e0ff, 0 0 48px #18e0ff;
-  }
-  .neon-text-lime {
-    color: #e6ff7a;
-    text-shadow: 0 0 2px #fff, 0 0 10px #c8ef1e, 0 0 24px #c8ef1e, 0 0 48px #9ccf00;
-  }
-  .neon-box-pink {
-    border: 2px solid #ff7ab8;
-    box-shadow: 0 0 8px #ff2f8e, 0 0 24px #ff2f8e80, inset 0 0 14px #ff2f8e60;
-  }
-  .neon-box-cyan {
-    border: 2px solid #8ff8ff;
-    box-shadow: 0 0 8px #18e0ff, 0 0 24px #18e0ff80, inset 0 0 14px #18e0ff60;
-  }
-  .neon-box-lime {
-    border: 2px solid #e6ff7a;
-    box-shadow: 0 0 8px #c8ef1e, 0 0 24px #c8ef1e80, inset 0 0 14px #c8ef1e60;
-  }
-  .neon-grid {
-    background-image:
-      radial-gradient(ellipse at 70% 0%, #ff2f8e33, transparent 55%),
-      radial-gradient(ellipse at 10% 100%, #18e0ff2e, transparent 50%),
-      linear-gradient(#18e0ff1a 1px, transparent 1px),
-      linear-gradient(90deg, #18e0ff1a 1px, transparent 1px);
-    background-size: auto, auto, 48px 48px, 48px 48px;
-  }
-  .neon-rule {
-    border-block: 2px solid #8ff8ff;
-    box-shadow: 0 0 10px #18e0ff, inset 0 0 10px #18e0ff60;
-  }
-  .flicker {
-    animation: flicker 6s linear infinite;
-  }
+  /* Youth Camp: a band of topics that keeps moving */
   .marquee {
     animation: marquee 32s linear infinite;
   }
   @media (prefers-reduced-motion: reduce) {
-    .marquee,
-    .flicker {
+    .marquee {
       animation: none;
     }
   }

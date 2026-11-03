@@ -1,58 +1,80 @@
 {{ define "main" }}
-{{- /* Youth Camp speaks to students, not to the rest of the event's audience: its own loud look, as neon signs on a dark grid (the neon classes in main.css). Pink, cyan and lime take turns through the cards. */ -}}
-{{ $tones := slice "pink" "cyan" "lime" }}
-<div class="bg-[#07071a] text-white">
-  <section class="neon-grid overflow-hidden">
-    <div class="container-site py-16 md:py-24">
-      <h1 class="neon-text-pink flicker font-display font-normal tracking-tight text-6xl leading-none sm:text-8xl lg:text-9xl">{{ .Title }}</h1>
-      <p class="mt-8 max-w-2xl text-xl font-semibold sm:text-2xl">{{ .Params.intro }}</p>
-      <div class="mt-10 flex flex-wrap gap-5">
-        {{ range $i, $t := .Params.tracks }}
-          {{ $tone := cond (eq $i 0) "pink" "cyan" }}
-          <a href="#{{ $t.id }}" class="neon-box-{{ $tone }} block rounded-xl px-6 py-4 transition hover:bg-white/10">
-            <span class="neon-text-{{ $tone }} block font-display text-lg">{{ $t.audience }}</span>
-            <span class="mt-1 block text-sm font-semibold">{{ $t.level }} · {{ $t.dates }}</span>
-          </a>
-        {{ end }}
-      </div>
-    </div>
-  </section>
+{{- /* Youth Camp speaks to students, so it is louder than the rest of the site: the UNEVOC azure with sky and lime as full blocks and pink in small touches, stickers at an angle, the leaning cube of the brand as big shapes, a moving band of topics and day cards that straighten up on hover. Same fonts and shapes as the rest of the site. */ -}}
+{{ $cards := slice
+  (dict "bg" "bg-azure" "text" "text-white" "accent" "text-white/80" "tilt" "-rotate-1")
+  (dict "bg" "bg-sky" "text" "text-nobility" "accent" "text-nobility/70" "tilt" "rotate-1")
+  (dict "bg" "bg-lime" "text" "text-nobility" "accent" "text-nobility/70" "tilt" "-rotate-[0.6deg]")
+}}
 
-  <div class="neon-rule overflow-hidden py-3" aria-hidden="true">
-    <div class="marquee flex w-max font-display text-lg">
-      {{ range seq 2 }}
-        <div class="flex shrink-0">
-          {{ range $.Params.topics }}<span class="neon-text-lime px-5 whitespace-nowrap">{{ . }}</span><span class="neon-text-pink">✦</span>{{ end }}
-        </div>
+<section class="relative isolate overflow-hidden bg-azure text-white">
+  {{- /* Big leaning cubes in the background */ -}}
+  <span class="shape-cube absolute -top-16 -right-24 -z-10 size-[28rem] bg-white/10 sm:size-[36rem]" aria-hidden="true"></span>
+  <span class="shape-cube-alt absolute right-[18%] bottom-10 -z-10 h-24 w-36 bg-lime sm:h-32 sm:w-48" aria-hidden="true"></span>
+  <span class="shape-cube absolute right-[8%] bottom-36 -z-10 h-12 w-16 bg-pink sm:bottom-44 sm:h-16 sm:w-24" aria-hidden="true"></span>
+
+  <div class="container-site pt-14 pb-20 md:pt-20 md:pb-28">
+    <p class="inline-block -rotate-3 bg-lime px-4 py-2 font-display text-sm text-nobility sm:text-base">For students</p>
+    <h1 class="mt-6 font-display text-[clamp(3.5rem,13vw,11rem)] leading-[0.9] font-normal tracking-tight">Youth<br>Camp</h1>
+    <p class="mt-8 max-w-2xl text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      {{ range $i, $t := .Params.tracks }}
+        <a href="#{{ $t.id }}" class="group flex items-center gap-4 rounded-full {{ if $i }}bg-lime{{ else }}bg-white{{ end }} py-3 text-nobility pr-4 pl-6 transition hover:-translate-y-1 motion-reduce:transition-none">
+          <span>
+            <span class="block text-lg font-bold leading-tight">{{ $t.audience }}</span>
+            <span class="block text-sm font-medium">{{ $t.level }} · {{ $t.dates }}</span>
+          </span>
+          <span class="flex size-10 items-center justify-center rounded-full {{ if $i }}bg-nobility{{ else }}bg-azure{{ end }} text-xl text-white transition group-hover:translate-y-0.5" aria-hidden="true">↓</span>
+        </a>
       {{ end }}
     </div>
   </div>
+</section>
 
-  {{ range $i, $t := .Params.tracks }}
-    <section id="{{ $t.id }}" class="{{ if $i }}bg-[#0d0b24]{{ end }} py-14 md:py-20">
-      <div class="container-site">
-        <p class="neon-box-lime neon-text-lime inline-block rounded-full px-4 py-2 font-display text-sm">{{ $t.audience }} · {{ $t.level }}</p>
-        <h2 class="mt-6 max-w-4xl font-display text-3xl leading-tight font-normal sm:text-4xl">{{ $t.title }}</h2>
-        <p class="neon-text-cyan mt-3 text-xl font-semibold">{{ $t.dates }}</p>
-        {{ with $t.note }}<p class="mt-2 max-w-2xl text-lg text-white/80">{{ . }}</p>{{ end }}
-
-        <ol class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {{ range $d, $day := $t.days }}
-            {{ $tone := index $tones (mod (add $d $i) 3) }}
-            <li class="neon-box-{{ $tone }} rounded-xl bg-white/5 p-6">
-              <div class="flex items-baseline gap-3">
-                <span class="neon-text-{{ $tone }} font-display text-5xl">{{ .number }}</span>
-                <span class="font-semibold">{{ .weekday }}</span>
-              </div>
-              {{ with .place }}<p class="mt-4 text-lg leading-snug font-bold">{{ . }}</p>{{ end }}
-              {{ with .text }}<p class="mt-2 leading-relaxed text-white/85">{{ . }}</p>{{ end }}
-              {{ with .morning }}<p class="neon-text-{{ $tone }} mt-4 text-sm font-bold">Morning</p><p class="leading-relaxed text-white/85">{{ . }}</p>{{ end }}
-              {{ with .afternoon }}<p class="neon-text-{{ $tone }} mt-3 text-sm font-bold">Afternoon</p><p class="leading-relaxed text-white/85">{{ . }}</p>{{ end }}
-            </li>
-          {{ end }}
-        </ol>
+{{- /* The topics, moving across a lime band (still with reduced motion) */ -}}
+<div class="overflow-hidden bg-lime py-4 text-nobility" aria-hidden="true">
+  <div class="marquee flex w-max font-display text-xl sm:text-2xl">
+    {{ range seq 2 }}
+      <div class="flex shrink-0 items-center">
+        {{ range $.Params.topics }}<span class="px-6 whitespace-nowrap">{{ . }}</span><span class="shape-cube h-4 w-6 bg-pink"></span>{{ end }}
       </div>
-    </section>
-  {{ end }}
+    {{ end }}
+  </div>
 </div>
+<p class="sr-only">Topics: {{ delimit .Params.topics ", " }}.</p>
+
+{{ range $i, $t := .Params.tracks }}
+  <section id="{{ $t.id }}" class="{{ if $i }}bg-haze{{ end }} py-16 md:py-24">
+    <div class="container-site">
+      <div class="grid gap-6 lg:grid-cols-[auto_1fr] lg:items-end lg:gap-12">
+        <p class="font-display text-[clamp(5rem,14vw,10rem)] leading-[0.8] text-azure" aria-hidden="true">0{{ add $i 1 }}</p>
+        <div>
+          <div class="flex flex-wrap gap-2">
+            <span class="rotate-2 bg-nobility px-3 py-1 text-sm font-bold text-white">{{ $t.audience }}</span>
+            <span class="-rotate-1 bg-lime px-3 py-1 text-sm font-bold text-nobility">{{ $t.level }}</span>
+            <span class="rotate-1 bg-azure px-3 py-1 text-sm font-bold text-white">{{ $t.dates }}</span>
+          </div>
+          <h2 class="mt-4 max-w-4xl text-4xl leading-[1.02] sm:text-5xl lg:text-6xl">{{ $t.title }}</h2>
+          {{ with $t.note }}<p class="mt-4 max-w-2xl text-lg font-medium text-nobility/75">{{ . }}</p>{{ end }}
+        </div>
+      </div>
+
+      <ol class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-{{ len $t.days }} lg:gap-4">
+        {{ range $d, $day := $t.days }}
+          {{ $c := index $cards (mod (add $d (mul $i 2)) (len $cards)) }}
+          <li class="{{ $c.bg }} {{ $c.text }} {{ $c.tilt }} flex flex-col p-6 transition duration-300 hover:-translate-y-2 hover:rotate-0 motion-reduce:transition-none sm:p-7">
+            <div class="flex items-start justify-between gap-3">
+              <span class="font-display text-6xl leading-none">{{ .number }}</span>
+              <span class="pt-1 text-sm font-bold tracking-widest uppercase {{ $c.accent }}">{{ .weekday }}</span>
+            </div>
+            {{ with .place }}<p class="mt-6 text-xl leading-snug font-bold">{{ . }}</p>{{ end }}
+            {{ with .text }}<p class="mt-3 leading-relaxed">{{ . }}</p>{{ end }}
+            {{ with .morning }}<p class="mt-6 text-sm font-bold tracking-widest uppercase {{ $c.accent }}">Morning</p><p class="mt-1 leading-relaxed">{{ . }}</p>{{ end }}
+            {{ with .afternoon }}<p class="mt-4 text-sm font-bold tracking-widest uppercase {{ $c.accent }}">Afternoon</p><p class="mt-1 leading-relaxed">{{ . }}</p>{{ end }}
+          </li>
+        {{ end }}
+      </ol>
+    </div>
+  </section>
+{{ end }}
 {{ end }}
