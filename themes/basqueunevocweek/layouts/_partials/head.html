@@ -4,7 +4,7 @@
 {{ $desc := .Description | default site.Params.description | plainify | truncate 160 }}
 <meta name="description" content="{{ $desc }}">
 <meta name="theme-color" content="#126ab4">
-{{ if site.Params.noindex }}<meta name="robots" content="noindex">{{ end }}
+{{ if or site.Params.noindex .Params.noindex }}<meta name="robots" content="noindex">{{ end }}
 <link rel="canonical" href="{{ .Permalink }}">
 
 <meta property="og:type" content="website">

@@ -1,0 +1,79 @@
+{{- /* The body of the home, shared by the home and its draft versions. Takes page and v (see home-hero.html); version 3 has more UNEVOC azure: the band of days, the intro text and the figures, the conference button and the highlight titles. */ -}}
+{{ $v := .v }}
+{{/* The three days, as an index under the photo */}}
+{{ if eq $v 3 }}<div class="bg-azure text-white">{{ end }}
+<nav class="container-wide grid sm:grid-cols-3" aria-label="{{ (site.GetPage "/programme").Title }}">
+  {{ range (site.GetPage "/programme").Pages }}
+    <a href="{{ .RelPermalink }}" class="group flex flex-col border-t {{ if eq $v 3 }}border-white/25{{ else }}border-nobility/15{{ end }} py-6 sm:border-t-0 sm:border-l sm:px-6 sm:py-10 sm:first:border-l-0 sm:first:pl-0{{ if eq $v 3 }} sm:border-white/25{{ end }}">
+      <span class="flex items-center justify-between text-sm font-semibold tracking-widest uppercase">
+        {{ .Params.weekday }}
+        <span aria-hidden="true" class="text-2xl transition group-hover:translate-x-1 {{ if eq $v 3 }}group-hover:text-sky{{ else }}group-hover:text-azure{{ end }} motion-reduce:transition-none">→</span>
+      </span>
+      <span class="mt-3 font-display text-4xl transition {{ if eq $v 3 }}group-hover:text-sky{{ else }}group-hover:text-azure{{ end }} lg:text-5xl">{{ .Title }}</span>
+      <span class="mt-3 text-lg font-medium {{ if eq $v 3 }}text-white/80{{ else }}text-nobility/70{{ end }}">{{ .Params.headline }}</span>
+    </a>
+  {{ end }}
+</nav>
+{{ if eq $v 3 }}</div>{{ end }}
+
+<section class="{{ if eq $v 3 }}bg-white{{ else }}bg-haze{{ end }}">
+  <div class="container-wide py-16 md:py-24">
+    <div class="max-w-6xl text-3xl leading-[1.1] font-semibold tracking-[-0.025em] text-balance sm:text-4xl lg:text-6xl{{ if eq $v 3 }} text-azure{{ end }}">{{ site.Home.Content }}</div>
+
+    {{/* The event in figures. Speakers and workshops are counted from data/; schools are those of the networking option on 11 May, and companies and research centres those of the visits on 13 May: update them by hand if the programme changes. */}}
+    <dl class="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:mt-20 lg:grid-cols-5">
+      {{ range $i, $s := slice
+        (dict "number" (len (site.GetPage "/programme").Pages) "label" "days in May")
+        (dict "number" (len hugo.Data.speakers) "label" "speakers")
+        (dict "number" (len hugo.Data.workshops) "label" "workshops on advanced manufacturing")
+        (dict "number" 2 "label" "VET schools to visit")
+        (dict "number" 7 "label" "companies and research centres to visit")
+      }}
+        <div class="flex flex-col border-t {{ if eq $v 3 }}border-azure{{ else }}border-nobility{{ end }} pt-4">
+          <dt class="order-2 mt-3 max-w-[14rem] text-lg leading-snug font-semibold">{{ $s.label }}</dt>
+          <dd class="order-1 flex items-start gap-2 font-display text-5xl leading-none text-azure sm:text-6xl">
+            {{ $s.number }}
+            <span class="{{ if modBool $i 2 }}shape-cube bg-pink{{ else }}shape-cube-alt bg-lime{{ end }} mt-1 h-4 w-6" aria-hidden="true"></span>
+          </dd>
+        </div>
+      {{ end }}
+    </dl>
+  </div>
+</section>
+
+{{/* The conference, on a second photo of the Kursaal whose top edge leans like the roof of the cube */}}
+{{ with site.GetPage "/programme/12-may" }}
+  <section class="relative isolate flex min-h-[80svh] items-center bg-haze lg:min-h-[90svh]">
+    <img src="{{ "images/kursaal-facade.jpg" | relURL }}" srcset="{{ "images/kursaal-facade-1200.jpg" | relURL }} 1200w, {{ "images/kursaal-facade.jpg" | relURL }} 2400w" sizes="100vw" alt="White horizontal slats on the Kursaal facade against the sky" width="2400" height="1590" loading="lazy" class="shape-roof absolute inset-0 -z-10 size-full object-cover object-[0%_50%] sm:object-[70%_50%]">
+    <div class="container-wide pt-24 pb-16">
+      <p class="text-sm font-semibold tracking-widest uppercase">{{ .Params.weekday }} {{ .Title }} · Kursaal</p>
+      <h2 class="mt-4 max-w-[14ch] text-4xl leading-[1] font-semibold tracking-[-0.03em] sm:text-6xl lg:text-7xl">{{ .Params.morning.conference.title }}</h2>
+      <a href="{{ .RelPermalink }}" class="mt-8 inline-flex items-center gap-3 {{ if eq $v 3 }}bg-azure{{ else }}bg-nobility{{ end }} px-6 py-3 font-semibold text-white transition hover:bg-pink">See the programme of the day <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+{{ end }}
+
+<div class="container-wide py-16 md:py-24">
+  {{/* Three highlights, each photo cut with a different leaning cube */}}
+  <nav class="grid gap-12 sm:grid-cols-3 sm:gap-6 lg:gap-10" aria-label="Highlights">
+    {{ range $item := slice
+      (dict "page" "/programme" "shape" "shape-cube" "image" "images/tknika-auditorium.jpg" "text" "Three days of activities, every morning and afternoon.")
+      (dict "page" "/speakers" "shape" "shape-cube-tall" "image" "images/speakers-audience.jpg" "text" "Conference, panel and workshops.")
+      (dict "page" "/practical-information" "shape" "shape-cube-alt" "image" "images/donostia-bay.jpg" "text" "Getting there, where to stay and what to see.")
+    }}
+      {{ with site.GetPage .page }}
+        <a href="{{ .RelPermalink }}" class="group block">
+          <span class="{{ $item.shape }} block overflow-hidden">
+            <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-105 motion-reduce:transition-none">
+          </span>
+          <span class="mt-5 flex items-baseline justify-between gap-4 text-3xl font-semibold tracking-tight transition {{ if eq $v 3 }}text-azure group-hover:text-nobility{{ else }}group-hover:text-azure{{ end }}">
+            {{ .Title }}
+            <span aria-hidden="true" class="transition group-hover:translate-x-1 group-hover:text-azure motion-reduce:transition-none">→</span>
+          </span>
+          <span class="mt-2 block text-lg font-medium text-nobility/70">{{ $item.text }}</span>
+        </a>
+      {{ end }}
+    {{ end }}
+  </nav>
+  <p class="mt-10 text-xs text-nobility/60">Auditorium photo: Pedro Pegenaute. All rights reserved.</p>
+</div>

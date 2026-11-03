@@ -30,6 +30,15 @@
   --color-haze: #eef3f4;    /* a very light sky: soft surface on the home */
 }
 
+/* The home header turns white as the page scrolls */
+@keyframes header-solid {
+  to {
+    background-color: rgb(255 255 255 / 0.9);
+    border-bottom-color: rgb(24 24 72 / 0.1);
+    backdrop-filter: blur(8px);
+  }
+}
+
 @keyframes marquee {
   to {
     transform: translateX(-50%);
@@ -101,6 +110,18 @@
   /* The second photo: the top edge leans like the roof of the cube */
   .shape-roof {
     clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* The home header: transparent over the first photo, white from the first pixels of scroll on where scroll-driven animations exist. Elsewhere a white strip under the photo (home-hero.html) shows once the photo has scrolled away. No JavaScript on the site. */
+  .header-home {
+    border-bottom: 1px solid transparent;
+  }
+  @supports (animation-timeline: scroll()) {
+    .header-home {
+      animation: header-solid linear both;
+      animation-timeline: scroll();
+      animation-range: 0 6rem;
+    }
   }
 
   /* Youth Camp: a band of topics that keeps moving */
