@@ -4,6 +4,7 @@ weight: 6
 layout: youth
 highlight: "Students"
 menus: main
+dates: "20-24 April"
 intro: "Two parallel programmes on advanced manufacturing, from 20 to 24 April 2026."
 topics: ["Additive manufacturing", "Educational robotics", "Team-building", "Skills competition", "Learning factories", "Industry 4.0 & 5.0"]
 tracks:
