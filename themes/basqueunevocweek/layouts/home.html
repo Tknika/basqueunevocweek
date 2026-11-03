@@ -36,13 +36,13 @@
   <div class="container-wide py-16 md:py-24">
     <div class="max-w-6xl text-3xl leading-[1.1] font-semibold tracking-[-0.025em] text-balance sm:text-4xl lg:text-6xl">{{ .Content }}</div>
 
-    {{/* The event in figures. Speakers and workshops are counted from data/; schools are those of the networking options on 11 and 12 May, and companies and research centres those of the visits on 13 May: update them by hand if the programme changes. */}}
+    {{/* The event in figures. Speakers and workshops are counted from data/; schools are those of the networking option on 11 May, and companies and research centres those of the visits on 13 May: update them by hand if the programme changes. */}}
     <dl class="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:mt-20 lg:grid-cols-5">
       {{ range $i, $s := slice
         (dict "number" (len (site.GetPage "/programme").Pages) "label" "days in May")
         (dict "number" (len hugo.Data.speakers) "label" "speakers")
         (dict "number" (len hugo.Data.workshops) "label" "workshops on advanced manufacturing")
-        (dict "number" 5 "label" "VET schools to visit")
+        (dict "number" 2 "label" "VET schools to visit")
         (dict "number" 7 "label" "companies and research centres to visit")
       }}
         <div class="flex flex-col border-t border-nobility pt-4">

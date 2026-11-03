@@ -52,14 +52,6 @@ lunch: "13.15-14.30"
 afternoon_time: "14.30-16.30"
 ---
 
-Two options to choose from.
-
-### 1. Workshops on advanced manufacturing
+### Workshops on advanced manufacturing
 
 {{< workshops >}}
-
-### 2. Networking in schools
-
-- CIFP Agrario Arkaute LHII ([arkaute.net](https://www.arkaute.net))
-- IES Francisco de Vitoria BHI ([franciscodevitoria.eus](https://www.franciscodevitoria.eus))
-- Egibide ([egibide.org](https://www.egibide.org))
