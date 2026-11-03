@@ -1,6 +1,6 @@
 ---
 title: "Speakers"
-header_image: "images/kursaal-auditorium.jpg"
+header_image: "images/speakers-pedrosa.jpg"
 layout: speakers
 weight: 2
 menus: main

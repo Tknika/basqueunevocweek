@@ -14,10 +14,14 @@ disableKinds = ["taxonomy", "term"]
   dates = "11-13 May 2027"
   venue = "Donostia · San Sebastian"
 
-  # Shown in the footer, in this order. Without `logo`, the name is shown as text.
+  # Shown in the footer and the press area, in this order. Without `logo`, the name is shown as text.
+  # `logo` goes on the blue footer (white versions, or `plaque` for a white background).
+  # `logo_light` is an official version for light backgrounds; `logo_preview` only shows the logo on white.
   [[params.organizers]]
     name = "Basque Government, Department of Education"
     logo = "images/logo-eusko-jaurlaritza-white.png"
+    # For light backgrounds (press area)
+    logo_light = "images/logo-eusko-jaurlaritza.png"
     url = "https://www.euskadi.eus/"
   [[params.organizers]]
     name = "UNESCO-UNEVOC Network Member"
@@ -28,10 +32,13 @@ disableKinds = ["taxonomy", "term"]
   [[params.organizers]]
     name = "FP Euskadi"
     logo = "images/logo-fp-euskadi.png"
+    # Dark version made here from the white one, only to show it on white: not offered for download
+    logo_preview = "images/logo-fp-euskadi-dark.png"
     url = "https://www.fpeuskadi.eus/"
   [[params.organizers]]
     name = "Tknika"
     logo = "images/logo-tknika.png"
+    logo_preview = "images/logo-tknika-dark.png"
     url = "https://tknika.eus/"
 
 [markup.goldmark.renderer]

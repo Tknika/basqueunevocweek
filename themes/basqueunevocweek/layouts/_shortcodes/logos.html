@@ -1,18 +1,28 @@
-{{- /* The organisers' logos from hugo.toml, to download. Each is shown on the background it is made for: those with `plaque` are for light backgrounds, the rest are white versions for dark ones. */ -}}
-<ul class="grid list-none gap-4 pl-0 text-base sm:grid-cols-2">
+{{- /* The organisers' logos from hugo.toml, one after another on white, a row each, to download. Each logo is shown in a version for light backgrounds (`logo_light`, the `plaque` logo itself, or `logo_preview`, which is only for showing). The downloads are the official files: for light backgrounds and for dark ones (the white `logo`). */ -}}
+<ul class="not-prose list-none border-b border-nobility/15 pl-0 text-base">
   {{ range $o := site.Params.organizers }}
     {{ with .logo }}
-      {{ $size := imageConfig (path.Join "themes/basqueunevocweek/static" .) }}
-      <li class="overflow-hidden bg-haze">
-        <div class="flex h-40 items-center justify-center p-6 {{ if $o.plaque }}bg-white{{ else }}bg-nobility{{ end }}">
-          <img src="{{ . | relURL }}" alt="" loading="lazy" class="max-h-24 w-auto max-w-full">
+      {{ $show := $o.logo_light | default $o.logo_preview | default . }}
+      {{ $downloads := slice }}
+      {{ with $o.logo_light }}{{ $downloads = $downloads | append (dict "file" . "label" "Light backgrounds") }}{{ end }}
+      {{ $downloads = $downloads | append (dict "file" . "label" (cond ($o.plaque | default false) "Light backgrounds" "Dark backgrounds")) }}
+      <li class="grid items-center gap-6 border-t border-nobility/15 py-8 sm:grid-cols-[13rem_1fr] sm:gap-10">
+        <div class="flex h-24 items-center">
+          <img src="{{ $show | relURL }}" alt="" loading="lazy" class="max-h-24 w-auto max-w-full">
         </div>
-        <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 p-5">
-          <div>
-            <p class="font-semibold leading-snug">{{ $o.name }}</p>
-            <p class="text-sm">PNG, {{ $size.Width }} × {{ $size.Height }} px, for {{ if $o.plaque }}light{{ else }}dark{{ end }} backgrounds</p>
-          </div>
-          <a href="{{ . | relURL }}" download class="rounded-full bg-pink px-4 py-2 text-sm font-semibold text-white no-underline transition hover:bg-nobility hover:text-white">Download ↓</a>
+        <div>
+        <p class="font-semibold leading-snug">{{ $o.name }}</p>
+        <ul class="mt-3 grid list-none gap-2 pl-0">
+          {{ range $downloads }}
+            {{ $size := imageConfig (path.Join "themes/basqueunevocweek/static" .file) }}
+            <li>
+              <a href="{{ .file | relURL }}" download class="group flex items-center justify-between gap-4 border-b border-nobility/15 py-2 text-sm no-underline transition hover:text-pink">
+                <span><span class="font-semibold">{{ .label }}</span> · PNG, {{ $size.Width }} × {{ $size.Height }} px</span>
+                <span aria-hidden="true" class="font-semibold text-pink">↓</span>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
         </div>
       </li>
     {{ end }}
