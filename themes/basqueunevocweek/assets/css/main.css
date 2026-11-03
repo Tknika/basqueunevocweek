@@ -178,7 +178,16 @@
     @apply text-nobility underline underline-offset-3 hover:text-pink;
   }
   .prose-site ul {
-    @apply list-disc pl-6;
+    @apply list-none pl-0;
+  }
+  /* Bullets are small pink cubes, the brand shape: no arrows (kept for things that fold out) and no round dots */
+  .prose-site ul > li {
+    @apply relative pl-5;
+  }
+  .prose-site ul > li::before {
+    content: "";
+    clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);
+    @apply absolute top-[0.65em] left-0 h-1.5 w-2 bg-pink;
   }
   .prose-site ol {
     @apply list-decimal pl-6;
