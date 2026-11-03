@@ -19,12 +19,12 @@
 
     <div class="mt-10 flex flex-wrap gap-4">
       {{ range $i, $t := .Params.tracks }}
-        <a href="#{{ $t.id }}" class="group flex items-center gap-4 rounded-full {{ if $i }}bg-lime{{ else }}bg-white{{ end }} py-3 text-nobility pr-4 pl-6 transition hover:-translate-y-1 motion-reduce:transition-none">
+        <a href="#{{ $t.id }}" class="group flex items-center gap-4 {{ if $i }}bg-lime{{ else }}bg-white{{ end }} py-3 text-nobility pr-4 pl-6 transition hover:-translate-y-1 motion-reduce:transition-none">
           <span>
             <span class="block text-lg font-bold leading-tight">{{ $t.audience }}</span>
             <span class="block text-sm font-medium">{{ $t.level }} · {{ $t.dates }}</span>
           </span>
-          <span class="flex size-10 items-center justify-center rounded-full {{ if $i }}bg-nobility{{ else }}bg-azure{{ end }} text-xl text-white transition group-hover:translate-y-0.5" aria-hidden="true">↓</span>
+          <span class="flex size-10 items-center justify-center shape-cube {{ if $i }}bg-nobility{{ else }}bg-azure{{ end }} text-xl text-white transition group-hover:translate-y-0.5" aria-hidden="true">↓</span>
         </a>
       {{ end }}
     </div>

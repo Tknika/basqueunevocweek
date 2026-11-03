@@ -2,9 +2,9 @@
 {{ partial "page-header.html" . }}
 
 <nav class="container-site flex flex-wrap gap-2 pt-10 text-sm font-semibold" aria-label="{{ .Title }}">
-  <a href="#getting-there" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Getting to the Kursaal</a>
-  <a href="#where-to-stay" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Where to stay</a>
-  <a href="#places" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Places of interest</a>
+  <a href="#getting-there" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Getting to the Kursaal</a>
+  <a href="#where-to-stay" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Where to stay</a>
+  <a href="#places" class="border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Places of interest</a>
 </nav>
 
 {{ with .Params.venue }}
@@ -15,7 +15,7 @@
         <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[4/3] w-full shape-cube object-cover">
         <p class="mt-5 text-2xl font-semibold tracking-tight">{{ .name }}</p>
         <p class="mt-1 text-lg">{{ .address }}</p>
-        <a href="{{ .map }}" rel="noopener" class="mt-4 inline-flex items-center gap-2 rounded-full bg-pink px-4 py-2 text-sm font-semibold text-white transition hover:bg-nobility">See it on the map <span aria-hidden="true">→</span></a>
+        <a href="{{ .map }}" rel="noopener" class="mt-4 inline-flex items-center gap-2 bg-pink px-4 py-2 text-sm font-semibold text-white transition hover:bg-nobility">See it on the map <span aria-hidden="true">→</span></a>
       </div>
       <div class="grid gap-4">
         {{ range $.Params.getting_there }}
@@ -51,7 +51,7 @@
         {{ end }}
       </div>
       {{ with .link }}
-        <a href="{{ .url }}" rel="noopener" class="mt-8 inline-flex items-center gap-2 rounded-full border border-nobility px-4 py-2 text-sm font-semibold transition hover:border-pink hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>
+        <a href="{{ .url }}" rel="noopener" class="mt-8 inline-flex items-center gap-2 border border-nobility px-4 py-2 text-sm font-semibold transition hover:border-pink hover:bg-pink hover:text-white">{{ .text }} <span aria-hidden="true">→</span></a>
       {{ end }}
     </div>
   </section>

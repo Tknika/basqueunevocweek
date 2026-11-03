@@ -4,35 +4,80 @@
 {{ $conference := where $people "group" "conference" }}
 {{ $moderators := where $people "group" "moderator" }}
 {{ $panellists := where $people "group" "panellist" }}
-{{ $workshops := where $people "group" "workshops" }}
+{{ $workshoppers := where $people "group" "workshops" }}
 
-<nav class="container-site flex flex-wrap gap-2 pt-10 text-sm font-semibold" aria-label="{{ .Title }}">
-  <a href="#conference" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Conference</a>
-  <a href="#panel" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Panel</a>
-  <a href="#workshops" class="rounded-full border border-nobility px-4 py-2 transition hover:border-pink hover:bg-pink hover:text-white">Workshops</a>
+{{- /* The three groups as large links with their counts */ -}}
+<nav class="container-site grid gap-x-10 pt-10 sm:grid-cols-3" aria-label="{{ .Title }}">
+  {{ range slice
+    (dict "id" "conference" "label" "Conference" "count" (len $conference))
+    (dict "id" "panel" "label" "Panel" "count" (add (len $moderators) (len $panellists)))
+    (dict "id" "workshops" "label" "Workshops" "count" (len $workshoppers))
+  }}
+    <a href="#{{ .id }}" class="group flex items-baseline justify-between gap-4 border-t-2 border-nobility py-4 transition hover:border-pink">
+      <span class="text-2xl font-semibold tracking-tight transition group-hover:text-pink">{{ .label }}</span>
+      <span class="font-display text-3xl text-azure">{{ .count }}</span>
+    </a>
+  {{ end }}
 </nav>
 
-<section id="conference" class="container-site py-12 md:py-16">
+<section id="conference" class="container-site py-14 md:py-20">
   <h2 class="text-4xl sm:text-5xl lg:text-6xl">Conference</h2>
-  <div class="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
+  <div class="mt-12 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
     {{ range $i, $p := $conference }}{{ partial "speaker.html" (dict "person" $p "index" $i) }}{{ end }}
   </div>
 </section>
 
-<section id="panel" class="bg-haze py-12 md:py-16">
+<section id="panel" class="bg-haze py-14 md:py-20">
   <div class="container-site">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl">Panel</h2>
-    <div class="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
-      {{ range $i, $p := $moderators }}{{ partial "speaker.html" (dict "person" $p "index" $i "dark" true "badge" "Moderator") }}{{ end }}
-      {{ range $i, $p := $panellists }}{{ partial "speaker.html" (dict "person" $p "index" (add $i 1) "dark" true "badge" "Panellist") }}{{ end }}
+    <p class="mt-3 text-xl font-semibold text-nobility/70">Local change for global connection</p>
+    <div class="mt-12 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-5">
+      {{ range $i, $p := $moderators }}{{ partial "speaker.html" (dict "person" $p "index" $i "badge" "Moderator" "size" "size-24 text-2xl") }}{{ end }}
+      {{ range $i, $p := $panellists }}{{ partial "speaker.html" (dict "person" $p "index" (add $i 1) "badge" "Panellist" "size" "size-24 text-2xl") }}{{ end }}
     </div>
   </div>
 </section>
 
-<section id="workshops" class="container-site py-12 md:py-16">
+{{- /* Workshop speakers grouped by workshop (data/workshops.yaml), with the people in a row and their bios together, folded away */ -}}
+<section id="workshops" class="container-site py-14 md:py-20">
   <h2 class="text-4xl sm:text-5xl lg:text-6xl">Workshops</h2>
-  <div class="mt-8 columns-1 gap-4 md:columns-2 lg:columns-3">
-    {{ range $i, $p := $workshops }}{{ partial "speaker.html" (dict "person" $p "index" $i) }}{{ end }}
-  </div>
+  <ol class="mt-12 border-b border-nobility/15">
+    {{ range $w := hugo.Data.workshops }}
+      {{ $names := split $w.speakers ", " }}
+      {{ with $w.moderator }}{{ $names = $names | append . }}{{ end }}
+      <li class="grid gap-6 border-t border-nobility/15 py-8 lg:grid-cols-[7rem_2fr_3fr] lg:gap-10">
+        <p class="font-display text-4xl leading-none text-azure">{{ $w.code }}</p>
+        <div>
+          <h3 class="text-xl leading-snug">{{ $w.title }}</h3>
+          <p class="mt-1 text-sm font-semibold text-nobility/60">{{ $w.organisation }}</p>
+        </div>
+        <div>
+          <ul class="flex flex-wrap gap-x-6 gap-y-4">
+            {{ range $i, $name := $names }}
+              {{ $p := dict }}{{ with where $people "name" $name }}{{ $p = index . 0 }}{{ end }}
+              <li class="flex items-center gap-3">
+                {{ partial "avatar.html" (dict "name" $name "photo" $p.photo "index" $i "class" "size-12 text-sm") }}
+                <span class="leading-tight font-semibold">{{ $name }}{{ if eq $name $w.moderator }}<span class="block text-xs font-bold tracking-widest text-pink uppercase">Moderator</span>{{ end }}</span>
+              </li>
+            {{ end }}
+          </ul>
+          <details class="mt-4">
+            <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold transition hover:text-pink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> About the speakers</summary>
+            <dl class="mt-4 grid gap-4">
+              {{ range $names }}
+                {{ with where $people "name" . }}{{ with index . 0 }}
+                  <div>
+                    <dt class="font-semibold">{{ .name }}</dt>
+                    <dd class="text-sm font-medium text-azure">{{ replaceRE `^WS\d+( moderator)?\. ` "" .role }}</dd>
+                    {{ with .bio }}<dd class="mt-1 text-sm leading-relaxed text-nobility/80">{{ . }}</dd>{{ end }}
+                  </div>
+                {{ end }}{{ end }}
+              {{ end }}
+            </dl>
+          </details>
+        </div>
+      </li>
+    {{ end }}
+  </ol>
 </section>
 {{ end }}

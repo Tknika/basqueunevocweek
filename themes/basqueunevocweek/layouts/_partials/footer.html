@@ -4,7 +4,7 @@
       {{ range $o := site.Params.organizers }}
         <li>
           <a href="{{ $o.url }}" rel="noopener" class="block">
-            {{ with $o.logo }}<img src="{{ . | relURL }}" alt="{{ $o.name }}" class="{{ if $o.plaque }}h-28 rounded-lg bg-white p-2 sm:h-32{{ else }}h-16 sm:h-20{{ end }} w-auto max-w-full">{{ else }}<span class="font-display text-lg font-semibold">{{ $o.name }}</span>{{ end }}
+            {{ with $o.logo }}<img src="{{ . | relURL }}" alt="{{ $o.name }}" class="{{ if $o.plaque }}h-28 bg-white p-2 sm:h-32{{ else }}h-16 sm:h-20{{ end }} w-auto max-w-full">{{ else }}<span class="font-display text-lg font-semibold">{{ $o.name }}</span>{{ end }}
           </a>
         </li>
       {{ end }}

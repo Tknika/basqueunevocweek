@@ -1,4 +1,4 @@
-{{- /* A person from data/speakers.yaml. Without `photo`, their initials on a brand colour. Takes person, index, and optionally dark (on a tinted band: a white card) and badge. */ -}}
+{{- /* A person from data/speakers.yaml, without a box: their picture as a half circle (initials on a brand colour until there is a `photo`), name, role and, folded away, their bio. Takes person, index, size (the picture's classes) and optionally badge. A "WSn." or "WSn moderator." prefix in the role becomes the badge. */ -}}
 {{ $p := .person }}
 {{ $role := $p.role }}
 {{ $badge := .badge }}
@@ -6,14 +6,15 @@
   {{ $badge = strings.TrimSuffix ". " (index . 0) }}
   {{ $role = strings.TrimPrefix (index . 0) $role }}
 {{ end }}
-<article class="mb-4 break-inside-avoid p-6 {{ if .dark }}bg-white{{ else }}bg-haze{{ end }}">
-  <div class="flex items-center gap-4">
-    {{ partial "avatar.html" (dict "name" $p.name "photo" $p.photo "index" .index "shaped" true "class" "size-24 text-2xl") }}
-    <div>
-      {{ with $badge }}<p class="mb-1 text-xs font-bold tracking-wide uppercase text-pink">{{ . }}</p>{{ end }}
-      <h3 class="text-xl leading-tight font-semibold">{{ $p.name }}</h3>
-    </div>
-  </div>
-  {{ with $role }}<p class="mt-4 text-sm font-semibold text-azure">{{ . }}</p>{{ end }}
-  {{ with $p.bio }}<p class="mt-2 text-base leading-relaxed">{{ . }}</p>{{ end }}
+<article class="group">
+  {{ partial "avatar.html" (dict "name" $p.name "photo" $p.photo "index" .index "class" (.size | default "size-28 text-3xl")) }}
+  {{ with $badge }}<p class="mt-5 text-xs font-bold tracking-widest text-pink uppercase">{{ . }}</p>{{ end }}
+  <h3 class="{{ if $badge }}mt-1{{ else }}mt-5{{ end }} text-2xl leading-tight">{{ $p.name }}</h3>
+  {{ with $role }}<p class="mt-2 font-medium text-azure">{{ . }}</p>{{ end }}
+  {{ with $p.bio }}
+    <details class="mt-3">
+      <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold transition hover:text-pink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> Bio</summary>
+      <p class="mt-3 leading-relaxed text-nobility/80">{{ . }}</p>
+    </details>
+  {{ end }}
 </article>
