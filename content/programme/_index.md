@@ -1,6 +1,6 @@
 ---
 title: "Programme"
-header_image: "images/tknika-tk.jpg"
+header_image: "images/tknika-auditorium-front.jpg"
 weight: 1
 menus:
   main:

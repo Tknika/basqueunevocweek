@@ -57,7 +57,7 @@
             {{ else }}
               {{ with $o.image }}
                 <figure>
-                  <img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="aspect-[2/1] w-full object-cover">
+                  <img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="aspect-[2/1] w-full object-cover {{ $o.position }}">
                   {{ with $o.credit }}<figcaption class="px-6 pt-2 text-xs text-azure/70 sm:px-8">{{ . }}</figcaption>{{ end }}
                 </figure>
               {{ end }}

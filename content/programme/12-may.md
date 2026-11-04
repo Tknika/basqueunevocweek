@@ -15,8 +15,8 @@ morning:
   conference:
     title: "Conference: Global Connection for Local Change"
     venue: "Kursaal, Donostia · San Sebastian"
-    image: "images/kursaal-auditorium.jpg"
-    alt: "Kursaal auditorium, with rows of blue seats facing the stage and screen"
+    image: "images/conference-audience.jpg"
+    alt: "A full auditorium listening to a speaker on stage at a previous LCAMP conference"
     sessions:
       - time: "8.30-9.00"
         break: "registration"

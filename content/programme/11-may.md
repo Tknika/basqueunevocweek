@@ -1,6 +1,6 @@
 ---
 title: "11 May"
-header_image: "images/vitoria-aerial.jpg"
+header_image: "images/tknika-tk-light.jpg"
 weight: 1
 weekday: "Tuesday"
 headline: "Activities at other venues"
@@ -24,9 +24,10 @@ morning:
           image: "images/tolosaldea.jpg"
           alt: "Aerial view of the CIFP Tolosaldea LHII campus"
     - title: "Visit to Tknika projects and participate in workshops"
-      image: "images/tknika-auditorium-seats.jpg"
-      alt: "Tknika auditorium, with rows of seats under a wooden lattice ceiling"
-      credit: "Photo: Pedro Pegenaute. All rights reserved."
+      image: "images/tknika-auditorium-front.jpg"
+      # Show the lower part of the photo, so the screen is not cut off
+      position: "object-[50%_80%]"
+      alt: "Tknika auditorium seen from the front, wooden rows of desks under a lattice of wooden slats"
       groups:
         - title: "Projects"
           items:
