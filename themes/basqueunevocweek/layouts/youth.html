@@ -1,7 +1,7 @@
 {{ define "main" }}
-{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on a technical grid of lime lines (.trama-lime, softer than a flat lime page), a photo of last year's camp stuck on at an angle, tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
+{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year's camp stuck on at an angle, tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
 <div class="overflow-x-clip text-nobility">
-  <section class="trama-lime relative isolate">
+  <section class="mesh-youth relative isolate">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
       <div>
         <h1 class="font-display text-[clamp(3.6rem,14vw,13rem)] leading-[0.85] font-normal tracking-tight uppercase">Youth<br>Camp</h1>
@@ -9,13 +9,15 @@
           <p class="-rotate-3 bg-pink px-4 py-2 font-display text-lg text-white sm:text-2xl">{{ .Params.dates }}</p>
           <p class="rotate-2 bg-nobility px-4 py-2 font-display text-lg text-lime sm:text-2xl">For students</p>
         </div>
-        <p class="mt-8 max-w-3xl bg-white/85 text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
+        <p class="mt-8 max-w-3xl text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
       </div>
 
       {{ with .Params.photo }}
-        {{- /* Last year's camp, as a big sticker cut with the leaning cube */ -}}
-        <figure class="relative rotate-2">
-          <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" fetchpriority="high" class="shape-cube aspect-[4/3] w-full object-cover">
+        {{- /* Last year's camp, as a big printed sticker: a white frame cut with the leaning cube and a hard dark shadow, like the tickets */ -}}
+        <figure class="relative rotate-2 drop-shadow-[8px_8px_0_var(--color-nobility)]">
+          <div class="shape-cube bg-white p-3 sm:p-4">
+            <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" fetchpriority="high" class="shape-cube aspect-[4/3] w-full object-cover">
+          </div>
           <figcaption class="absolute -bottom-4 left-6 -rotate-3 bg-white px-3 py-1.5 font-display text-sm sm:text-base">Last year’s camp</figcaption>
           <span class="shape-cube-alt absolute -top-5 right-8 h-10 w-14 bg-pink" aria-hidden="true"></span>
         </figure>
@@ -61,8 +63,11 @@
         {{ with $t.note }}<p class="mx-auto mt-5 max-w-2xl text-lg font-medium {{ if $i }}text-white/85{{ else }}text-nobility/75{{ end }}">{{ . }}</p>{{ end }}
 
         {{ with $t.photo }}
-          <figure class="relative mx-auto mt-14 max-w-4xl">
-            <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="shape-cube-alt aspect-[16/9] w-full object-cover">
+          {{- /* Framed like the hero photo, but not rotated: a rotation with the cube cut drew a stray line under it */ -}}
+          <figure class="relative mx-auto mt-14 max-w-4xl drop-shadow-[8px_8px_0_var(--color-nobility)]">
+            <div class="shape-cube-alt bg-white p-3 sm:p-4">
+              <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="shape-cube-alt aspect-[16/9] w-full object-cover">
+            </div>
             <span class="shape-cube absolute -bottom-4 left-[12%] h-10 w-16 bg-lime" aria-hidden="true"></span>
           </figure>
         {{ end }}

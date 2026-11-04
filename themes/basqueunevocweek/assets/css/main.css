@@ -128,15 +128,15 @@
     }
   }
 
-  /* Youth Camp: a technical grid of thin lime lines on white, like squared paper or a workshop plan, softer than a flat lime page (lime dots were tried and rejected) */
-  .trama-lime {
-    background-color: #fff;
+  /* Youth Camp: strong blurred patches of lime, sky and pink melting into each other, a current look (a version mostly white was too white) (a flat lime page, lime dots and a squared grid that looked like an old notebook were rejected) */
+  .mesh-youth {
+    background-color: #dce6a0;
     background-image:
-      linear-gradient(var(--color-lime) 1px, transparent 1px),
-      linear-gradient(90deg, var(--color-lime) 1px, transparent 1px),
-      linear-gradient(rgb(195 209 58 / 0.35) 1px, transparent 1px),
-      linear-gradient(90deg, rgb(195 209 58 / 0.35) 1px, transparent 1px);
-    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+      radial-gradient(at 8% 12%, var(--color-lime) 0, transparent 55%),
+      radial-gradient(at 92% 6%, var(--color-sky) 0, transparent 55%),
+      radial-gradient(at 80% 90%, rgb(163 64 104 / 0.55) 0, transparent 50%),
+      radial-gradient(at 20% 100%, rgb(177 200 206 / 0.9) 0, transparent 50%),
+      radial-gradient(at 50% 50%, rgb(195 209 58 / 0.45) 0, transparent 60%);
   }
 
   /* Youth Camp: a band of topics that keeps moving */
