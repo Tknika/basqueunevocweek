@@ -138,6 +138,22 @@
       radial-gradient(at 20% 100%, rgb(177 200 206 / 0.9) 0, transparent 50%),
       radial-gradient(at 50% 50%, rgb(195 209 58 / 0.45) 0, transparent 60%);
   }
+  /* Youth Camp: rays of sunlight coming out from behind the hero photo, fading towards the edges */
+  .sunburst {
+    background-image: repeating-conic-gradient(from 0deg, rgb(255 255 255 / 0.55) 0deg 5deg, transparent 5deg 15deg);
+    mask-image: radial-gradient(circle closest-side, black 18%, transparent 100%);
+    mix-blend-mode: soft-light;
+  }
+
+  /* The same idea for the first programme, so it does not repeat the hero: sky first, lime and pink elsewhere */
+  .mesh-youth-alt {
+    background-color: #cddde2;
+    background-image:
+      radial-gradient(at 10% 10%, var(--color-sky) 0, transparent 55%),
+      radial-gradient(at 95% 35%, rgb(195 209 58 / 0.85) 0, transparent 50%),
+      radial-gradient(at 15% 80%, rgb(163 64 104 / 0.35) 0, transparent 45%),
+      radial-gradient(at 70% 100%, rgb(195 209 58 / 0.55) 0, transparent 50%);
+  }
 
   /* Youth Camp: a band of topics that keeps moving */
   .marquee {

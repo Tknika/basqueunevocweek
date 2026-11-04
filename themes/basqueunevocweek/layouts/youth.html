@@ -1,7 +1,7 @@
 {{ define "main" }}
-{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year's camp stuck on at an angle, tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
+{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year's camp stuck on at an angle, rays of sunlight coming out from behind the photo (.sunburst), tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
 <div class="overflow-x-clip text-nobility">
-  <section class="mesh-youth relative isolate">
+  <section class="mesh-youth relative isolate overflow-hidden">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
       <div>
         <h1 class="font-display text-[clamp(3.6rem,14vw,13rem)] leading-[0.85] font-normal tracking-tight uppercase">Youth<br>Camp</h1>
@@ -13,6 +13,9 @@
       </div>
 
       {{ with .Params.photo }}
+        <div class="relative">
+        {{- /* Rays of sunlight coming out from behind the photo (.sunburst) */ -}}
+        <span class="sunburst pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-square w-[260%] -translate-x-1/2 -translate-y-1/2" aria-hidden="true"></span>
         {{- /* Last year's camp, as a big printed sticker: a white frame cut with the leaning cube and a hard dark shadow, like the tickets */ -}}
         <figure class="relative rotate-2 drop-shadow-[8px_8px_0_var(--color-nobility)]">
           <div class="shape-cube bg-white p-3 sm:p-4">
@@ -21,6 +24,7 @@
           <figcaption class="absolute -bottom-4 left-6 -rotate-3 bg-white px-3 py-1.5 font-display text-sm sm:text-base">Last year’s camp</figcaption>
           <span class="shape-cube-alt absolute -top-5 right-8 h-10 w-14 bg-pink" aria-hidden="true"></span>
         </figure>
+        </div>
       {{ end }}
     </div>
 
@@ -43,7 +47,8 @@
   </section>
 
   {{- /* The topics, moving across a dark band (still with reduced motion) */ -}}
-  <div class="-rotate-1 overflow-hidden bg-nobility py-4 text-lime" aria-hidden="true">
+  {{- /* Wider than the page and overlapping the sections above and below, so its tilt never leaves white corners */ -}}
+  <div class="relative z-10 -mx-8 -my-6 -rotate-1 overflow-hidden bg-nobility py-4 text-lime" aria-hidden="true">
     <div class="marquee flex w-max font-display text-2xl uppercase sm:text-3xl">
       {{ range seq 2 }}
         <div class="flex shrink-0 items-center">
@@ -56,7 +61,7 @@
 
   {{- /* Each programme as a festival line-up: the days centred, one after another, with the date in giant capitals; a photo, when there is one, before the days */ -}}
   {{ range $i, $t := .Params.tracks }}
-    <section id="{{ $t.id }}" class="{{ if $i }}bg-pink text-white{{ else }}bg-white{{ end }} py-20 md:py-28">
+    <section id="{{ $t.id }}" class="{{ if $i }}bg-pink text-white{{ else }}mesh-youth-alt{{ end }} py-20 md:py-28">
       <div class="container-site text-center">
         <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 0{{ add $i 1 }} · {{ $t.audience }} · {{ $t.level }} · {{ $t.dates }}</p>
         <h2 class="mx-auto mt-5 max-w-5xl text-4xl leading-[1.02] sm:text-6xl lg:text-7xl">{{ $t.title }}</h2>
