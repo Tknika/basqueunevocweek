@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year's camp stuck on at an angle, rays of sunlight coming out from behind the photo (.sunburst), tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
+{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year's camp stuck on at an angle,  tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
 <div class="overflow-x-clip text-nobility">
   <section class="mesh-youth relative isolate overflow-hidden">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
@@ -13,9 +13,6 @@
       </div>
 
       {{ with .Params.photo }}
-        <div class="relative">
-        {{- /* Rays of sunlight coming out from behind the photo (.sunburst) */ -}}
-        <span class="sunburst pointer-events-none absolute top-1/2 left-1/2 -z-10 aspect-square w-[260%] -translate-x-1/2 -translate-y-1/2" aria-hidden="true"></span>
         {{- /* Last year's camp, as a big printed sticker: a white frame cut with the leaning cube and a hard dark shadow, like the tickets */ -}}
         <figure class="relative rotate-2 drop-shadow-[8px_8px_0_var(--color-nobility)]">
           <div class="shape-cube bg-white p-3 sm:p-4">
@@ -24,7 +21,6 @@
           <figcaption class="absolute -bottom-4 left-6 -rotate-3 bg-white px-3 py-1.5 font-display text-sm sm:text-base">Last year’s camp</figcaption>
           <span class="shape-cube-alt absolute -top-5 right-8 h-10 w-14 bg-pink" aria-hidden="true"></span>
         </figure>
-        </div>
       {{ end }}
     </div>
 
@@ -59,8 +55,43 @@
   </div>
   <p class="sr-only">Topics: {{ delimit .Params.topics ", " }}.</p>
 
-  {{- /* Each programme as a festival line-up: the days centred, one after another, with the date in giant capitals; a photo, when there is one, before the days */ -}}
-  {{ range $i, $t := .Params.tracks }}
+  {{- /* The first programme, on white between the gradient above and the pink below (dark blue was too heavy, flat sky not liked): its title and photo on the left (they stay put while scrolling), the days on the right as rows, the date large in pink and the place on a dark sticker */ -}}
+  {{ with index .Params.tracks 0 }}
+    <section id="{{ .id }}" class="bg-white py-20 md:py-28">
+      <div class="container-site grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
+        <div class="lg:sticky lg:top-28 lg:self-start">
+          <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 01 · {{ .audience }} · {{ .level }} · {{ .dates }}</p>
+          <h2 class="mt-5 text-4xl leading-[1.02] sm:text-6xl">{{ .title }}</h2>
+          {{ with .note }}<p class="mt-5 max-w-2xl text-lg font-medium text-nobility/80">{{ . }}</p>{{ end }}
+          {{ with .photo }}
+            <figure class="relative mt-10 drop-shadow-[8px_8px_0_var(--color-nobility)]">
+              <div class="shape-cube-alt bg-white p-3 sm:p-4">
+                <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="shape-cube-alt aspect-[4/3] w-full object-cover">
+              </div>
+              <span class="shape-cube absolute -bottom-4 left-[12%] h-10 w-16 bg-pink" aria-hidden="true"></span>
+            </figure>
+          {{ end }}
+        </div>
+        <ol class="border-b border-nobility/20">
+          {{ range $d, $day := .days }}
+            <li class="grid gap-x-8 gap-y-3 border-t border-nobility/20 py-8 sm:grid-cols-[11rem_1fr] sm:py-10">
+              <p class="leading-none">
+                <span class="block text-sm font-bold tracking-widest text-nobility/70 uppercase">{{ .weekday }}</span>
+                <span class="mt-1 block font-display text-7xl text-pink sm:text-8xl">{{ .number }}</span>
+              </p>
+              <div class="sm:pt-6">
+                {{ with .place }}<p class="inline-block {{ cond (modBool $d 2) "-rotate-2" "rotate-1" }} bg-nobility px-4 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
+                {{ with .text }}<p class="mt-4 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
+              </div>
+            </li>
+          {{ end }}
+        </ol>
+      </div>
+    </section>
+  {{ end }}
+
+  {{- /* The other programmes as a festival line-up: the days centred, one after another, with the date in giant capitals; a photo, when there is one, before the days */ -}}
+  {{ range $i, $t := after 1 .Params.tracks }}{{ $i = add $i 1 }}
     <section id="{{ $t.id }}" class="{{ if $i }}bg-pink text-white{{ else }}mesh-youth-alt{{ end }} py-20 md:py-28">
       <div class="container-site text-center">
         <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 0{{ add $i 1 }} · {{ $t.audience }} · {{ $t.level }} · {{ $t.dates }}</p>
