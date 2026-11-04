@@ -56,14 +56,14 @@
   {{/* Three highlights, each photo cut with a different leaning cube */}}
   <nav class="grid gap-12 sm:grid-cols-3 sm:gap-6 lg:gap-10" aria-label="Highlights">
     {{ range $item := slice
-      (dict "page" "/programme" "shape" "shape-cube" "image" "images/tknika-auditorium.jpg" "text" "Three days of activities, every morning and afternoon.")
+      (dict "page" "/programme" "shape" "shape-cube" "image" "images/tknika-auditorium-desk.jpg" "text" "Three days of activities, every morning and afternoon.")
       (dict "page" "/speakers" "shape" "shape-cube-tall" "image" "images/speakers-audience.jpg" "text" "Conference, panel and workshops.")
       (dict "page" "/practical-information" "shape" "shape-cube-alt" "image" "images/donostia-bay.jpg" "text" "Getting there, where to stay and what to see.")
     }}
       {{ with site.GetPage .page }}
         <a href="{{ .RelPermalink }}" class="group block{{ if eq $v 3 }} text-nobility{{ end }}">
           <span class="{{ $item.shape }} block overflow-hidden">
-            <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-105 motion-reduce:transition-none">
+            <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover {{ $item.position }} transition duration-700 group-hover:scale-105 motion-reduce:transition-none">
           </span>
           <span class="mt-5 flex items-baseline justify-between gap-4 text-3xl font-semibold tracking-tight transition {{ if eq $v 3 }}group-hover:text-pink{{ else }}group-hover:text-azure{{ end }}">
             {{ .Title }}
