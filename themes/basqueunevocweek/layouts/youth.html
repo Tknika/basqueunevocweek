@@ -1,36 +1,42 @@
 {{ define "main" }}
-{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Tknika lime as the page, giant capitals from edge to edge, tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
-<div class="overflow-x-clip bg-lime text-nobility">
-  <section class="relative isolate overflow-hidden">
-    {{- /* Two cubes in the free space right of the stickers and the intro, on large screens */ -}}
-    <span class="shape-cube absolute top-[25rem] right-[8%] -z-10 hidden h-28 w-40 bg-pink lg:block" aria-hidden="true"></span>
-    <span class="shape-cube-alt absolute top-[33rem] right-[24%] -z-10 hidden h-12 w-16 bg-nobility lg:block" aria-hidden="true"></span>
-
-    <div class="container-site pt-10 pb-14 md:pt-14 md:pb-20">
-      <h1 class="font-display text-[clamp(3.6rem,17vw,16rem)] leading-[0.85] font-normal tracking-tight uppercase">Youth<br>Camp</h1>
-
-      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-        <p class="-rotate-3 bg-pink px-4 py-2 font-display text-lg text-white sm:text-2xl">{{ .Params.dates }}</p>
-        <p class="rotate-2 bg-nobility px-4 py-2 font-display text-lg text-lime sm:text-2xl">For students</p>
+{{- /* Youth Camp speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on a technical grid of lime lines (.trama-lime, softer than a flat lime page), a photo of last year's camp stuck on at an angle, tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
+<div class="overflow-x-clip text-nobility">
+  <section class="trama-lime relative isolate">
+    <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
+      <div>
+        <h1 class="font-display text-[clamp(3.6rem,14vw,13rem)] leading-[0.85] font-normal tracking-tight uppercase">Youth<br>Camp</h1>
+        <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+          <p class="-rotate-3 bg-pink px-4 py-2 font-display text-lg text-white sm:text-2xl">{{ .Params.dates }}</p>
+          <p class="rotate-2 bg-nobility px-4 py-2 font-display text-lg text-lime sm:text-2xl">For students</p>
+        </div>
+        <p class="mt-8 max-w-3xl bg-white/85 text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
       </div>
-      <p class="mt-8 max-w-3xl text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
 
-      {{- /* The two programmes as tickets: the stub, past a dashed cut, holds the dates and the arrow */ -}}
-      <div class="mt-12 grid gap-5 md:grid-cols-2">
-        {{ range $i, $t := .Params.tracks }}
-          <a href="#{{ $t.id }}" class="group flex bg-white transition hover:-translate-y-1 hover:-rotate-1 motion-reduce:transition-none">
-            <span class="flex-1 p-6 sm:p-8">
-              <span class="block text-sm font-bold tracking-widest uppercase {{ if $i }}text-pink{{ else }}text-nobility/60{{ end }}">Ticket 0{{ add $i 1 }} · {{ $t.level }}</span>
-              <span class="mt-2 block font-display text-2xl leading-tight uppercase sm:text-3xl">{{ $t.audience }}</span>
-              <span class="mt-3 block font-semibold">{{ $t.title }}</span>
-            </span>
-            <span class="flex w-20 shrink-0 flex-col items-center justify-center gap-3 border-l-2 border-dashed border-nobility/30 sm:w-28">
-              <span class="font-display text-sm [writing-mode:vertical-rl]">{{ $t.dates }}</span>
-              <span class="text-3xl transition group-hover:translate-y-1" aria-hidden="true">↓</span>
-            </span>
-          </a>
-        {{ end }}
-      </div>
+      {{ with .Params.photo }}
+        {{- /* Last year's camp, as a big sticker cut with the leaning cube */ -}}
+        <figure class="relative rotate-2">
+          <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" fetchpriority="high" class="shape-cube aspect-[4/3] w-full object-cover">
+          <figcaption class="absolute -bottom-4 left-6 -rotate-3 bg-white px-3 py-1.5 font-display text-sm sm:text-base">Last year’s camp</figcaption>
+          <span class="shape-cube-alt absolute -top-5 right-8 h-10 w-14 bg-pink" aria-hidden="true"></span>
+        </figure>
+      {{ end }}
+    </div>
+
+    {{- /* The two programmes as tickets: the stub, past a dashed cut, holds the dates and the arrow */ -}}
+    <div class="container-site grid gap-5 pb-16 md:grid-cols-2 md:pb-24">
+      {{ range $i, $t := .Params.tracks }}
+        <a href="#{{ $t.id }}" class="group flex bg-white shadow-[6px_6px_0_var(--color-nobility)] transition hover:-translate-y-1 hover:-rotate-1 motion-reduce:transition-none">
+          <span class="flex-1 p-6 sm:p-8">
+            <span class="block text-sm font-bold tracking-widest uppercase {{ if $i }}text-pink{{ else }}text-nobility/60{{ end }}">Ticket 0{{ add $i 1 }} · {{ $t.level }}</span>
+            <span class="mt-2 block font-display text-2xl leading-tight uppercase sm:text-3xl">{{ $t.audience }}</span>
+            <span class="mt-3 block font-semibold">{{ $t.title }}</span>
+          </span>
+          <span class="flex w-20 shrink-0 flex-col items-center justify-center gap-3 border-l-2 border-dashed border-nobility/30 sm:w-28">
+            <span class="font-display text-sm [writing-mode:vertical-rl]">{{ $t.dates }}</span>
+            <span class="text-3xl transition group-hover:translate-y-1" aria-hidden="true">↓</span>
+          </span>
+        </a>
+      {{ end }}
     </div>
   </section>
 
@@ -46,13 +52,20 @@
   </div>
   <p class="sr-only">Topics: {{ delimit .Params.topics ", " }}.</p>
 
-  {{- /* Each programme as a festival line-up: the days centred, one after another, with the date in giant capitals */ -}}
+  {{- /* Each programme as a festival line-up: the days centred, one after another, with the date in giant capitals; a photo, when there is one, before the days */ -}}
   {{ range $i, $t := .Params.tracks }}
-    <section id="{{ $t.id }}" class="{{ if $i }}bg-pink text-white{{ end }} py-20 md:py-28">
+    <section id="{{ $t.id }}" class="{{ if $i }}bg-pink text-white{{ else }}bg-white{{ end }} py-20 md:py-28">
       <div class="container-site text-center">
         <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 0{{ add $i 1 }} · {{ $t.audience }} · {{ $t.level }} · {{ $t.dates }}</p>
         <h2 class="mx-auto mt-5 max-w-5xl text-4xl leading-[1.02] sm:text-6xl lg:text-7xl">{{ $t.title }}</h2>
         {{ with $t.note }}<p class="mx-auto mt-5 max-w-2xl text-lg font-medium {{ if $i }}text-white/85{{ else }}text-nobility/75{{ end }}">{{ . }}</p>{{ end }}
+
+        {{ with $t.photo }}
+          <figure class="relative mx-auto mt-14 max-w-4xl">
+            <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="shape-cube-alt aspect-[16/9] w-full object-cover">
+            <span class="shape-cube absolute -bottom-4 left-[12%] h-10 w-16 bg-lime" aria-hidden="true"></span>
+          </figure>
+        {{ end }}
 
         <ol class="mt-16 grid gap-14">
           {{ range $d, $day := $t.days }}

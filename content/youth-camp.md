@@ -5,6 +5,9 @@ layout: youth
 highlight: "Students"
 menus: main
 dates: "20-24 April"
+photo:
+  image: "images/youth-camp-santurtzi.jpg"
+  alt: "A large group of students posing in front of CIFP Santurtzi LHII"
 intro: "Two parallel programmes on advanced manufacturing, from 20 to 24 April 2026."
 topics: ["Additive manufacturing", "Educational robotics", "Team-building", "Skills competition", "Learning factories", "Industry 4.0 & 5.0"]
 tracks:
@@ -13,6 +16,9 @@ tracks:
     audience: "VET students"
     level: "EQF 4"
     dates: "20-23 April"
+    photo:
+      image: "images/youth-camp-awards.jpg"
+      alt: "Students with their awards on stage after the skills competition"
     days:
       - { weekday: "Monday", number: "20", place: "Donostia / San Sebastián", text: "Arrival of international groups, welcome and orientation" }
       - { weekday: "Tuesday", number: "21", place: "IES Zubiri Manteo BHI", text: "Team-building in international teams. Guided activity in additive manufacturing: FDM, SLS and SLA technologies, then printing and assembling a 5-piece set in groups. Free time in Donostia" }
