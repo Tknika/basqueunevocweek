@@ -1,5 +1,5 @@
 ---
-title: "Tknika UNEVOC centre 10th Anniversary & Open Days 2027"
+title: "UNESCO-UNEVOC Anniversary Conference & Open Days 2027"
 ---
 
-Three days of conference, workshops, visits to schools and companies, and a parallel camp for students, built around advanced manufacturing in vocational education and training.
+Celebrating 25 Years of UNESCO-UNEVOC and 10 Years of Tknika as a UNEVOC Centre

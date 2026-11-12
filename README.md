@@ -1,4 +1,4 @@
-# Tknika UNEVOC centre 10th Anniversary & Open Days 2027
+# UNESCO-UNEVOC Anniversary Conference & Open Days 2027
 
 Website of the event, 11-13 May 2027, Donostia · San Sebastian. Static site in English, built with [Hugo](https://gohugo.io/) and Tailwind CSS v4.
 

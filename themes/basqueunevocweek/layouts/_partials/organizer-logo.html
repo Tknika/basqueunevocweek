@@ -1,0 +1,5 @@
+{{- /* One organiser's logo in the footer, linked to its site. Takes o (an entry of params.organizers) and class (the logo's height). */ -}}
+{{ $o := .o }}
+<a href="{{ $o.url }}" target="_blank" rel="noopener" class="block">
+  {{ with $o.logo }}<img src="{{ . | relURL }}" alt="{{ $o.name }}" class="{{ if $o.plaque }}bg-white p-2 {{ end }}{{ $.class }} w-auto max-w-full">{{ else }}<span class="font-display text-lg font-semibold">{{ $o.name }}</span>{{ end }}
+</a>
