@@ -1,8 +1,9 @@
 ---
-title: "Youth Camp"
+title: "Student Hub"
+aliases: ["/youth-camp/"]
 weight: 6
 layout: youth
-highlight: "Students"
+highlight: true
 menus: main
 dates: "20-24 April"
 photo:
