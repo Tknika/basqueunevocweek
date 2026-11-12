@@ -4,10 +4,10 @@
 {{- /* A white strip behind the fixed menu (header-home), under the first photo: the photo hides it while it is at the top, so the menu looks transparent there, and it shows as soon as the photo scrolls away. Works in every browser; where scroll-driven animations exist, the menu turns white even sooner (main.css). */ -}}
 <div class="fixed inset-x-0 top-0 z-40 h-[4.6rem] border-b border-nobility/10 bg-white/90 backdrop-blur lg:h-18" aria-hidden="true"></div>
 <section class="relative isolate z-[45] {{ if eq $v 3 }}text-azure {{ end }}h-[88svh] min-h-[560px] lg:h-svh lg:min-h-[680px]">
-  <img src="{{ "images/kursaal-sky.jpg" | relURL }}" srcset="{{ "images/kursaal-sky-1200.jpg" | relURL }} 1200w, {{ "images/kursaal-sky.jpg" | relURL }} 2400w" sizes="100vw" alt="The corner of one of the Kursaal's glass cubes against a pale blue sky" width="2400" height="1590" fetchpriority="high" class="shape-hero absolute inset-0 -z-10 size-full object-cover object-[45%_100%]">
+  <img src="{{ "images/kursaal-sky.jpg" | relURL }}" srcset="{{ "images/kursaal-sky-1200.jpg" | relURL }} 1200w, {{ "images/kursaal-sky.jpg" | relURL }} 2400w" sizes="100vw" alt="The corner of one of the Kursaal's glass cubes against a blue sky" width="2400" height="1590" fetchpriority="high" class="shape-hero absolute inset-0 -z-10 size-full object-cover object-[45%_100%]">
 
   <div class="container-wide pt-24 lg:pt-32">
-    <h1 class="max-w-[16ch] font-sans text-5xl leading-[0.95] font-semibold tracking-[-0.035em] text-balance sm:text-7xl lg:text-[clamp(4.5rem,7vw,8.5rem)]">{{ site.Title }}</h1>
+    <h1 class="max-w-[16ch] text-white [text-shadow:0_2px_24px_rgb(11_74_143/0.45)] font-sans text-5xl leading-[0.95] font-semibold tracking-[-0.035em] text-balance sm:text-7xl lg:text-[clamp(4.5rem,7vw,8.5rem)]">{{ site.Title }}</h1>
   </div>
 
   <span class="shape-cube absolute bottom-[9.5rem] left-[76%] h-9 w-14 -translate-x-1/2 translate-y-1/2 bg-pink lg:bottom-[11rem] lg:left-[43%] lg:h-14 lg:w-24" aria-hidden="true"></span>
@@ -15,6 +15,6 @@
 
   <div class="container-wide absolute inset-x-0 bottom-0 pb-6 lg:pb-10">
     <p class="font-display text-xl sm:text-2xl lg:text-3xl">{{ site.Params.dates }}</p>
-    <p class="mt-1 text-lg font-semibold lg:text-xl">Kursaal, {{ site.Params.venue }}</p>
+    <p class="mt-1 text-lg font-semibold lg:text-xl">{{ site.Params.venue }}</p>
   </div>
 </section>

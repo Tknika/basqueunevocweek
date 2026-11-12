@@ -30,9 +30,16 @@
   --color-haze: #eef3f4;    /* a very light sky: soft surface on the home */
 }
 
-/* The home header turns white as the page scrolls */
+/* The home header turns white as the page scrolls: white text over the azure sky of the first photo, dark text on white after */
 @keyframes header-solid {
+  from {
+    color: #fff;
+    background-color: transparent;
+    border-bottom-color: transparent;
+    backdrop-filter: none;
+  }
   to {
+    color: var(--color-nobility);
     background-color: rgb(255 255 255 / 0.9);
     border-bottom-color: rgb(24 24 72 / 0.1);
     backdrop-filter: blur(8px);
@@ -116,9 +123,11 @@
     clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
   }
 
-  /* The home header: transparent over the first photo, white from the first pixels of scroll on where scroll-driven animations exist. Elsewhere a white strip under the photo (home-hero.html) shows once the photo has scrolled away. No JavaScript on the site. */
+  /* The home header: transparent with white text over the azure sky of the first photo, white with dark text from the first pixels of scroll on, where scroll-driven animations exist. Elsewhere it is simply white, as dark text would not read over the azure sky. No JavaScript on the site. */
   .header-home {
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid rgb(24 24 72 / 0.1);
+    background-color: rgb(255 255 255 / 0.9);
+    backdrop-filter: blur(8px);
   }
   @supports (animation-timeline: scroll()) {
     .header-home {
@@ -128,7 +137,7 @@
     }
   }
 
-  /* Youth Camp: strong blurred patches of lime, sky and pink melting into each other, a current look (a version mostly white was too white) (a flat lime page, lime dots and a squared grid that looked like an old notebook were rejected) */
+  /* Student Hub: strong blurred patches of lime, sky and pink melting into each other, a current look (a version mostly white was too white) (a flat lime page, lime dots and a squared grid that looked like an old notebook were rejected) */
   .mesh-youth {
     background-color: #dce6a0;
     background-image:
@@ -139,7 +148,7 @@
       radial-gradient(at 50% 50%, rgb(195 209 58 / 0.45) 0, transparent 60%);
   }
 
-  /* Youth Camp: a band of topics that keeps moving */
+  /* Student Hub: a band of topics that keeps moving */
   .marquee {
     animation: marquee 32s linear infinite;
   }
