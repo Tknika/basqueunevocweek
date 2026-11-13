@@ -1,13 +1,16 @@
 {{- /* The first screen of the home, shared by the home and its draft versions (home-variant.html). Takes v, the version: 1 the first design, 2 the menu in UNEVOC azure, 3 every dark blue text in UNEVOC azure (the one the home uses). */ -}}
 {{ $v := .v }}
-{{/* A full-screen photo of the Kursaal against the sky, with the title in the sky and the menu over it (the header is transparent on the home). A leaning cube, the brand shape, is bitten out of its lower left corner for the dates, with two small shards in pink and lime on its edge (.shape-hero in main.css). */}}
+{{- /* sky: the photo (images/<sky>.jpg and <sky>-1200.jpg; kursaal-sky by default, the sky after the poster's waves). light: a pale sky, so the title is the deeper UNEVOC blue (deep) instead of white: azure is too light on it. alt: the photo's description. frameLow: keep the photo's original framing (object-position 45% 100%, the building higher up). flipped: the photo is mirrored (the building on the right), so it is framed from 55% across instead of 45%. frameY "30%": the building a little higher (home3); 30% is the most it can rise and still clear the title on a 1280×600 browser window. */ -}}
+{{ $sky := .sky | default "kursaal-sky" }}
+{{ $alt := .alt | default "The corner of one of the Kursaal's glass cubes against a blue sky" }}
+{{/* A full-screen photo of the Kursaal against the sky, framed high (object-position 45% 20%) so that on wide, short screens the building stays below the title, with the title in the sky and the menu over it (the header is transparent on the home). A leaning cube, the brand shape, is bitten out of its lower left corner for the dates, with two small shards in pink and lime on its edge (.shape-hero in main.css). */}}
 {{- /* A white strip behind the fixed menu (header-home), under the first photo: the photo hides it while it is at the top, so the menu looks transparent there, and it shows as soon as the photo scrolls away. Works in every browser; where scroll-driven animations exist, the menu turns white even sooner (main.css). */ -}}
 <div class="fixed inset-x-0 top-0 z-40 h-[4.6rem] border-b border-nobility/10 bg-white/90 backdrop-blur lg:h-18" aria-hidden="true"></div>
 <section class="relative isolate z-[45] {{ if eq $v 3 }}text-azure {{ end }}h-[88svh] min-h-[560px] lg:h-svh lg:min-h-[680px]">
-  <img src="{{ "images/kursaal-sky.jpg" | relURL }}" srcset="{{ "images/kursaal-sky-1200.jpg" | relURL }} 1200w, {{ "images/kursaal-sky.jpg" | relURL }} 2400w" sizes="100vw" alt="The corner of one of the Kursaal's glass cubes against a blue sky" width="2400" height="1590" fetchpriority="high" class="shape-hero absolute inset-0 -z-10 size-full object-cover object-[45%_100%]">
+  <img src="{{ printf "images/%s.jpg" $sky | relURL }}" srcset="{{ printf "images/%s-1200.jpg" $sky | relURL }} 1200w, {{ printf "images/%s.jpg" $sky | relURL }} 2400w" sizes="100vw" alt="{{ $alt }}" width="2400" height="1590" fetchpriority="high" class="shape-hero absolute inset-0 -z-10 size-full object-cover {{ if .frameLow }}object-[45%_100%]{{ else if .flipped }}object-[55%_20%]{{ else if eq .frameY "30%" }}object-[45%_30%]{{ else }}object-[45%_20%]{{ end }}">
 
   <div class="container-wide pt-24 lg:pt-32">
-    <h1 class="max-w-[16ch] text-white [text-shadow:0_2px_24px_rgb(11_74_143/0.45)] font-sans text-5xl leading-[0.95] font-semibold tracking-[-0.035em] text-balance sm:text-7xl lg:text-[clamp(4.5rem,7vw,8.5rem)]">{{ site.Title }}</h1>
+    <h1 class="max-w-[16ch] {{ if .light }}text-deep{{ else }}text-white{{ end }} font-sans text-5xl leading-[0.95] font-semibold tracking-[-0.035em] text-balance sm:text-7xl lg:text-[clamp(4.5rem,min(7vw,10svh),8.5rem)]">{{ site.Title }}</h1>
   </div>
 
   <span class="shape-cube absolute bottom-[9.5rem] left-[76%] h-9 w-14 -translate-x-1/2 translate-y-1/2 bg-pink lg:bottom-[11rem] lg:left-[43%] lg:h-14 lg:w-24" aria-hidden="true"></span>

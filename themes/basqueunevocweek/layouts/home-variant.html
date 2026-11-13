@@ -1,0 +1,3 @@
+{{- /* Alternative versions of the home, to compare (content/home2.md, home3.md): the same page as the home with another photo for the first screen. Front matter: sky (the photo, see home-hero.html), light (a pale sky: title and menu dark over it), alt, frame_low (the photo's original framing), frame_y ("30%": the building a little higher). */ -}}
+{{ define "hero" }}{{ partial "home-hero.html" (dict "v" 3 "sky" .Params.sky "light" .Params.light "alt" .Params.alt "frameLow" .Params.frame_low "frameY" .Params.frame_y) }}{{ end }}
+{{ define "main" }}{{ partial "home-main.html" (dict "page" . "v" 3) }}{{ end }}

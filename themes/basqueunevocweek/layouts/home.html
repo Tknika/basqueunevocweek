@@ -1,3 +1,3 @@
-{{- /* The home uses the colours of draft version 3: texts in UNEVOC azure, links dark blue turning pink on hover */ -}}
-{{ define "hero" }}{{ partial "home-hero.html" (dict "v" 3) }}{{ end }}
+{{- /* The home uses the colours of draft version 3: texts in UNEVOC azure, links dark blue turning pink on hover. Its photo (kursaal-sky.jpg) is mirrored, the building on the right, the waves on the left */ -}}
+{{ define "hero" }}{{ partial "home-hero.html" (dict "v" 3 "flipped" true) }}{{ end }}
 {{ define "main" }}{{ partial "home-main.html" (dict "page" . "v" 3) }}{{ end }}

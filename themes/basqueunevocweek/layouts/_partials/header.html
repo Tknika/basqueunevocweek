@@ -2,8 +2,10 @@
 {{- /* Draft versions of the home are home pages too: version 2 has the menu text in UNEVOC azure (dark blue on hover); everywhere else links are dark blue and turn pink on hover, like the buttons */ -}}
 {{ $isHome := or $page.IsHome (isset $page.Params "home_variant") }}
 {{ $azureText := eq $page.Params.home_variant 2 }}
+{{- /* A home variant on a pale sky keeps the menu dark over the photo (header-dark in main.css) */ -}}
+{{ $darkOverPhoto := $page.Params.light }}
 {{- /* Light, with dark text. On the home it stays at the top over the first photo, transparent, and turns white as soon as the page scrolls (.header-home in main.css); elsewhere it sticks to the top on large screens. */ -}}
-<header class="{{ if $azureText }}header-home fixed inset-x-0 top-0 text-azure{{ else if $isHome }}header-home fixed inset-x-0 top-0 text-nobility{{ else }}relative border-b border-nobility/10 bg-white/90 text-nobility backdrop-blur lg:sticky lg:top-0{{ end }} z-50">
+<header class="{{ if $azureText }}header-home fixed inset-x-0 top-0 text-azure{{ else if $isHome }}header-home{{ if $darkOverPhoto }} header-dark{{ end }} fixed inset-x-0 top-0 text-nobility{{ else }}relative border-b border-nobility/10 bg-white/90 text-nobility backdrop-blur lg:sticky lg:top-0{{ end }} z-50">
   <div class="container-wide flex items-center justify-between gap-4 py-4 lg:h-18 lg:py-0">
     <a href="{{ site.Home.RelPermalink }}" class="font-display text-xl{{ if $azureText }} transition hover:text-nobility{{ else }} transition hover:text-pink{{ end }}"{{ if $isHome }} aria-current="page"{{ end }}>Home</a>
     <nav class="hidden lg:block" aria-label="Main">
