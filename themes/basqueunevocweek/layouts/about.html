@@ -1,0 +1,41 @@
+{{- /* About (content/about.md): the concept note. The rationale in Markdown, then from the front matter who should attend (audiences: title, intro, items) and what the programme offers each audience (formats: title, intro, items with who, offer and an optional page to link to, outro), in square boxes on haze. */ -}}
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+<div class="container-site py-12 md:py-16">
+  <div class="prose-site">{{ .Content }}</div>
+
+  {{ with .Params.audiences }}
+    <section class="mt-20" aria-labelledby="audiences">
+      <h2 id="audiences" class="text-4xl">{{ .title }}</h2>
+      {{ with .intro }}<p class="mt-5 max-w-2xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {{ range .items }}
+          <li class="relative bg-haze px-6 pt-8 pb-6 text-lg leading-snug font-semibold text-nobility">
+            <span class="shape-cube absolute top-0 left-6 h-2 w-4 -translate-y-1/2 bg-pink" aria-hidden="true"></span>
+            {{ . }}
+          </li>
+        {{ end }}
+      </ul>
+    </section>
+  {{ end }}
+
+  {{ with .Params.formats }}
+    <section class="mt-20" aria-labelledby="formats">
+      <h2 id="formats" class="text-4xl">{{ .title }}</h2>
+      {{ with .intro }}<p class="mt-5 max-w-2xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
+      <div class="mt-8 grid gap-3 lg:grid-cols-3">
+        {{ range .items }}
+          <div class="flex flex-col bg-haze p-6 lg:p-8">
+            <h3 class="text-2xl leading-tight tracking-tight">{{ .who }}</h3>
+            <p class="mt-3 text-lg leading-relaxed">{{ .offer }}</p>
+            {{ with .page }}{{ with site.GetPage . }}
+              <a href="{{ .RelPermalink }}" class="mt-auto inline-flex items-center gap-2 pt-6 font-semibold text-nobility transition hover:text-pink">{{ .Title }} <span aria-hidden="true">→</span></a>
+            {{ end }}{{ end }}
+          </div>
+        {{ end }}
+      </div>
+      {{ with .outro }}<p class="mt-8 max-w-2xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
+    </section>
+  {{ end }}
+</div>
+{{ end }}

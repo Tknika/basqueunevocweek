@@ -1,7 +1,7 @@
 ---
 title: "Practical information"
 header_image: "images/donostia-bay.jpg"
-weight: 5
+weight: 6
 menus: main
 layout: practical
 venue:

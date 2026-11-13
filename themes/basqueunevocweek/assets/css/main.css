@@ -230,6 +230,15 @@
   .prose-site ol {
     @apply list-decimal pl-6;
   }
+  /* A quote pulled from the text: large and semibold, with a small pink cube, the brand shape, above it */
+  .prose-site blockquote {
+    @apply relative my-12 pt-6 text-3xl leading-tight font-semibold tracking-[-0.025em] text-balance sm:text-4xl;
+  }
+  .prose-site blockquote::before {
+    content: "";
+    clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);
+    @apply absolute top-0 left-0 h-3 w-6 bg-pink;
+  }
   .prose-site table {
     @apply block w-full overflow-x-auto border-collapse text-base sm:table;
   }

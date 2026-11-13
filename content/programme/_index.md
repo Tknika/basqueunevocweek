@@ -1,7 +1,7 @@
 ---
 title: "Programme"
 header_image: "images/tknika-auditorium-front.jpg"
-weight: 1
+weight: 2
 menus:
   main:
     identifier: programme

@@ -1,7 +1,7 @@
 ---
 title: "Student Hub"
 aliases: ["/youth-camp/"]
-weight: 6
+weight: 7
 layout: youth
 highlight: true
 menus: main

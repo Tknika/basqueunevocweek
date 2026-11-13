@@ -31,7 +31,7 @@ There is no test suite. **A change is verified when:**
 ## Conventions
 
 - **Template layout (Hugo ≥ 0.146):** `layouts/baseof.html`, `home.html`, `section.html`, `page.html`, `404.html`, with `_partials/`, `_shortcodes/` and `_markup/`.
-- **Site map:** home; programme (a section with one page per day: 11, 12 and 13 May); speakers; Student Hub; press area; practical information.
+- **Site map:** home; about (the concept note, `layouts/about.html`); programme (a section with one page per day: 11, 12 and 13 May); speakers; Student Hub; press area; practical information.
 - **Menus come from front matter** (`menus: main`, ordered by `weight`). The days hang from the programme with `parent: programme`.
 - **Organisers** are listed in `hugo.toml` (`params.organizers`), in press-area order. In the footer, `footer` places each logo: Tknika and FP Euskadi side by side (`"top"`, by `footer_order`), the Basque Government under them as wide as both (`"bottom"`), and UNESCO-UNEVOC apart on the right past a thin line (`"aside"`): the UNEVOC logo must always stand apart from the others. The footer is `azure`, so logos must be the white versions, or use `plaque = true` to sit on a white background.
 - **Typography:** two fonts. Instrument Sans (the default) for everything, with big semibold titles and tight tracking (`h1` and `h2` in `main.css`). Krona One (`font-display`), graphic and with one weight, only for small big moments: dates, figures, day names on the programme, "Lunch" and "or". No fake bolds: `font-synthesis-weight` is off.
