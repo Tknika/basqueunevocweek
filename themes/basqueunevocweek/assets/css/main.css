@@ -151,6 +151,10 @@
   .shape-header {
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
   }
+  /* A full-width band (About: the gathering) with both edges leaning like the roof of the cube */
+  .shape-band {
+    clip-path: polygon(0 2.5rem, 100% 0, 100% calc(100% - 2.5rem), 0 100%);
+  }
   /* The second photo: the top edge leans like the roof of the cube */
   .shape-roof {
     clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);

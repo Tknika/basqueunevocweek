@@ -1,60 +1,75 @@
-{{- /* About (content/about.md): the concept note. First the rationale, laid out from the front matter (rationale) to show why global and why local: global on white with the shared challenges as icon tiles (those the local block goes on to show marked with a pin), a line with arrows and the sentence that links the two, local on haze with each example's places marked by pins (icons: _partials/icon.html), statements with highlighted words (*word*, a lime marker), TVET's place as numbered points and a chain of steps, and learning in both directions as two arrows. Then the gathering's three purposes as cards (purposes), and who it is for: the audiences as a short list (audiences: title, intro, items) and what the programme offers each of them (formats: title, items with who, offer and an optional page to link to). Messages repeated in the note were left out to keep the page short. */ -}}
+{{- /* About (content/about.md): the concept note, as numbered chapters on one thread, global and local, listed in an index at the top. First the rationale, laid out from the front matter (rationale) to show why global and why local: global on white with the shared challenges as icon tiles (those the local block goes on to show marked with a pin), a line with arrows and the sentence that links the two, local on haze with each example's places marked by pins (icons: _partials/icon.html), statements with highlighted words (*word*, a lime marker), TVET's place as numbered points and a chain of steps, and learning in both directions as two arrows. Then the gathering's three purposes (purposes): the answer to all of it and the event itself, so a full-width azure band with the dates, place, white cards and a link to the programme; and who it is for: the audiences as a short list (audiences: title, intro, items) and what the programme offers each of them (formats: title, items with who, offer and an optional page to link to). Messages repeated in the note were left out to keep the page short. */ -}}
 {{ define "main" }}
 {{ partial "page-header.html" . }}
 {{- /* A statement: large, with its *words* on a lime marker */ -}}
 {{ $mark := "[&_em]:not-italic [&_em]:bg-[linear-gradient(transparent_62%,var(--color-lime)_62%,var(--color-lime)_92%,transparent_92%)] [&_em]:box-decoration-clone" }}
 <div class="container-site py-12 md:py-16">
+  {{- /* The page as numbered chapters: their ids and titles, for the index and the numbers above each title */ -}}
+  {{ $r := .Params.rationale }}
+  {{ $chapters := slice }}
+  {{ with $r }}{{ $chapters = $chapters | append (dict "id" "why" "title" .title) }}{{ with .tvet }}{{ $chapters = $chapters | append (dict "id" "tvet" "title" .title) }}{{ end }}{{ with .directions }}{{ $chapters = $chapters | append (dict "id" "directions" "title" .title) }}{{ end }}{{ with .purposes }}{{ $chapters = $chapters | append (dict "id" "purposes" "title" .title) }}{{ end }}{{ end }}
+  {{ with .Params.audiences }}{{ $chapters = $chapters | append (dict "id" "audiences" "title" .title) }}{{ end }}
+  {{ $num := dict }}{{ range $i, $ch := $chapters }}{{ $num = merge $num (dict $ch.id (printf "%02d" (add $i 1))) }}{{ end }}
+  <nav class="mb-16" aria-label="On this page">
+    <ol class="grid gap-x-6 sm:grid-cols-2 lg:grid-cols-5">
+      {{ range $i, $ch := $chapters }}
+        <li class="border-t-2 border-nobility">
+          <a href="#{{ $ch.id }}" class="group flex gap-3 py-4 text-nobility transition hover:text-pink-ink lg:flex-col lg:gap-2">
+            <span class="font-display text-lg text-azure" aria-hidden="true">{{ index $num $ch.id }}</span>
+            <span class="text-lg leading-snug font-semibold">{{ $ch.title }}</span>
+          </a>
+        </li>
+      {{ end }}
+    </ol>
+  </nav>
 
   {{ with .Params.rationale }}
     <section aria-labelledby="why">
-      <h2 id="why" class="text-4xl sm:text-5xl">{{ .title }}</h2>
+      <h2 id="why" class="text-4xl sm:text-5xl scroll-mt-24"><span class="mb-2 block font-display text-lg text-pink-ink" aria-hidden="true">{{ index $num "why" }}</span>{{ .title }}</h2>
 
-      {{- /* Why global and why local side by side: global on the left (white, framed), local on the right (haze). The challenges the note shows locally run across both as rows, the global challenge on the left, an arrow, and the places where it takes a different shape on the right; the other shared challenges follow under the global column. On small screens everything stacks. */ -}}
+      {{- /* Why global and why local side by side: global on the left (white, framed), local on the right (haze). The challenges the note shows locally run across both as rows, the global challenge on the left, an arrow, and the places where it takes a different shape on the right; the other shared challenges follow in one line across both. On small screens everything stacks. */ -}}
       {{ $g := .global }}{{ $l := .local }}
       {{ $shownNames := slice }}{{ range $l.examples }}{{ $shownNames = $shownNames | append .name }}{{ end }}
-      <div class="mt-10 grid gap-3 lg:grid-cols-[minmax(0,2fr)_2.5rem_minmax(0,3fr)] lg:gap-x-0">
+      <div class="mt-8 grid gap-2 lg:grid-cols-[minmax(0,2fr)_2rem_minmax(0,3fr)] lg:gap-x-0">
         {{- /* headers */ -}}
-        <div class="border border-nobility/15 p-6 sm:p-8">
-          {{ partial "icon.html" (dict "name" "globe" "class" "size-14 text-azure") }}
-          <p class="mt-5 font-display text-sm tracking-widest uppercase">{{ $g.label }}</p>
-          <h3 class="mt-3 text-3xl leading-tight tracking-[-0.025em]">{{ $g.title }}</h3>
-          <p class="mt-4 text-lg leading-relaxed">{{ $g.intro }}</p>
+        <div class="border border-nobility/15 p-5 sm:p-6">
+          <p class="flex items-center gap-2.5 font-display text-xs tracking-widest uppercase">{{ partial "icon.html" (dict "name" "globe" "class" "size-6 text-azure") }}{{ $g.label }}</p>
+          {{ with $g.title }}<h3 class="mt-3 text-xl leading-snug sm:text-2xl">{{ . }}</h3><p class="mt-2 leading-relaxed">{{ $g.intro }}</p>{{ else }}<h3 class="mt-3 text-xl leading-snug text-balance sm:text-2xl">{{ $g.intro }}</h3>{{ end }}
         </div>
         <span class="hidden lg:block" aria-hidden="true"></span>
-        <div class="bg-haze p-6 sm:p-8">
-          {{ partial "icon.html" (dict "name" "pin" "class" "size-14 text-pink") }}
-          <p class="mt-5 font-display text-sm tracking-widest uppercase">{{ $l.label }}</p>
-          <h3 class="mt-3 text-3xl leading-tight tracking-[-0.025em] text-balance">{{ $l.intro }}</h3>
+        <div class="bg-haze p-5 sm:p-6">
+          <p class="flex items-center gap-2.5 font-display text-xs tracking-widest uppercase">{{ partial "icon.html" (dict "name" "pin" "class" "size-6 text-pink") }}{{ $l.label }}</p>
+          <h3 class="mt-3 text-xl leading-snug text-balance sm:text-2xl">{{ $l.intro }}</h3>
         </div>
 
         {{- /* the shared challenges, one row each */ -}}
         {{ range $l.examples }}
           {{ $name := .name }}{{ $icon := .icon }}
           {{ range $g.challenges }}{{ if eq .name $name }}{{ $icon = .icon }}{{ end }}{{ end }}
-          <div class="flex items-center gap-4 border border-nobility/15 border-l-4 border-l-pink p-6 sm:p-8">
-            {{ partial "icon.html" (dict "name" $icon "class" "size-10 shrink-0 text-azure") }}
-            <h4 class="text-2xl leading-tight text-nobility sm:text-3xl">{{ $name }}</h4>
+          <div class="flex items-center gap-3 border border-nobility/15 border-l-4 border-l-pink px-5 py-4 sm:px-6">
+            {{ partial "icon.html" (dict "name" $icon "class" "size-7 shrink-0 text-azure") }}
+            <h4 class="text-xl leading-tight text-nobility">{{ $name }}</h4>
           </div>
-          <div class="flex items-center justify-center text-3xl text-pink" aria-hidden="true"><span class="lg:hidden">↓</span><span class="hidden lg:inline">→</span></div>
-          <div class="bg-haze p-6 sm:p-8">
-            {{ with .lead }}<p class="mb-5 leading-relaxed">{{ . }}</p>{{ end }}
-            <ul class="grid gap-4 sm:grid-cols-{{ len .places }}">
+          <div class="flex items-center justify-center text-xl text-pink" aria-hidden="true"><span class="lg:hidden">↓</span><span class="hidden lg:inline">→</span></div>
+          <div class="bg-haze px-5 py-4 sm:px-6">
+            {{ with .lead }}<p class="mb-3 text-[0.94rem] leading-relaxed">{{ . }}</p>{{ end }}
+            <ul class="grid gap-2 sm:grid-cols-{{ len .places }}">
               {{ range .places }}
-                <li class="flex gap-3 bg-white p-4">
-                  {{ partial "icon.html" (dict "name" "pin" "class" "mt-0.5 size-5 shrink-0 text-pink-ink") }}
-                  <span><span class="block text-xs font-semibold tracking-widest uppercase">{{ .where }}</span><span class="mt-1 block text-lg leading-snug font-semibold text-nobility">{{ .what }}</span></span>
+                <li class="flex gap-2 bg-white px-3 py-2.5">
+                  {{ partial "icon.html" (dict "name" "pin" "class" "mt-0.5 size-4 shrink-0 text-pink-ink") }}
+                  <span><span class="block text-[0.7rem] font-semibold tracking-widest uppercase">{{ .where }}</span><span class="block leading-snug font-semibold text-nobility">{{ .what }}</span></span>
                 </li>
               {{ end }}
             </ul>
           </div>
         {{ end }}
 
-        {{- /* the other shared challenges, under the global column */ -}}
-        <div class="border border-nobility/15 p-6 sm:p-8">
-          <p class="text-xs font-semibold tracking-widest uppercase">And also</p>
-          <ul class="mt-4 grid gap-3">
+        {{- /* the other shared challenges, in one line across both columns */ -}}
+        <div class="flex flex-col gap-3 border border-nobility/15 px-5 py-4 sm:px-6 lg:col-span-3 lg:flex-row lg:items-center lg:gap-6">
+          <p class="text-[0.7rem] font-semibold tracking-widest uppercase">And also</p>
+          <ul class="flex flex-wrap gap-x-6 gap-y-2">
             {{ range $g.challenges }}{{ if not (in $shownNames .name) }}
-              <li class="flex items-center gap-3 text-lg leading-snug font-semibold text-nobility">{{ partial "icon.html" (dict "name" .icon "class" "size-7 shrink-0 text-azure") }}{{ .name }}</li>
+              <li class="flex items-center gap-2.5 leading-snug font-semibold text-nobility">{{ partial "icon.html" (dict "name" .icon "class" "size-5 shrink-0 text-azure") }}{{ .name }}</li>
             {{ end }}{{ end }}
           </ul>
         </div>
@@ -66,30 +81,47 @@
     </section>
 
     {{ with .tvet }}
-      <section class="mt-20" aria-labelledby="tvet">
-        <h2 id="tvet" class="text-4xl sm:text-5xl">{{ .title }}</h2>
+      <section class="mt-24" aria-labelledby="tvet">
+        <h2 id="tvet" class="text-4xl sm:text-5xl scroll-mt-24"><span class="mb-2 block font-display text-lg text-pink-ink" aria-hidden="true">{{ index $num "tvet" }}</span>{{ .title }}</h2>
         <p class="mt-5 text-2xl font-semibold tracking-tight">{{ .intro }}</p>
         <ol class="mt-8 grid gap-8 md:grid-cols-3">
           {{ range $i, $p := .points }}
             <li class="border-t-2 border-nobility pt-5">
-              <span class="font-display text-4xl" aria-hidden="true">0{{ add $i 1 }}</span>
-              <p class="mt-3 text-lg leading-relaxed">{{ $p }}</p>
+              <span class="shape-cube block h-3 w-5 {{ if modBool $i 2 }}bg-pink{{ else }}bg-lime{{ end }}" aria-hidden="true"></span>
+              <p class="mt-4 text-lg leading-relaxed">{{ $p }}</p>
             </li>
           {{ end }}
         </ol>
 
-        <div class="mt-14 bg-haze p-6 sm:p-10">
-          <p class="max-w-3xl text-xl leading-relaxed font-semibold text-nobility">{{ .shifts }}</p>
-          <ol class="mt-6 grid gap-3 lg:grid-cols-[1fr_auto_1fr_auto_1fr] lg:items-stretch">
-            {{ range $i, $s := .steps }}
-              {{ if $i }}<li class="flex items-center justify-center text-3xl text-pink" aria-hidden="true"><span class="lg:hidden">↓</span><span class="hidden lg:inline">→</span></li>{{ end }}
-              <li class="flex items-center gap-4 bg-white p-5 text-lg leading-snug font-semibold text-nobility">
-                <span class="shape-cube h-4 w-6 shrink-0 {{ if modBool $i 2 }}bg-pink{{ else }}bg-lime{{ end }}" aria-hidden="true"></span>{{ $s }}
-              </li>
-            {{ end }}
-          </ol>
-          {{ with .agendas }}<p class="mt-6 max-w-3xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
-        </div>
+        {{- /* Global shifts become real locally: a flow from the shifts (left, white, framed, azure icons) through an arrow and the note's words to the chain of local actors (right, haze, icons on pink cubes, linked by arrows). Stacks on small screens. */ -}}
+        {{ with .shifts }}
+          <div class="mt-14 grid gap-3 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.2fr)_minmax(0,3fr)] lg:items-stretch">
+            <div class="flex flex-col border border-nobility/15 p-6 sm:p-8">
+              <p class="flex items-center gap-3 font-display text-sm tracking-widest uppercase">{{ partial "icon.html" (dict "name" "globe" "class" "size-6 text-azure") }}{{ .label }}</p>
+              <ul class="mt-6 grid gap-5 lg:my-auto lg:gap-8">
+                {{ range .items }}
+                  <li class="flex items-center gap-4 text-2xl leading-tight font-semibold tracking-tight text-nobility">{{ partial "icon.html" (dict "name" .icon "class" "size-9 shrink-0 text-azure") }}{{ .name }}</li>
+                {{ end }}
+              </ul>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-2 px-2 py-2 text-center lg:py-0">
+              <p class="text-xl leading-snug font-semibold text-balance text-nobility">{{ .link }}</p>
+              <svg viewBox="0 0 64 24" class="hidden h-6 w-16 text-pink lg:block" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 12h58M52 4l8 8-8 8"/></svg>
+              <svg viewBox="0 0 24 40" class="h-10 w-6 text-pink lg:hidden" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2v34M4 28l8 8 8-8"/></svg>
+            </div>
+            <div class="bg-haze p-6 sm:p-8">
+              <p class="flex items-center gap-3 font-display text-sm tracking-widest uppercase">{{ partial "icon.html" (dict "name" "pin" "class" "size-6 text-pink") }}{{ .local_label }}</p>
+              <ol class="mt-6 grid gap-1">
+                {{ range $i, $s := .steps }}
+                  {{ if $i }}<li class="pl-9 text-xl leading-none text-pink" aria-hidden="true">↓</li>{{ end }}
+                  <li class="flex items-center gap-4 bg-white p-4 text-lg leading-snug font-semibold text-nobility">
+                    <span class="shape-cube flex size-11 shrink-0 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" $s.icon "class" "size-6") }}</span>{{ $s.name }}
+                  </li>
+                {{ end }}
+              </ol>
+            </div>
+          </div>
+        {{ end }}
 
         {{ with .statement }}
           <p class="mx-auto mt-14 max-w-5xl text-center text-3xl leading-tight font-semibold tracking-[-0.025em] text-balance sm:text-4xl {{ $mark }}">{{ . | markdownify }}</p>
@@ -98,8 +130,8 @@
     {{ end }}
 
     {{ with .directions }}
-      <section class="mt-20" aria-labelledby="directions">
-        <h2 id="directions" class="text-4xl sm:text-5xl">{{ .title }}</h2>
+      <section class="mt-24" aria-labelledby="directions">
+        <h2 id="directions" class="text-4xl sm:text-5xl scroll-mt-24"><span class="mb-2 block font-display text-lg text-pink-ink" aria-hidden="true">{{ index $num "directions" }}</span>{{ .title }}</h2>
         <p class="mt-5 max-w-2xl text-2xl font-semibold tracking-tight">{{ .intro }}</p>
         <div class="mt-8 grid gap-3 lg:grid-cols-2">
           {{ range $i, $d := .items }}
@@ -119,33 +151,39 @@
       </section>
     {{ end }}
 
-    {{- /* What the gathering is for: its three purposes as cards with icons */ -}}
-    {{ with .purposes }}
-      <section class="mt-20" aria-labelledby="purposes">
-        <h2 id="purposes" class="text-4xl sm:text-5xl">{{ .title }}</h2>
-        {{ with .intro }}<p class="mt-5 max-w-3xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
-        <ol class="mt-8 grid gap-3 lg:grid-cols-3">
-          {{ range $i, $p := .items }}
-            <li class="border border-nobility/15 p-6 sm:p-8">
-              <div class="flex items-center justify-between gap-4">
-                <span class="shape-cube flex size-12 shrink-0 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" $p.icon "class" "size-6") }}</span>
-                <span class="font-display text-3xl text-azure/40" aria-hidden="true">0{{ add $i 1 }}</span>
-              </div>
-              <h3 class="mt-5 text-2xl leading-tight tracking-tight text-nobility">{{ $p.title }}</h3>
-              <p class="mt-3 text-lg leading-relaxed">{{ $p.text }}</p>
-            </li>
-          {{ end }}
-        </ol>
-      </section>
-    {{ end }}
   {{ end }}
 
   {{ with .Content }}<div class="prose-site mt-20">{{ . }}</div>{{ end }}
+</div>
 
+{{- /* A gathering to connect them: the answer to everything above and the event itself, so it stands apart: a full-width band on UNEVOC azure with leaning edges (.shape-band), the dates and place over a large title, the purposes as white cards and a link to the programme */ -}}
+{{ with $r.purposes }}
+  <section class="shape-band mt-24 bg-azure py-24 text-white sm:py-28" aria-labelledby="purposes">
+    <div class="container-site">
+      <p class="flex flex-wrap items-center gap-x-4 gap-y-2"><span class="font-display text-lg text-lime" aria-hidden="true">{{ index $num "purposes" }}</span><span class="font-display text-sm tracking-widest uppercase sm:text-base">{{ site.Params.dates }} · {{ site.Params.venue }}</span></p>
+      <h2 id="purposes" class="mt-4 max-w-4xl scroll-mt-24 text-5xl leading-[0.95] text-balance sm:text-7xl">{{ .title }}</h2>
+      {{ with .intro }}<p class="mt-8 max-w-3xl text-xl leading-relaxed font-medium">{{ . }}</p>{{ end }}
+      <ol class="mt-12 grid gap-3 lg:grid-cols-3">
+        {{ range .items }}
+          <li class="bg-white p-6 text-azure sm:p-8">
+            <span class="shape-cube flex size-14 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-7") }}</span>
+            <h3 class="mt-6 text-3xl leading-tight tracking-[-0.025em] text-nobility">{{ .title }}</h3>
+            <p class="mt-3 text-lg leading-relaxed">{{ .text }}</p>
+          </li>
+        {{ end }}
+      </ol>
+      {{ with site.GetPage "/programme" }}
+        <a href="{{ .RelPermalink }}" class="mt-12 inline-flex items-center gap-3 bg-white px-6 py-3 text-lg font-semibold text-nobility transition hover:bg-pink hover:text-night">See the programme <span aria-hidden="true">→</span></a>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+<div class="container-site pb-12 md:pb-16">
   {{- /* Who it is for: the audiences as a short list, then what the programme offers each of them (formats) */ -}}
   {{ with .Params.audiences }}
-    <section class="mt-20" aria-labelledby="audiences">
-      <h2 id="audiences" class="text-4xl sm:text-5xl">{{ .title }}</h2>
+    <section class="mt-16" aria-labelledby="audiences">
+      <h2 id="audiences" class="text-4xl sm:text-5xl scroll-mt-24"><span class="mb-2 block font-display text-lg text-pink-ink" aria-hidden="true">{{ index $num "audiences" }}</span>{{ .title }}</h2>
       {{ with .intro }}<p class="mt-5 max-w-3xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
       <ul class="mt-6 flex flex-wrap gap-2">
         {{ range .items }}
