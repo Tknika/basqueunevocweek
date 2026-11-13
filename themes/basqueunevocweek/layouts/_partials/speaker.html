@@ -8,12 +8,12 @@
 {{ end }}
 <article class="group">
   {{ partial "avatar.html" (dict "name" $p.name "photo" $p.photo "index" .index "class" (.size | default "size-28 text-3xl")) }}
-  {{ with $badge }}<p class="mt-5 text-xs font-bold tracking-widest text-pink uppercase">{{ . }}</p>{{ end }}
+  {{ with $badge }}<p class="mt-5 text-xs font-bold tracking-widest text-pink-ink uppercase">{{ . }}</p>{{ end }}
   <h3 class="{{ if $badge }}mt-1{{ else }}mt-5{{ end }} text-2xl leading-tight">{{ $p.name }}</h3>
   {{ with $role }}<p class="mt-2 font-medium text-azure">{{ . }}</p>{{ end }}
   {{ with $p.bio }}
     <details class="mt-3">
-      <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-nobility transition hover:text-pink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> Bio</summary>
+      <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-nobility transition hover:text-pink-ink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> Bio</summary>
       <p class="mt-3 leading-relaxed text-azure/80">{{ . }}</p>
     </details>
   {{ end }}

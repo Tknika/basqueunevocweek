@@ -2,7 +2,7 @@
 <ol class="grid gap-3">
   {{ range . }}
     {{ if .break }}
-      <li class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-pink px-5 py-3 text-white">
+      <li class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-pink px-5 py-3 text-night">
         {{ if eq .break "coffee" }}
           <svg viewBox="0 0 24 24" class="size-6 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3v2.5M12.500 3v2.5"/></svg>
         {{ else if eq .break "lunch" }}
@@ -15,7 +15,7 @@
       </li>
     {{ else }}
       <li class="grid gap-x-5 gap-y-1 border-b border-nobility/15 px-1 pb-3 sm:grid-cols-[6.5rem_1fr]">
-        <p class="pt-1 text-sm font-semibold text-pink">{{ .time }}</p>
+        <p class="pt-1 text-sm font-semibold text-pink-ink">{{ .time }}</p>
         <div>
           <h4 class="text-lg leading-snug font-semibold">{{ .title }}</h4>
           {{ with .people }}<p class="mt-1 text-base leading-relaxed">{{ . }}</p>{{ end }}

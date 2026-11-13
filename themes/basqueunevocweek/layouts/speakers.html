@@ -58,12 +58,12 @@
               {{ $p := dict }}{{ with where $people "name" $name }}{{ $p = index . 0 }}{{ end }}
               <li class="flex items-center gap-3">
                 {{ partial "avatar.html" (dict "name" $name "photo" $p.photo "index" $i "class" "size-12 text-sm") }}
-                <span class="leading-tight font-semibold">{{ $name }}{{ if eq $name $w.moderator }}<span class="block text-xs font-bold tracking-widest text-pink uppercase">Moderator</span>{{ end }}</span>
+                <span class="leading-tight font-semibold">{{ $name }}{{ if eq $name $w.moderator }}<span class="block text-xs font-bold tracking-widest text-pink-ink uppercase">Moderator</span>{{ end }}</span>
               </li>
             {{ end }}
           </ul>
           <details class="mt-4">
-            <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-nobility transition hover:text-pink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> About the speakers</summary>
+            <summary class="inline-flex cursor-pointer list-none items-center gap-2 text-sm font-semibold text-nobility transition hover:text-pink-ink [&::-webkit-details-marker]:hidden"><span class="shape-cube flex size-5 items-center justify-center bg-current" aria-hidden="true"><span class="text-xs leading-none text-white">+</span></span> About the speakers</summary>
             <dl class="mt-4 grid gap-4">
               {{ range $names }}
                 {{ with where $people "name" . }}{{ with index . 0 }}

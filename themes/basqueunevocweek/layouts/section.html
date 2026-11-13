@@ -19,7 +19,7 @@
         <div class="flex items-center justify-between gap-6 md:justify-end">
           <ul class="relative z-10 flex gap-2 text-sm font-semibold">
             {{ range .Params.parts }}
-              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}" class="block border border-nobility px-3 py-1 text-nobility transition hover:border-pink hover:bg-pink hover:text-white">{{ . }}</a></li>
+              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}" class="block border border-nobility px-3 py-1 text-nobility transition hover:border-pink hover:bg-pink hover:text-night">{{ . }}</a></li>
             {{ end }}
           </ul>
           <span aria-hidden="true" class="text-3xl text-nobility transition group-hover:translate-x-1 group-hover:text-pink motion-reduce:transition-none">→</span>

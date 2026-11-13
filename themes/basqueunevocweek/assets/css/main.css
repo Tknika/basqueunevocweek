@@ -24,7 +24,9 @@
   --color-azure: #126ab4;   /* unevoc: main brand surface */
   --color-deep: #084885;    /* deeper unevoc blue, the poster's navy: text on pale photos (5:1 on the pale Kursaal sky, where azure is 3.5:1) */
   --color-mist: #eaf3fc;    /* soft surface */
-  --color-pink: #a34068;    /* fp: accent */
+  --color-pink: #e14e89;    /* fp: accent (was #a34068): shapes, surfaces and big text */
+  --color-pink-ink: #c2306b; /* the same pink, deeper, for small text and links: 5.3:1 on white, 4.8:1 on haze (pink is 3.7:1) */
+  --color-night: #12123c;   /* nobility, a touch deeper: text on pink (4.8:1; white is 3.7:1, nobility 4.48:1) */
   --color-lime: #c3d13a;    /* tknika: surfaces and lines only, low contrast as text on white */
   --color-purple: #4837ce;  /* balances the blue (7.6:1 with white) */
   --color-sky: #b1c8ce;     /* the sky in the Kursaal photos */
@@ -88,7 +90,7 @@
     @apply font-semibold tracking-tight;
   }
   ::selection {
-    @apply bg-pink text-white;
+    @apply bg-pink text-night;
   }
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-pink;
@@ -161,7 +163,7 @@
     background-image:
       radial-gradient(at 8% 12%, var(--color-lime) 0, transparent 55%),
       radial-gradient(at 92% 6%, var(--color-sky) 0, transparent 55%),
-      radial-gradient(at 80% 90%, rgb(163 64 104 / 0.55) 0, transparent 50%),
+      radial-gradient(at 80% 90%, rgb(225 78 137 / 0.55) 0, transparent 50%),
       radial-gradient(at 20% 100%, rgb(177 200 206 / 0.9) 0, transparent 50%),
       radial-gradient(at 50% 50%, rgb(195 209 58 / 0.45) 0, transparent 60%);
   }
@@ -213,7 +215,7 @@
     @apply mt-10 text-3xl tracking-[-0.025em];
   }
   .prose-site a {
-    @apply text-nobility underline underline-offset-3 hover:text-pink;
+    @apply text-nobility underline underline-offset-3 hover:text-pink-ink;
   }
   .prose-site ul {
     @apply list-none pl-0;

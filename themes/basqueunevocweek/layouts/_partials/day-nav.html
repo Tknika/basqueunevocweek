@@ -3,9 +3,9 @@
 {{ with .Parent }}
   {{ if not .IsHome }}
     <nav class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold" aria-label="{{ .Title }}">
-      <a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink">{{ .Title }}</a>
+      <a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink-ink">{{ .Title }}</a>
       {{ range .Pages }}
-        <a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink{{ if eq . $page }} underline underline-offset-3{{ end }}"{{ if eq . $page }} aria-current="page"{{ end }}>{{ .Title }}</a>
+        <a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink-ink{{ if eq . $page }} underline underline-offset-3{{ end }}"{{ if eq . $page }} aria-current="page"{{ end }}>{{ .Title }}</a>
       {{ end }}
     </nav>
   {{ end }}

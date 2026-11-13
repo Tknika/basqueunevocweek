@@ -8,13 +8,13 @@
         <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
           <p class="font-display text-lg whitespace-nowrap">Session {{ $session }}</p>
           <span class="hidden h-0.5 flex-1 bg-nobility/15 sm:block" aria-hidden="true"></span>
-          <p class="text-sm font-semibold text-pink">At the same time: choose one</p>
+          <p class="text-sm font-semibold text-pink-ink">At the same time: choose one</p>
         </div>
         <div class="mt-4 grid gap-3 lg:grid-cols-[1fr_auto_1fr] lg:gap-4">
           {{ range $w, $workshop := . }}
             {{ if $w }}
               <div class="flex items-center justify-center">
-                <span class="flex size-12 items-center justify-center shape-cube bg-pink font-display text-sm text-white">or</span>
+                <span class="flex size-12 items-center justify-center shape-cube bg-pink font-display text-sm text-night">or</span>
               </div>
             {{ end }}
             <article class="relative isolate flex flex-col overflow-hidden bg-haze p-6 text-base sm:p-8">
@@ -34,13 +34,13 @@
                 {{ with $workshop.moderator }}
                   <li class="flex items-center gap-2 text-sm leading-tight font-medium">
                     {{ partial "avatar.html" (dict "name" . "index" 3 "class" "size-10 text-xs" "photo" (index (where $people "name" .) 0).photo) }}
-                    <span>{{ . }}<span class="block text-xs font-semibold text-pink">Moderator</span></span>
+                    <span>{{ . }}<span class="block text-xs font-semibold text-pink-ink">Moderator</span></span>
                   </li>
                 {{ end }}
               </ul>
 
               <details class="mt-auto border-t border-nobility/15 pt-3">
-                <summary class="cursor-pointer text-sm font-semibold text-nobility transition hover:text-pink">About this workshop</summary>
+                <summary class="cursor-pointer text-sm font-semibold text-nobility transition hover:text-pink-ink">About this workshop</summary>
                 <p class="mt-2 text-sm leading-relaxed">{{ $workshop.description }}</p>
               </details>
             </article>

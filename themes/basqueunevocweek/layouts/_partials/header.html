@@ -7,7 +7,7 @@
 {{- /* Light, with dark text. On the home it stays at the top over the first photo, transparent, and turns white as soon as the page scrolls (.header-home in main.css); elsewhere it sticks to the top on large screens. */ -}}
 <header class="{{ if $azureText }}header-home fixed inset-x-0 top-0 text-azure{{ else if $isHome }}header-home{{ if $darkOverPhoto }} header-dark{{ end }} fixed inset-x-0 top-0 text-nobility{{ else }}relative border-b border-nobility/10 bg-white/90 text-nobility backdrop-blur lg:sticky lg:top-0{{ end }} z-50">
   <div class="container-wide flex items-center justify-between gap-4 py-4 lg:h-18 lg:py-0">
-    <a href="{{ site.Home.RelPermalink }}" class="font-display text-xl{{ if $azureText }} transition hover:text-nobility{{ else }} transition hover:text-pink{{ end }}"{{ if $isHome }} aria-current="page"{{ end }}>Home</a>
+    <a href="{{ site.Home.RelPermalink }}" class="font-display text-xl{{ if $azureText }} transition hover:text-nobility{{ else }} transition hover:text-pink-ink{{ end }}"{{ if $isHome }} aria-current="page"{{ end }}>Home</a>
     <nav class="hidden lg:block" aria-label="Main">
       <ul class="flex items-center gap-8 text-base font-semibold">
         {{ range site.Menus.main }}
@@ -15,15 +15,15 @@
           <li class="group relative">
             {{ if .Page.Params.highlight }}
               {{- /* A page for another audience (highlight in its front matter): it stands apart from the rest of the menu. highlight: true for the pill alone, or a short text to add a small label inside it. */ -}}
-              <a href="{{ .URL }}" class="flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 transition text-white hover:bg-nobility{{ if $current }} relative after:absolute after:inset-x-4 after:-bottom-2 after:h-0.5 after:bg-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}{{ with .Page.Params.highlight }}{{ if eq (printf "%T" .) "string" }}<span class="text-xs font-medium">{{ . }}</span>{{ end }}{{ end }}</a>
+              <a href="{{ .URL }}" class="flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 transition text-night hover:bg-nobility hover:text-white{{ if $current }} relative after:absolute after:inset-x-4 after:-bottom-2 after:h-0.5 after:bg-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}{{ with .Page.Params.highlight }}{{ if eq (printf "%T" .) "string" }}<span class="text-xs font-medium">{{ . }}</span>{{ end }}{{ end }}</a>
             {{ else }}
-            <a href="{{ .URL }}" class="block border-b-2 py-1 transition {{ if $azureText }}hover:border-nobility hover:text-nobility{{ else }}hover:border-pink hover:text-pink{{ end }} {{ if $current }}border-pink{{ else }}border-transparent{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
+            <a href="{{ .URL }}" class="block border-b-2 py-1 transition {{ if $azureText }}hover:border-nobility hover:text-nobility{{ else }}hover:border-pink hover:text-pink-ink{{ end }} {{ if $current }}border-pink{{ else }}border-transparent{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
             {{ end }}
             {{ if and .HasChildren (not $isHome) }}
               <div class="invisible absolute left-0 top-full pt-2 group-focus-within:visible group-hover:visible">
                 <ul class="grid gap-2 bg-white px-4 py-3 whitespace-nowrap shadow-lg ring-1 ring-nobility/10">
                   {{ range .Children }}
-                    <li><a href="{{ .URL }}" class="transition hover:text-pink{{ if $page.IsMenuCurrent "main" . }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                    <li><a href="{{ .URL }}" class="transition hover:text-pink-ink{{ if $page.IsMenuCurrent "main" . }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
                   {{ end }}
                 </ul>
               </div>
@@ -33,7 +33,7 @@
       </ul>
     </nav>
     <details class="lg:hidden">
-      <summary class="flex cursor-pointer list-none items-center gap-2 border border-current px-4 py-1.5 text-base font-semibold transition hover:border-pink hover:bg-pink hover:text-white [&::-webkit-details-marker]:hidden">
+      <summary class="flex cursor-pointer list-none items-center gap-2 border border-current px-4 py-1.5 text-base font-semibold transition hover:border-pink hover:bg-pink hover:text-night [&::-webkit-details-marker]:hidden">
         <svg viewBox="0 0 20 20" class="size-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
         Menu
       </summary>
@@ -41,14 +41,14 @@
         {{ range site.Menus.main }}
           <li>
             {{ if .Page.Params.highlight }}
-              <a href="{{ .URL }}" class="inline-flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 text-white"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}{{ with .Page.Params.highlight }}{{ if eq (printf "%T" .) "string" }}<span class="text-xs font-medium">{{ . }}</span>{{ end }}{{ end }}</a>
+              <a href="{{ .URL }}" class="inline-flex items-center gap-2 rounded-full bg-pink px-4 py-1.5 text-night"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}{{ with .Page.Params.highlight }}{{ if eq (printf "%T" .) "string" }}<span class="text-xs font-medium">{{ . }}</span>{{ end }}{{ end }}</a>
             {{ else }}
-            <a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink" aria-current="page"{{ end }}>{{ .Name }}</a>
+            <a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink-ink" aria-current="page"{{ end }}>{{ .Name }}</a>
             {{ end }}
             {{ if .HasChildren }}
               <ul class="mt-2 grid gap-2 pl-4 text-base font-medium">
                 {{ range .Children }}
-                  <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+                  <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "main" . }} class="text-pink-ink" aria-current="page"{{ end }}>{{ .Name }}</a></li>
                 {{ end }}
               </ul>
             {{ end }}
