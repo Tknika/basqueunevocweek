@@ -33,16 +33,32 @@
   --color-haze: #eef3f4;    /* a very light sky: soft surface on the home */
 }
 
+/* The hover of the menu links: pink text and underline on white; over the azure sky of the home photo, where pink does not show (1:1), the text stays white with a white underline (header-solid animates them). Registered so they can be animated. */
+@property --menu-hover {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #c2306b; /* pink-ink */
+}
+@property --menu-line {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: #e14e89; /* pink */
+}
+
 /* The home header turns white as the page scrolls: white text over the azure sky of the first photo, dark text on white after */
 @keyframes header-solid {
   from {
     color: #fff;
+    --menu-hover: #fff;
+    --menu-line: #fff;
     background-color: transparent;
     border-bottom-color: transparent;
     backdrop-filter: none;
   }
   to {
     color: var(--color-nobility);
+    --menu-hover: var(--color-pink-ink);
+    --menu-line: var(--color-pink);
     background-color: rgb(255 255 255 / 0.9);
     border-bottom-color: rgb(24 24 72 / 0.1);
     backdrop-filter: blur(8px);
