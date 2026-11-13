@@ -4,7 +4,8 @@
     {{ $opts := dict "minify" (not hugo.IsDevelopment) }}
     {{ with . | css.TailwindCSS $opts }}
       {{ if hugo.IsDevelopment }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}">
+        {{- /* In the dev server the file keeps the same name, so a browser could keep a copy fetched halfway through a rebuild (the page then shows unstyled): a new query on every build makes it fetch the CSS again */ -}}
+        <link rel="stylesheet" href="{{ .RelPermalink }}?v={{ now.UnixNano }}">
       {{ else }}
         {{ with . | fingerprint }}
           <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
