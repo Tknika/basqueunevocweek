@@ -29,8 +29,8 @@ formats:
       offer: "Dedicated workshops and study visit programmes suited to their practical and professional interests."
       page: "/programme"
 rationale:
-  # The page reads as five numbered chapters on one thread, global and local (an index at the top lists them): the same challenges, a different shape in every place; TVET, where the global becomes local; learning in both directions; a gathering to connect them; who it brings together. The first part of the concept note, laid out to show why global and why local: global in azure, local on haze. The words are the note's; the short labels and titles are the site's.
-  title: "The same challenges, a different shape in every place"
+  # The page reads as five numbered chapters on one thread, global and local (an index at the top lists them): same challenges, different shape in every place; TVET, where the global becomes local; learning in both directions; a gathering to connect them; who it brings together. The first part of the concept note, laid out to show why global and why local: global in azure, local on haze. The words are the note's; the short labels and titles are the site's.
+  title: "Same challenges, different shape in every place"
   global:
     label: "Why global"
     intro: "Technical and Vocational Education and Training (TVET) systems worldwide face the same broad challenges:"
