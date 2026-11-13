@@ -9,75 +9,56 @@
     <section aria-labelledby="why">
       <h2 id="why" class="text-4xl sm:text-5xl">{{ .title }}</h2>
 
-      {{- /* Why global: on white in a thin frame, the shared challenges as haze tiles with icons in azure (it was on azure, too heavy) */ -}}
-      {{ $local := slice }}{{ range .local.examples }}{{ $local = $local | append .name }}{{ end }}
-      {{ with .global }}
-        <div class="mt-10 border border-nobility/15 p-6 sm:p-10">
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
-            {{ partial "icon.html" (dict "name" "globe" "class" "size-16 shrink-0 text-azure sm:size-20") }}
-            <div class="max-w-3xl">
-              <p class="font-display text-sm tracking-widest uppercase">{{ .label }}</p>
-              <h3 class="mt-3 text-3xl leading-tight tracking-[-0.025em] sm:text-4xl">{{ .title }}</h3>
-              <p class="mt-4 text-lg leading-relaxed">{{ .intro }}</p>
-            </div>
+      {{- /* Why global and why local side by side: global on the left (white, framed), local on the right (haze). The challenges the note shows locally run across both as rows, the global challenge on the left, an arrow, and the places where it takes a different shape on the right; the other shared challenges follow under the global column. On small screens everything stacks. */ -}}
+      {{ $g := .global }}{{ $l := .local }}
+      {{ $shownNames := slice }}{{ range $l.examples }}{{ $shownNames = $shownNames | append .name }}{{ end }}
+      <div class="mt-10 grid gap-3 lg:grid-cols-[minmax(0,2fr)_2.5rem_minmax(0,3fr)] lg:gap-x-0">
+        {{- /* headers */ -}}
+        <div class="border border-nobility/15 p-6 sm:p-8">
+          {{ partial "icon.html" (dict "name" "globe" "class" "size-14 text-azure") }}
+          <p class="mt-5 font-display text-sm tracking-widest uppercase">{{ $g.label }}</p>
+          <h3 class="mt-3 text-3xl leading-tight tracking-[-0.025em]">{{ $g.title }}</h3>
+          <p class="mt-4 text-lg leading-relaxed">{{ $g.intro }}</p>
+        </div>
+        <span class="hidden lg:block" aria-hidden="true"></span>
+        <div class="bg-haze p-6 sm:p-8">
+          {{ partial "icon.html" (dict "name" "pin" "class" "size-14 text-pink") }}
+          <p class="mt-5 font-display text-sm tracking-widest uppercase">{{ $l.label }}</p>
+          <h3 class="mt-3 text-3xl leading-tight tracking-[-0.025em] text-balance">{{ $l.intro }}</h3>
+        </div>
+
+        {{- /* the shared challenges, one row each */ -}}
+        {{ range $l.examples }}
+          {{ $name := .name }}{{ $icon := .icon }}
+          {{ range $g.challenges }}{{ if eq .name $name }}{{ $icon = .icon }}{{ end }}{{ end }}
+          <div class="flex items-center gap-4 border border-nobility/15 border-l-4 border-l-pink p-6 sm:p-8">
+            {{ partial "icon.html" (dict "name" $icon "class" "size-10 shrink-0 text-azure") }}
+            <h4 class="text-2xl leading-tight text-nobility sm:text-3xl">{{ $name }}</h4>
           </div>
-          <ul class="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            {{ range .challenges }}
-              {{ $shown := in $local .name }}
-              <li class="relative flex flex-col gap-4 bg-haze p-4 sm:p-5{{ if $shown }} border-b-4 border-pink{{ end }}">
-                {{ partial "icon.html" (dict "name" .icon "class" "size-8 text-azure") }}
-                {{ if $shown }}{{ partial "icon.html" (dict "name" "pin" "class" "absolute top-4 right-4 size-5 text-pink-ink") }}{{ end }}
-                <span class="text-lg leading-snug font-semibold text-nobility">{{ .name }}</span>
-              </li>
-            {{ end }}
+          <div class="flex items-center justify-center text-3xl text-pink" aria-hidden="true"><span class="lg:hidden">↓</span><span class="hidden lg:inline">→</span></div>
+          <div class="bg-haze p-6 sm:p-8">
+            {{ with .lead }}<p class="mb-5 leading-relaxed">{{ . }}</p>{{ end }}
+            <ul class="grid gap-4 sm:grid-cols-{{ len .places }}">
+              {{ range .places }}
+                <li class="flex gap-3 bg-white p-4">
+                  {{ partial "icon.html" (dict "name" "pin" "class" "mt-0.5 size-5 shrink-0 text-pink-ink") }}
+                  <span><span class="block text-xs font-semibold tracking-widest uppercase">{{ .where }}</span><span class="mt-1 block text-lg leading-snug font-semibold text-nobility">{{ .what }}</span></span>
+                </li>
+              {{ end }}
+            </ul>
+          </div>
+        {{ end }}
+
+        {{- /* the other shared challenges, under the global column */ -}}
+        <div class="border border-nobility/15 p-6 sm:p-8">
+          <p class="text-xs font-semibold tracking-widest uppercase">And also</p>
+          <ul class="mt-4 grid gap-3">
+            {{ range $g.challenges }}{{ if not (in $shownNames .name) }}
+              <li class="flex items-center gap-3 text-lg leading-snug font-semibold text-nobility">{{ partial "icon.html" (dict "name" .icon "class" "size-7 shrink-0 text-azure") }}{{ .name }}</li>
+            {{ end }}{{ end }}
           </ul>
-          {{ with .outro }}<p class="mt-6 max-w-3xl text-lg leading-relaxed">{{ . }}</p>{{ end }}
         </div>
-      {{ end }}
-
-      {{- /* The link: a line with arrows from the global block down to the local one, and the sentence that turns one into the other */ -}}
-      {{ with .local.intro }}
-        <div class="flex flex-col items-center px-4 text-center">
-          <span class="h-8 w-0.5 bg-pink" aria-hidden="true"></span>
-          <p class="flex max-w-3xl flex-col items-center gap-3 py-3 text-2xl leading-snug font-semibold tracking-tight text-balance text-nobility sm:text-3xl">
-            <span class="flex items-center gap-2 text-azure" aria-hidden="true">{{ partial "icon.html" (dict "name" "globe" "class" "size-7") }}<span class="text-pink">→</span>{{ partial "icon.html" (dict "name" "pin" "class" "size-7 text-pink") }}</span>
-            <span>{{ . }}</span>
-          </p>
-          <svg viewBox="0 0 16 40" class="h-10 w-4 text-pink" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 0v38M2 32l6 6 6-6"/></svg>
-        </div>
-      {{ end }}
-
-      {{- /* Why local: on haze, each example as a card with its icon and the places where it takes a different shape, each with a pin */ -}}
-      {{ with .local }}
-        <div class="bg-haze p-6 sm:p-10">
-          <div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-8">
-            {{ partial "icon.html" (dict "name" "pin" "class" "size-16 shrink-0 text-pink sm:size-20") }}
-            <div class="max-w-3xl">
-              <p class="font-display text-sm tracking-widest uppercase">{{ .label }}</p>
-              {{ with .title }}<h3 class="mt-3 text-3xl leading-tight tracking-[-0.025em] sm:text-4xl">{{ . }}</h3>{{ end }}
-            </div>
-          </div>
-          <div class="mt-8 grid gap-3 lg:grid-cols-3">
-            {{ range .examples }}
-              <div class="bg-white p-6">
-                <div class="flex items-center gap-4">
-                  <span class="shape-cube flex size-12 shrink-0 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-6") }}</span>
-                  <h4 class="text-2xl text-nobility">{{ .name }}</h4>
-                </div>
-                {{ with .lead }}<p class="mt-4 leading-relaxed">{{ . }}</p>{{ end }}
-                <ul class="mt-5 grid gap-4">
-                  {{ range .places }}
-                    <li class="flex gap-3">
-                      {{ partial "icon.html" (dict "name" "pin" "class" "mt-0.5 size-5 shrink-0 text-pink-ink") }}
-                      <span><span class="block text-xs font-semibold tracking-widest uppercase">{{ .where }}</span><span class="block text-lg leading-snug font-semibold text-nobility">{{ .what }}</span></span>
-                    </li>
-                  {{ end }}
-                </ul>
-              </div>
-            {{ end }}
-          </div>
-        </div>
-      {{ end }}
+      </div>
 
       {{ with .statement }}
         <p class="mx-auto mt-14 max-w-5xl text-center text-3xl leading-tight font-semibold tracking-[-0.025em] text-balance sm:text-4xl lg:text-5xl {{ $mark }}">{{ . | markdownify }}</p>
