@@ -1,6 +1,6 @@
 ---
 title: "Press area"
-header_image: "images/kursaal-sky-1200.jpg"
+header_image: "images/kursaal-sky-pale-1200.jpg"
 weight: 5
 menus: main
 ---
