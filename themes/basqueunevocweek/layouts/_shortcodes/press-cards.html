@@ -1,0 +1,19 @@
+{{- /* Press area: the main resources side by side (one column on small screens), from `press` in the page's front matter.
+  Each item: title, icon (a name from _partials/icon.html), text, and either file (a path under static/, downloaded) or email (a mailto link), with link (the link's text). */ -}}
+{{ with .Page.Params.press }}
+  <div class="not-prose prose-wide my-10 grid gap-3 lg:grid-cols-3">
+    {{ range . }}
+      <section class="flex flex-col bg-haze p-6 lg:p-8">
+        <span class="shape-cube flex size-14 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-7") }}</span>
+        <h2 class="mt-6 text-3xl leading-tight tracking-[-0.025em]">{{ .title }}</h2>
+        <p class="mt-3 text-lg leading-relaxed">{{ .text }}</p>
+        {{ if .file }}
+          <a href="{{ .file | relURL }}" download class="mt-auto inline-flex items-center gap-2 self-start pt-6 font-semibold text-nobility transition hover:text-pink-ink">{{ .link }} <span aria-hidden="true">↓</span></a>
+        {{ end }}
+        {{ with .email }}
+          <a href="mailto:{{ . }}" class="mt-auto inline-flex items-center gap-2 self-start pt-6 font-semibold break-all text-nobility transition hover:text-pink-ink">{{ . }}</a>
+        {{ end }}
+      </section>
+    {{ end }}
+  </div>
+{{ end }}

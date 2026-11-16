@@ -244,6 +244,13 @@
   .prose-site ul > li {
     @apply relative pl-5;
   }
+  /* Lists laid out as grids (not-prose, e.g. the logos) keep no bullets */
+  .prose-site ul.not-prose > li {
+    @apply pl-0;
+  }
+  .prose-site ul.not-prose > li::before {
+    content: none;
+  }
   .prose-site ul > li::before {
     content: "";
     clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);
