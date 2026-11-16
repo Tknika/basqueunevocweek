@@ -24,7 +24,7 @@ morning:
           image: "images/tolosaldea.jpg"
           alt: "Aerial view of the CIFP Tolosaldea LHII campus"
     - title: "Visit to Tknika projects and participate in workshops"
-      image: "images/tknika-auditorium-front.jpg"
+      image: "images/tknika-auditorium-tv.jpg"
       # Show the lower part of the photo, so the screen is not cut off
       position: "object-[50%_80%]"
       alt: "Tknika auditorium seen from the front, wooden rows of desks under a lattice of wooden slats"
