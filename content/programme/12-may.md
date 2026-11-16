@@ -13,7 +13,7 @@ menus:
 morning:
   time: "8.30-13.15"
   conference:
-    title: "Conference: Global Connection for Local Change"
+    title: "Conference: “Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide”"
     venue: "Kursaal, Donostia · San Sebastian"
     image: "images/conference-audience.jpg"
     alt: "A full auditorium listening to a speaker on stage at a previous LCAMP conference"
@@ -52,6 +52,8 @@ lunch: "13.15-14.30"
 afternoon_time: "14.30-16.30"
 ---
 
-### Workshops on advanced manufacturing
+### Call for workshops
 
-{{< workshops >}}
+A call for all participants to submit and present their own workshop.
+
+{{< soon >}}

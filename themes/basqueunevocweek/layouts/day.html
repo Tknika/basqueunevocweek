@@ -113,7 +113,7 @@
   <section id="afternoon" class="container-site pb-14 md:pb-20">
     <div class="border-t border-nobility/15 pt-14 md:pt-20">
       <h2 class="text-5xl sm:text-6xl lg:text-7xl">Afternoon</h2>
-      <div class="mt-8 grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+      <div class="mt-8 grid items-center gap-8 {{ if .images }}lg:grid-cols-2 {{ end }}lg:gap-12">
         <div>
           <p class="text-3xl font-semibold tracking-tight text-pink">{{ .eyebrow }}</p>
           <h3 class="mt-2 text-3xl leading-tight">{{ .title }}</h3>

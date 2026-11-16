@@ -12,6 +12,23 @@ menus:
 morning:
   intro: "Two options to choose from."
   options:
+    - title: "Visit to advanced manufacturing companies"
+      groups:
+        - title: "First visit, one of"
+          items:
+            - "Mercedes-Benz Vitoria"
+            - "Gestamp"
+            - "RPK"
+        - title: "Araba Technology Park"
+          items:
+            - "Welcome and presentation by Miren Bilbao Larrauri, Director of the Park"
+        - title: "Then a visit to one of"
+          items:
+            - "Basquevolt"
+            - "CIC energiGUNE"
+            - "AVS"
+            - "CTA"
+            - "RPK"
     - title: "Project Dissemination Day"
       when: "9.00-12.30 · Palacio de Europa, Vitoria-Gasteiz"
       image: "images/palacio-europa-lcamp.jpg"
@@ -30,30 +47,8 @@ morning:
         - time: "12.15-12.30"
           title: "Closing"
           people: "Jon Labaka, Basque Government"
-    - title: "Visit to advanced manufacturing companies"
-      groups:
-        - title: "First visit, one of"
-          items:
-            - "Mercedes-Benz Vitoria"
-            - "Gestamp"
-            - "RPK"
-        - title: "Araba Technology Park"
-          items:
-            - "Welcome and presentation by Miren Bilbao Larrauri, Director of the Park"
-        - title: "Then a visit to one of"
-          items:
-            - "Basquevolt"
-            - "CIC energiGUNE"
-            - "AVS"
-            - "CTA"
-            - "RPK"
 lunch: "12.30-13.30"
 afternoon:
   eyebrow: "Optional"
-  title: "Guided visit and dinner at a winery in Rioja Alavesa"
-  images:
-    - image: "images/winery-barrels.jpg"
-      alt: "Oak wine barrels standing outside a winery"
-    - image: "images/winery-vineyard.jpg"
-      alt: "Rows of vines leading towards a wooded hill"
+  title: "Guided visit and dinner at a traditional cider house"
 ---

@@ -44,15 +44,15 @@ morning:
             - "Educational digital tools"
             - "SME connections"
             - "Circular economy"
+# From the draft calendar (Draft_UnescoAnniversary_conference_): "Discover San Sebastian", no more detail yet
 afternoon:
-  eyebrow: "Discover Vitoria-Gasteiz"
-  title: "Capital of the Basque Country and Europe’s Green Capital"
-  text: "Explore its medieval charm, lush green spaces and vibrant local culture."
+  eyebrow: "Discover"
+  title: "San Sebastian"
   images:
-    - image: "images/vitoria-virgen-blanca.jpg"
-      alt: "Vitoria-Gasteiz sign made of grass in the Plaza de la Virgen Blanca"
-    - image: "images/vitoria-salburua.jpg"
-      alt: "Ataria building reflected in the water at the Salburua wetlands"
-    - image: "images/vitoria-aerial.jpg"
-      alt: "Aerial view of the historic centre of Vitoria-Gasteiz"
+    - image: "images/donostia-bay.jpg"
+      alt: "La Concha bay in Donostia · San Sebastian seen from above, with Santa Clara island"
+    - image: "images/donostia-old-town.jpg"
+      alt: "A narrow street of the old town of Donostia · San Sebastian"
+    - image: "images/donostia-port.jpg"
+      alt: "A small boat crossing the fishing port of Donostia · San Sebastian"
 ---

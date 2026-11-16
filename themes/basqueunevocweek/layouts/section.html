@@ -27,5 +27,19 @@
       </li>
     {{ end }}
   </ul>
+
+  {{- /* The Student Hub runs alongside the three days (front matter: student_hub), as in the draft calendar: a band that links to its page. */ -}}
+  {{ with .Params.student_hub }}
+    {{ $hub := site.GetPage "/student-hub" }}
+    <a href="{{ with $hub }}{{ .RelPermalink }}{{ end }}" class="group mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 bg-azure px-6 py-6 text-white transition hover:bg-pink hover:text-night sm:px-8">
+      <span class="flex items-center gap-3">
+        <span class="shape-cube h-4 w-7 bg-lime" aria-hidden="true"></span>
+        <span class="font-display text-2xl uppercase sm:text-3xl">{{ .title }}</span>
+        <span class="font-display text-lg sm:text-xl">{{ .dates }}</span>
+      </span>
+      <span class="text-lg font-semibold">{{ .text }}</span>
+      <span class="ml-auto text-3xl transition group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true">→</span>
+    </a>
+  {{ end }}
 </div>
 {{ end }}
