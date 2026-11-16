@@ -57,6 +57,9 @@ call:
   eyebrow: "Call for workshops"
   title: "Bring your solution to the congress"
   text: "Has your school, company or organisation found a way to tackle a challenge that TVET systems share worldwide? On the afternoon of 12 May, every participant can propose a workshop and share it with peers from other countries."
+  # Photo: Sou Jest on Unsplash (a lit "Why Not" sign), resized from sou-jest-yIiVE60XROQ-unsplash.jpg
+  image: "images/workshop-call.jpg"
+  alt: "A lit sign reading Why Not on a wall above café tables"
   button: "Propose a workshop"
   url: ""
   why_title: "Why run a workshop"
