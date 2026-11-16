@@ -11,6 +11,12 @@ The main information about the event in a single document: what it is, the progr
 
 [Download the press kit (PDF, 1.5 MB)](/press/press-kit.pdf)
 
+## Calendar
+
+The three days at a glance, morning and afternoon, with the Student Hub.
+
+[Download the calendar (PDF, 6.3 MB)](/press/calendar.pdf)
+
 ## Media contact
 
 For interviews, photos or more information, write to [international@tknika.eus](mailto:international@tknika.eus).
