@@ -12,7 +12,7 @@ menus:
 morning:
   intro: "Two options to choose from."
   options:
-    - title: "Visit to advanced manufacturing companies"
+    - title: "Visit to Companies"
       groups:
         - title: "First visit, one of"
           items:
