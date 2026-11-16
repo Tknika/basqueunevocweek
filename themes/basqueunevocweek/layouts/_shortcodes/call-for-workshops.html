@@ -1,5 +1,5 @@
 {{- /* The call for workshops (12 May afternoon), from `call` in the page's front matter: a light panel (haze, like the site's other boxes; an all-azure panel was too blue), the pitch on the left with the pink button, what presenters get on a white column on the right, and the shared challenges (taken from the About page) as topics to start from.
-  url: the application form. While it is empty, the button is shown disabled with `pending` beside it; set it and the button goes live (opens in a new tab). */ -}}
+  url: the application form. While it is empty, the button is shown but does nothing; set it and the button goes live (opens in a new tab). */ -}}
 {{ with .Page.Params.call }}
   <div class="not-prose prose-wide my-4 grid overflow-hidden bg-haze lg:grid-cols-[3fr_2fr]">
     <div class="relative p-8 sm:p-12">
@@ -12,7 +12,6 @@
           <a href="{{ .url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night no-underline transition hover:bg-nobility hover:text-white">{{ .button }} <span aria-hidden="true">→</span></a>
         {{ else }}
           <span role="link" aria-disabled="true" class="inline-flex cursor-not-allowed items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night">{{ .button }} <span aria-hidden="true">→</span></span>
-          <p class="font-semibold text-nobility">{{ .pending }}</p>
         {{ end }}
       </div>
     </div>

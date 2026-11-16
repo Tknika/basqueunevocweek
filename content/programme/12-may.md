@@ -51,7 +51,7 @@ morning:
 lunch: "13.15-14.30"
 afternoon_time: "14.30-16.30"
 # Call for workshops (draft calendar: "Call for all participants to submit and present your workshop"), shown by the call-for-workshops shortcode.
-# url: the application form; leave it empty until it exists (the button shows disabled with "pending").
+# url: the application form; leave it empty until it exists (the button shows but does nothing).
 # The texts draw on the concept note; no deadlines or formats are given yet.
 call:
   eyebrow: "Call for workshops"
@@ -59,7 +59,6 @@ call:
   text: "Has your school, company or organisation found a way to tackle a challenge that TVET systems share worldwide? On the afternoon of 12 May, every participant can propose a workshop and share it with peers from other countries."
   button: "Propose a workshop"
   url: ""
-  pending: "The form opens soon."
   why_title: "Why run a workshop"
   why:
     - title: "Share what works"
