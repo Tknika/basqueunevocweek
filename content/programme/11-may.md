@@ -23,7 +23,7 @@ morning:
           url: "https://www.tolosaldea.hezkuntza.net"
           image: "images/tolosaldea.jpg"
           alt: "Aerial view of the CIFP Tolosaldea LHII campus"
-    - title: "Visit to Tknika projects and participate in workshops"
+    - title: "Visit to Tknika projects"
       image: "images/tknika-auditorium-tv.jpg"
       # Show the lower part of the photo, so the screen is not cut off
       position: "object-[50%_80%]"
@@ -35,15 +35,6 @@ morning:
             - "Immersive Spaces"
             - "Industry 5.0"
             - "BIO Laboratories"
-        - title: "Workshops"
-          items:
-            - "Cyber Range"
-            - "Entrepreneurship"
-            - "Challenge based learning ETHAZI"
-            - "Educational AI"
-            - "Educational digital tools"
-            - "SME connections"
-            - "Circular economy"
 # From the draft calendar (Draft_UnescoAnniversary_conference_): "Discover San Sebastian", no more detail yet
 afternoon:
   eyebrow: "Discover"
