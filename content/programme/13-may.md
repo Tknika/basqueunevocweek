@@ -51,4 +51,8 @@ lunch: "12.30-13.30"
 afternoon:
   eyebrow: "Optional"
   title: "Guided visit and dinner at a traditional cider house"
+  # Photo: Clay Banks on Unsplash, resized from clay-banks-fXMeR5JSJ3E-unsplash.jpg
+  images:
+    - image: "images/cider-house.jpg"
+      alt: "A heap of red and green apples for cider"
 ---
