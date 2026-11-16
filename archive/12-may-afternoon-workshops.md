@@ -6,7 +6,7 @@ This folder is outside `content/`, so Hugo does not build it.
 
 ## How to restore it
 
-1. In `content/programme/12-may.md`, keep the front matter as it is (it already has `lunch` and `afternoon_time`) and replace everything after the closing `---` (the "Call for workshops" section) with the block below.
+1. In `content/programme/12-may.md`, keep `lunch` and `afternoon_time` in the front matter, remove the `call` block (the call for workshops) and replace everything after the closing `---` (the `{{< call-for-workshops >}}` shortcode) with the block below.
 2. The workshops come from `data/workshops.yaml` (with photos from `data/speakers.yaml`) through the `workshops` shortcode (`themes/basqueunevocweek/layouts/_shortcodes/workshops.html`). All three are still in the repository, because the speakers page uses them too: update the data if the workshops change.
 3. In the press kit (`press-kit/press-kit.html`), the 12 May afternoon slot read `<b>Afternoon</b>Workshops on advanced manufacturing`. Change it back and run `node scripts/make-press-kit.js`.
 

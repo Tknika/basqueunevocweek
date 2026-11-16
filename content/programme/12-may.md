@@ -50,10 +50,28 @@ morning:
         people: "Jon Labaka, Basque Government"
 lunch: "13.15-14.30"
 afternoon_time: "14.30-16.30"
+# Call for workshops (draft calendar: "Call for all participants to submit and present your workshop"), shown by the call-for-workshops shortcode.
+# url: the application form; leave it empty until it exists (the button shows disabled with "pending").
+# The texts draw on the concept note; no deadlines or formats are given yet.
+call:
+  eyebrow: "Call for workshops"
+  title: "Bring your solution to the congress"
+  text: "Has your school, company or organisation found a way to tackle a challenge that TVET systems share worldwide? On the afternoon of 12 May, every participant can propose a workshop and share it with peers from other countries."
+  button: "Propose a workshop"
+  url: ""
+  pending: "The form opens soon."
+  why_title: "Why run a workshop"
+  why:
+    - title: "Share what works"
+      icon: "pin"
+      text: "Show a local solution that could inform or inspire others facing the same challenge in a different shape."
+    - title: "Learn from other contexts"
+      icon: "globe"
+      text: "Test your choices against what others are learning in their own ecosystems."
+    - title: "Find partners"
+      icon: "people"
+      text: "Open the door to future collaboration, joint projects and knowledge exchange."
+  topics_title: "Start from one of the challenges we share:"
 ---
 
-### Call for workshops
-
-A call for all participants to submit and present their own workshop.
-
-{{< soon >}}
+{{< call-for-workshops >}}
