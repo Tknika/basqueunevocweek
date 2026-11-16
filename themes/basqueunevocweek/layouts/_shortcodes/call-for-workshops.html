@@ -1,6 +1,6 @@
 {{- /* The call for workshops (12 May afternoon), from `call` in the page's front matter, on a light panel (haze, like the site's other boxes; an all-azure panel was too blue):
   the photo (`image`, a lit "Why Not" sign) cut as a leaning cube next to the pitch and the pink button; then why run a workshop as three white cards; then the shared challenges (taken from the About page) as topics to start from.
-  url: the application form. While it is empty, the button is shown but does nothing; set it and the button goes live (opens in a new tab). */ -}}
+  duration: a short line next to the button. url: the application form. While it is empty, the button is shown but does nothing; set it and the button goes live (opens in a new tab). */ -}}
 {{ with .Page.Params.call }}
   <div class="not-prose prose-wide my-4 bg-haze">
     <div class="grid items-center lg:grid-cols-[5fr_6fr]">
@@ -13,13 +13,14 @@
       <div class="p-8 sm:p-12">
         <p class="font-display text-sm tracking-widest text-pink-ink uppercase">{{ .eyebrow }}</p>
         <h3 class="mt-4 max-w-xl text-4xl leading-[1.05] tracking-[-0.03em] text-balance sm:text-5xl">{{ .title }}</h3>
-        <p class="mt-6 max-w-xl text-xl leading-relaxed">{{ .text }}</p>
-        <div class="mt-10">
+        <p class="mt-6 max-w-xl text-xl leading-relaxed [&_strong]:font-semibold [&_strong]:text-nobility">{{ .text | markdownify }}</p>
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
           {{ if .url }}
             <a href="{{ .url }}" target="_blank" rel="noopener" class="inline-flex items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night no-underline transition hover:bg-nobility hover:text-white">{{ .button }} <span aria-hidden="true">→</span></a>
           {{ else }}
             <span role="link" aria-disabled="true" class="inline-flex cursor-not-allowed items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night">{{ .button }} <span aria-hidden="true">→</span></span>
           {{ end }}
+          {{ with .duration }}<p class="flex items-center gap-2 font-semibold text-nobility">{{ partial "icon.html" (dict "name" "clock" "class" "size-6 text-azure") }}{{ . }}</p>{{ end }}
         </div>
       </div>
     </div>

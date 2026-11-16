@@ -56,7 +56,8 @@ afternoon_time: "14.30-16.30"
 call:
   eyebrow: "Call for workshops"
   title: "Bring your solution to the congress"
-  text: "Has your school, company or organisation found a way to tackle a challenge that TVET systems share worldwide? On the afternoon of 12 May, every participant can propose a workshop and share it with peers from other countries."
+  text: "Has your school, company or organisation found a way to tackle a challenge that TVET systems share worldwide? Anyone can **propose a workshop** for the afternoon of 12 May and share it with peers from other countries."
+  duration: "Workshops last 15 minutes"
   # Photo: Sou Jest on Unsplash (a lit "Why Not" sign), resized from sou-jest-yIiVE60XROQ-unsplash.jpg
   image: "images/workshop-call.jpg"
   alt: "A lit sign reading Why Not on a wall above café tables"
