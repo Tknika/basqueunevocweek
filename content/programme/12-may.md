@@ -58,9 +58,9 @@ call:
   title: "Bring your solution to the congress"
   text: "Has your school, company or organisation found a way to tackle a challenge that TVET systems share worldwide? Anyone can **propose a workshop** for the afternoon of 12 May and share it with peers from other countries."
   duration: "Workshops last 15 minutes"
-  # Photo: Sou Jest on Unsplash (a lit "Why Not" sign), resized from sou-jest-yIiVE60XROQ-unsplash.jpg
-  image: "images/workshop-call.jpg"
-  alt: "A lit sign reading Why Not on a wall above café tables"
+  # Photo: Unsplash (an open hand held out), resized from a-c-5u4L-E4eQWw-unsplash.jpg
+  image: "images/workshop-call-hand.jpg"
+  alt: "An open hand held out, in black and white"
   button: "Propose a workshop"
   url: ""
   why_title: "Why run a workshop"

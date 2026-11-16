@@ -1,12 +1,12 @@
 {{- /* The call for workshops (12 May afternoon), from `call` in the page's front matter, on a light panel (haze, like the site's other boxes; an all-azure panel was too blue):
-  the photo (`image`, a lit "Why Not" sign) cut as a leaning cube next to the pitch and the pink button; then why run a workshop as three white cards; then the shared challenges (taken from the About page) as topics to start from.
+  the photo (`image`, an open hand held out) cut as a leaning cube next to the pitch and the pink button; then why run a workshop as three white cards; then the shared challenges (taken from the About page) as topics to start from.
   duration: a short line next to the button. url: the application form. While it is empty, the button is shown but does nothing; set it and the button goes live (opens in a new tab). */ -}}
 {{ with .Page.Params.call }}
   <div class="not-prose prose-wide my-4 bg-haze">
     <div class="grid items-center lg:grid-cols-[5fr_6fr]">
       {{ with .image }}
         <div class="relative px-6 pt-6 sm:px-8 sm:pt-8 lg:py-8 lg:pr-0">
-          <img src="{{ . | relURL }}" alt="{{ $.Page.Params.call.alt }}" loading="lazy" class="shape-cube aspect-[4/3] w-full object-cover object-[50%_30%]">
+          <img src="{{ . | relURL }}" alt="{{ $.Page.Params.call.alt }}" loading="lazy" class="shape-cube aspect-[4/3] w-full object-cover object-center">
           <span class="absolute top-3 right-3 flex items-start gap-1.5 sm:top-5 sm:right-5 lg:right-[-1rem]" aria-hidden="true"><span class="shape-cube-alt mt-2 h-4 w-6 bg-lime"></span><span class="shape-cube h-6 w-11 bg-pink"></span></span>
         </div>
       {{ end }}
