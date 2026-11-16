@@ -30,7 +30,6 @@ morning:
             - "CTA"
             - "RPK"
     - title: "Project Dissemination Day"
-      when: "9.00-12.30 · Palacio de Europa, Vitoria-Gasteiz"
       image: "images/palacio-europa-lcamp.jpg"
       alt: "Audience at the Palacio de Europa facing a stage with LCAMP screens"
       sessions:
