@@ -9,7 +9,7 @@ menus: main
 
 The main information about the event in a single document: what it is, the programme, the speakers and contact details.
 
-{{< soon >}}
+[Download the press kit (PDF, 1.5 MB)](/press/press-kit.pdf)
 
 ## Media contact
 

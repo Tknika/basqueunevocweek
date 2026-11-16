@@ -1,0 +1,334 @@
+<!doctype html>
+<!--
+  Press kit of the event, printed to static/press/press-kit.pdf by `node scripts/make-press-kit.js`.
+  A4 pages, same fonts, palette and cube-cut photos as the site. Texts come from the About page (the concept note),
+  hugo.toml, the programme pages and data/speakers.yaml: update them here by hand when those change.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Press kit · UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027</title>
+<style>
+  @font-face { font-family: "Krona One"; src: url("../themes/basqueunevocweek/static/fonts/krona-one-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Instrument Sans"; src: url("../themes/basqueunevocweek/static/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2-variations"); font-weight: 400 700; }
+
+  :root {
+    --nobility: #181848; --azure: #126ab4; --deep: #084885; --pink: #e14e89; --pink-ink: #c2306b;
+    --night: #12123c; --lime: #c3d13a; --haze: #eef3f4; --sky: #b1c8ce;
+    --img: "../themes/basqueunevocweek/static/images/";
+  }
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-family: "Instrument Sans", Arial, sans-serif; color: var(--azure); font-size: 10.5pt; line-height: 1.45; background: #888; font-synthesis-weight: none; }
+
+  .page { width: 210mm; height: 297mm; position: relative; overflow: hidden; background: #fff; page-break-after: always; break-after: page; margin: 0 auto 8mm; padding: 20mm 18mm 22mm; }
+  .page:last-child { page-break-after: auto; break-after: auto; }
+  @media print { body { background: none; } .page { margin: 0; } }
+
+  /* Brand shapes: the leaning glass cube of the Kursaal */
+  .cube { clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%); }
+  .cube-alt { clip-path: polygon(0 5%, 93% 0, 100% 95%, 6% 100%); }
+  .shard { position: absolute; width: 16mm; height: 12mm; clip-path: polygon(10% 0, 100% 12%, 88% 100%, 0 86%); }
+  .shard.pink { background: var(--pink); } .shard.lime { background: var(--lime); }
+  img.photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  h1, h2 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.05; color: var(--azure); }
+  h2 { font-size: 26pt; margin-bottom: 7mm; }
+  h3 { font-size: 12.5pt; font-weight: 600; color: var(--nobility); margin-bottom: 1.5mm; }
+  .eyebrow { font-size: 8.5pt; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--pink-ink); margin-bottom: 3mm; }
+  .display { font-family: "Krona One", sans-serif; font-weight: 400; }
+  p + p { margin-top: 2.5mm; }
+  .lead { font-size: 13pt; line-height: 1.4; color: var(--nobility); }
+
+  /* Running footer */
+  .foot { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display: flex; justify-content: space-between; font-size: 7.5pt; color: var(--deep); opacity: .8; border-top: 0.3mm solid rgb(18 106 180 / .25); padding-top: 2.5mm; }
+  .foot .draft { color: var(--pink-ink); font-weight: 600; }
+
+  /* ---------- Cover ---------- */
+  .cover { padding: 0; background: var(--azure); color: #fff; }
+  .cover .sky { position: absolute; inset: 0 0 auto 0; height: 182mm; }
+  .cover .sky img { clip-path: polygon(0 0, 100% 0, 100% 100%, 52% 100%, 47% 84%, 0 90%); }
+  .cover .label { position: absolute; top: 16mm; left: 18mm; font-size: 9pt; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: #fff; color: var(--azure); padding: 2mm 3.5mm; }
+  .cover .dates { position: absolute; top: 162mm; left: 18mm; font-family: "Krona One"; font-size: 17pt; line-height: 1.25; }
+  .cover .dates small { display: block; font-family: "Instrument Sans"; font-size: 11pt; font-weight: 500; opacity: .9; }
+  .cover h1 { position: absolute; top: 196mm; left: 18mm; right: 18mm; color: #fff; font-size: 34pt; }
+  .cover .sub { position: absolute; top: 236mm; left: 18mm; right: 40mm; font-size: 13pt; line-height: 1.35; }
+  .cover .logos { position: absolute; left: 0; right: 0; bottom: 0; height: 26mm; background: #fff; display: flex; align-items: center; gap: 10mm; padding: 0 18mm; }
+  .cover .logos img { height: 11mm; width: auto; }
+  .cover .logos .unevoc { margin-left: auto; padding-left: 8mm; border-left: 0.3mm solid rgb(18 106 180 / .3); height: 14mm; }
+  .cover .shard.pink { top: 168mm; right: 30mm; } .cover .shard.lime { top: 180mm; right: 16mm; width: 10mm; height: 8mm; }
+
+  /* ---------- At a glance ---------- */
+  .glance-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 0.4mm solid var(--azure); }
+  .fact { padding: 4.5mm 4mm 4.5mm 0; border-bottom: 0.3mm solid rgb(18 106 180 / .2); }
+  .fact:nth-child(odd) { padding-right: 8mm; }
+  .fact dt { font-size: 8pt; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--pink-ink); margin-bottom: 1mm; }
+  .fact dd { color: var(--nobility); font-size: 11pt; }
+  .figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-top: 11mm; }
+  .figure { background: var(--haze); padding: 6mm 5mm; }
+  .figure .n { font-family: "Krona One"; font-size: 34pt; line-height: 1; color: var(--azure); }
+  .figure .t { margin-top: 3mm; color: var(--nobility); font-size: 9.5pt; }
+  .contents { margin-top: 11mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm 6mm; font-size: 9.5pt; color: var(--nobility); }
+  .contents span { font-family: "Krona One"; color: var(--pink-ink); font-size: 8pt; margin-right: 2mm; }
+
+  /* ---------- About ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 2mm; margin: 4mm 0 7mm; }
+  .chips span { background: var(--azure); color: #fff; font-weight: 500; font-size: 9.5pt; padding: 1.6mm 3.2mm; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; }
+  .local { background: var(--haze); padding: 6mm; }
+  .local li { list-style: none; padding: 1.8mm 0; border-bottom: 0.3mm solid rgb(18 106 180 / .15); color: var(--nobility); font-size: 9.5pt; }
+  .local li b { color: var(--azure); font-weight: 600; display: block; font-size: 8pt; letter-spacing: .1em; text-transform: uppercase; }
+  .about-photo { height: 44mm; margin: 7mm 0 6mm; }
+  .statement { font-size: 16pt; line-height: 1.3; font-weight: 500; color: var(--nobility); letter-spacing: -0.01em; }
+  .statement em { font-style: normal; color: var(--pink-ink); }
+  .quote { margin-top: 6mm; padding: 5mm 0 0; border-top: 0.4mm solid var(--azure); font-size: 15pt; line-height: 1.3; font-weight: 600; color: var(--azure); letter-spacing: -0.01em; }
+
+  /* ---------- Purposes / audiences ---------- */
+  .purposes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-bottom: 11mm; }
+  .purpose { border-top: 1.2mm solid var(--azure); padding-top: 4mm; }
+  .purpose .num { font-family: "Krona One"; color: var(--pink); font-size: 18pt; line-height: 1; margin-bottom: 3mm; }
+  .purpose p { font-size: 9.5pt; color: var(--nobility); }
+  .formats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+  .format { background: var(--haze); padding: 5mm; }
+  .format p { font-size: 9.5pt; color: var(--nobility); }
+  .audiences { columns: 2; column-gap: 8mm; margin-top: 4mm; }
+  .audiences li { break-inside: avoid; list-style: none; padding: 1.6mm 0 1.6mm 5mm; position: relative; color: var(--nobility); font-size: 9.5pt; }
+  .audiences li::before { content: ""; position: absolute; left: 0; top: 3.2mm; width: 2.4mm; height: 1.8mm; background: var(--lime); clip-path: polygon(10% 0, 100% 12%, 88% 100%, 0 86%); }
+
+  /* ---------- Programme ---------- */
+  .days { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+  .day .ph { height: 38mm; margin-bottom: 4mm; }
+  .day .wd { font-family: "Krona One"; font-size: 8pt; color: var(--pink-ink); text-transform: uppercase; letter-spacing: .06em; }
+  .day .dn { font-family: "Krona One"; font-size: 22pt; line-height: 1.1; color: var(--azure); margin: 1mm 0 2mm; }
+  .day h3 { min-height: 11mm; }
+  .slot { border-top: 0.3mm solid rgb(18 106 180 / .25); padding: 2.5mm 0; font-size: 9pt; color: var(--nobility); }
+  .slot b { display: block; font-size: 7.5pt; letter-spacing: .1em; text-transform: uppercase; color: var(--azure); font-weight: 600; }
+  .day.main .dn { color: var(--pink); }
+  .hub { margin-top: 9mm; display: grid; grid-template-columns: 1fr 1.3fr; gap: 0; background: var(--lime); color: var(--night); }
+  .hub .txt { padding: 6mm; }
+  .hub h3 { color: var(--night); font-size: 15pt; }
+  .hub .eyebrow { color: var(--night); }
+  .hub p { font-size: 9.5pt; }
+  .hub .tracks { padding: 6mm 6mm 6mm 0; display: grid; gap: 3mm; }
+  .hub .track { background: #fff; padding: 3.5mm 4mm; font-size: 9pt; }
+  .hub .track b { display: block; font-size: 10pt; }
+
+  /* ---------- Speakers ---------- */
+  .speakers { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
+  .sp { display: grid; grid-template-columns: 15mm 1fr; gap: 4mm; align-items: center; padding: 3mm 0; border-bottom: 0.3mm solid rgb(18 106 180 / .18); }
+  .sp .av { width: 15mm; height: 15mm; background: var(--haze); display: grid; place-items: center; font-family: "Krona One"; font-size: 8pt; color: var(--azure); }
+  .sp .av img { width: 100%; height: 100%; object-fit: cover; }
+  .sp .nm { font-weight: 600; color: var(--nobility); font-size: 10pt; line-height: 1.2; }
+  .sp .rl { font-size: 8.5pt; line-height: 1.3; }
+  .group-title { margin: 8mm 0 2mm; font-size: 8.5pt; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--pink-ink); }
+  .more { margin-top: 7mm; background: var(--haze); padding: 5mm 6mm; display: flex; align-items: center; gap: 6mm; color: var(--nobility); }
+  .more .n { font-family: "Krona One"; font-size: 26pt; color: var(--azure); line-height: 1; }
+
+  /* ---------- Contact ---------- */
+  .contact { background: var(--azure); color: #fff; }
+  .contact h2, .contact h3 { color: #fff; }
+  .contact .eyebrow { color: var(--lime); }
+  .contact .photo-wrap { position: absolute; left: 0; right: 0; top: 0; height: 120mm; }
+  .contact .photo-wrap img { clip-path: polygon(0 0, 100% 0, 100% 86%, 0 100%); }
+  .contact .body { position: absolute; top: 132mm; left: 18mm; right: 18mm; }
+  .contact .mail { font-family: "Krona One"; font-size: 15pt; margin: 3mm 0 9mm; }
+  .contact .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10mm; font-size: 10pt; }
+  .contact .cols p { opacity: .92; }
+  .contact .logos { position: absolute; left: 0; right: 0; bottom: 0; height: 30mm; background: #fff; display: flex; align-items: center; gap: 10mm; padding: 0 18mm; }
+  .contact .logos img { height: 11mm; }
+  .contact .logos .unevoc { margin-left: auto; padding-left: 8mm; border-left: 0.3mm solid rgb(18 106 180 / .3); height: 14mm; }
+  .contact .foot { color: var(--deep); bottom: 34mm; color: #fff; border-top-color: rgb(255 255 255 / .35); }
+  .contact .foot .draft { color: var(--lime); }
+</style>
+</head>
+<body>
+
+<!-- 1 · Cover -->
+<section class="page cover">
+  <div class="sky"><img class="photo" src="../themes/basqueunevocweek/static/images/kursaal-sky-azure.jpg" alt="The Kursaal against a blue sky"></div>
+  <div class="label">Press kit</div>
+  <div class="dates">11-13 May 2027<small>Donostia · San Sebastian, Basque Country</small></div>
+  <span class="shard pink"></span><span class="shard lime"></span>
+  <h1>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027</h1>
+  <p class="sub">Celebrating 25 Years of UNESCO-UNEVOC and 10 Years of Tknika as a UNEVOC Centre</p>
+  <div class="logos">
+    <img src="../themes/basqueunevocweek/static/images/logo-tknika-dark.png" alt="Tknika">
+    <img src="../themes/basqueunevocweek/static/images/logo-fp-euskadi-dark.png" alt="FP Euskadi">
+    <img src="../themes/basqueunevocweek/static/images/logo-eusko-jaurlaritza.png" alt="Basque Government">
+    <img class="unevoc" src="../themes/basqueunevocweek/static/images/logo-unevoc-network.png" alt="UNESCO-UNEVOC Network Member">
+  </div>
+</section>
+
+<!-- 2 · At a glance -->
+<section class="page">
+  <p class="eyebrow">At a glance</p>
+  <h2>Global connection for local change</h2>
+  <p class="lead" style="margin-bottom:9mm">Three days in the Basque Country to share how vocational education and training systems around the world are tackling the same challenges in their own places, and to celebrate a joint anniversary.</p>
+  <dl class="glance-grid">
+    <div class="fact"><dt>What</dt><dd>An international conference and open days on Technical and Vocational Education and Training (TVET)</dd></div>
+    <div class="fact"><dt>When</dt><dd>11-13 May 2027</dd></div>
+    <div class="fact"><dt>Where</dt><dd>Donostia · San Sebastian. The conference, on 12 May, at the Kursaal; visits and workshops at other venues in the Basque Country</dd></div>
+    <div class="fact"><dt>Organised by</dt><dd>The Department of Education of the Basque Government and UNESCO-UNEVOC, with Tknika and FP Euskadi</dd></div>
+    <div class="fact"><dt>For</dt><dd>Policymakers, TVET schools, employers, social partners, international organisations, researchers and students</dd></div>
+    <div class="fact"><dt>Website</dt><dd>tknika.github.io/basqueunevocweek</dd></div>
+  </dl>
+  <div class="figures">
+    <div class="figure"><div class="n">25</div><div class="t">years of the UNESCO-UNEVOC International Centre</div></div>
+    <div class="figure"><div class="n">10</div><div class="t">years of Tknika as a UNEVOC Centre</div></div>
+    <div class="figure"><div class="n">3</div><div class="t">days of conference, workshops and visits</div></div>
+  </div>
+  <div class="contents">
+    <div><span>01</span>About the gathering</div>
+    <div><span>02</span>Purposes and audiences</div>
+    <div><span>03</span>Programme</div>
+    <div><span>04</span>Speakers</div>
+    <div><span>05</span>Media contact</div>
+  </div>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 2</span></div>
+</section>
+
+<!-- 3 · About -->
+<section class="page">
+  <p class="eyebrow">01 · About the gathering</p>
+  <h2>Same challenges, different shape in every place</h2>
+  <p class="lead">TVET systems worldwide face the same broad challenges:</p>
+  <div class="chips"><span>Inclusion</span><span>Sustainability</span><span>Digitalization</span><span>Demographic change</span><span>The TVET-business relationship</span><span>Innovation</span><span>The threats to democracy</span><span>Evolving labour markets</span></div>
+  <div class="two">
+    <div>
+      <h3>Why local</h3>
+      <p>Yet these shared categories take very different shapes once they meet a specific place. The categories are global; the solutions being built to address them are irreducibly local, shaped by each region’s economic structure, institutions and history.</p>
+      <p><b style="color:var(--nobility)">TVET is the most local of education systems:</b> delivered in schools rooted in a territory, built around the skills needs of the companies and communities around it.</p>
+    </div>
+    <ul class="local">
+      <li><b>Inclusion</b>Young people who leave school early, women in industrial trades, adults in rural areas</li>
+      <li><b>Sustainability</b>An economy built on manufacturing, another on tourism or agriculture</li>
+      <li><b>Digitalization</b>A first data infrastructure, or AI already in daily teaching</li>
+    </ul>
+  </div>
+  <div class="about-photo cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/tknika-auditorium-front.jpg" alt="Tknika auditorium"></div>
+  <p class="statement">The relevance of TVET at local level is not a side issue: it is the point at which <em>global challenges</em> are turned into <em>opportunities for people</em>.</p>
+  <p class="quote">“Implementation will always be local, but the learning does not have to be.”</p>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 3</span></div>
+</section>
+
+<!-- 4 · Purposes and audiences -->
+<section class="page">
+  <p class="eyebrow">02 · Purposes and audiences</p>
+  <h2>A gathering to connect them</h2>
+  <p class="lead" style="margin-bottom:8mm">Global connection, and the deliberate sharing of knowledge, practice and experience across contexts, is not a nicety but a necessity. The gathering has three purposes:</p>
+  <div class="purposes">
+    <div class="purpose"><div class="num">1</div><h3>Share local solutions</h3><p>Surface concrete local solutions and practices that could inform or inspire adaptation in other contexts.</p></div>
+    <div class="purpose"><div class="num">2</div><h3>Open new collaborations</h3><p>Identify opportunities for joint projects and knowledge exchange, as a counterweight to working in isolation.</p></div>
+    <div class="purpose"><div class="num">3</div><h3>Celebrate a joint anniversary</h3><p>Mark 25 years of UNESCO-UNEVOC and 10 years of Tknika in the UNEVOC Network.</p></div>
+  </div>
+  <h3 style="font-size:16pt;color:var(--azure);margin-bottom:4mm">A programme for each audience</h3>
+  <div class="formats">
+    <div class="format"><h3>Policymakers</h3><p>A policy dialogue, study visits and the conference itself.</p></div>
+    <div class="format"><h3>TVET students</h3><p>Two one-week training programmes, at EQF levels 3–4 and 5–6.</p></div>
+    <div class="format"><h3>TVET schools, employers and researchers</h3><p>Dedicated workshops and study visit programmes.</p></div>
+  </div>
+  <h3 style="margin-top:10mm">Especially relevant for</h3>
+  <ul class="audiences">
+    <li>TVET school representatives</li>
+    <li>Policymakers, authorities and government representatives</li>
+    <li>International organisations active in TVET and labour</li>
+    <li>Social partners</li>
+    <li>Employers</li>
+    <li>Researchers and practitioners in TVET innovation, entrepreneurship education, digital transformation and green skills</li>
+  </ul>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 4</span></div>
+</section>
+
+<!-- 5 · Programme -->
+<section class="page">
+  <p class="eyebrow">03 · Programme</p>
+  <h2>Three days, every morning and afternoon</h2>
+  <div class="days">
+    <div class="day">
+      <div class="ph cube"><img class="photo" src="../themes/basqueunevocweek/static/images/zubieta.jpg" alt=""></div>
+      <div class="wd">Tuesday</div><div class="dn">11 May</div>
+      <h3>Activities at other venues</h3>
+      <div class="slot"><b>Morning</b>Networking in TVET schools, or a visit to Tknika projects and workshops</div>
+      <div class="slot"><b>Afternoon</b>Vitoria-Gasteiz, capital of the Basque Country and Europe’s Green Capital</div>
+    </div>
+    <div class="day main">
+      <div class="ph cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/kursaal.jpg" alt=""></div>
+      <div class="wd">Wednesday</div><div class="dn">12 May</div>
+      <h3>Conference at the Kursaal</h3>
+      <div class="slot"><b>Morning</b>Conference “Global Connection for Local Change”: institutional opening, keynotes and the panel “Local change for global connection”</div>
+      <div class="slot"><b>Afternoon</b>Workshops on advanced manufacturing</div>
+    </div>
+    <div class="day">
+      <div class="ph cube"><img class="photo" src="../themes/basqueunevocweek/static/images/palacio-europa-lcamp.jpg" alt=""></div>
+      <div class="wd">Thursday</div><div class="dn">13 May</div>
+      <h3>Activities at other venues</h3>
+      <div class="slot"><b>Morning</b>Project Dissemination Day in Vitoria-Gasteiz, or visits to advanced manufacturing companies</div>
+      <div class="slot"><b>Afternoon</b>Optional: guided visit and dinner at a winery in Rioja Alavesa</div>
+    </div>
+  </div>
+  <div class="hub">
+    <div class="txt">
+      <p class="eyebrow">Before the gathering</p>
+      <h3>Student Hub</h3>
+      <p>Two parallel one-week programmes on advanced manufacturing for TVET students from several countries, in April.</p>
+    </div>
+    <div class="tracks">
+      <div class="track"><b>LCAMP Student Hub and Skill Competition</b>VET students · EQF 4</div>
+      <div class="track"><b>The Learning Factory Ecosystem: Bridging Industry 4.0 &amp; 5.0</b>HVET students · EQF 5 and 6 · Erasmus+ Blended Intensive Programme</div>
+    </div>
+  </div>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 5</span></div>
+</section>
+
+<!-- 6 · Speakers -->
+<section class="page">
+  <p class="eyebrow">04 · Speakers</p>
+  <h2>Who takes the stage</h2>
+  <p class="group-title" style="margin-top:0">Conference</p>
+  <div class="speakers">
+    <div class="sp"><div class="av"><img src="../themes/basqueunevocweek/static/images/speakers/begona-pedrosa.jpg" alt=""></div><div><div class="nm">Begoña Pedrosa</div><div class="rl">Minister of Education, Basque Government</div></div></div>
+    <div class="sp"><div class="av">AB</div><div><div class="nm">Anna Banczyk</div><div class="rl">Head of Unit for VET, Skills Portability and Cedefop, European Commission</div></div></div>
+    <div class="sp"><div class="av"><img src="../themes/basqueunevocweek/static/images/speakers/jon-labaka.jpg" alt=""></div><div><div class="nm">Jon Labaka</div><div class="rl">Vice Minister of Vocational Education and Training, Basque Government</div></div></div>
+    <div class="sp"><div class="av">EP</div><div><div class="nm">Elina Pylkkänen</div><div class="rl">Under-Secretary of State, Ministry of Economic Affairs and Employment, Finland</div></div></div>
+    <div class="sp"><div class="av">GZ</div><div><div class="nm">Georgios Zisimos</div><div class="rl">Head of Human Capital Development Policy Advice Unit, ETF</div></div></div>
+    <div class="sp"><div class="av">EM</div><div><div class="nm">El Iza Mohamedou</div><div class="rl">Head of the Centre for Skills, OECD</div></div></div>
+    <div class="sp"><div class="av"><img src="../themes/basqueunevocweek/static/images/speakers/inge-gorostiaga.jpg" alt=""></div><div><div class="nm">Inge Gorostiaga</div><div class="rl">Director of Digital Transformation and Advanced Learning, Basque Government</div></div></div>
+    <div class="sp"><div class="av">AM</div><div><div class="nm">Alessandro Marini</div><div class="rl">Cluster Manager, AFIL - Lombardy Intelligent Factory Association</div></div></div>
+    <div class="sp"><div class="av">KR</div><div><div class="nm">Klaus-Dieter Rupp</div><div class="rl">Professor, Duale Hochschule Baden-Württemberg</div></div></div>
+  </div>
+  <p class="group-title">Panel and moderation</p>
+  <div class="speakers">
+    <div class="sp"><div class="av">KB</div><div><div class="nm">Kenneth Barrientos</div><div class="rl">Head of the UNEVOC Network Secretariat</div></div></div>
+    <div class="sp"><div class="av">CW</div><div><div class="nm">Cynthia Woolderink</div><div class="rl">Chairperson of EBBD</div></div></div>
+    <div class="sp"><div class="av">DK</div><div><div class="nm">Daniel Kehl</div><div class="rl">Principal of GBS St. Gallen</div></div></div>
+    <div class="sp"><div class="av">TV</div><div><div class="nm">Tim van der Voord</div><div class="rl">Project manager at Katapult</div></div></div>
+    <div class="sp"><div class="av">RG</div><div><div class="nm">Richard Gale</div><div class="rl">Moderator. Director of Camosun Innovates, Camosun College, Canada</div></div></div>
+  </div>
+  <div class="more"><div class="n">29</div><div>more speakers lead the workshops on advanced manufacturing.</div></div>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 6</span></div>
+</section>
+
+<!-- 7 · Media contact -->
+<section class="page contact">
+  <div class="photo-wrap"><img class="photo" src="../themes/basqueunevocweek/static/images/donostia-bay.jpg" alt="The bay of Donostia · San Sebastian"></div>
+  <div class="body">
+    <p class="eyebrow">05 · Media contact</p>
+    <h2>Talk to us</h2>
+    <p>For interviews, photos or more information:</p>
+    <p class="mail">international@tknika.eus</p>
+    <div class="cols">
+      <div><h3>Online</h3><p>Programme and speakers on the event website, with the organisers’ logos to download in the press area.</p><p style="margin-top:2mm;font-weight:600">tknika.github.io/basqueunevocweek</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 7</span></div>
+  <div class="logos">
+    <img src="../themes/basqueunevocweek/static/images/logo-tknika-dark.png" alt="Tknika">
+    <img src="../themes/basqueunevocweek/static/images/logo-fp-euskadi-dark.png" alt="FP Euskadi">
+    <img src="../themes/basqueunevocweek/static/images/logo-eusko-jaurlaritza.png" alt="Basque Government">
+    <img class="unevoc" src="../themes/basqueunevocweek/static/images/logo-unevoc-network.png" alt="UNESCO-UNEVOC Network Member">
+  </div>
+</section>
+
+</body>
+</html>
