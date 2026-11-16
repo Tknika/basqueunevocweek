@@ -1,0 +1,54 @@
+{{- /* The call for workshops panel. Takes the call (a dict: the `call` block in the front matter of 12 May). Used by the call-for-workshops shortcode (12 May afternoon) and by the speakers page, in place of the workshop speakers.
+  A light panel (haze, like the site's other boxes; an all-azure panel was too blue): the photo (`image`, an open hand held out) cut as a leaning cube next to the pitch and the pink button; then why run a workshop as three white cards; then the shared challenges (taken from the About page) as topics to start from.
+  duration: a short line next to the button. url: the application form. While it is empty, the button is shown, with the same hover, but does nothing; set it and the button goes live (opens in a new tab). */ -}}
+{{ $call := . }}
+{{ with $call }}
+  <div class="not-prose prose-wide my-4 bg-haze">
+    <div class="grid items-center lg:grid-cols-[5fr_6fr]">
+      {{ with .image }}
+        <div class="relative px-6 pt-6 sm:px-8 sm:pt-8 lg:py-8 lg:pr-0">
+          <img src="{{ . | relURL }}" alt="{{ $call.alt }}" loading="lazy" class="shape-cube aspect-[4/3] w-full object-cover object-center">
+          <span class="absolute top-3 right-3 flex items-start gap-1.5 sm:top-5 sm:right-5 lg:right-[-1rem]" aria-hidden="true"><span class="shape-cube-alt mt-2 h-4 w-6 bg-lime"></span><span class="shape-cube h-6 w-11 bg-pink"></span></span>
+        </div>
+      {{ end }}
+      <div class="p-8 sm:p-12">
+        <p class="font-display text-sm tracking-widest text-pink-ink uppercase">{{ .eyebrow }}</p>
+        <h3 class="mt-4 max-w-xl text-4xl leading-[1.05] tracking-[-0.03em] text-balance sm:text-5xl">{{ .title }}</h3>
+        <p class="mt-6 max-w-xl text-xl leading-relaxed [&_strong]:font-bold">{{ .text | markdownify }}</p>
+        <div class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
+          {{ if .url }}
+            <a href="{{ .url }}" target="_blank" rel="noopener" class="group inline-flex items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night no-underline transition hover:bg-nobility hover:text-white">{{ .button }} <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span></a>
+          {{ else }}
+            <span role="link" aria-disabled="true" class="group inline-flex items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night no-underline transition hover:bg-nobility hover:text-white cursor-pointer">{{ .button }} <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span></span>
+          {{ end }}
+          {{ with .duration }}<p class="flex items-center gap-2 font-semibold text-nobility">{{ partial "icon.html" (dict "name" "clock" "class" "size-6 text-azure") }}{{ . }}</p>{{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 pt-4 pb-2 sm:px-8">
+      <p class="font-display text-sm tracking-widest uppercase">{{ .why_title }}</p>
+      <ul class="not-prose mt-4 grid gap-3 md:grid-cols-3">
+        {{ range .why }}
+          <li class="flex flex-col bg-white p-6">
+            <span class="shape-cube flex size-11 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-6") }}</span>
+            <span class="mt-4 text-xl leading-tight font-semibold text-nobility">{{ .title }}</span>
+            <span class="mt-1 leading-relaxed">{{ .text }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+
+    {{- /* Topics: the challenges named on the About page, so both stay the same */ -}}
+    {{ with site.GetPage "/about" }}{{ with .Params.chapters.global.challenges }}
+      <div class="px-6 py-8 sm:px-8">
+        <p class="font-semibold text-nobility">{{ $call.topics_title }}</p>
+        <ul class="not-prose mt-4 flex flex-wrap gap-2">
+          {{ range . }}
+            <li class="flex items-center gap-2 bg-white px-3 py-1.5 text-sm font-semibold text-nobility">{{ partial "icon.html" (dict "name" .icon "class" "size-4 text-azure") }}{{ .name }}</li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}{{ end }}
+  </div>
+{{ end }}
