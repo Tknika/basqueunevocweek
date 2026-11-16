@@ -5,10 +5,98 @@ header_image: "images/conference-audience.jpg"
 weight: 1
 menus: main
 layout: about
-# From the concept note (Congress Concept Note DEF.docx). The note says the anniversaries fall in 2026; the year is left out here, as the event is in 2027.
+# From the concept note (Congress Concept Note DEF.docx), retold in four chapters with a lighter, more promotional voice:
+# 1 the challenges are the same everywhere (global); 2 they take a different shape in every place (local);
+# 3 TVET answers global challenges from the local level; 4 the congress connects it all.
+# No new facts: the ideas, challenges and examples are the note's. The anniversaries fall in 2026 in the note; the year is left out, as the event is in 2027.
+chapters:
+  global:
+    label: "Global"
+    title: "The same challenges, everywhere"
+    intro: "Ask any TVET system in the world what keeps it busy, and you will hear the same list."
+    # icon: a name from _partials/icon.html
+    challenges:
+      - { name: "Inclusion", icon: "people" }
+      - { name: "Sustainability", icon: "leaf" }
+      - { name: "Digitalization", icon: "screen" }
+      - { name: "Demographic change", icon: "hourglass" }
+      - { name: "The TVET-business relationship", icon: "briefcase" }
+      - { name: "Innovation", icon: "bulb" }
+      - { name: "The threats to democracy", icon: "columns" }
+      - { name: "Evolving labour markets", icon: "trend" }
+    statement: "Different countries. *The same agenda.*"
+  local:
+    label: "Local"
+    title: "A different shape in every place"
+    intro: "But a challenge never lands in the abstract. The moment it meets a real place, it takes a shape of its own."
+    examples:
+      - name: "Inclusion"
+        icon: "people"
+        lead: "No learner left behind, everywhere. But who is at risk changes from place to place:"
+        places:
+          - { where: "In one", what: "Young people who leave school early" }
+          - { where: "In another", what: "Women in industrial trades" }
+          - { where: "In a third", what: "Adults in rural areas or newly arrived workers" }
+      - name: "Sustainability"
+        icon: "leaf"
+        lead: "Going green means something else in every economy:"
+        places:
+          - { where: "For one economy", what: "Built on manufacturing" }
+          - { where: "For another", what: "Built on tourism or agriculture" }
+      - name: "Digitalization"
+        icon: "screen"
+        lead: "Every system is at its own point of the journey:"
+        places:
+          - { where: "One system", what: "Building its first data infrastructure" }
+          - { where: "Another", what: "Already bringing AI into daily teaching" }
+    statement: "The challenges are *global*. The solutions are *local*."
+  tvet:
+    label: "TVET"
+    title: "Global challenges, local answers"
+    intro: "TVET is the most local of education systems. That is exactly its strength."
+    points:
+      - "Rooted in a territory, in schools and training centres that belong to their place."
+      - "Built around the skills that local companies and communities need."
+      - "Where people find a qualification and a job, right where they live."
+    # Global shifts only become real when they reach a local company, school and trainer: a flow from global (left) to local (right)
+    shifts:
+      label: "Global shifts"
+      items:
+        - { name: "A new technology", icon: "chip" }
+        - { name: "The green transition", icon: "leaf" }
+        - { name: "An ageing workforce", icon: "hourglass" }
+      link: "only become real when they reach"
+      local_label: "Locally"
+      steps:
+        - { name: "A local company that adopts them", icon: "factory" }
+        - { name: "A local school that adapts its curriculum", icon: "school" }
+        - { name: "A local trainer who learns to teach them", icon: "teacher" }
+    statement: "This is where *global challenges* become *opportunities for people*."
+  connect:
+    title: "Where it all connects"
+    intro: "Local solutions are too good to stay local. For three days, the congress brings together the people who build them, so that what works in one place can inspire another."
+    directions:
+      - from: "Global"
+        to: "Local"
+        text: "International frameworks, evidence and benchmarks give every local ecosystem a wider view than its own."
+      - from: "Local"
+        to: "Global"
+        text: "Every local solution is a lesson for someone facing the same challenge in a different shape."
+    quote: "Implementation will always be local. *Learning does not have to be.*"
+    purposes_title: "Three reasons to be there"
+    purposes:
+      - title: "Share local solutions"
+        icon: "pin"
+        text: "Bring what works in your place, and discover the solutions that could work in yours."
+      - title: "Open new collaborations"
+        icon: "people"
+        text: "Meet partners for joint projects and knowledge exchange. No system can take on these challenges alone."
+      - title: "Celebrate a joint anniversary"
+        icon: "globe"
+        text: "25 years of UNESCO-UNEVOC and 10 years of Tknika in the UNEVOC Network, celebrated together."
 audiences:
   title: "Who it brings together"
-  intro: "Anyone interested in sharing and learning how TVET systems worldwide are tackling these key challenges should not miss this gathering. It is especially relevant for:"
+  intro: "Anyone who wants to share and learn how TVET systems worldwide are tackling these challenges. Especially:"
   items:
     - "TVET school representatives"
     - "Policymakers, authorities, and government representatives"
@@ -28,86 +116,4 @@ formats:
     - who: "TVET representatives, employers and researchers"
       offer: "Dedicated workshops and study visit programmes suited to their practical and professional interests."
       page: "/programme"
-rationale:
-  # The page reads as five numbered chapters on one thread, global and local (an index at the top lists them): same challenges, different shape in every place; TVET, where the global becomes local; learning in both directions; a gathering to connect them; who it brings together. The first part of the concept note, laid out to show why global and why local: global in azure, local on haze. The words are the note's; the short labels and titles are the site's.
-  title: "Same challenges, different shape in every place"
-  global:
-    label: "Why global"
-    intro: "Technical and Vocational Education and Training (TVET) systems worldwide face the same broad challenges:"
-    # icon: a name from _partials/icon.html
-    challenges:
-      - { name: "Inclusion", icon: "people" }
-      - { name: "Sustainability", icon: "leaf" }
-      - { name: "Digitalization", icon: "screen" }
-      - { name: "Demographic change", icon: "hourglass" }
-      - { name: "The TVET-business relationship", icon: "briefcase" }
-      - { name: "Innovation", icon: "bulb" }
-      - { name: "The threats to democracy", icon: "columns" }
-      - { name: "Evolving labour markets", icon: "trend" }
-  local:
-    label: "Why local"
-    intro: "Yet these shared categories take very different shapes once they meet a specific place."
-    examples:
-      - name: "Inclusion"
-        icon: "people"
-        lead: "Everywhere it means that no learner is left behind. But who is at risk differs from place to place:"
-        places:
-          - { where: "In one", what: "Young people who leave school early" }
-          - { where: "In another", what: "Women in industrial trades" }
-          - { where: "In a third", what: "Adults in rural areas or newly arrived workers" }
-      - name: "Sustainability"
-        icon: "leaf"
-        places:
-          - { where: "For one economy", what: "Built on manufacturing" }
-          - { where: "For another", what: "Built on tourism or agriculture" }
-      - name: "Digitalization"
-        icon: "screen"
-        places:
-          - { where: "In one system", what: "Building its first data infrastructure" }
-          - { where: "In another", what: "Already integrating AI into daily teaching practice" }
-  tvet:
-    title: "TVET, where the global becomes local"
-    intro: "TVET is the most local of education systems:"
-    points:
-      - "It is delivered in schools and training centres rooted in a territory."
-      - "It is built around the skills needs of the companies and communities around it."
-      - "It is where a young person or an adult finds a path to a qualification and a job in the place where they live."
-    # Global shifts only become real when they reach a local company, school and trainer: laid out as a flow from global (left) to local (right)
-    shifts:
-      label: "Global shifts"
-      items:
-        - { name: "A new technology", icon: "chip" }
-        - { name: "The green transition", icon: "leaf" }
-        - { name: "An ageing workforce", icon: "hourglass" }
-      link: "only become real when they reach"
-      local_label: "Locally"
-      steps:
-        - { name: "A local company that adopts them", icon: "factory" }
-        - { name: "A local school that adapts its curriculum", icon: "school" }
-        - { name: "A local trainer who learns to teach them", icon: "teacher" }
-    statement: "The relevance of TVET at local level is therefore not a side issue: it is the point at which *global challenges* are turned into *opportunities for people*."
-  directions:
-    title: "Learning in both directions"
-    intro: "This is why international cooperation matters, and why it has to work in both directions."
-    items:
-      - from: "Global"
-        to: "Local"
-        text: "Shared international frameworks, evidence and benchmarks give each local ecosystem a wider view than its own, and a way to test its choices against what others are learning."
-      - from: "Local"
-        to: "Global"
-        text: "A local ecosystem that solves a version of the digitalization challenge, or designs a working model for entrepreneurship education, or finds an effective way to close a gender gap in technical training, has produced something of value to other ecosystems facing a differently-shaped version of the same problem."
-    quote: "Implementation will always be local, but the learning does not have to be."
-  purposes:
-    title: "A gathering to connect them"
-    intro: "This gathering is built on the conviction that global connection, and the deliberate sharing of knowledge, practice, and experience across contexts, is not a nicety but a necessity. Jointly organised by the Department of Education of the Basque Government and UNESCO-UNEVOC, it has three purposes:"
-    items:
-      - title: "Share local solutions"
-        icon: "pin"
-        text: "To surface concrete local solutions and practices that could inform or inspire adaptation in other contexts."
-      - title: "Open new collaborations"
-        icon: "people"
-        text: "To identify concrete opportunities for future collaboration, joint projects, and knowledge exchange between participating institutions, as a deliberate counterweight to recent tendencies toward working in isolation."
-      - title: "Celebrate a joint anniversary"
-        icon: "globe"
-        text: "To mark 25 years of UNESCO-UNEVOC and 10 years of Tknika in the UNEVOC Network, recognising both the achievements of the global network and the contribution of one of its long-standing regional centres."
 ---
