@@ -108,8 +108,10 @@
   ::selection {
     @apply bg-pink text-night;
   }
+  /* A pink ring with a white band inside it (a double ring, WCAG technique C40): the pink shows on light surfaces (3.7:1 on white), the white on UNEVOC azure and dark blue (5.6:1 on azure), where pink alone is 1.5:1 */
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-pink;
+    box-shadow: 0 0 0 2px #fff;
   }
   @media (prefers-reduced-motion: reduce) {
     html {

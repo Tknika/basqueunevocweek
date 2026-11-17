@@ -1,9 +1,9 @@
-{{- /* Subpages (the days of the programme): link back to the section and to their siblings. */ -}}
+{{- /* Subpages (the days of the programme, the legal pages): link back to the section and to their siblings. A section with no page of its own (legal) shows its title as plain text. */ -}}
 {{ $page := . }}
 {{ with .Parent }}
   {{ if not .IsHome }}
     <nav class="mb-8 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-semibold" aria-label="{{ .Title }}">
-      <a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink-ink">{{ .Title }}</a>
+      {{ if .RelPermalink }}<a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink-ink">{{ .Title }}</a>{{ else }}<span class="text-nobility/60">{{ .Title }}</span>{{ end }}
       {{ range .Pages }}
         <a href="{{ .RelPermalink }}" class="text-nobility transition hover:text-pink-ink{{ if eq . $page }} underline underline-offset-3{{ end }}"{{ if eq . $page }} aria-current="page"{{ end }}>{{ .Title }}</a>
       {{ end }}

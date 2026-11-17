@@ -19,4 +19,14 @@
       </div>
     {{ end }}
   </div>
+  {{- /* The legal pages (content/legal), in a thin row under the logos */ -}}
+  {{ with site.GetPage "/legal" }}
+    <nav class="border-t border-white/20" aria-label="{{ .Title }}">
+      <ul class="{{ if or $.IsHome $.Params.home_variant }}container-wide{{ else }}container-site{{ end }} flex flex-wrap justify-center gap-x-6 gap-y-2 py-5 text-sm font-medium md:justify-start">
+        {{ range .Pages }}
+          <li><a href="{{ .RelPermalink }}" class="underline decoration-white/40 underline-offset-3 transition hover:decoration-white"{{ if eq . $ }} aria-current="page"{{ end }}>{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+  {{ end }}
 </footer>
