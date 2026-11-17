@@ -23,7 +23,3 @@ This statement was prepared on 17 November 2026, from an assessment by the organ
 ## Feedback and contact
 
 If you find a barrier on this website, or need any of its content in an accessible format, write to [international@tknika.eus](mailto:international@tknika.eus). You can also use this address to send a complaint about compliance with Royal Decree 1112/2018 or to ask for information excluded from its scope.
-
-## Enforcement procedure
-
-If you are not satisfied with the answer to your request or complaint, you can file a claim as provided for in Article 13 of Royal Decree 1112/2018: {{< tbc "the unit responsible for accessibility at the owner, where claims are filed" >}}.
