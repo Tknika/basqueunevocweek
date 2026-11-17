@@ -7,7 +7,7 @@ This page explains how personal data is handled on this website, in accordance w
 
 ## This website does not collect personal data
 
-You can browse this website without giving any personal data. It has no forms and no user accounts, and it uses no cookies, analytics or tracking tools (see [Cookies](/legal/cookies/)). Its fonts and images are served from the website itself, so visiting it sends no data to other companies.
+You can browse this website without giving any personal data. It has no forms or user accounts, uses no cookies, analytics or tracking tools, and stores nothing on your device. Its fonts and images are served from the website itself, so visiting it sends no data to other companies.
 
 ## Hosting
 
