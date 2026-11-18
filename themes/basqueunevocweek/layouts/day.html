@@ -125,9 +125,10 @@
           {{ end }}
         {{ end }}
       </div>
-      {{ with .images }}{{ with after 1 . }}<div class="mt-6 grid gap-6{{ if gt (len .) 1 }} sm:grid-cols-[2fr_1fr]{{ end }}">
-        {{ range . }}
-          <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[3/2] w-full shape-cube object-cover sm:aspect-auto sm:h-80">
+      {{- /* The other photos in a row under it: two as 2:1; three as 2:1:1 on wide screens (on tablets the first one takes the whole row) */ -}}
+      {{ with .images }}{{ with after 1 . }}{{ $three := ge (len .) 3 }}<div class="mt-6 grid gap-6{{ if $three }} sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr]{{ else if gt (len .) 1 }} sm:grid-cols-[2fr_1fr]{{ end }}">
+        {{ range $i, $img := . }}
+          <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[3/2] w-full shape-cube object-cover sm:aspect-auto sm:h-80{{ if and $three (eq $i 0) }} sm:col-span-2 lg:col-span-1{{ end }}">
         {{ end }}
       </div>{{ end }}{{ end }}
     </div>
