@@ -20,9 +20,9 @@
           {{- else }}
             <span class="absolute top-[0.3rem] left-0 size-2.5 border-2 border-nobility/30 bg-white" aria-hidden="true"></span>
           {{- end }}
-          <span class="block text-sm leading-snug font-semibold {{ if $now }}text-nobility{{ else }}text-nobility/60{{ end }} sm:text-base">
+          <span class="block text-sm leading-snug font-semibold {{ if $now }}text-azure{{ else }}text-nobility/60{{ end }} sm:text-base">
             {{- if $now }}<span class="sr-only">Now: </span>{{ end -}}
-            {{- $to := split ($s.link | default "") "#" }}{{- with and $s.link (site.GetPage (index $to 0)) }}<a href="{{ .RelPermalink }}{{ with after 1 $to }}#{{ index . 0 }}{{ end }}" class="underline-offset-4 transition hover:text-pink-ink hover:underline">{{ $s.name }}</a>{{ else }}{{ $s.name }}{{ end -}}
+            {{- $to := split ($s.link | default "") "#" }}{{- with and $s.link (site.GetPage (index $to 0)) }}<a href="{{ .RelPermalink }}{{ with after 1 $to }}#{{ index . 0 }}{{ end }}" class="{{ if $now }}text-nobility {{ end }}underline-offset-4 transition hover:text-pink-ink hover:underline">{{ $s.name }}</a>{{ else }}{{ $s.name }}{{ end -}}
             {{- if $done }}<span class="sr-only"> (closed)</span>{{ end -}}
           </span>
           <span class="mt-0.5 block text-xs leading-snug text-nobility/60 sm:text-sm">

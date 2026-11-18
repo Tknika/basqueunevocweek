@@ -21,7 +21,7 @@
           {{ else }}
             <span role="link" aria-disabled="true" class="group inline-flex items-center gap-3 bg-pink px-7 py-4 text-xl font-semibold text-night no-underline transition hover:bg-nobility hover:text-white cursor-pointer">{{ .button }} <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span></span>
           {{ end }}
-          {{ with .duration }}<p class="flex items-center gap-2 font-semibold text-nobility">{{ partial "icon.html" (dict "name" "clock" "class" "size-6 text-azure") }}{{ . }}</p>{{ end }}
+          {{ with .duration }}<p class="flex items-center gap-2 font-semibold text-azure">{{ partial "icon.html" (dict "name" "clock" "class" "size-6 text-azure") }}{{ . }}</p>{{ end }}
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
         {{ range .why }}
           <li class="flex flex-col bg-white p-6">
             <span class="shape-cube flex size-11 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-6") }}</span>
-            <span class="mt-4 text-xl leading-tight font-semibold text-nobility">{{ .title }}</span>
+            <span class="mt-4 text-xl leading-tight font-semibold text-azure">{{ .title }}</span>
             <span class="mt-1 leading-relaxed">{{ .text }}</span>
           </li>
         {{ end }}
@@ -42,10 +42,10 @@
     {{- /* Topics: the challenges named on the About page, so both stay the same */ -}}
     {{ with site.GetPage "/about" }}{{ with .Params.chapters.global.challenges }}
       <div class="px-6 py-8 sm:px-8">
-        <p class="font-semibold text-nobility">{{ $call.topics_title }}</p>
+        <p class="font-semibold text-azure">{{ $call.topics_title }}</p>
         <ul class="not-prose mt-4 flex flex-wrap gap-2">
           {{ range . }}
-            <li class="flex items-center gap-2 bg-white px-3 py-1.5 text-sm font-semibold text-nobility">{{ partial "icon.html" (dict "name" .icon "class" "size-4 text-azure") }}{{ .name }}</li>
+            <li class="flex items-center gap-2 bg-white px-3 py-1.5 text-sm font-semibold text-azure">{{ partial "icon.html" (dict "name" .icon "class" "size-4 text-azure") }}{{ .name }}</li>
           {{ end }}
         </ul>
       </div>
