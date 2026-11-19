@@ -73,7 +73,7 @@ audiences:
 formats:
   title: "A programme for each audience"
   items:
-    - who: "Policymakers"
+    - who: "Policymakers & authorities"
       offer: "A policy dialogue, study visits, and the conference itself."
       page: "/programme"
     - who: "TVET representatives, employers and researchers"
