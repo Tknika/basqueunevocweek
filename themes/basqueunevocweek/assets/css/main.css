@@ -30,6 +30,7 @@
   --color-lime: #c3d13a;    /* tknika: surfaces and lines only, low contrast as text on white */
   --color-purple: #4837ce;  /* balances the blue (7.6:1 with white) */
   --color-sky: #b1c8ce;     /* the sky in the Kursaal photos */
+  --color-alert: #d0021b;   /* the "Pending" marks only (_partials/pending.html), never in the design: 5.7:1 with white */
   --color-haze: #eef3f4;    /* a very light sky: soft surface on the home */
 }
 
@@ -130,9 +131,9 @@
     @apply w-full px-4 sm:px-6 lg:px-8;
   }
 
-  /* Information that is not final yet (_partials/pending.html): hazard tape, diagonal stripes of lime and night, used nowhere else so a pending part never reads as part of the design. --tape is the width of a stripe. */
+  /* Information that is not final yet (_partials/pending.html): barrier tape, diagonal stripes of red and white, used nowhere else so a pending part never reads as part of the design (lime and night until it was asked to show even more). --tape is the width of a stripe. */
   .pending-tape {
-    background: repeating-linear-gradient(-45deg, var(--color-lime) 0 var(--tape, 10px), var(--color-night) var(--tape, 10px) calc(2 * var(--tape, 10px)));
+    background: repeating-linear-gradient(-45deg, var(--color-alert) 0 var(--tape, 10px), #fff var(--tape, 10px) calc(2 * var(--tape, 10px)));
   }
 
   /* The brand shape: the leaning glass cubes of the Kursaal, used to cut photos and as small coloured shards, as texurabranding.com does with its logo */

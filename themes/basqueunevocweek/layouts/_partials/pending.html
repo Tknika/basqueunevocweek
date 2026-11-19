@@ -1,5 +1,5 @@
 {{- /* A "Pending" mark for information that is not final yet. Asked in November 2026, while UNESCO-UNEVOC reviews the site: parts of it still show 2026 information.
-  It must not read as part of the design (the first, small lime tags were "too integrated"), so it wears hazard tape, lime and night stripes (.pending-tape in main.css), used nowhere else, and a warning icon.
+  It must not read as part of the design (the first, small lime tags were "too integrated"), so it is red (`alert` in main.css, used for nothing else: first lime and night hazard tape, then red to show even more), with barrier tape, red and white stripes (.pending-tape), and a warning icon.
   Set by `pending` in the front matter: true ("Not final yet") or a short text shown instead.
   - On a page (speakers, Student Hub, the programme): `pending` at the top of its front matter, a band across the page above its header (style "band": by _partials/page-header.html, or the Student Hub layout).
   - On a part of a day (the mornings of the programme): `pending` inside `morning`, a tag next to its heading and tape down its left edge (layouts/day.html), and a small taped mark on that part's button in the programme list (layouts/section.html).
@@ -9,18 +9,18 @@
 {{ with .value }}
   {{ $text := "Not final yet" }}{{ if ne . true }}{{ $text = . }}{{ end }}
   {{ if eq $.style "band" }}
-    <aside class="bg-night text-white" aria-label="Pending information">
+    <aside class="bg-alert text-white" aria-label="Pending information">
       <div class="pending-tape h-3" aria-hidden="true"></div>
       <div class="container-site flex flex-wrap items-center gap-x-5 gap-y-3 py-4 sm:py-5">
-        <p class="inline-flex items-center gap-2.5 bg-lime px-3 py-2 font-display text-base tracking-widest text-night uppercase sm:text-lg">{{ partial "icon.html" (dict "name" "alert" "class" "size-6 shrink-0") }}Pending</p>
+        <p class="inline-flex items-center gap-2.5 bg-white px-3 py-2 font-display text-base tracking-widest text-alert uppercase sm:text-lg">{{ partial "icon.html" (dict "name" "alert" "class" "size-6 shrink-0") }}Pending</p>
         <p class="text-xl font-semibold sm:text-2xl">{{ $text }}</p>
       </div>
       <div class="pending-tape h-3" aria-hidden="true"></div>
     </aside>
   {{ else }}
     <p class="pending-tape inline-block p-1 [--tape:7px] {{ $.class }}">
-      <span class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-night px-3 py-2 text-white">
-        <span class="inline-flex items-center gap-2 font-display text-sm tracking-widest text-lime uppercase">{{ partial "icon.html" (dict "name" "alert" "class" "size-5 shrink-0") }}Pending</span>
+      <span class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-alert px-3 py-2 text-white">
+        <span class="inline-flex items-center gap-2 font-display text-sm tracking-widest uppercase">{{ partial "icon.html" (dict "name" "alert" "class" "size-5 shrink-0") }}Pending</span>
         <span class="{{ if $.short }}sr-only{{ else }}text-base font-semibold{{ end }}">{{ $text }}</span>
       </span>
     </p>

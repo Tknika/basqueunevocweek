@@ -21,7 +21,7 @@
             {{- /* A part whose block in the day's front matter has `pending` (the mornings, for now) carries a small "Pending" mark, on hazard tape like the others (_partials/pending.html) */ -}}
             {{ range .Params.parts }}
               {{ $pending := false }}{{ with index $day.Params (lower .) }}{{ if reflect.IsMap . }}{{ $pending = .pending }}{{ end }}{{ end }}
-              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}{{ if $pending }} (pending){{ end }}" class="flex items-center gap-2 border border-nobility px-3 py-1 text-nobility transition hover:border-pink hover:bg-pink hover:text-night">{{ . }}{{ if $pending }}<span class="pending-tape p-[3px] [--tape:4px]" aria-hidden="true"><span class="block bg-night px-1.5 py-0.5 font-display text-[0.6rem] tracking-widest text-lime uppercase">Pending</span></span>{{ end }}</a></li>
+              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}{{ if $pending }} (pending){{ end }}" class="flex items-center gap-2 border border-nobility px-3 py-1 text-nobility transition hover:border-pink hover:bg-pink hover:text-night">{{ . }}{{ if $pending }}<span class="pending-tape p-[3px] [--tape:4px]" aria-hidden="true"><span class="block bg-alert px-1.5 py-0.5 font-display text-[0.6rem] tracking-widest text-white uppercase">Pending</span></span>{{ end }}</a></li>
             {{ end }}
           </ul>
           <span aria-hidden="true" class="text-3xl text-nobility transition group-hover:translate-x-1 group-hover:text-pink motion-reduce:transition-none">→</span>

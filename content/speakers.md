@@ -1,6 +1,6 @@
 ---
 title: "Speakers"
-pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
+pending: "Not final yet: the speakers on this page are not the final ones"  # a "Pending" band with this text (_partials/pending.html): remove it when the 2027 speakers are confirmed
 header_image: "images/speakers-pedrosa.jpg"
 layout: speakers
 weight: 3
