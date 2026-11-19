@@ -1,5 +1,6 @@
 ---
 title: "Programme"
+pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
 header_image: "images/tknika-auditorium-tv.jpg"
 weight: 2
 menus:

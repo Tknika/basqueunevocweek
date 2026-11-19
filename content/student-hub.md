@@ -1,5 +1,6 @@
 ---
 title: "Student Hub"
+pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
 aliases: ["/youth-camp/"]
 weight: 7
 layout: youth

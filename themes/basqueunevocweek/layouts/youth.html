@@ -4,6 +4,7 @@
   <section class="mesh-youth relative isolate overflow-hidden">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
       <div>
+        {{ partial "pending.html" (dict "page" . "tag" "bg-nobility text-lime" "class" "mb-6") }}
         <h1 class="font-display text-[clamp(3.2rem,14vw,13rem)] lg:text-[clamp(4rem,9vw,8.5rem)] leading-[0.85] font-normal tracking-tight uppercase">Student<br>Hub</h1>
         <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
           <p class="-rotate-3 bg-pink px-4 py-2 font-display text-lg text-night sm:text-2xl">{{ .Params.dates }}</p>

@@ -1,5 +1,6 @@
 ---
 title: "12 May"
+pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
 header_image: "images/kursaal-facade-1200.jpg"
 weight: 2
 weekday: "Wednesday"
