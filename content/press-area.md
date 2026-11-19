@@ -34,10 +34,4 @@ contact:
 
 {{< press-cards >}}
 
-## Logos
-
-The logos of the organisers, to download.
-
-{{< logos >}}
-
 {{< press-contact >}}

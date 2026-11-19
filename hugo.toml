@@ -14,11 +14,11 @@ disableKinds = ["taxonomy", "term"]
   dates = "11-13 May 2027"
   venue = "Donostia · San Sebastian"
 
-  # Shown in the press area in this order (UNESCO-UNEVOC, Basque Government, FP Euskadi, Tknika: asked in November 2026).
-  # Without `logo`, the name is shown as text. The order does not change the footer:
+  # The organisers, shown in the footer (the press area offered their logos to download until November 2026).
+  # Without `logo`, the name is shown as text. The order of this list does not change the footer:
   # in the footer, `footer` places each logo: "wide" (first, as wide as the row under it), "row" (side by side, by `footer_order`) or "aside" (apart, on the right).
   # `logo` goes on the blue footer (white versions, or `plaque` for a white background).
-  # `logo_light` is an official version for light backgrounds; `logo_preview` only shows the logo on white.
+  # The versions for white backgrounds, used by the press kit (press-kit/press-kit.html), are noted under each organiser.
   [[params.organizers]]
     name = "UNESCO-UNEVOC Network Member"
     # Apart from the rest, on the right of the footer
@@ -32,25 +32,23 @@ disableKinds = ["taxonomy", "term"]
     footer = "wide"
     # The Department of Education's logo (Hezkuntza Saila / Departamento de Educación under the band), in white
     logo = "images/logo-eusko-jaurlaritza-white.png"
-    # The same logo in colour, for light backgrounds (press area): rendered from the official PDF on euskadi.eus
+    # In colour, for white backgrounds: images/logo-hezkuntza-saila.png, rendered from the official PDF on euskadi.eus
     # (the same file as in the euskelec site's press room). Not the plain Basque Government logo without the department:
     # it is not the right one (removed in November 2026).
-    logo_light = "images/logo-hezkuntza-saila.png"
     url = "https://www.euskadi.eus/"
   [[params.organizers]]
     name = "FP Euskadi"
     footer = "row"
     footer_order = 1
     logo = "images/logo-fp-euskadi.png"
-    # Dark version made here from the white one, only to show it on white: not offered for download
-    logo_preview = "images/logo-fp-euskadi-dark.png"
+    # For white backgrounds: images/logo-fp-euskadi-dark.png, a dark version made here from the white one (not official)
     url = "https://www.fpeuskadi.eus/"
   [[params.organizers]]
     name = "Tknika"
     footer = "row"
     footer_order = 2
     logo = "images/logo-tknika.png"
-    logo_preview = "images/logo-tknika-dark.png"
+    # For white backgrounds: images/logo-tknika-dark.png (made here from the white one, like FP Euskadi's)
     url = "https://tknika.eus/"
 
 [markup.goldmark.renderer]
