@@ -130,6 +130,11 @@
     @apply w-full px-4 sm:px-6 lg:px-8;
   }
 
+  /* Information that is not final yet (_partials/pending.html): hazard tape, diagonal stripes of lime and night, used nowhere else so a pending part never reads as part of the design. --tape is the width of a stripe. */
+  .pending-tape {
+    background: repeating-linear-gradient(-45deg, var(--color-lime) 0 var(--tape, 10px), var(--color-night) var(--tape, 10px) calc(2 * var(--tape, 10px)));
+  }
+
   /* The brand shape: the leaning glass cubes of the Kursaal, used to cut photos and as small coloured shards, as texurabranding.com does with its logo */
   .shape-cube {
     clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);

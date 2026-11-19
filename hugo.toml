@@ -14,17 +14,11 @@ disableKinds = ["taxonomy", "term"]
   dates = "11-13 May 2027"
   venue = "Donostia · San Sebastian"
 
-  # Shown in the press area in this order. Without `logo`, the name is shown as text.
-  # In the footer, `footer` places each logo: "top" (side by side, by `footer_order`), "bottom" (under them) or "aside" (apart, on the right).
+  # Shown in the press area in this order (UNESCO-UNEVOC, Basque Government, FP Euskadi, Tknika: asked in November 2026).
+  # Without `logo`, the name is shown as text. The order does not change the footer:
+  # in the footer, `footer` places each logo: "wide" (first, as wide as the row under it), "row" (side by side, by `footer_order`) or "aside" (apart, on the right).
   # `logo` goes on the blue footer (white versions, or `plaque` for a white background).
   # `logo_light` is an official version for light backgrounds; `logo_preview` only shows the logo on white.
-  [[params.organizers]]
-    name = "Basque Government, Department of Education"
-    footer = "bottom"
-    logo = "images/logo-eusko-jaurlaritza-white.png"
-    # For light backgrounds (press area)
-    logo_light = "images/logo-eusko-jaurlaritza.png"
-    url = "https://www.euskadi.eus/"
   [[params.organizers]]
     name = "UNESCO-UNEVOC Network Member"
     # Apart from the rest, on the right of the footer
@@ -34,17 +28,27 @@ disableKinds = ["taxonomy", "term"]
     plaque = true
     url = "https://unevoc.unesco.org/"
   [[params.organizers]]
+    name = "Basque Government, Department of Education"
+    footer = "wide"
+    # The Department of Education's logo (Hezkuntza Saila / Departamento de Educación under the band), in white
+    logo = "images/logo-eusko-jaurlaritza-white.png"
+    # The same logo in colour, for light backgrounds (press area): rendered from the official PDF on euskadi.eus
+    # (the same file as in the euskelec site's press room). The plain Basque Government logo without the department,
+    # logo-eusko-jaurlaritza.png, is not the right one: it is left only for the draft press kit, until it is printed again.
+    logo_light = "images/logo-hezkuntza-saila.png"
+    url = "https://www.euskadi.eus/"
+  [[params.organizers]]
     name = "FP Euskadi"
-    footer = "top"
-    footer_order = 2
+    footer = "row"
+    footer_order = 1
     logo = "images/logo-fp-euskadi.png"
     # Dark version made here from the white one, only to show it on white: not offered for download
     logo_preview = "images/logo-fp-euskadi-dark.png"
     url = "https://www.fpeuskadi.eus/"
   [[params.organizers]]
     name = "Tknika"
-    footer = "top"
-    footer_order = 1
+    footer = "row"
+    footer_order = 2
     logo = "images/logo-tknika.png"
     logo_preview = "images/logo-tknika-dark.png"
     url = "https://tknika.eus/"

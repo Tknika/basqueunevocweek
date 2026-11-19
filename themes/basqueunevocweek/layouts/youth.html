@@ -1,10 +1,11 @@
 {{ define "main" }}
 {{- /* Student Hub speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year’s edition stuck on at an angle,  tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
 <div class="overflow-x-clip text-nobility">
+  {{- /* Not final yet: the same band as on the other pages, above the poster (_partials/pending.html) */ -}}
+  {{ partial "pending.html" (dict "value" .Params.pending "style" "band") }}
   <section class="mesh-youth relative isolate overflow-hidden">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
       <div>
-        {{ partial "pending.html" (dict "value" .Params.pending "tag" "bg-nobility text-lime" "class" "mb-6") }}
         <h1 class="font-display text-[clamp(3.2rem,14vw,13rem)] lg:text-[clamp(4rem,9vw,8.5rem)] leading-[0.85] font-normal tracking-tight uppercase">Student<br>Hub <span class="ml-[0.1em] inline-block -rotate-6 bg-pink px-[0.14em] py-[0.08em] align-top text-[0.42em] leading-none text-night">2027</span></h1>
         <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
           <p class="-rotate-3 bg-pink px-4 py-2 font-display text-lg text-night sm:text-2xl">{{ .Params.dates }}</p>

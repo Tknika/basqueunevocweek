@@ -1,17 +1,17 @@
-{{- /* The organisers' logos on UNEVOC azure. On the left Tknika and FP Euskadi side by side with the Basque Government under them; on the right, apart and past a thin line, UNESCO-UNEVOC. Where each logo goes is set by `footer` in params.organizers (hugo.toml). */ -}}
+{{- /* The organisers' logos on UNEVOC azure. On the left the Basque Government's Department of Education first, and under it FP Euskadi and Tknika side by side (in that order, asked in November 2026; until then Tknika and FP Euskadi went first, with the Basque Government under them); on the right, apart and past a thin line, UNESCO-UNEVOC. Where each logo goes is set by `footer` in params.organizers (hugo.toml): "wide", "row" (by `footer_order`) or "aside". */ -}}
 {{ $orgs := site.Params.organizers }}
 <footer class="bg-azure text-white">
   <div class="{{ if or .IsHome .Params.home_variant }}container-wide{{ else }}container-site{{ end }} flex flex-col items-center gap-10 py-12 md:flex-row md:items-center md:justify-between md:py-16">
     <div class="flex w-fit flex-col gap-8" aria-label="Organised by" role="group">
+      {{- /* as wide as the row of logos under it (w-0 min-w-full: it takes the row's width without widening it) */ -}}
+      {{ range where $orgs "footer" "wide" }}
+        <div class="w-0 min-w-full">{{ partial "organizer-logo.html" (dict "o" . "class" "!w-full h-auto") }}</div>
+      {{ end }}
       <ul class="flex items-center justify-between gap-x-10 sm:gap-x-14">
-        {{ range sort (where $orgs "footer" "top") "footer_order" }}
+        {{ range sort (where $orgs "footer" "row") "footer_order" }}
           <li>{{ partial "organizer-logo.html" (dict "o" . "class" "h-16 sm:h-20 lg:h-24") }}</li>
         {{ end }}
       </ul>
-      {{- /* as wide as the logos above it (w-0 min-w-full: it takes the row's width without widening it) */ -}}
-      {{ range where $orgs "footer" "bottom" }}
-        <div class="w-0 min-w-full">{{ partial "organizer-logo.html" (dict "o" . "class" "!w-full h-auto") }}</div>
-      {{ end }}
     </div>
     {{ with where $orgs "footer" "aside" }}
       <div class="border-t border-white/30 pt-10 md:border-t-0 md:border-l md:pt-0 md:pl-12 lg:pl-16">
