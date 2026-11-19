@@ -18,8 +18,10 @@
         </div>
         <div class="flex items-center justify-between gap-6 md:justify-end">
           <ul class="relative z-10 flex gap-2 text-sm font-semibold">
+            {{- /* A part whose block in the day's front matter has `pending` (the mornings, for now) carries a small "Pending" mark */ -}}
             {{ range .Params.parts }}
-              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}" class="block border border-nobility px-3 py-1 text-nobility transition hover:border-pink hover:bg-pink hover:text-night">{{ . }}</a></li>
+              {{ $pending := false }}{{ with index $day.Params (lower .) }}{{ if reflect.IsMap . }}{{ $pending = .pending }}{{ end }}{{ end }}
+              <li><a href="{{ $day.RelPermalink }}#{{ lower . }}" aria-label="{{ $day.Title }}: {{ . }}{{ if $pending }} (pending){{ end }}" class="flex items-center gap-2 border border-nobility px-3 py-1 text-nobility transition hover:border-pink hover:bg-pink hover:text-night">{{ . }}{{ if $pending }}<span class="bg-lime px-1.5 py-0.5 font-display text-[0.6rem] tracking-widest text-night uppercase" aria-hidden="true">Pending</span>{{ end }}</a></li>
             {{ end }}
           </ul>
           <span aria-hidden="true" class="text-3xl text-nobility transition group-hover:translate-x-1 group-hover:text-pink motion-reduce:transition-none">→</span>

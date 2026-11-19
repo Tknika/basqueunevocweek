@@ -1,6 +1,5 @@
 ---
 title: "11 May"
-pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
 header_image: "images/tknika-tk-light.jpg"
 weight: 1
 weekday: "Tuesday"
@@ -11,6 +10,7 @@ menus:
   main:
     parent: programme
 morning:
+  pending: true  # shows a "Pending · Not final yet" tag by the Morning heading and on its button in the programme (_partials/pending.html): remove it when the 2027 morning arrives
   time: "9:00-14:30"
   intro: "Two options to choose from."
   options:

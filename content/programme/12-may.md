@@ -1,6 +1,5 @@
 ---
 title: "12 May"
-pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
 header_image: "images/kursaal-facade-1200.jpg"
 weight: 2
 weekday: "Wednesday"
@@ -12,6 +11,7 @@ menus:
   main:
     parent: programme
 morning:
+  pending: true  # shows a "Pending · Not final yet" tag by the Morning heading and on its button in the programme (_partials/pending.html): remove it when the 2027 morning arrives
   time: "8.30-13.15"
   conference:
     title: "Conference: “Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide”"

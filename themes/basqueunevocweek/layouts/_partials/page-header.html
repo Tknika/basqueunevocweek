@@ -3,7 +3,7 @@
 <section class="shape-header overflow-hidden bg-azure text-white">
   <div class="container-site grid items-center gap-8 pt-10 pb-16 md:pt-12 lg:grid-cols-[3fr_2fr] lg:gap-16 lg:pb-20">
     <div>
-      {{ partial "pending.html" (dict "page" . "tag" "bg-lime text-night" "class" "mb-5") }}
+      {{ partial "pending.html" (dict "value" .Params.pending "tag" "bg-lime text-night" "class" "mb-5") }}
       {{ with .Params.weekday }}
         <p class="text-sm font-semibold tracking-widest uppercase"><a href="{{ $.Parent.RelPermalink }}" class="underline decoration-white/50 underline-offset-3 transition hover:decoration-white">{{ $.Parent.Title }}</a> · {{ . }}</p>
       {{ end }}

@@ -1,7 +1,10 @@
-{{- /* A "Pending" tag at the top of a page whose information is not final yet: `pending: true` in its front matter (or a short text, shown instead of "Not final yet").
-  Asked in November 2026, while UNESCO-UNEVOC reviews the site: the programme and its days, the speakers and Student Hub still show 2026 information. Remove `pending` from a page when its 2027 information arrives.
-  Takes page, tag (the tag's colours, which depend on the background) and class (spacing). */ -}}
-{{ with .page.Params.pending }}
+{{- /* A "Pending" tag for information that is not final yet. Asked in November 2026, while UNESCO-UNEVOC reviews the site: parts of it still show 2026 information.
+  Set by `pending` in the front matter: true (the tag and "Not final yet") or a short text shown instead of "Not final yet".
+  - On a page (speakers, Student Hub, the programme): `pending` at the top of its front matter, shown by the page header (or the Student Hub layout).
+  - On a part of a day (the mornings of the programme): `pending` inside `morning`, shown next to its heading by layouts/day.html, and as a small mark on that part's button in the programme list (layouts/section.html).
+  Remove it when the 2027 information arrives.
+  Takes value (the `pending` value), tag (the tag's colours, which depend on the background) and class (spacing). */ -}}
+{{ with .value }}
   <p class="flex flex-wrap items-center gap-x-3 gap-y-1 {{ $.class }}">
     <span class="{{ $.tag }} px-3 py-1.5 font-display text-sm tracking-widest uppercase">Pending</span>
     <span class="text-base font-semibold">{{ if eq . true }}Not final yet{{ else }}{{ . }}{{ end }}</span>

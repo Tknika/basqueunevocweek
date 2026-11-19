@@ -9,6 +9,7 @@
     <div class="flex flex-wrap items-baseline gap-x-4 gap-y-1">
       <h2 class="text-5xl sm:text-6xl lg:text-7xl">Morning</h2>
       {{ with .time }}<p class="text-xl font-semibold text-pink-ink">{{ . }}</p>{{ end }}
+      {{ partial "pending.html" (dict "value" .pending "tag" "bg-lime text-night" "class" "self-center sm:ml-2") }}
     </div>
     {{ with .intro }}<p class="mt-3 text-lg">{{ . }}</p>{{ end }}
 
