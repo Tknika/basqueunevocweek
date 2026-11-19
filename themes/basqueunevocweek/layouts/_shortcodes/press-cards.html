@@ -1,17 +1,22 @@
-{{- /* Press area: the main resources side by side (one column on small screens), from `press` in the page's front matter.
-  Each item: title, icon (a name from _partials/icon.html), text, and either file (a path under static/, downloaded) or email (a mailto link), with link (the link's text). */ -}}
+{{- /* Press area, the downloads: the documents side by side (one column on small screens), from `press` in the page's front matter.
+  Each item: title, icon (a name from _partials/icon.html), text, file (a path under static/, downloaded by a "Download" button) and size (its format and weight, shown beside it).
+  pending: true puts a "Pending" tag beside the icon (_partials/pending.html), for a document that is not final yet.
+  The media contact is not a download: it has its own band (the press-contact shortcode). */ -}}
 {{ with .Page.Params.press }}
-  <div class="not-prose prose-wide my-10 grid gap-3 lg:grid-cols-3">
-    {{ range . }}
+  <div class="not-prose prose-wide my-8 grid gap-3 lg:grid-cols-3">
+    {{ range $item := . }}
       <section class="flex flex-col bg-haze p-6 lg:p-8">
-        <span class="shape-cube flex size-14 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-7") }}</span>
-        <h2 class="mt-6 text-3xl leading-tight tracking-[-0.025em]">{{ .title }}</h2>
-        <p class="mt-3 text-lg leading-relaxed">{{ .text }}</p>
-        {{ if .file }}
-          <a href="{{ .file | relURL }}" download class="mt-auto inline-flex items-center gap-2 self-start pt-6 font-semibold text-nobility transition hover:text-pink-ink">{{ .link }} <span aria-hidden="true">↓</span></a>
-        {{ end }}
-        {{ with .email }}
-          <a href="mailto:{{ . }}" class="mt-auto inline-flex items-center gap-2 self-start pt-6 font-semibold break-all text-nobility transition hover:text-pink-ink">{{ . }}</a>
+        <div class="flex items-center justify-between gap-3">
+          <span class="shape-cube flex size-14 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" .icon "class" "size-7") }}</span>
+          {{ partial "pending.html" (dict "value" .pending "tag" "bg-lime text-night" "class" "" "short" true) }}
+        </div>
+        <h3 class="mt-6 text-3xl leading-tight tracking-[-0.025em]">{{ .title }}</h3>
+        <p class="mt-3 mb-6 text-lg leading-relaxed">{{ .text }}</p>
+        {{ with .file }}
+          <p class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2">
+            <a href="{{ . | relURL }}" download class="inline-flex items-center gap-2.5 bg-nobility px-5 py-3 leading-tight font-semibold text-white no-underline transition hover:bg-pink hover:text-night">{{ partial "icon.html" (dict "name" "download" "class" "size-5 shrink-0") }}Download<span class="sr-only"> the {{ lower $item.title }}</span></a>
+            {{ with $item.size }}<span class="text-sm font-semibold">{{ . }}</span>{{ end }}
+          </p>
         {{ end }}
       </section>
     {{ end }}

@@ -1,0 +1,13 @@
+{{- /* Press area, the media contact (`contact` in the page's front matter: title, text, email): not a download, so it does not look like the download cards. A band on UNEVOC azure across the page (.prose-wide), with the mail icon, the text and the address as a white button that opens the mail program. */ -}}
+{{ with .Page.Params.contact }}
+  <section class="not-prose prose-wide mt-20 grid items-center gap-x-10 gap-y-6 bg-azure p-6 text-white sm:p-12 lg:grid-cols-[auto_1fr_auto]" aria-labelledby="media-contact">
+    <span class="shape-cube flex size-16 items-center justify-center bg-pink text-night">{{ partial "icon.html" (dict "name" "mail" "class" "size-8") }}</span>
+    <div>
+      <h2 id="media-contact" class="text-4xl leading-tight tracking-[-0.03em] text-white sm:text-5xl">{{ .title }}</h2>
+      {{ with .text }}<p class="mt-3 text-xl leading-relaxed">{{ . }}</p>{{ end }}
+    </div>
+    {{ with .email }}
+      <a href="mailto:{{ . }}" class="inline-flex items-center gap-3 self-center justify-self-start bg-white px-4 py-3 text-base font-semibold break-all text-nobility no-underline transition hover:bg-pink hover:text-night sm:px-6 sm:py-4 sm:text-xl">{{ partial "icon.html" (dict "name" "mail" "class" "size-6 shrink-0") }}{{ . }}</a>
+    {{ end }}
+  </section>
+{{ end }}

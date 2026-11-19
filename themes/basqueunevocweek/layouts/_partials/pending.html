@@ -3,10 +3,11 @@
   - On a page (speakers, Student Hub, the programme): `pending` at the top of its front matter, shown by the page header (or the Student Hub layout).
   - On a part of a day (the mornings of the programme): `pending` inside `morning`, shown next to its heading by layouts/day.html, and as a small mark on that part's button in the programme list (layouts/section.html).
   Remove it when the 2027 information arrives.
-  Takes value (the `pending` value), tag (the tag's colours, which depend on the background) and class (spacing). */ -}}
+  - On a card of the press area (the press kit): `pending` in its item, shown beside its icon by the press-cards shortcode, the tag alone (short).
+  Takes value (the `pending` value), tag (the tag's colours, which depend on the background), class (spacing) and short (true: the tag alone, its text only for screen readers). */ -}}
 {{ with .value }}
   <p class="flex flex-wrap items-center gap-x-3 gap-y-1 {{ $.class }}">
     <span class="{{ $.tag }} px-3 py-1.5 font-display text-sm tracking-widest uppercase">Pending</span>
-    <span class="text-base font-semibold">{{ if eq . true }}Not final yet{{ else }}{{ . }}{{ end }}</span>
+    <span class="{{ if $.short }}sr-only{{ else }}text-base font-semibold{{ end }}">{{ if eq . true }}Not final yet{{ else }}{{ . }}{{ end }}</span>
   </p>
 {{ end }}
