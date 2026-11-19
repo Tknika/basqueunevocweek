@@ -33,8 +33,8 @@ disableKinds = ["taxonomy", "term"]
     # The Department of Education's logo (Hezkuntza Saila / Departamento de Educación under the band), in white
     logo = "images/logo-eusko-jaurlaritza-white.png"
     # The same logo in colour, for light backgrounds (press area): rendered from the official PDF on euskadi.eus
-    # (the same file as in the euskelec site's press room). The plain Basque Government logo without the department,
-    # logo-eusko-jaurlaritza.png, is not the right one: it is left only for the draft press kit, until it is printed again.
+    # (the same file as in the euskelec site's press room). Not the plain Basque Government logo without the department:
+    # it is not the right one (removed in November 2026).
     logo_light = "images/logo-hezkuntza-saila.png"
     url = "https://www.euskadi.eus/"
   [[params.organizers]]
