@@ -8,7 +8,7 @@ menus:
     identifier: programme
 # As in the draft calendar (Draft_UnescoAnniversary_conference_, in the press area): the three days, then the Student Hub alongside them.
 student_hub:
-  title: "Student Hub"
+  title: "Student Hub 2027"
   dates: "10-14 May"
   text: "For HVET students (EQF 5-6) and VET students (EQF 4)"
 ---

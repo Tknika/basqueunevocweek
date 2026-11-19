@@ -1,5 +1,5 @@
 ---
-title: "Student Hub"
+title: "Student Hub 2027"
 pending: true  # shows a "Pending · Not final yet" tag (_partials/pending.html): remove it when the 2027 information arrives
 aliases: ["/youth-camp/"]
 weight: 7
