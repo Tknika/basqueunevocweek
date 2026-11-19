@@ -39,8 +39,8 @@
       </ul>
     </div>
 
-    {{- /* Topics: the challenges named on the About page, so both stay the same */ -}}
-    {{ with site.GetPage "/about" }}{{ with .Params.chapters.global.challenges }}
+    {{- /* Topics: the challenges named on the About page (`challenges` in its front matter), so both stay the same */ -}}
+    {{ with site.GetPage "/about" }}{{ with .Params.challenges }}
       <div class="px-6 py-8 sm:px-8">
         <p class="font-semibold text-azure">{{ $call.topics_title }}</p>
         <ul class="not-prose mt-4 flex flex-wrap gap-2">
