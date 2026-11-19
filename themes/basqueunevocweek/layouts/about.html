@@ -5,7 +5,7 @@
   How: learning in both directions, Global → Local (azure) and Local → Global (haze).
   What for: share, connect, celebrate, numbered, the last one with the two anniversaries as figures.
   Who: the audiences as icon tiles, then what the programme offers each of them (formats).
-  The call to action on a full-width azure band with leaning edges (.shape-band), with the registration button (cta.url, an outside form; while it is empty the button shows but does nothing).
+  The call to action on a full-width azure band with leaning edges (.shape-band), with the registration button (cta.url, an outside form; while it is empty the button shows but does nothing), next to a line drawing of an audience with one free place (_partials/drawing-crowd.html, made by scripts/make-crowd-drawing.js).
   Last, the whole note folded (the body of the Markdown file), as the PDF is not tagged for screen readers.
   Icons: _partials/icon.html. */ -}}
 {{ define "main" }}
@@ -139,10 +139,11 @@
 
 {{- /* The call to action, with the registration button */ -}}
 {{ with .Params.cta }}
-  <section class="shape-band bg-azure py-24 text-white sm:py-28" aria-labelledby="cta">
-    <div class="container-site">
+  <section class="shape-band overflow-hidden bg-azure py-24 text-white sm:py-28" aria-labelledby="cta">
+    <div class="container-site grid items-center gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
+    <div>
       <p class="font-display text-sm tracking-widest uppercase sm:text-base">{{ site.Params.dates }} · {{ site.Params.venue }}</p>
-      <h2 id="cta" class="mt-5 max-w-5xl text-3xl leading-[1.1] text-balance text-white sm:text-5xl">{{ .text }}</h2>
+      <h2 id="cta" class="mt-5 text-3xl leading-[1.1] text-balance text-white sm:text-4xl xl:text-5xl">{{ .text }}</h2>
       {{ $button := "group mt-10 inline-flex items-center gap-3 bg-white px-7 py-4 text-xl font-semibold text-nobility no-underline transition hover:bg-pink hover:text-night" }}
       {{ $arrow := `<span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span>` | safeHTML }}
       {{ if .url }}
@@ -150,6 +151,9 @@
       {{ else }}
         <span role="link" aria-disabled="true" class="{{ $button }} cursor-pointer">{{ .button }} {{ $arrow }}</span>
       {{ end }}
+    </div>
+    {{- /* An audience with one free place, in thin lines (scripts/make-crowd-drawing.js), fading out at its edges into the band */ -}}
+    {{ partial "drawing-crowd.html" (dict "class" "mx-auto w-full max-w-xl [mask-image:radial-gradient(ellipse_at_50%_45%,black_45%,transparent_72%)]") }}
     </div>
   </section>
 {{ end }}
