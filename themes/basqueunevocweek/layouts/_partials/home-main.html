@@ -68,7 +68,7 @@
 {{ end }}
 
 <div class="container-wide py-16 md:py-24">
-  {{/* Three highlights, each photo cut with a different leaning cube. While a page is not built (the speakers, hidden for now: see HIDDEN.md), its highlight stays, photo included, but as a teaser without a link: `soon` is the text shown then, with a lime "Soon" tag. */}}
+  {{/* Three highlights, each photo cut with a different leaning cube. While a page is not built (the speakers, hidden for now: see HIDDEN.md), its highlight stays, photo included, but as a teaser without a link: `soon` is the text shown then, with a lime "Soon" tag next to its title. */}}
   <nav class="grid gap-12 sm:grid-cols-3 sm:gap-6 lg:gap-10" aria-label="Highlights">
     {{ range $item := slice
       (dict "page" "/programme" "title" "Programme" "shape" "shape-cube" "image" "images/tknika-auditorium-desk.jpg" "text" "Three days of activities, every morning and afternoon.")
@@ -90,13 +90,10 @@
         </a>
       {{ else if $item.soon }}
         <div class="block">
-          <div class="relative">
-            <span class="{{ $item.shape }} block overflow-hidden">
-              <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover {{ $item.position }}">
-            </span>
-            <span class="absolute top-6 right-2 -rotate-3 bg-lime px-3 py-1 font-display text-xs tracking-widest text-night uppercase" aria-hidden="true">Soon</span>
-          </div>
-          <p class="mt-5 text-3xl font-semibold tracking-tight">{{ $item.title }}<span class="sr-only"> (coming soon)</span></p>
+          <span class="{{ $item.shape }} block overflow-hidden">
+            <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover {{ $item.position }}">
+          </span>
+          <p class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-3xl font-semibold tracking-tight">{{ $item.title }}<span class="-rotate-3 bg-lime px-2.5 py-0.5 font-display text-xs tracking-widest text-night uppercase" aria-hidden="true">Soon</span><span class="sr-only"> (coming soon)</span></p>
           <p class="mt-2 text-lg font-medium text-nobility/70">{{ $item.soon }}</p>
         </div>
       {{ end }}
