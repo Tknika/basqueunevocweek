@@ -19,7 +19,7 @@ morning:
     image: "images/conference-audience.jpg"
     alt: "A full auditorium listening to a speaker on stage at a previous LCAMP conference"
     # The 2027 programme is unknown: only registration, the coffee break, the closing and lunch are sure.
-    # `tba: true` shows a slot as "To be announced" (dashed, with a lime tag). The 2026 sessions are in archive/12-may-morning-2026.md (see HIDDEN.md).
+    # `tba: true` shows a slot as "To be announced" (dashed, with an outlined tag). The 2026 sessions are in archive/12-may-morning-2026.md (see HIDDEN.md).
     sessions:
       - time: "8.30-9.00"
         break: "registration"
