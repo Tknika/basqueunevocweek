@@ -37,47 +37,58 @@
   </section>
 {{ end }}
 
-{{- /* The map: OpenStreetMap through Leaflet, both kept in the theme (static/vendor/leaflet), so the page sets no cookies; only the map images come from OpenStreetMap's servers. Google Maps was ruled out for its cookies (November 2026). In the style of the euskelec site's contact map (asked): grey map images, square controls, each place a small blue square with a white edge and a quiet white label; half the width, so it does not take over the page.
-  Accessible: the list next to the map names each place with its address and a link to open it in OpenStreetMap, so the map adds nothing that is not also in text (and the list is all there is without JavaScript). The map takes the keyboard (arrows to move, + and - to zoom); it does not zoom with the mouse wheel, and on phones one finger scrolls the page, not the map. */ -}}
+{{- /* The map: OpenStreetMap through Leaflet, both kept in the theme (static/vendor/leaflet), so the page sets no cookies; only the map images come from OpenStreetMap's servers. Google Maps was ruled out for its cookies (November 2026). In the style of the euskelec site's contact map (asked): grey map images, square controls, each place a small blue square with a white edge and a quiet white label.
+  Folded away (asked): the places are listed in text, and the map opens under them from a "Show the map" button (a <details>). The map is only drawn, and its images only requested from OpenStreetMap, when it is opened.
+  Accessible: the list names each place with its address and a link to open it in OpenStreetMap, so the map adds nothing that is not also in text. The map takes the keyboard (arrows to move, + and - to zoom); it does not zoom with the mouse wheel, and on phones one finger scrolls the page, not the map. */ -}}
 {{ with .Params.places_map }}
   <section id="map" class="container-site pb-12 md:pb-16" aria-labelledby="map-title">
     <h2 id="map-title" class="text-3xl sm:text-4xl">{{ .title }}</h2>
-    <div class="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-10">
-      <div id="places-map" class="places-map isolate aspect-square w-full border border-nobility/15 bg-haze sm:aspect-[4/3]" role="region" aria-label="Map: {{ .title }}" data-places='{{ .places | jsonify }}' hidden></div>
-      <ul class="grid content-start gap-5">
-        {{ range .places }}
-          <li class="flex gap-3">
-            <span class="mt-2 ml-1 size-3.5 shrink-0 border-[3px] border-white bg-azure outline outline-1 outline-azure" aria-hidden="true"></span>
-            <span class="flex flex-col gap-0.5">
-              <span class="text-xl font-semibold">{{ .name }}</span>
-              <span>{{ .address }}</span>
-              <a href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=17/{{ .lat }}/{{ .lon }}" target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-nobility underline underline-offset-4 hover:text-pink-ink">Open in OpenStreetMap{{ partial "icon.html" (dict "name" "external" "class" "size-4") }}<span class="sr-only"> (opens in a new tab)</span></a>
-            </span>
-          </li>
-        {{ end }}
-      </ul>
-    </div>
+    <ul class="mt-6 grid gap-5 sm:grid-cols-2 lg:max-w-4xl">
+      {{ range .places }}
+        <li class="flex gap-3">
+          <span class="mt-2 ml-1 size-3.5 shrink-0 border-[3px] border-white bg-azure outline outline-1 outline-azure" aria-hidden="true"></span>
+          <span class="flex flex-col gap-0.5">
+            <span class="text-xl font-semibold">{{ .name }}</span>
+            <span>{{ .address }}</span>
+            <a href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=17/{{ .lat }}/{{ .lon }}" target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-nobility underline underline-offset-4 hover:text-pink-ink">Open in OpenStreetMap{{ partial "icon.html" (dict "name" "external" "class" "size-4") }}<span class="sr-only"> (opens in a new tab)</span></a>
+          </span>
+        </li>
+      {{ end }}
+    </ul>
+    <details class="group mt-6" id="map-details">
+      <summary class="inline-flex cursor-pointer list-none items-center gap-2 border border-nobility px-4 py-2 text-sm font-semibold text-nobility transition hover:border-pink hover:bg-pink hover:text-night [&::-webkit-details-marker]:hidden">
+        {{ partial "icon.html" (dict "name" "pin" "class" "size-5") }}
+        <span class="group-open:hidden">Show the map</span><span class="hidden group-open:inline">Hide the map</span>
+        <span aria-hidden="true" class="transition group-open:rotate-180 motion-reduce:transition-none">▾</span>
+      </summary>
+      <div id="places-map" class="places-map isolate mt-4 aspect-square w-full border border-nobility/15 bg-haze sm:aspect-[4/3] lg:max-w-3xl" role="region" aria-label="Map: {{ .title }}" data-places='{{ .places | jsonify }}'></div>
+    </details>
   </section>
   <link rel="stylesheet" href="{{ "vendor/leaflet/leaflet.css" | relURL }}">
-  <script src="{{ "vendor/leaflet/leaflet.js" | relURL }}"></script>
+  <script src="{{ "vendor/leaflet/leaflet.js" | relURL }}" defer></script>
   <script>
     (function () {
+      var details = document.getElementById('map-details');
       var el = document.getElementById('places-map');
-      if (!el || !window.L) return;
-      var places = JSON.parse(el.dataset.places);
-      el.hidden = false;
-      var map = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile });
-      map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
-      }).addTo(map);
-      var markers = places.map(function (p) {
-        return L.marker([p.lat, p.lon], { icon: L.divIcon({ className: 'map-pin', iconSize: [16, 16] }), title: p.name, alt: p.name })
-          .bindTooltip(p.name, { permanent: true, direction: 'right', offset: [10, 0], className: 'map-label' })
-          .addTo(map);
+      if (!details || !el) return;
+      var map;
+      details.addEventListener('toggle', function () {
+        if (!details.open || !window.L) return;
+        if (map) { map.invalidateSize(); return; }
+        var places = JSON.parse(el.dataset.places);
+        map = L.map(el, { scrollWheelZoom: false, dragging: !L.Browser.mobile });
+        map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+        }).addTo(map);
+        var markers = places.map(function (p) {
+          return L.marker([p.lat, p.lon], { icon: L.divIcon({ className: 'map-pin', iconSize: [16, 16] }), title: p.name, alt: p.name })
+            .bindTooltip(p.name, { permanent: true, direction: 'right', offset: [10, 0], className: 'map-label' })
+            .addTo(map);
+        });
+        map.fitBounds(L.featureGroup(markers).getBounds(), { paddingTopLeft: [40, 40], paddingBottomRight: [120, 40], maxZoom: 16 });
       });
-      map.fitBounds(L.featureGroup(markers).getBounds(), { paddingTopLeft: [40, 40], paddingBottomRight: [120, 40], maxZoom: 16 });
     })();
   </script>
 {{ end }}
