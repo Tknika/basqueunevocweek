@@ -24,3 +24,7 @@ The Workshops section of the Speakers page shows the call for workshops instead.
 ## 4. The workshops on the afternoon of 12 May (hidden before November 2026)
 
 The afternoon shows the call for workshops instead. The 2026 version is kept in `archive/12-may-afternoon-workshops.md` (and the git tag `programme-12-may-workshops`), to restore at launch.
+
+## 5. The conference sessions on the morning of 12 May (hidden November 2026)
+
+The 2027 programme is unknown, so the morning shows only registration, the coffee break, the closing and lunch, with the rest as "To be announced" slots (`tba: true` in `content/programme/12-may.md`). The 2026 talks, speakers and panel are kept in `archive/12-may-morning-2026.md`: replace the `tba` slots with the 2027 sessions when they arrive (and remove the morning's `pending`).

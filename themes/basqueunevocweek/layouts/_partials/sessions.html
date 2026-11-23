@@ -1,5 +1,5 @@
-{{- /* A timetable: a slice of sessions with time, title and optional people; those with `break` (registration, coffee or lunch) stand out in pink. */ -}}
-<ol class="grid gap-3">
+{{- /* A timetable: a slice of sessions with time, title and optional people; those with `break` (registration, coffee or lunch) stand out in pink; those with `tba: true` are slots whose content is not known yet, dashed and greyed with a lime "To be announced" tag. */ -}}
+<ol class="grid content-start gap-3">
   {{ range . }}
     {{ if .break }}
       <li class="flex flex-wrap items-center gap-x-3 gap-y-1 bg-pink px-5 py-3 text-night">
@@ -12,6 +12,14 @@
         {{ end }}
         <span class="text-lg font-semibold">{{ .title }}</span>
         <span class="ml-auto text-sm font-semibold">{{ .time }}</span>
+      </li>
+    {{ else if .tba }}
+      <li class="grid gap-x-5 gap-y-1 border-2 border-dashed border-nobility/25 px-4 py-3 sm:grid-cols-[6.5rem_1fr]">
+        <p class="pt-1 text-sm font-semibold text-pink-ink">{{ .time }}</p>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <h4 class="text-lg leading-snug font-semibold text-nobility/60">{{ .title }}</h4>
+          <span class="-rotate-2 bg-lime px-2 py-0.5 font-display text-[0.65rem] tracking-widest text-night uppercase">To be announced</span>
+        </div>
       </li>
     {{ else }}
       <li class="grid gap-x-5 gap-y-1 border-b border-nobility/15 px-1 pb-3 sm:grid-cols-[6.5rem_1fr]">
