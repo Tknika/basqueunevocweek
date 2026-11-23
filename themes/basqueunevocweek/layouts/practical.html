@@ -39,7 +39,8 @@
 
 {{- /* The map: OpenStreetMap through Leaflet, both kept in the theme (static/vendor/leaflet), so the page sets no cookies; only the map images come from OpenStreetMap's servers. Google Maps was ruled out for its cookies (November 2026). In the style of the euskelec site's contact map (asked): grey map images, square controls, each place a small blue square with a white edge and a quiet white label.
   Folded away (asked): the places are listed in text, and the map opens under them from a "Show the map" button (a <details>). The map is only drawn, and its images only requested from OpenStreetMap, when it is opened.
-  Accessible: the list names each place with its address and a link to open it in OpenStreetMap, so the map adds nothing that is not also in text. The map takes the keyboard (arrows to move, + and - to zoom); it does not zoom with the mouse wheel, and on phones one finger scrolls the page, not the map. */ -}}
+  Links to other maps go to Google Maps (asked): only links, so nothing is loaded from Google unless a visitor follows one.
+  Accessible: the list names each place with its address and a link to open it in Google Maps, so the map adds nothing that is not also in text. The map takes the keyboard (arrows to move, + and - to zoom); it does not zoom with the mouse wheel, and on phones one finger scrolls the page, not the map. */ -}}
 {{ with .Params.places_map }}
   <section id="map" class="container-site pb-12 md:pb-16" aria-labelledby="map-title">
     <h2 id="map-title" class="text-3xl sm:text-4xl">{{ .title }}</h2>
@@ -50,7 +51,7 @@
           <span class="flex flex-col gap-0.5">
             <span class="text-xl font-semibold">{{ .name }}</span>
             <span>{{ .address }}</span>
-            <a href="https://www.openstreetmap.org/?mlat={{ .lat }}&amp;mlon={{ .lon }}#map=17/{{ .lat }}/{{ .lon }}" target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-nobility underline underline-offset-4 hover:text-pink-ink">Open in OpenStreetMap{{ partial "icon.html" (dict "name" "external" "class" "size-4") }}<span class="sr-only"> (opens in a new tab)</span></a>
+            <a href="https://www.google.com/maps/search/?api=1&amp;query={{ .lat }}%2C{{ .lon }}" target="_blank" rel="noopener" class="mt-1 inline-flex items-center gap-1.5 self-start text-sm font-semibold text-nobility underline underline-offset-4 hover:text-pink-ink">Open in Google Maps{{ partial "icon.html" (dict "name" "external" "class" "size-4") }}<span class="sr-only"> (opens in a new tab)</span></a>
           </span>
         </li>
       {{ end }}

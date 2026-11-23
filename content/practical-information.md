@@ -7,7 +7,7 @@ layout: practical
 venue:
   name: "Kursaal"
   address: "Avenida de Zurriola 1, 20002 Donostia · San Sebastian"
-  map: "https://www.openstreetmap.org/?mlat=43.3243&mlon=-1.9787#map=17/43.3243/-1.9787"
+  map: "https://maps.app.goo.gl/SuAH3ZbRPpMkHpkv7"
   image: "images/kursaal-sky-pale-1200.jpg"
   alt: "The corner of one of the Kursaal glass cubes against a pale blue sky"
 getting_there:
