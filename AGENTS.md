@@ -25,7 +25,7 @@ There is no test suite. **A change is verified when:**
 2. **Don't invent facts.** Programme, speakers and practical details come from the organisers. While a fact is unknown, use `{{< soon >}}` in Markdown. Dates and venue are params in `hugo.toml`.
 3. **Never hardcode URLs** in templates: use `.RelPermalink`, `relURL` or `relLangURL`, and pass asset paths without a leading `/`. In Markdown, write internal links as `/path/`.
 4. **Tailwind: npm only.** Tailwind v4 is configured in CSS (`@theme` in `assets/css/main.css`). No PostCSS, `tailwind.config.js` or extra npm packages unless asked.
-5. **Keep it static and light.** No tracking scripts and no third-party requests; fonts are self-hosted in the theme. There is no JavaScript so far (the mobile menu is a `<details>`).
+5. **Keep it static and light.** No cookies, no tracking scripts and no third-party requests; fonts are self-hosted in the theme. The mobile menu is a `<details>`, without JavaScript. The one exception (asked in November 2026) is the map on Practical information: Leaflet, kept in the theme (`static/vendor/leaflet`, BSD licence), shows OpenStreetMap, whose map images come from OpenStreetMap's servers; it sets no cookies. Never Google Maps (cookies), not even as a link.
 6. **Don't commit build output:** `public/`, `resources/_gen/`, `node_modules/`, `hugo_stats.json` and `.hugo_build.lock` are git-ignored.
 
 ## Conventions

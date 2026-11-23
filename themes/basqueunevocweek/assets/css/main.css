@@ -287,3 +287,21 @@
     @apply font-semibold whitespace-nowrap;
   }
 }
+
+/* The map on Practical information (Leaflet with OpenStreetMap, layouts/practical.html): the map images a little faded so the pins stand out, pins as small pink leaning cubes with their number, and the names as plain labels in the site's font */
+.places-map { font: inherit; z-index: 0; }
+.places-map .leaflet-tile-pane { filter: saturate(0.4) contrast(0.95); }
+.map-pin {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 30px;
+  clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);
+  background: var(--color-pink); color: var(--color-night);
+  font-family: var(--font-display); font-size: 0.9rem; line-height: 1;
+}
+.places-map .map-label {
+  background: #fff; color: var(--color-azure); border: 0; border-radius: 0;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+  font-weight: 600; font-size: 0.95rem; padding: 0.2rem 0.5rem;
+}
+.places-map .map-label::before { display: none; }
+.places-map .leaflet-control-attribution a { color: var(--color-nobility); }
