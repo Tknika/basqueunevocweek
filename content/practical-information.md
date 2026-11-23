@@ -16,13 +16,14 @@ getting_there:
       - "San Sebastián Airport (EAS), in Hondarribia, about 20 km away, with buses and taxis to the city."
       - "Bilbao Airport (BIO), about 100 km away, with direct buses to the San Sebastián bus station."
       - "Biarritz Airport (BIQ), in France, about 50 km away."
-  - title: "By train or bus"
+  - title: "By train, bus or metro"
     items:
-      - "The train station (Renfe) and the bus station are next to each other, across the river from the Kursaal: about 5 minutes on foot."
-  - title: "In the city"
+      - "By train: the train station (Renfe) is on the same side of the river as the Kursaal, next to Tabakalera, about 15 minutes on foot."
+      - "By bus: long-distance buses arrive at the bus station, next to the train station. In the city, buses run by [Dbus](https://www.dbus.eus/) stop near the Kursaal."
+      - "By metro: Metro Donostialdea, the *Topo*, crosses the city underground. Since November 2026 it stops in the city centre (Kontxa-Zentroa), Amara and El Antiguo (Bentaberri), with a train every 7.5 minutes, and links San Sebastian with the nearby towns and with Hendaye, in France. Lines and timetables on the [Euskotren website](https://www.euskotren.eus/)."
+  - title: "On foot"
     items:
-      - "The Kursaal is in the Gros neighbourhood, on Zurriola beach, a short walk from the Old Town. City buses (Dbus) stop nearby."
-      - "By metro: Metro Donostialdea, the *Topo* run by [Euskotren](https://www.euskotren.eus/), crosses the city underground. Since November 2026 it stops in the city centre (Kontxa-Zentroa), Amara and El Antiguo (Bentaberri), with a train every 7.5 minutes, and links San Sebastian with the nearby towns and with Hendaye, in France."
+      - "The Kursaal is in the Gros neighbourhood, on Zurriola beach, a short walk from the Old Town and the city centre."
 # The map under "Getting to the Kursaal" (layouts/practical.html): OpenStreetMap, not Google Maps, so the page sets no cookies (asked in November 2026).
 # Leaflet is kept in the theme (static/vendor/leaflet); only the map images come from OpenStreetMap. In the style of the euskelec contact map (grey, small blue squares). Each place is a square on the map and a line in the list next to it.
 places_map:
