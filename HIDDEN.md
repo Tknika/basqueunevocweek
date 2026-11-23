@@ -4,13 +4,13 @@ Things taken off the site on purpose while their 2027 information is unknown. Ea
 
 ## 1. The Speakers page (hidden November 2026)
 
-The page is not built, not in the main menu and not among the highlights on the home.
+The page is not built and not in the main menu. On the home, its highlight stays (the photo and the title) without a link, with a "Soon" tag and a teaser text (`soon` in `_partials/home-main.html`).
 
 To bring it back, in `content/speakers.md`:
 - delete the `build:` block (`render: never` and `list: never`);
 - uncomment `menus: main`.
 
-The home highlights (`_partials/home-main.html`) show it again on their own: they leave out pages that are not built, and go back to three columns.
+The home highlight links to the page again on its own, with its usual text, as soon as the page is built.
 The page still carries its "Pending" band (`pending`): remove it when the 2027 speakers are confirmed.
 
 ## 2. Speakers and workshops in the home figures (hidden November 2026)

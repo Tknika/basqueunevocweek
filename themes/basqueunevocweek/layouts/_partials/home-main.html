@@ -68,28 +68,37 @@
 {{ end }}
 
 <div class="container-wide py-16 md:py-24">
-  {{/* Highlights, each photo cut with a different leaning cube. A page that is not built (the speakers, hidden for now: see HIDDEN.md) is left out, and the grid takes as many columns as there are left. */}}
-  {{ $highlights := slice }}
-  {{ range $item := slice
-    (dict "page" "/programme" "shape" "shape-cube" "image" "images/tknika-auditorium-desk.jpg" "text" "Three days of activities, every morning and afternoon.")
-    (dict "page" "/speakers" "shape" "shape-cube-tall" "image" "images/speakers-audience.jpg" "text" "Conference, panel and workshops.")
-    (dict "page" "/practical-information" "shape" "shape-cube-alt" "image" "images/donostia-bay.jpg" "text" "Getting there, where to stay and what to see.")
-  }}
-    {{ with site.GetPage .page }}{{ if .RelPermalink }}{{ $highlights = $highlights | append (merge $item (dict "p" .)) }}{{ end }}{{ end }}
-  {{ end }}
-  <nav class="grid gap-12 sm:gap-6 lg:gap-10 {{ if eq (len $highlights) 2 }}sm:grid-cols-2{{ else }}sm:grid-cols-3{{ end }}" aria-label="Highlights">
-    {{ range $item := $highlights }}
-      {{ with $item.p }}
-        <a href="{{ .RelPermalink }}" class="group block{{ if eq $v 3 }} text-nobility{{ end }}">
+  {{/* Three highlights, each photo cut with a different leaning cube. While a page is not built (the speakers, hidden for now: see HIDDEN.md), its highlight stays, photo included, but as a teaser without a link: `soon` is the text shown then, with a lime "Soon" tag. */}}
+  <nav class="grid gap-12 sm:grid-cols-3 sm:gap-6 lg:gap-10" aria-label="Highlights">
+    {{ range $item := slice
+      (dict "page" "/programme" "title" "Programme" "shape" "shape-cube" "image" "images/tknika-auditorium-desk.jpg" "text" "Three days of activities, every morning and afternoon.")
+      (dict "page" "/speakers" "title" "Speakers" "shape" "shape-cube-tall" "image" "images/speakers-audience.jpg" "text" "Conference, panel and workshops." "soon" "Inspiring voices on the future of TVET will take the stage. The line-up will be announced here.")
+      (dict "page" "/practical-information" "title" "Practical information" "shape" "shape-cube-alt" "image" "images/donostia-bay.jpg" "text" "Getting there, where to stay and what to see.")
+    }}
+      {{ $p := site.GetPage $item.page }}
+      {{ $url := "" }}{{ with $p }}{{ $url = .RelPermalink }}{{ end }}
+      {{ if $url }}
+        <a href="{{ $url }}" class="group block{{ if eq $v 3 }} text-nobility{{ end }}">
           <span class="{{ $item.shape }} block overflow-hidden">
-            <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="{{ if eq (len $highlights) 2 }}aspect-[4/3]{{ else }}aspect-[4/5]{{ end }} w-full object-cover {{ $item.position }} transition duration-700 group-hover:scale-105 motion-reduce:transition-none">
+            <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover {{ $item.position }} transition duration-700 group-hover:scale-105 motion-reduce:transition-none">
           </span>
           <span class="mt-5 flex items-baseline justify-between gap-4 text-3xl font-semibold tracking-tight transition {{ if eq $v 3 }}group-hover:text-pink{{ else }}group-hover:text-azure{{ end }}">
-            {{ .Title }}
+            {{ $p.Title }}
             <span aria-hidden="true" class="transition group-hover:translate-x-1 {{ if eq $v 3 }}group-hover:text-pink{{ else }}group-hover:text-azure{{ end }} motion-reduce:transition-none">→</span>
           </span>
           <span class="mt-2 block text-lg font-medium text-nobility/70">{{ $item.text }}</span>
         </a>
+      {{ else if $item.soon }}
+        <div class="block">
+          <div class="relative">
+            <span class="{{ $item.shape }} block overflow-hidden">
+              <img src="{{ $item.image | relURL }}" alt="" width="800" height="600" loading="lazy" class="aspect-[4/5] w-full object-cover {{ $item.position }}">
+            </span>
+            <span class="absolute top-6 right-2 -rotate-3 bg-lime px-3 py-1 font-display text-xs tracking-widest text-night uppercase" aria-hidden="true">Soon</span>
+          </div>
+          <p class="mt-5 text-3xl font-semibold tracking-tight">{{ $item.title }}<span class="sr-only"> (coming soon)</span></p>
+          <p class="mt-2 text-lg font-medium text-nobility/70">{{ $item.soon }}</p>
+        </div>
       {{ end }}
     {{ end }}
   </nav>
