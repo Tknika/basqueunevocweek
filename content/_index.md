@@ -4,18 +4,20 @@ title: "UNESCO-UNEVOC Anniversary Conference & Open Days 2027"
 sky: "kursaal-sky-azure"
 frame_y: "30%"
 alt: "The corner of one of the Kursaal’s glass cubes against a clear blue sky"
-# Where the event stands now: a thin timeline under the first photo, above the three days (_partials/home-stages.html).
-# Move `current: true` to the stage we are in; the stages before it show as done.
-# when: the line under the name; while it is empty it reads "Dates to be announced". event_dates: true shows the event dates from hugo.toml.
-# link: optional, the page the stage's name opens (its path in content/), with an optional #section, e.g. "/programme/12-may/#afternoon".
-stages:
-  - name: "Call for workshops"
-    when: "Open now"
-    current: true
-    link: "/programme/12-may/#afternoon"
-  - name: "Registration"
-  - name: "Conference"
-    event_dates: true
+# The registration forms: links under the first photo, above the three days (_partials/home-registration.html), in place of the "Where we are" timeline (removed in November 2026).
+# Each one opens a form on another site, in a new tab, and says so (an arrow out of a box and "External form").
+# name: the link's text. url: the form; while it is empty, the link is shown but does nothing.
+# soon: true shows the link greyed out and disabled, with a "Soon" tag: the form is not published yet. Remove it when the form opens.
+# group + items: links shown together under one label (the two registrations, joined as asked in November 2026).
+registration:
+  - name: "Call for partners"
+    url: ""
+  - group: "Registration"
+    items:
+      - name: "International Guest Partners"
+        url: ""
+      - name: "FP Euskadi"
+        soon: true
 ---
 
 Celebrating 25 Years of UNESCO-UNEVOC and 10 Years of Tknika as a UNEVOC Centre

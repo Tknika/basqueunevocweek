@@ -1,0 +1,41 @@
+{{- /* The registration forms, under the first photo and above the three days (in place of the "Where we are" timeline, asked in November 2026). The links come from `registration` in content/_index.md.
+  A band on `haze` from edge to edge with white buttons (option C of the draft page, with option B's background, chosen in November 2026: solid dark blue blocks were too heavy, and thin links too faint). An entry with `group` and `items` joins its buttons in a thin azure frame with its label set on the frame's top line, like a fieldset's legend, so the label plainly covers both (the two registrations, joined as asked).
+  Each form lives on another site, and the button says so: an arrow out of a box, and "(opens in a new tab)" for screen readers; it opens in a new tab. Buttons are white with dark blue text (links) and turn pink on hover.
+  While `url` is empty the button is shown, with the same hover, but does nothing (like the call for workshops).
+  `soon: true`: greyed out with a dashed line, not a link and not focusable, with a lime "Soon" tag: the form will open shortly. */ -}}
+{{ define "partials/registration-link" }}
+  {{- if .soon }}
+    <div class="flex w-full items-center justify-between gap-4 border-2 border-dashed border-nobility/25 px-5 py-4 text-lg leading-snug font-semibold text-nobility/50">
+      <span>{{ .name }}<span class="sr-only"> (not available yet)</span></span>
+      <span class="shrink-0 bg-lime px-2 py-0.5 font-display text-[0.65rem] tracking-widest text-night uppercase" aria-hidden="true">Soon</span>
+    </div>
+  {{- else }}
+    {{- $inner := printf `<span>%s<span class="sr-only"> (opens in a new tab)</span></span>%s` .name (partial "icon.html" (dict "name" "external" "class" "size-5 shrink-0 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none")) }}
+    {{- $class := "group flex w-full items-center justify-between gap-4 border-2 border-white bg-white px-5 py-4 text-lg leading-snug font-semibold text-nobility no-underline transition hover:border-pink hover:bg-pink hover:text-night motion-reduce:transition-none" }}
+    {{- with .url }}
+      <a href="{{ . }}" target="_blank" rel="noopener" class="{{ $class }}">{{ $inner | safeHTML }}</a>
+    {{- else }}
+      <span role="link" aria-disabled="true" class="{{ $class }} cursor-pointer">{{ $inner | safeHTML }}</span>
+    {{- end }}
+  {{- end }}
+{{ end }}
+
+{{ with site.Home.Params.registration }}
+  <section class="mt-8 bg-haze py-10 sm:mt-10" aria-labelledby="registration-title">
+    <h2 id="registration-title" class="sr-only">Take part</h2>
+    <ul class="container-wide grid items-end gap-4 sm:grid-cols-3">
+      {{ range $i, $e := . }}
+        {{- if .items }}
+          <li class="relative mt-4 border border-azure/40 p-3 pt-6 sm:mt-0 sm:col-span-{{ len .items }}">
+            <p id="registration-group-{{ $i }}" class="absolute -top-2.5 left-3 bg-haze px-2 text-xs leading-5 font-semibold tracking-widest text-azure uppercase">{{ .group }}</p>
+            <ul class="grid gap-3 sm:grid-cols-{{ len .items }}" aria-labelledby="registration-group-{{ $i }}">
+              {{ range .items }}<li class="flex">{{ partial "registration-link" . }}</li>{{ end }}
+            </ul>
+          </li>
+        {{- else }}
+          <li class="flex sm:pb-3">{{ partial "registration-link" . }}</li>
+        {{- end }}
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}
