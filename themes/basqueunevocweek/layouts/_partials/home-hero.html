@@ -11,6 +11,8 @@
 
   <div class="container-wide pt-24 lg:pt-32">
     <h1 class="max-w-[16ch] {{ if .light }}text-deep{{ else }}text-white{{ end }} font-sans text-5xl leading-[0.95] font-semibold tracking-[-0.035em] text-balance sm:text-7xl lg:text-[clamp(4.5rem,min(7vw,10svh),8.5rem)]">{{ site.Title }}</h1>
+    {{- /* The subtitle under the title (`subtitle` in hugo.toml), in Krona One like the dates */}}
+    {{ with site.Params.subtitle }}<p class="mt-4 {{ if $.light }}text-deep{{ else }}text-white{{ end }} font-display text-lg sm:text-xl lg:mt-5 lg:text-[clamp(1.25rem,min(2vw,3svh),2rem)]">{{ . }}</p>{{ end }}
   </div>
 
   <span class="shape-cube absolute bottom-[9.5rem] left-[76%] h-9 w-14 -translate-x-1/2 translate-y-1/2 bg-pink lg:bottom-[11rem] lg:left-[43%] lg:h-14 lg:w-24" aria-hidden="true"></span>

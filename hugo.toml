@@ -10,6 +10,8 @@ disableKinds = ["taxonomy", "term"]
   description = "Celebrating 25 Years of UNESCO-UNEVOC and 10 Years of Tknika as a UNEVOC Centre. 11-13 May 2027, Donostia · San Sebastian."
   # Asks search engines not to index the site. Set to false when the real content is published.
   noindex = true
+  # Shown on the home page, under the title (asked in November 2026).
+  subtitle = "Basque UNEVOC Week"
   # Shown on the home page.
   dates = "11-13 May 2027"
   venue = "Donostia · San Sebastian"
