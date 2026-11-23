@@ -37,19 +37,16 @@
   <div class="container-wide py-16 md:py-24">
     <div class="max-w-6xl text-3xl leading-[1.1] font-semibold tracking-[-0.025em] text-balance sm:text-4xl lg:text-6xl">{{ site.Home.Content }}</div>
 
-    {{/* The event in figures. Speakers and workshops are counted from data/; schools are those of the networking option on 11 May, and companies and research centres those of the visits on 13 May: update them by hand if the programme changes. */}}
-    <dl class="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 md:mt-20 lg:grid-cols-5">
-      {{ range $i, $s := slice
-        (dict "number" (len (site.GetPage "/programme").Pages) "label" "days in May")
-        (dict "number" (len hugo.Data.speakers) "label" "speakers")
-        (dict "number" (len hugo.Data.workshops) "label" "workshops on advanced manufacturing")
-        (dict "number" 2 "label" "VET schools to visit")
-        (dict "number" 7 "label" "companies and research centres to visit")
-      }}
+    {{/* The event in figures, from `figures` in content/_index.md: `number` (a figure or a word, such as "Many"), or `count` to count a file in data/ (speakers, workshops), and `label`. `hidden: true` keeps a figure out of the page while it is unknown (speakers and workshops, since November 2026), ready to come back. */}}
+    {{ $figures := slice }}
+    {{ range site.Home.Params.figures }}{{ if not .hidden }}{{ $figures = $figures | append . }}{{ end }}{{ end }}
+    {{- /* As many columns as figures on wide screens (lg:grid-cols-3, -4, -5); with three, one column on phones so a word like "Many" fits */ -}}
+    <dl class="mt-14 grid gap-x-6 gap-y-10 md:mt-20 {{ if eq (len $figures) 3 }}grid-cols-1 sm:grid-cols-3{{ else }}grid-cols-2 sm:grid-cols-3 lg:grid-cols-{{ len $figures }}{{ end }}">
+      {{ range $i, $s := $figures }}
         <div class="flex flex-col border-t border-azure pt-4">
           <dt class="order-2 mt-3 max-w-[14rem] text-lg leading-snug font-semibold">{{ $s.label }}</dt>
-          <dd class="order-1 flex items-start gap-2 font-display text-5xl leading-none text-azure sm:text-6xl">
-            {{ $s.number }}
+          <dd class="order-1 flex items-start gap-2 font-display text-5xl leading-none text-azure lg:text-6xl">
+            {{ with $s.count }}{{ len (index hugo.Data .) }}{{ else }}{{ $s.number }}{{ end }}
             <span class="{{ if modBool $i 2 }}shape-cube bg-pink{{ else }}shape-cube-alt bg-lime{{ end }} mt-1 h-4 w-6" aria-hidden="true"></span>
           </dd>
         </div>
