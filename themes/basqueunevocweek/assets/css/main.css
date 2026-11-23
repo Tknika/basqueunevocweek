@@ -288,20 +288,13 @@
   }
 }
 
-/* The map on Practical information (Leaflet with OpenStreetMap, layouts/practical.html): the map images a little faded so the pins stand out, pins as small pink leaning cubes with their number, and the names as plain labels in the site's font */
-.places-map { font: inherit; z-index: 0; }
-.places-map .leaflet-tile-pane { filter: saturate(0.4) contrast(0.95); }
-.map-pin {
-  display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 30px;
-  clip-path: polygon(7% 0, 100% 6%, 93% 100%, 0 94%);
-  background: var(--color-pink); color: var(--color-night);
-  font-family: var(--font-display); font-size: 0.9rem; line-height: 1;
-}
-.places-map .map-label {
-  background: #fff; color: var(--color-azure); border: 0; border-radius: 0;
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
-  font-weight: 600; font-size: 0.95rem; padding: 0.2rem 0.5rem;
-}
-.places-map .map-label::before { display: none; }
+/* The map on Practical information (Leaflet with OpenStreetMap, layouts/practical.html), in the style of the euskelec site's contact map: grey map images so the places stand out, square controls, each place a small UNEVOC-blue square with a white edge, and a quiet white label in Krona One */
+.places-map.leaflet-container { background: var(--color-haze); font-family: var(--font-sans); }
+.places-map .leaflet-tile-pane { filter: grayscale(1) contrast(0.92) brightness(1.04); }
+.places-map .map-pin { background: var(--color-azure); border: 3px solid #fff; box-shadow: 0 0 0 1px var(--color-azure), 0 2px 6px rgb(0 0 0 / 0.3); }
+.places-map .leaflet-tooltip.map-label { padding: 2px 7px; border: 1px solid rgb(24 24 72 / 0.15); border-radius: 0; background: #fff; color: var(--color-azure); font-family: var(--font-display); font-size: 0.8125rem; box-shadow: 0 1px 4px rgb(0 0 0 / 0.15); }
+.places-map .leaflet-tooltip.map-label::before { display: none; }
+.places-map .leaflet-bar, .places-map .leaflet-bar a { border-radius: 0; }
+.places-map .leaflet-bar a { color: var(--color-nobility); }
+.places-map .leaflet-control-attribution { color: var(--color-nobility); }
 .places-map .leaflet-control-attribution a { color: var(--color-nobility); }

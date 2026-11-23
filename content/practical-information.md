@@ -24,7 +24,7 @@ getting_there:
       - "The Kursaal is in the Gros neighbourhood, on Zurriola beach, a short walk from the Old Town. City buses (Dbus) stop nearby."
       - "By metro: Metro Donostialdea, the *Topo* run by [Euskotren](https://www.euskotren.eus/), crosses the city underground. Since November 2026 it stops in the city centre (Kontxa-Zentroa), Amara and El Antiguo (Bentaberri), with a train every 7.5 minutes, and links San Sebastian with the nearby towns and with Hendaye, in France."
 # The map under "Getting to the Kursaal" (layouts/practical.html): OpenStreetMap, not Google Maps, so the page sets no cookies (asked in November 2026).
-# Leaflet is kept in the theme (static/vendor/leaflet); only the map images come from OpenStreetMap. Each place is a pin on the map and a line in the list next to it.
+# Leaflet is kept in the theme (static/vendor/leaflet); only the map images come from OpenStreetMap. In the style of the euskelec contact map (grey, small blue squares). Each place is a square on the map and a line in the list next to it.
 places_map:
   title: "The Kursaal and Tabakalera on the map"
   places:
