@@ -26,7 +26,7 @@ figures:
 # soon: true shows the link greyed out and disabled, with a "Soon" tag: the form is not published yet. Remove it when the form opens.
 # group + items: links shown together under one label (the two registrations, joined as asked in November 2026).
 registration:
-  - name: "Call for partners"
+  - name: "Call for workshops"
     url: ""
   - group: "Registration"
     items:
