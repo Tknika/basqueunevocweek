@@ -4,6 +4,7 @@ header_image: "images/tknika-tk-light.jpg"
 weight: 1
 weekday: "Tuesday"
 headline: "Activities at other venues"
+home_headline: ""  # nothing under the day on the home (asked in November 2026)
 parts: ["Morning", "Afternoon"]
 layout: day
 menus:
@@ -15,43 +16,40 @@ morning:
   intro: "Two options to choose from."
   options:
     # The six schools and their texts come from the organisers (November 2026).
-    # name, focus (its line under the name), text; url and image are optional: each centre's photo is small, cut as a cube, next to its name (a sky-tinted cube while it has none). credit (text, url, license, license_url): for a photo under a free licence, listed at the foot of the box.
+    # name (a link to the school's website, `url`), focus (its line under the name), text (folded under "More"); logo: the school's logo, from its own website (November 2026), on a white tile next to its name.
     - title: "Networking in schools"
       centres:
         - name: "CIFP Tolosaldea LHII"
           focus: "Centre of Excellence in Mechatronics"
           text: "Technology, industry, mechanical manufacturing, electrical engineering, IT and sports activities. Discover a wide range of vocational training programmes linked to the industrial, technological and service sectors."
-          url: "https://www.tolosaldea.hezkuntza.net"
-          image: "images/tolosaldea.jpg"
-          alt: "Aerial view of the CIFP Tolosaldea LHII campus"
+          # The address and the logo come from Tolosaldea's page on ataria.eus: its own site could not be reached in November 2026
+          url: "https://tolosaldealh.eus"
+          logo: "images/logo-centre-tolosaldea.png"
         - name: "CIFP Usurbil LHII"
           focus: "Centre of Excellence in Energy"
           text: "Energy, energy efficiency, building services engineering, maintenance and sustainability. Discover a wide range of vocational training programmes focused on energy technologies, energy efficiency, the energy transition and smart installations."
           url: "https://www.lhusurbil.eus"
-          image: "images/zubieta.jpg"
-          alt: "Aerial view of the CIFP Usurbil LHII campus in Zubieta"
+          logo: "images/logo-centre-usurbil.png"
         - name: "CIFP Easo LHII"
           focus: "Centre of Excellence in Social Economy and Care Services"
-          image: "images/easo.jpg"
-          alt: "The red brick front of Easo Politeknikoa, with students by its entrance steps"
           text: "Healthcare, physical activity, electrical engineering, mechanical manufacturing, woodworking and sociocultural services. Discover a wide range of vocational training programmes linked to the industrial, healthcare and social sectors."
+          url: "https://easo.eus"
+          logo: "images/logo-centre-easo.png"
         - name: "CIFP Eagi LHII"
           focus: "Building and Civil Engineering"
           text: "Construction, building renovation, civil engineering, construction site management and digital technologies such as BIM (Building Information Modelling). Discover a wide range of vocational training programmes focused on construction, building rehabilitation and innovative technologies applied to the sector."
+          url: "https://eagi.eus"
+          logo: "images/logo-centre-eagi.png"
         - name: "CIFP Don Bosco LHII"
           focus: "Centre of Excellence in Chemistry"
           text: "Industry, mechanical manufacturing, chemistry, electrical engineering, maintenance and automotive technology. Discover a wide range of vocational training programmes linked to industrial processes, advanced technologies and manufacturing sectors."
+          url: "https://www.donbosco.eus"
+          logo: "images/logo-centre-donbosco.png"
         - name: "CIFP Fraisoro LHII"
           focus: "Agriculture and Environmental Studies"
-          # From Wikimedia Commons, "Fraisoro 1 - 94-074.jpg" (April 1994), resized; original in _originals/fraisoro.jpg
-          image: "images/fraisoro.jpg"
-          alt: "The Fraisoro school building with red roofs on a green hillside, with beehives in the field below"
-          credit:
-            text: "Aiurri"
-            url: "https://commons.wikimedia.org/wiki/File:Fraisoro_1_-_94-074.jpg"
-            license: "CC BY-SA 4.0"
-            license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
           text: "Agriculture, livestock farming, forestry management, gardening and landscaping, the natural environment and the food industry. Discover a wide range of vocational training programmes linked to nature, animal care, sustainability and rural development."
+          url: "https://fraisoroeskola.eus"
+          logo: "images/logo-centre-fraisoro.png"
     - title: "Visit to Tknika projects"
       image: "images/tknika-auditorium-tv.jpg"
       # Show the lower part of the photo, so the screen is not cut off

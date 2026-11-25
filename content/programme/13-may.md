@@ -5,6 +5,7 @@ header_image: "images/round-tables-bilbao.jpg"
 weight: 3
 weekday: "Thursday"
 headline: "Activities at other venues"
+home_headline: ""  # nothing under the day on the home (asked in November 2026)
 parts: ["Morning", "Afternoon"]
 layout: day
 menus:

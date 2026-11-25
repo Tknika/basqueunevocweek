@@ -42,19 +42,14 @@
           </header>
           <div class="overflow-hidden bg-haze lg:self-start">
             {{ with $o.centres }}
-              {{- /* Each centre: a small photo cut as a leaning cube (a sky-tinted cube while it has none), then its name, its focus (pink) and its web address; a `text` is folded under a "More" button (a <details>, no JavaScript). Six centres in two columns, with no big photo above (asked in November 2026: a photo for each centre, without making the page long). */ -}}
+              {{- /* Each centre: its logo on a white tile (a logo is never cut into the cube shape), then its name, a link to its website when it has a `url`, and its focus (pink); a `text` is folded under a "More" button (a <details>, no JavaScript). Six centres in two columns, with no big photo above. (Small photos cut as cubes until November 2026, when the logos were asked for instead.) */ -}}
               <ul class="grid gap-x-6 gap-y-6 p-6 sm:grid-cols-2 sm:px-8">
                 {{ range $centre := . }}
-                  <li class="grid grid-cols-[4.5rem_1fr] items-start gap-x-3 sm:grid-cols-[5.5rem_1fr] sm:gap-x-4 lg:grid-cols-[4.5rem_1fr] lg:gap-x-3">
-                    {{ with .image }}
-                      <img src="{{ . | relURL }}" alt="{{ $centre.alt }}" loading="lazy" class="aspect-[4/3] w-full shape-cube object-cover">
-                    {{ else }}
-                      <span class="block aspect-[4/3] w-full shape-cube bg-sky/50" aria-hidden="true"></span>
-                    {{ end }}
+                  <li>
+                    {{ with .logo }}<span class="mb-3 flex h-16 items-center justify-center bg-white px-5 py-3 sm:h-20"><img src="{{ . | relURL }}" alt="" class="max-h-full max-w-[min(100%,12rem)] object-contain"></span>{{ end }}
                     <div>
-                    <p class="text-lg leading-snug font-semibold">{{ .name }}</p>
+                    <p class="text-lg leading-snug font-semibold">{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="text-nobility underline decoration-nobility/30 underline-offset-3 transition hover:text-pink-ink hover:decoration-pink-ink">{{ $centre.name }}<span class="sr-only"> (opens in a new tab)</span></a>{{ else }}{{ .name }}{{ end }}</p>
                     {{ with .focus }}<p class="mt-0.5 text-sm font-semibold text-pink-ink">{{ . }}</p>{{ end }}
-                    {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="mt-1 inline-block text-sm wrap-anywhere text-nobility underline underline-offset-3 hover:text-pink-ink">{{ strings.TrimPrefix "www." (urls.Parse .).Host }}</a>{{ end }}
                     {{ with .text }}
                       <details class="group mt-1">
                         <summary class="inline-flex cursor-pointer list-none items-center gap-1 text-sm font-semibold text-nobility hover:text-pink-ink [&::-webkit-details-marker]:hidden">
@@ -68,12 +63,6 @@
                   </li>
                 {{ end }}
               </ul>
-              {{- /* Credits for photos under a free licence (CC BY and BY-SA ask for the author, the source and the licence) */ -}}
-              {{ with where . "credit" "!=" nil }}
-                <p class="px-6 pb-5 text-xs text-nobility/70 sm:px-8">Photo{{ if gt (len .) 1 }}s{{ end }}:
-                  {{ range $k, $c := . }}{{ if $k }}; {{ end }}{{ with $c.credit }}{{ $c.name }}, <a href="{{ .url }}" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">{{ .text }}</a>, <a href="{{ .license_url }}" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">{{ .license }}</a>{{ end }}{{ end }}
-                </p>
-              {{ end }}
             {{ else }}
               {{- /* A `video` takes the photo's place (13 May, asked in November 2026): an ambient loop, silent and without controls, with `image` as its poster; for visitors who reduce motion, the poster stays still instead. */ -}}
               {{ with $o.video }}

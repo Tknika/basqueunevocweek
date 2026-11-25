@@ -11,7 +11,9 @@
         <span aria-hidden="true" class="text-2xl transition group-hover:translate-x-1 {{ if eq $v 3 }}group-hover:text-pink{{ else }}group-hover:text-azure{{ end }} motion-reduce:transition-none">→</span>
       </span>
       <span class="mt-3 font-display text-4xl transition {{ if eq $v 3 }}group-hover:text-pink{{ else }}group-hover:text-azure{{ end }} lg:text-5xl">{{ .Title }}</span>
-      <span class="mt-3 text-lg font-medium text-nobility/70">{{ .Params.headline }}</span>
+      {{- /* The day's headline, or `home_headline` when a day sets one for the home; an empty one shows nothing (11 and 13 May: "Activities at other venues" was removed from the home, asked in November 2026). */ -}}
+      {{ $headline := cond (isset .Params "home_headline") .Params.home_headline .Params.headline }}
+      {{ with $headline }}<span class="mt-3 text-lg font-medium text-nobility/70">{{ . }}</span>{{ end }}
     </a>
   {{ end }}
 </nav>
