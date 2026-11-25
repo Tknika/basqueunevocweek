@@ -1,6 +1,7 @@
 ---
 title: "13 May"
-header_image: "images/palacio-europa-lcamp.jpg"
+# A frame of the round tables with the views of Bilbao behind, from the organisers' video (November 2026; _originals/dissemination-day.mp4)
+header_image: "images/round-tables-bilbao.jpg"
 weight: 3
 weekday: "Thursday"
 headline: "Activities at other venues"
@@ -31,8 +32,10 @@ morning:
             - "CTA"
             - "RPK"
     - title: "Project Dissemination Day"
-      image: "images/palacio-europa-lcamp.jpg"
-      alt: "Audience at the Palacio de Europa facing a stage with LCAMP screens"
+      # An ambient loop of the round tables (from the same video as the header), with a frame of it as its poster
+      video: "videos/dissemination-day.mp4"
+      image: "images/dissemination-day-poster.jpg"
+      alt: "Participants talking at round tables in a large glass hall"
       sessions:
         - time: "9.00-9.30"
           break: "registration"

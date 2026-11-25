@@ -75,7 +75,11 @@
                 </p>
               {{ end }}
             {{ else }}
-              {{ with $o.image }}
+              {{- /* A `video` takes the photo's place (13 May, asked in November 2026): an ambient loop, silent and without controls, with `image` as its poster; for visitors who reduce motion, the poster stays still instead. */ -}}
+              {{ with $o.video }}
+                <video autoplay muted loop playsinline{{ with $o.image }} poster="{{ . | relURL }}"{{ end }} aria-hidden="true" class="aspect-video w-full bg-haze object-cover motion-reduce:hidden"><source src="{{ . | relURL }}" type="video/mp4"></video>
+                {{ with $o.image }}<img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="hidden aspect-video w-full object-cover motion-reduce:block">{{ end }}
+              {{ else with $o.image }}
                 <figure>
                   <img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="aspect-[2/1] w-full object-cover {{ $o.position }}">
                   {{ with $o.credit }}<figcaption class="px-6 pt-2 text-xs text-azure sm:px-8">{{ . }}</figcaption>{{ end }}
