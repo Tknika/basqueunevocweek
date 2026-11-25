@@ -32,7 +32,7 @@ registration:
     items:
       - name: "International Guest Partners"
         url: ""
-      - name: "FP Euskadi"
+      - name: "FP Euskadi schools"
         soon: true
 ---
 

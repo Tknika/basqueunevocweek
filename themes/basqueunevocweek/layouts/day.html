@@ -42,18 +42,34 @@
           </header>
           <div class="overflow-hidden bg-haze lg:self-start">
             {{ with $o.centres }}
-              {{- /* The photos share one box, split by a diagonal. */ -}}
-              <div class="relative aspect-[2/1] overflow-hidden">
-                {{ range $c, $centre := . }}
-                  <img src="{{ $centre.image | relURL }}" alt="{{ $centre.alt }}" loading="lazy" class="{{ if $c }}diagonal-right{{ else }}diagonal-left{{ end }}">
+              {{- /* The first two centres with a photo share one box, split by a diagonal (one photo alone fills it). */ -}}
+              {{ $photos := first 2 (where . "image" "!=" nil) }}
+              {{ with $photos }}<div class="relative aspect-[2/1] overflow-hidden">
+                {{ if eq (len .) 1 }}
+                  {{ with index . 0 }}<img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="size-full object-cover">{{ end }}
+                {{ else }}
+                  {{ range $c, $centre := . }}
+                    <img src="{{ $centre.image | relURL }}" alt="{{ $centre.alt }}" loading="lazy" class="{{ if $c }}diagonal-right{{ else }}diagonal-left{{ end }}">
+                  {{ end }}
+                  <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="absolute inset-0 size-full" aria-hidden="true" focusable="false"><line x1="60" y1="0" x2="40" y2="100" stroke="#fff" stroke-width="4" vector-effect="non-scaling-stroke"/></svg>
                 {{ end }}
-                <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="absolute inset-0 size-full" aria-hidden="true" focusable="false"><line x1="60" y1="0" x2="40" y2="100" stroke="#fff" stroke-width="4" vector-effect="non-scaling-stroke"/></svg>
-              </div>
-              <ul class="grid grid-cols-2 gap-4 p-6 sm:px-8">
-                {{ range . }}
+              </div>{{ end }}
+              {{- /* Each centre: its name, its focus (pink) and its web address; a `text` is folded under a "More" button (a <details>, no JavaScript), so six centres stay as short as the option beside them. */ -}}
+              <ul class="grid gap-x-6 gap-y-5 p-6 sm:grid-cols-2 sm:px-8">
+                {{ range $centre := . }}
                   <li>
                     <p class="text-lg font-semibold sm:text-xl">{{ .name }}</p>
-                    <a href="{{ .url }}" target="_blank" rel="noopener" class="mt-1 block text-sm wrap-anywhere text-nobility underline underline-offset-3 hover:text-pink-ink">{{ strings.TrimPrefix "www." (urls.Parse .url).Host }}</a>
+                    {{ with .focus }}<p class="mt-0.5 text-sm font-semibold text-pink-ink">{{ . }}</p>{{ end }}
+                    {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="mt-1 inline-block text-sm wrap-anywhere text-nobility underline underline-offset-3 hover:text-pink-ink">{{ strings.TrimPrefix "www." (urls.Parse .).Host }}</a>{{ end }}
+                    {{ with .text }}
+                      <details class="group mt-1">
+                        <summary class="inline-flex cursor-pointer list-none items-center gap-1 text-sm font-semibold text-nobility hover:text-pink-ink [&::-webkit-details-marker]:hidden">
+                          <span class="group-open:hidden">More</span><span class="hidden group-open:inline">Less</span><span class="sr-only"> about {{ $centre.name }}</span>
+                          <svg viewBox="0 0 24 24" class="size-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg>
+                        </summary>
+                        <p class="mt-2">{{ . }}</p>
+                      </details>
+                    {{ end }}
                   </li>
                 {{ end }}
               </ul>
