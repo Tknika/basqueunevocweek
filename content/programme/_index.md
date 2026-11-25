@@ -6,7 +6,31 @@ weight: 2
 menus:
   main:
     identifier: programme
-# As in the draft calendar (Draft_UnescoAnniversary_conference_, in the press area): the three days, then the Student Hub alongside them.
+# The three days at a glance, at the top of the page, as in the organisers' calendar (asked in November 2026): one column per day, its morning and afternoon in rows, each cell a link to that part of the day.
+# page: the day's page; its title and weekday head the column, and its morning's `pending` marks the morning cell.
+# A part has options (shown numbered, side by side), or a title and/or text; eyebrow is a small line above; icon names an icon (_partials/icon.html).
+overview:
+  - page: "/programme/11-may"
+    morning:
+      eyebrow: "Two options to choose from"
+      options: ["Networking in schools", "Visit to Tknika projects"]
+    afternoon:
+      icon: "pin"
+      text: "Discover San Sebastian"
+  - page: "/programme/12-may"
+    morning:
+      title: "Conference"
+      text: "“Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide”"
+    afternoon:
+      text: "Call for all participants to submit and present your workshop"
+  - page: "/programme/13-may"
+    morning:
+      eyebrow: "Two options to choose from"
+      options: ["Visit to Companies", "Project Dissemination Day"]
+    afternoon:
+      eyebrow: "Optional"
+      text: "Enjoy a guided visit and dinner at a traditional cider house"
+# As in the draft calendar (Draft_UnescoAnniversary_conference_, in the press area): the Student Hub alongside the three days, a band under the overview.
 student_hub:
   title: "Student Hub 2027"
   dates: "10-14 May"

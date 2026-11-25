@@ -1,0 +1,55 @@
+{{- /* The three days at a glance, at the top of the programme (asked in November 2026, after the organisers' calendar): one column per day under its name, the morning and the afternoon in rows, each cell a link to that part of the day. From `overview` in content/programme/_index.md.
+  Written day by day, so on phones each day is a block of its own with "Morning" and "Afternoon" written in its cells; from tablets on, the days stand side by side and share their rows (subgrid), and from large screens on Morning and Afternoon are written once, upright, down the left, instead of in each cell.
+  A morning whose day has `pending` in `morning` carries the small taped "Pending" mark, as on the list of days below. */ -}}
+{{ with .Params.overview }}
+  <section aria-labelledby="overview-title">
+    <h2 id="overview-title" class="text-3xl sm:text-4xl">At a glance</h2>
+    <div class="mt-6 grid gap-x-2 gap-y-6 md:grid-cols-[repeat(3,minmax(0,1fr))] md:grid-rows-[auto_1fr_1fr] md:gap-y-1 lg:grid-cols-[2.75rem_repeat(3,minmax(0,1fr))] lg:gap-x-3">
+      <div class="hidden lg:row-span-3 lg:grid lg:grid-rows-subgrid" aria-hidden="true">
+        <span></span>
+        {{ range slice "Morning" "Afternoon" }}
+          <span class="flex rotate-180 items-center justify-center bg-azure text-xs font-semibold tracking-widest text-white uppercase [writing-mode:vertical-rl]">{{ . }}</span>
+        {{ end }}
+      </div>
+      {{ range . }}
+        {{ $o := . }}
+        {{ with site.GetPage .page }}
+          {{ $day := . }}
+          <article class="grid content-start gap-1 md:row-span-3 md:grid-rows-subgrid">
+            <h3>
+              <a href="{{ .RelPermalink }}" class="flex items-baseline justify-center gap-3 bg-azure px-4 py-3 text-white no-underline transition hover:bg-pink hover:text-night md:flex-col md:items-center md:gap-1 md:py-4">
+                <span class="text-xs font-semibold tracking-widest uppercase">{{ .Params.weekday }}</span>
+                <span class="font-display text-2xl font-normal tracking-normal sm:text-3xl">{{ .Title }}</span>
+              </a>
+            </h3>
+            {{ range slice "morning" "afternoon" }}
+              {{ $key := . }}
+              {{ with index $o $key }}
+                {{ $part := . }}
+                {{ $pending := false }}{{ with index $day.Params $key }}{{ if reflect.IsMap . }}{{ $pending = .pending }}{{ end }}{{ end }}
+                <a href="{{ $day.RelPermalink }}#{{ $key }}" class="group relative flex flex-col items-center justify-center gap-1.5 bg-haze px-4 py-4 text-center text-azure no-underline ring-pink transition ring-inset hover:ring-2 md:gap-2 md:px-2 md:py-6 lg:px-4">
+                  <span class="flex items-center gap-2">
+                    <span class="text-xs font-semibold tracking-widest text-nobility/70 uppercase lg:sr-only">{{ title $key }}</span>
+                    {{ if $pending }}<span class="pending-tape p-[3px] [--tape:4px]"><span class="block bg-alert px-1.5 py-0.5 font-display text-[0.6rem] tracking-widest text-white uppercase">Pending</span></span>{{ end }}
+                  </span>
+                  {{ with .eyebrow }}<span class="text-sm font-semibold text-pink-ink">{{ . }}</span>{{ end }}
+                  {{ with .title }}<span class="text-2xl font-semibold tracking-tight">{{ . }}</span>{{ end }}
+                  {{ with .options }}
+                    <span class="grid w-full grid-cols-2 divide-x divide-azure/25">
+                      {{ range $i, $opt := . }}
+                        <span class="flex min-w-0 flex-col items-center gap-1 px-2 wrap-break-word md:px-1 md:text-sm lg:px-2 lg:text-base"><span class="font-display text-xl text-azure" aria-hidden="true">{{ add $i 1 }}</span><span class="sr-only">Option {{ add $i 1 }}: </span><span class="leading-snug font-semibold">{{ $opt }}</span></span>
+                      {{ end }}
+                    </span>
+                  {{ end }}
+                  {{ with .text }}
+                    <span class="flex items-center gap-2 leading-snug font-semibold">{{ with $part.icon }}{{ partial "icon.html" (dict "name" . "class" "size-6 shrink-0 text-pink-ink") }}{{ end }}<span class="max-w-64">{{ . }}</span></span>
+                  {{ end }}
+                </a>
+              {{ end }}
+            {{ end }}
+          </article>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
