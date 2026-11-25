@@ -39,8 +39,8 @@
             <p class="text-sm font-semibold text-pink-ink">Option {{ add $i 1 }}</p>
             <h3 class="mt-1 text-3xl">{{ $o.title }}</h3>
             {{ with $o.when }}<p class="mt-2 font-semibold text-azure">{{ . }}</p>{{ end }}
-            {{- /* Where the option takes place (`location`, asked in November 2026 for the Project Dissemination Day at Tabakalera) */ -}}
-            {{ with $o.location }}<p class="mt-2 flex items-center gap-2 font-semibold text-azure">{{ partial "icon.html" (dict "name" "pin" "class" "size-5 shrink-0 text-pink-ink") }}<span>Location: {{ . }}</span></p>{{ end }}
+            {{- /* Where the option takes place (`location`, asked in November 2026 for the Project Dissemination Day at Tabakalera); `location_url` links it to its place on Google Maps, in a new tab (a link only: nothing is loaded from Google) */ -}}
+            {{ with $o.location }}<p class="mt-2 flex items-center gap-2 font-semibold text-azure">{{ partial "icon.html" (dict "name" "pin" "class" "size-5 shrink-0 text-pink-ink") }}<span>Location: {{ with $o.location_url }}<a href="{{ . }}" target="_blank" rel="noopener" class="text-nobility underline decoration-nobility/30 underline-offset-3 transition hover:text-pink-ink hover:decoration-pink-ink">{{ $o.location }}<span class="sr-only"> (opens Google Maps in a new tab)</span></a>{{ else }}{{ . }}{{ end }}</span></p>{{ end }}
           </header>
           <div class="overflow-hidden bg-haze lg:self-start">
             {{ with $o.centres }}
