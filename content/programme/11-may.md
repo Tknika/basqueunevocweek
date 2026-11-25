@@ -61,18 +61,24 @@ morning:
             - "Immersive Spaces"
             - "Industry 5.0"
             - "BIO Laboratories"
-# From the draft calendar (Draft_UnescoAnniversary_conference_): "Discover San Sebastian", no more detail yet
+# From the draft calendar (Draft_UnescoAnniversary_conference_): "Discover San Sebastian"; its two activities came from the organisers in November 2026
 afternoon:
   eyebrow: "Discover"
   title: "San Sebastian"
   images:
     - image: "images/donostia-bay.jpg"
       alt: "La Concha bay in Donostia · San Sebastian seen from above, with Santa Clara island"
-    - image: "images/donostia-old-town.jpg"
-      alt: "A narrow street of the old town of Donostia · San Sebastian"
-    - image: "images/donostia-port.jpg"
-      alt: "A small boat crossing the fishing port of Donostia · San Sebastian"
-    # Photo: Pierre-Antoine Franck on Unsplash, resized from pierre-antoine-franck-W2pBsQaT6FQ-unsplash.jpg (original in _originals/)
-    - image: "images/running.jpg"
+  # Two activities (from the organisers, November 2026), as cards under the photo: title, tagline (the line in pink), text, and a photo cut as a cube.
+  activities:
+    - title: "Running"
+      tagline: "Feel the city. Embrace the energy. Run the coastline."
+      text: "Experience Donostia in an active and refreshing way! Lace up your running shoes and discover the city's three iconic beaches along a scenic coastal route, combining exercise, breathtaking views and the unique beauty of San Sebastián."
+      # Photo: Pierre-Antoine Franck on Unsplash, resized from pierre-antoine-franck-W2pBsQaT6FQ-unsplash.jpg (original in _originals/)
+      image: "images/running.jpg"
       alt: "The legs of runners on the street, blurred by their speed"
+    - title: "Guided Tour"
+      tagline: "Get to know the city, one step at a time"
+      text: "Join a local guide and discover the charm of Donostia! Stroll through its beautiful streets, learn about its history and culture, admire its architecture and visit some of the city's most iconic spots. A lovely way to experience San Sebastián like a local."
+      image: "images/donostia-old-town.jpg"
+      alt: "A narrow street of the old town of Donostia · San Sebastian"
 ---

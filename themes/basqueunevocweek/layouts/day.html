@@ -146,6 +146,19 @@
           <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[3/2] w-full shape-cube object-cover sm:aspect-auto sm:h-80{{ if and $three (eq $i 0) }} sm:col-span-2 lg:col-span-1{{ end }}">
         {{ end }}
       </div>{{ end }}{{ end }}
+      {{- /* The afternoon's activities (11 May: Running and the Guided Tour, asked in November 2026), as square boxes on haze side by side: a photo cut as a cube, the title, a tagline in pink and the text. */ -}}
+      {{ with .activities }}<div class="mt-10 grid gap-6 md:grid-cols-2 lg:gap-8">
+        {{ range $act := . }}
+          <article class="bg-haze">
+            {{ with .image }}<img src="{{ . | relURL }}" alt="{{ $act.alt }}" loading="lazy" class="aspect-[2/1] w-full shape-cube object-cover">{{ end }}
+            <div class="p-6 sm:px-8">
+              <h4 class="text-3xl">{{ .title }}</h4>
+              {{ with .tagline }}<p class="mt-1 font-semibold text-pink-ink">{{ . }}</p>{{ end }}
+              {{ with .text }}<p class="mt-4 text-lg leading-relaxed">{{ . }}</p>{{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>{{ end }}
     </div>
   </section>
 {{ end }}
