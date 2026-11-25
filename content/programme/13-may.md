@@ -33,6 +33,7 @@ morning:
             - "CTA"
             - "RPK"
     - title: "Project Dissemination Day"
+      location: "Tabakalera"  # where it takes place, shown under the title
       # An ambient loop of the round tables (from the same video as the header), with a frame of it as its poster
       video: "videos/dissemination-day.mp4"
       image: "images/dissemination-day-poster.jpg"
