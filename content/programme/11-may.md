@@ -15,7 +15,7 @@ morning:
   intro: "Two options to choose from."
   options:
     # The six schools and their texts come from the organisers (November 2026).
-    # name, focus (its line under the name), text; url and image are optional: the first two with an image share the photo box.
+    # name, focus (its line under the name), text; url and image are optional: each centre's photo is small, cut as a cube, next to its name (a sky-tinted cube while it has none). credit (text, url, license, license_url): for a photo under a free licence, listed at the foot of the box.
     - title: "Networking in schools"
       centres:
         - name: "CIFP Tolosaldea LHII"
@@ -32,6 +32,8 @@ morning:
           alt: "Aerial view of the CIFP Usurbil LHII campus in Zubieta"
         - name: "CIFP Easo LHII"
           focus: "Centre of Excellence in Social Economy and Care Services"
+          image: "images/easo.jpg"
+          alt: "The red brick front of Easo Politeknikoa, with students by its entrance steps"
           text: "Healthcare, physical activity, electrical engineering, mechanical manufacturing, woodworking and sociocultural services. Discover a wide range of vocational training programmes linked to the industrial, healthcare and social sectors."
         - name: "CIFP Eagi LHII"
           focus: "Building and Civil Engineering"
@@ -41,6 +43,14 @@ morning:
           text: "Industry, mechanical manufacturing, chemistry, electrical engineering, maintenance and automotive technology. Discover a wide range of vocational training programmes linked to industrial processes, advanced technologies and manufacturing sectors."
         - name: "CIFP Fraisoro LHII"
           focus: "Agriculture and Environmental Studies"
+          # From Wikimedia Commons, "Fraisoro 1 - 94-074.jpg" (April 1994), resized; original in _originals/fraisoro.jpg
+          image: "images/fraisoro.jpg"
+          alt: "The Fraisoro school building with red roofs on a green hillside, with beehives in the field below"
+          credit:
+            text: "Aiurri"
+            url: "https://commons.wikimedia.org/wiki/File:Fraisoro_1_-_94-074.jpg"
+            license: "CC BY-SA 4.0"
+            license_url: "https://creativecommons.org/licenses/by-sa/4.0/"
           text: "Agriculture, livestock farming, forestry management, gardening and landscaping, the natural environment and the food industry. Discover a wide range of vocational training programmes linked to nature, animal care, sustainability and rural development."
     - title: "Visit to Tknika projects"
       image: "images/tknika-auditorium-tv.jpg"

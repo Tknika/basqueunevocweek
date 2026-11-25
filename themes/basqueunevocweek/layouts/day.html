@@ -42,23 +42,17 @@
           </header>
           <div class="overflow-hidden bg-haze lg:self-start">
             {{ with $o.centres }}
-              {{- /* The first two centres with a photo share one box, split by a diagonal (one photo alone fills it). */ -}}
-              {{ $photos := first 2 (where . "image" "!=" nil) }}
-              {{ with $photos }}<div class="relative aspect-[2/1] overflow-hidden">
-                {{ if eq (len .) 1 }}
-                  {{ with index . 0 }}<img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="size-full object-cover">{{ end }}
-                {{ else }}
-                  {{ range $c, $centre := . }}
-                    <img src="{{ $centre.image | relURL }}" alt="{{ $centre.alt }}" loading="lazy" class="{{ if $c }}diagonal-right{{ else }}diagonal-left{{ end }}">
-                  {{ end }}
-                  <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="absolute inset-0 size-full" aria-hidden="true" focusable="false"><line x1="60" y1="0" x2="40" y2="100" stroke="#fff" stroke-width="4" vector-effect="non-scaling-stroke"/></svg>
-                {{ end }}
-              </div>{{ end }}
-              {{- /* Each centre: its name, its focus (pink) and its web address; a `text` is folded under a "More" button (a <details>, no JavaScript), so six centres stay as short as the option beside them. */ -}}
-              <ul class="grid gap-x-6 gap-y-5 p-6 sm:grid-cols-2 sm:px-8">
+              {{- /* Each centre: a small photo cut as a leaning cube (a sky-tinted cube while it has none), then its name, its focus (pink) and its web address; a `text` is folded under a "More" button (a <details>, no JavaScript). Six centres in two columns, with no big photo above (asked in November 2026: a photo for each centre, without making the page long). */ -}}
+              <ul class="grid gap-x-6 gap-y-6 p-6 sm:grid-cols-2 sm:px-8">
                 {{ range $centre := . }}
-                  <li>
-                    <p class="text-lg font-semibold sm:text-xl">{{ .name }}</p>
+                  <li class="grid grid-cols-[4.5rem_1fr] items-start gap-x-3 sm:grid-cols-[5.5rem_1fr] sm:gap-x-4 lg:grid-cols-[4.5rem_1fr] lg:gap-x-3">
+                    {{ with .image }}
+                      <img src="{{ . | relURL }}" alt="{{ $centre.alt }}" loading="lazy" class="aspect-[4/3] w-full shape-cube object-cover">
+                    {{ else }}
+                      <span class="block aspect-[4/3] w-full shape-cube bg-sky/50" aria-hidden="true"></span>
+                    {{ end }}
+                    <div>
+                    <p class="text-lg leading-snug font-semibold">{{ .name }}</p>
                     {{ with .focus }}<p class="mt-0.5 text-sm font-semibold text-pink-ink">{{ . }}</p>{{ end }}
                     {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="mt-1 inline-block text-sm wrap-anywhere text-nobility underline underline-offset-3 hover:text-pink-ink">{{ strings.TrimPrefix "www." (urls.Parse .).Host }}</a>{{ end }}
                     {{ with .text }}
@@ -70,9 +64,16 @@
                         <p class="mt-2">{{ . }}</p>
                       </details>
                     {{ end }}
+                    </div>
                   </li>
                 {{ end }}
               </ul>
+              {{- /* Credits for photos under a free licence (CC BY and BY-SA ask for the author, the source and the licence) */ -}}
+              {{ with where . "credit" "!=" nil }}
+                <p class="px-6 pb-5 text-xs text-nobility/70 sm:px-8">Photo{{ if gt (len .) 1 }}s{{ end }}:
+                  {{ range $k, $c := . }}{{ if $k }}; {{ end }}{{ with $c.credit }}{{ $c.name }}, <a href="{{ .url }}" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">{{ .text }}</a>, <a href="{{ .license_url }}" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">{{ .license }}</a>{{ end }}{{ end }}
+                </p>
+              {{ end }}
             {{ else }}
               {{ with $o.image }}
                 <figure>
