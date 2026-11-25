@@ -141,21 +141,32 @@
 {{ with .Params.interest }}
   <section id="places" class="container-site border-t border-nobility/15 py-12 md:py-16">
     <h2 class="text-4xl sm:text-5xl lg:text-6xl">Places of interest</h2>
-    <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-12">
-    {{ with $.Params.interest_photo }}
-      <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="shape-cube-tall aspect-[4/3] w-full object-cover sm:aspect-[16/9] lg:sticky lg:top-24 lg:aspect-[3/4] lg:self-start">
-    {{ end }}
+    {{- /* A drawn map of the places (asked in November 2026, in place of a photo; nothing is loaded from other sites) on the left, staying in view while the cards scroll, and the places as cards on the right: each card's number is its square on the map. (Across the whole section it was "too big".) */ -}}
+    <div class="mt-8 grid gap-8 lg:grid-cols-[2fr_3fr] lg:gap-12">
+    <figure class="lg:sticky lg:top-24 lg:self-start">
+      <div class="overflow-hidden border border-nobility/15">{{ partial "drawing-places-map.html" (dict "places" .) }}</div>
+      <figcaption class="mt-2 text-xs text-nobility/70">Map data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">OpenStreetMap</a> contributors</figcaption>
+    </figure>
     <ul class="grid gap-4 sm:grid-cols-2">
       {{ range $i, $p := . }}
-        <li class="relative isolate overflow-hidden bg-haze p-6">
-          {{- /* A large faint number in the corner, as on the workshops. */ -}}
-          <span class="absolute -top-3 -right-1 -z-10 font-display text-7xl leading-none text-azure/15 select-none" aria-hidden="true">{{ add $i 1 }}</span>
-          <h3 class="text-xl font-semibold">{{ $p.name }}</h3>
-          <p class="mt-2 text-base leading-relaxed">{{ $p.text }}</p>
+        <li class="bg-haze p-6">
+          {{- /* The place's photo (asked in November 2026), inside the box like the 11 May activities, cut as a leaning cube */ -}}
+          {{ with $p.image }}<img src="{{ . | relURL }}" alt="{{ $p.alt }}" loading="lazy" class="mb-5 aspect-[2/1] w-full {{ if modBool $i 2 }}shape-cube{{ else }}shape-cube-alt{{ end }} object-cover">{{ end }}
+          <div class="flex items-start gap-3">
+            <span class="flex size-8 shrink-0 items-center justify-center bg-azure font-display text-sm text-white" aria-hidden="true">{{ add $i 1 }}</span>
+            <h3 class="pt-0.5 text-xl leading-snug font-semibold">{{ $p.name }}</h3>
+          </div>
+          <p class="mt-3 text-base leading-relaxed">{{ $p.text }}</p>
         </li>
       {{ end }}
     </ul>
     </div>
+    {{- /* Credits for the photos (CC BY-SA asks for the author, the source and the licence; CC0 and Unsplash don't, but they are credited too), numbered as the places */ -}}
+    {{ with where . "credit" "!=" nil }}
+      <p class="mt-6 text-xs leading-relaxed text-nobility/70">Photos:
+        {{ range $k, $c := . }}{{ if $k }}; {{ end }}{{ with $c.credit }}{{ $c.name }}, <a href="{{ .url }}" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">{{ .text }}</a>, <a href="{{ .license_url }}" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-pink-ink">{{ .license }}</a>{{ end }}{{ end }}
+      </p>
+    {{ end }}
   </section>
 {{ end }}
 

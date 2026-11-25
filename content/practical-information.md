@@ -50,24 +50,64 @@ stay:
   link:
     text: "San Sebastian tourist office"
     url: "https://www.sansebastianturismoa.eus/"
-interest_photo:
-  image: "images/donostia-port.jpg"
-  alt: "A small boat crossing the port in front of the Old Town houses, below Mount Urgull"
+# The places of interest, each a card numbered as its square on the map beside them (a drawing, _partials/drawing-places-map.html, made by scripts/make-places-map.js; it replaced a photo in November 2026).
+# image, alt and credit: a photo of the place, free to use (Wikimedia Commons, CC0 or CC BY-SA, and Unsplash; November 2026), credited under the cards.
+# lat and lon place it on the map: from OpenStreetMap (for the Old Town, the Plaza de la Constitución; for La Concha, its beach; for Mount Igueldo, its viewpoint).
 interest:
   - name: "Zurriola beach"
     text: "Right in front of the Kursaal, the surfers' beach."
+    lat: 43.32672
+    lon: -1.97614
+    image: "images/place-zurriola.jpg"
+    alt: "Zurriola beach on a sunny day, with people on the sand and Mount Ulia behind"
+    credit: {text: "Mariordo (Mario Roberto Durán Ortiz)", url: "https://commons.wikimedia.org/wiki/File:Zurriola_Beach_San_Sebastian_06_2012_2590.jpg", license: "CC BY-SA 4.0", license_url: "https://creativecommons.org/licenses/by-sa/4.0/"}
   - name: "Old Town"
     text: "Narrow streets, the Plaza de la Constitución and the best known pintxo bars."
+    lat: 43.32362
+    lon: -1.98488
+    image: "images/place-old-town.jpg"
+    alt: "A pedestrian street of the Old Town between tall houses with balconies, full of people"
+    credit: {text: "Hans-Jürgen Weinhardt", url: "https://unsplash.com/photos/2BlPUNH2g7U", license: "Unsplash License", license_url: "https://unsplash.com/license"}
   - name: "La Concha"
     text: "The city's bay, with its promenade and railings."
+    lat: 43.31772
+    lon: -1.99152
+    image: "images/place-la-concha.jpg"
+    alt: "The white wrought-iron railing of the La Concha promenade, with the turquoise sea behind"
+    credit: {text: "Zarateman", url: "https://commons.wikimedia.org/wiki/File:San_Sebasti%C3%A1n_-_Paseo_de_la_Concha,_barandilla.jpg", license: "CC0", license_url: "https://creativecommons.org/publicdomain/zero/1.0/"}
   - name: "Mount Urgull"
     text: "Paths and viewpoints over the bay, above the Old Town."
+    lat: 43.32485
+    lon: -1.98942
+    image: "images/place-urgull.jpg"
+    alt: "Mount Urgull, green and wooded, with the statue on its top, above the houses and boats of the port"
+    credit: {text: "Wolfgang Pehlemann", url: "https://commons.wikimedia.org/wiki/File:Monte_Urgull_mit_Castillo_de_La_Mota_-_Donostia_San_Sebastian_Foto_Wolfgang_Pehlemann_DSC00120.jpg", license: "CC BY-SA 3.0 DE", license_url: "https://creativecommons.org/licenses/by-sa/3.0/de/deed.en"}
   - name: "Mount Igueldo"
     text: "Reached by funicular, with views over the whole bay."
+    lat: 43.32104
+    lon: -2.00965
+    image: "images/place-igueldo.jpg"
+    alt: "The old stone tower on top of Mount Igueldo, next to a hotel, among trees under a blue sky"
+    credit: {text: "Zarateman", url: "https://commons.wikimedia.org/wiki/File:San_Sebasti%C3%A1n_-_Monte_Igeldo_3.jpg", license: "CC0", license_url: "https://creativecommons.org/publicdomain/zero/1.0/"}
   - name: "Peine del Viento"
     text: "Eduardo Chillida's sculptures in the rocks at the end of Ondarreta beach."
+    lat: 43.32169
+    lon: -2.00555
+    image: "images/place-peine-del-viento.jpg"
+    alt: "The rusted iron sculptures of the Peine del Viento on the rocks, with the sea behind"
+    credit: {text: "Aldara Gutiérrez Pol", url: "https://unsplash.com/photos/EneXnZ23cQA", license: "Unsplash License", license_url: "https://unsplash.com/license"}
   - name: "San Telmo Museoa"
     text: "The museum of Basque society, in a former convent in the Old Town."
+    lat: 43.32503
+    lon: -1.98536
+    image: "images/place-san-telmo.jpg"
+    alt: "The sandstone façade of San Telmo Museoa, with arched windows and the museum's sign, at the foot of the green slope of Mount Urgull"
+    credit: {text: "Zarateman", url: "https://commons.wikimedia.org/wiki/File:San_Sebastian_-_San_Telmo_02.jpg", license: "CC0", license_url: "https://creativecommons.org/publicdomain/zero/1.0/"}
   - name: "Tabakalera"
     text: "Centre for contemporary culture in a former tobacco factory, by the train station."
+    lat: 43.31662
+    lon: -1.9759
+    image: "images/place-tabakalera.jpg"
+    alt: "The long sandstone façade of Tabakalera, the former tobacco factory, under a blue sky"
+    credit: {text: "Mendizuri", url: "https://commons.wikimedia.org/wiki/File:Tabakalera_fatxada_albotik.jpg", license: "CC BY-SA 4.0", license_url: "https://creativecommons.org/licenses/by-sa/4.0/"}
 ---
