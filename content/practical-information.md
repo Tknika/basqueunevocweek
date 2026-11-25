@@ -1,6 +1,7 @@
 ---
 title: "Practical information"
-header_image: "images/donostia-bay.jpg"
+# Photo: Ultrash Ricco on Unsplash, resized from ultrash-ricco-8KCquMrFEPg-unsplash.jpg (original in _originals/)
+header_image: "images/la-concha.jpg"
 weight: 6
 menus: main
 layout: practical
