@@ -19,9 +19,10 @@
             {{ else }}
             <a href="{{ .URL }}" class="block border-b-2 py-1 transition {{ if $azureText }}hover:border-nobility hover:text-nobility{{ else }}hover:border-(--menu-line) hover:text-(--menu-hover){{ end }} {{ if $current }}border-(--menu-line){{ else }}border-transparent{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a>
             {{ end }}
-            {{ if and .HasChildren (not $isHome) }}
+            {{- /* The submenu (the programme's days) is a white box with its own dark blue text, so it reads on the home too, where the menu over the photo is white. */ -}}
+            {{ if .HasChildren }}
               <div class="invisible absolute left-0 top-full pt-2 group-focus-within:visible group-hover:visible">
-                <ul class="grid gap-2 bg-white px-4 py-3 whitespace-nowrap shadow-lg ring-1 ring-nobility/10">
+                <ul class="grid gap-2 bg-white px-4 py-3 whitespace-nowrap text-nobility shadow-lg ring-1 ring-nobility/10">
                   {{ range .Children }}
                     <li><a href="{{ .URL }}" class="transition hover:text-pink-ink{{ if $page.IsMenuCurrent "main" . }} text-pink{{ end }}"{{ if $page.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
                   {{ end }}
