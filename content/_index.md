@@ -32,7 +32,9 @@ registration:
     items:
       - name: "International Guest Partners"
         url: ""
-      - name: "FP Euskadi schools"
+      # In Basque, as the organisers asked (November 2026): the schools of FP Euskadi.
+      - name: "FP Euskadi IKASTETXEAK"
+        lang: "eu"
         soon: true
 ---
 
