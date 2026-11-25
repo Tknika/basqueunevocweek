@@ -1,20 +1,22 @@
 {{ define "main" }}
 {{ partial "page-header.html" . }}
 <div class="container-site py-12 md:py-16">
+  <div class="max-w-5xl">
   {{ partial "programme-overview.html" . }}
   {{- /* The Student Hub runs alongside the three days (front matter: student_hub), as in the draft calendar: a band that links to its page, right under the days at a glance. */ -}}
   {{ with .Params.student_hub }}
     {{ $hub := site.GetPage "/student-hub" }}
-    <a href="{{ with $hub }}{{ .RelPermalink }}{{ end }}" class="group mt-3 flex flex-wrap items-center gap-x-8 gap-y-3 bg-azure px-6 py-6 text-white transition hover:bg-pink hover:text-night sm:px-8 lg:ml-[calc(2.75rem+0.75rem)]">
+    <a href="{{ with $hub }}{{ .RelPermalink }}{{ end }}" class="group mt-2 flex flex-wrap items-center gap-x-6 gap-y-1 bg-azure px-5 py-3 text-white transition hover:bg-pink hover:text-night lg:mt-3 lg:ml-[calc(2rem+0.75rem)]">
       <span class="flex items-center gap-3">
         <span class="shape-cube h-4 w-7 bg-lime" aria-hidden="true"></span>
-        <span class="font-display text-2xl uppercase sm:text-3xl">{{ .title }}</span>
-        <span class="font-display text-lg sm:text-xl">{{ .dates }}</span>
+        <span class="font-display text-lg uppercase sm:text-xl">{{ .title }}</span>
+        <span class="font-display text-base">{{ .dates }}</span>
       </span>
-      <span class="text-lg font-semibold">{{ .text }}</span>
-      <span class="ml-auto text-3xl transition group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true">→</span>
+      <span class="text-sm font-semibold">{{ .text }}</span>
+      <span class="ml-auto text-2xl transition group-hover:translate-x-1 motion-reduce:transition-none" aria-hidden="true">→</span>
     </a>
   {{ end }}
+  </div>
   <div class="prose-site{{ if .Params.overview }} mt-14 md:mt-20{{ end }}">{{ .Content }}</div>
   {{- /* The days as large rows, with their photo cut as a leaning cube. The title's link covers the whole row (after:inset-0); the part links sit above it, because links can't be nested. */ -}}
   <ul class="mt-12 border-b border-nobility/15">
