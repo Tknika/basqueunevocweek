@@ -1,6 +1,6 @@
 ---
 title: "Programme"
-pending: "The mornings are not final yet"  # a "Pending" tag with this text in the header (_partials/pending.html); each morning is marked too: remove both when the 2027 mornings arrive
+pending: "The 12 and 13 May mornings are not final yet"  # a "Pending" tag with this text in the header (_partials/pending.html); each pending morning is marked too (11 May's was removed in November 2026): remove both when the 2027 mornings arrive
 header_image: "images/tknika-auditorium-tv.jpg"
 weight: 2
 menus:

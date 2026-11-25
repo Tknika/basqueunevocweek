@@ -42,11 +42,11 @@
           </header>
           <div class="overflow-hidden bg-haze lg:self-start">
             {{ with $o.centres }}
-              {{- /* Each centre: its logo on a white tile (a logo is never cut into the cube shape), then its name, a link to its website when it has a `url`, and its focus (pink); a `text` is folded under a "More" button (a <details>, no JavaScript). Six centres in two columns, with no big photo above. (Small photos cut as cubes until November 2026, when the logos were asked for instead.) */ -}}
+              {{- /* Each centre: its logo, in UNEVOC azure on the box's haze, with no background (a logo is never cut into the cube shape; on a white tile and in its own colours until November 2026, when a monochrome logo, better blended in, was asked for), then its name, a link to its website when it has a `url`, and its focus (pink); a `text` is folded under a "More" button (a <details>, no JavaScript). Six centres in two columns, with no big photo above. (Small photos cut as cubes until November 2026, when the logos were asked for instead.) */ -}}
               <ul class="grid gap-x-6 gap-y-6 p-6 sm:grid-cols-2 sm:px-8">
                 {{ range $centre := . }}
                   <li>
-                    {{ with .logo }}<span class="mb-3 flex h-16 items-center justify-center bg-white px-5 py-3 sm:h-20"><img src="{{ . | relURL }}" alt="" class="max-h-full max-w-[min(100%,12rem)] object-contain"></span>{{ end }}
+                    {{ with .logo }}<img src="{{ . | relURL }}" alt="" class="mb-3 h-12 w-auto max-w-full object-contain object-left sm:h-14">{{ end }}
                     <div>
                     <p class="text-lg leading-snug font-semibold">{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="text-nobility underline decoration-nobility/30 underline-offset-3 transition hover:text-pink-ink hover:decoration-pink-ink">{{ $centre.name }}<span class="sr-only"> (opens in a new tab)</span></a>{{ else }}{{ .name }}{{ end }}</p>
                     {{ with .focus }}<p class="mt-0.5 text-sm font-semibold text-pink-ink">{{ . }}</p>{{ end }}

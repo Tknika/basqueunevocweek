@@ -11,12 +11,11 @@ menus:
   main:
     parent: programme
 morning:
-  pending: true  # shows a "Pending · Not final yet" tag by the Morning heading and on its button in the programme (_partials/pending.html): remove it when the 2027 morning arrives
   time: "9:00-14:30"
   intro: "Two options to choose from."
   options:
     # The six schools and their texts come from the organisers (November 2026).
-    # name (a link to the school's website, `url`), focus (its line under the name), text (folded under "More"); logo: the school's logo, from its own website (November 2026), on a white tile next to its name.
+    # name (a link to the school's website, `url`), focus (its line under the name), text (folded under "More"); logo: the school's logo, from its own website (November 2026), made monochrome in UNEVOC azure with no background, above its name.
     - title: "Networking in schools"
       centres:
         - name: "CIFP Tolosaldea LHII"
