@@ -128,6 +128,11 @@
   <section id="afternoon" class="container-site pb-14 md:pb-20">
     <div class="border-t border-nobility/15 pt-14 md:pt-20">
       <h2 class="text-5xl sm:text-6xl lg:text-7xl">Afternoon</h2>
+      {{- /* With activities, the title is one line ("Discover" in pink, then the title) and the activities follow; otherwise eyebrow, title and text sit next to the first photo. */ -}}
+      {{ if .activities }}
+        <h3 class="mt-6 text-3xl leading-tight sm:text-4xl">{{ with .eyebrow }}<span class="text-pink">{{ . }}</span> {{ end }}{{ .title }}</h3>
+        {{ with .text }}<p class="mt-3 text-lg leading-relaxed">{{ . }}</p>{{ end }}
+      {{ else }}
       <div class="mt-8 grid items-center gap-8 {{ if .images }}lg:grid-cols-2 {{ end }}lg:gap-12">
         <div>
           <p class="text-3xl font-semibold tracking-tight text-pink">{{ .eyebrow }}</p>
@@ -146,14 +151,16 @@
           <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" class="aspect-[3/2] w-full shape-cube object-cover sm:aspect-auto sm:h-80{{ if and $three (eq $i 0) }} sm:col-span-2 lg:col-span-1{{ end }}">
         {{ end }}
       </div>{{ end }}{{ end }}
-      {{- /* The afternoon's activities (11 May: Running and the Guided Tour, asked in November 2026), as square boxes on haze side by side: a photo cut as a cube, the title, a tagline in pink and the text. */ -}}
-      {{ with .activities }}<div class="mt-10 grid gap-6 md:grid-cols-2 lg:gap-8">
-        {{ range $act := . }}
-          <article class="bg-haze">
-            {{ with .image }}<img src="{{ . | relURL }}" alt="{{ $act.alt }}" loading="lazy" class="aspect-[2/1] w-full shape-cube object-cover">{{ end }}
-            <div class="p-6 sm:px-8">
-              <h4 class="text-3xl">{{ .title }}</h4>
-              {{ with .tagline }}<p class="mt-1 font-semibold text-pink-ink">{{ . }}</p>{{ end }}
+      {{ end }}
+      {{- /* The afternoon's activities (11 May: Running and the Guided Tour, asked in November 2026) are its focus, right under its title: two large square boxes on haze side by side, each with a low photo cut as a cube (5:2; 3:2 was "too big"), "Activity N" (as the morning's "Option N"), the title, a tagline in pink and the text. (At first they sat small under a large photo of the bay: "they can hardly be seen".) */ -}}
+      {{ with .activities }}<div class="mt-8 grid gap-6 md:grid-cols-2 lg:gap-8">
+        {{ range $i, $act := . }}
+          <article class="flex flex-col bg-haze">
+            <div class="p-6 sm:p-8">
+              {{ with .image }}<img src="{{ . | relURL }}" alt="{{ $act.alt }}" loading="lazy" class="mb-6 aspect-[2/1] w-full {{ if modBool $i 2 }}shape-cube{{ else }}shape-cube-alt{{ end }} object-cover md:aspect-[5/2] {{ $act.position }}">{{ end }}
+              <p class="text-sm font-semibold text-pink-ink">Activity {{ add $i 1 }}</p>
+              <h4 class="mt-1 text-4xl sm:text-5xl">{{ .title }}</h4>
+              {{ with .tagline }}<p class="mt-3 text-xl font-semibold tracking-tight text-pink-ink">{{ . }}</p>{{ end }}
               {{ with .text }}<p class="mt-4 text-lg leading-relaxed">{{ . }}</p>{{ end }}
             </div>
           </article>

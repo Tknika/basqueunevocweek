@@ -65,10 +65,7 @@ morning:
 afternoon:
   eyebrow: "Discover"
   title: "San Sebastian"
-  images:
-    - image: "images/donostia-bay.jpg"
-      alt: "La Concha bay in Donostia · San Sebastian seen from above, with Santa Clara island"
-  # Two activities (from the organisers, November 2026), as cards under the photo: title, tagline (the line in pink), text, and a photo cut as a cube.
+  # Two activities (from the organisers, November 2026), the focus of the afternoon: title, tagline (the line in pink), text, and a photo cut as a cube.
   activities:
     - title: "Running"
       tagline: "Feel the city. Embrace the energy. Run the coastline."
@@ -79,6 +76,8 @@ afternoon:
     - title: "Guided Tour"
       tagline: "Get to know the city, one step at a time"
       text: "Join a local guide and discover the charm of Donostia! Stroll through its beautiful streets, learn about its history and culture, admire its architecture and visit some of the city's most iconic spots. A lovely way to experience San Sebastián like a local."
-      image: "images/donostia-old-town.jpg"
-      alt: "A narrow street of the old town of Donostia · San Sebastian"
+      # Photo: Jordi Vich Navarro on Unsplash, resized from jordi-vich-navarro-NY63daJ4r0o-unsplash.jpg (original in _originals/)
+      image: "images/peine-del-viento.jpg"
+      position: "object-[50%_0%]"  # the crop starts at the top of the photo, so the whole sculpture shows
+      alt: "The Peine del Viento, Chillida's iron sculpture on the rocks of San Sebastian, with the sea breaking around them"
 ---
