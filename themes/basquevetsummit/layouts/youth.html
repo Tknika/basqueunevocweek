@@ -1,7 +1,7 @@
 {{- /* The registration button (`registration` in the front matter, asked in November 2026): one form, on another site, for both programmes. A dark sticker with a hard pink shadow, turning pink on hover; it says that it leaves the site (the external icon, and "(opens in a new tab)" for screen readers). While `url` is empty it is shown, with the same hover, but does nothing, like the other forms on the site. Takes r (the registration) and class. */ -}}
 {{ define "partials/youth-register" }}
   {{ with .r }}
-    {{ $class := printf "group inline-flex items-center gap-3 bg-nobility px-7 py-4 font-display text-lg text-lime uppercase no-underline shadow-[6px_6px_0_var(--color-pink)] transition hover:-translate-y-0.5 hover:bg-pink hover:text-night hover:shadow-[6px_6px_0_var(--color-nobility)] motion-reduce:transition-none sm:text-xl %s" $.class }}
+    {{ $class := printf "group inline-flex items-center gap-3 rounded-full bg-nobility px-8 py-4 font-display text-lg text-lime uppercase no-underline shadow-[6px_6px_0_var(--color-pink)] transition hover:-translate-y-0.5 hover:bg-pink hover:text-night hover:shadow-[6px_6px_0_var(--color-nobility)] motion-reduce:transition-none sm:text-xl %s" $.class }}
     {{ $inner := printf `%s<span class="sr-only"> for the Student Hub (opens in a new tab)</span>%s` .label (partial "icon.html" (dict "name" "external" "class" "size-5 shrink-0")) }}
     {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="{{ $class }}">{{ $inner | safeHTML }}</a>{{ else }}<span role="link" aria-disabled="true" class="{{ $class }} cursor-pointer">{{ $inner | safeHTML }}</span>{{ end }}
   {{ end }}
@@ -24,7 +24,7 @@
   {{ with .t.points }}
     <ul class="mt-12 grid gap-5 {{ $.pointgrid | default "sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3" }}">
       {{ range . }}
-        <li class="bg-white p-5 text-nobility shadow-[5px_5px_0_var(--color-nobility)]">
+        <li class="rounded-3xl bg-white p-6 text-nobility shadow-[5px_5px_0_var(--color-nobility)]">
           {{ partial "icon.html" (dict "name" .icon "class" "size-8 text-pink-ink") }}
           <h3 class="mt-3 text-xl leading-tight font-semibold">{{ .title }}</h3>
           <p class="mt-2 leading-snug font-medium">{{ .text }}</p>
@@ -40,7 +40,7 @@
   {{ with .t.hosts }}
     <h3 class="mt-10 font-display text-lg uppercase sm:text-xl">{{ .title }}</h3>
     <ul class="mt-5 flex flex-wrap gap-3">
-      {{ range $h, $host := .items }}<li class="{{ cond (modBool $h 2) "-rotate-1" "rotate-1" }} {{ $.tag }} px-4 py-2 text-lg font-bold">{{ $host }}</li>{{ end }}
+      {{ range $h, $host := .items }}<li class="{{ cond (modBool $h 2) "-rotate-1" "rotate-1" }} {{ $.tag }} rounded-full px-5 py-2 text-lg font-bold">{{ $host }}</li>{{ end }}
     </ul>
   {{ end }}
 {{ end }}
@@ -52,7 +52,7 @@
       <div>
         <h3 class="font-display text-2xl uppercase sm:text-3xl">Learning objectives</h3>
         <ul class="mt-6 grid gap-3">
-          {{ range . }}<li class="flex gap-3 text-lg leading-snug font-medium"><span class="shape-cube mt-[0.45em] h-2.5 w-3.5 shrink-0 {{ $.shard }}" aria-hidden="true"></span><span>{{ . }}</span></li>{{ end }}
+          {{ range . }}<li class="flex gap-3 text-lg leading-snug font-medium"><span class="mt-[0.4em] size-3 shrink-0 rounded-full {{ $.shard }}" aria-hidden="true"></span><span>{{ . }}</span></li>{{ end }}
         </ul>
       </div>
     {{ end }}
@@ -75,6 +75,7 @@
 
 {{ define "main" }}
 {{- /* Student Hub speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year’s edition stuck on at an angle, tickets for the two programmes, a dark moving band of topics and each programme with its days, the second one on pink as a line-up; the registration button in the opening and again at the end. No UNEVOC blue here.
+  Rounded, not pointed (asked in November 2026, "let's try"): unlike the rest of the site, every sticker, ticket, card, button and photo here has round corners, and the small shards are dots.
   Since November 2026 the two programmes are the 2027 ones, from the organisers: the International VET Skills Competition (VET students, EQF 4) and Global Citizenship in Action, an Erasmus+ Blended Intensive Programme (higher education students). */ -}}
 <div class="overflow-x-clip text-nobility">
   {{- /* Not final yet: the same band as on the other pages, above the poster (_partials/pending.html), when `pending` is set */ -}}
@@ -82,10 +83,10 @@
   <section class="mesh-youth relative isolate overflow-hidden">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
       <div>
-        <h1 class="font-display text-[clamp(3.2rem,14vw,13rem)] lg:text-[clamp(4rem,9vw,8.5rem)] leading-[0.85] font-normal tracking-tight uppercase">Student<br>Hub <span class="ml-[0.1em] inline-block -rotate-6 bg-pink px-[0.14em] py-[0.08em] align-top text-[0.42em] leading-none text-night">2027</span></h1>
+        <h1 class="font-display text-[clamp(3.2rem,14vw,13rem)] lg:text-[clamp(4rem,9vw,8.5rem)] leading-[0.85] font-normal tracking-tight uppercase">Student<br>Hub <span class="ml-[0.1em] inline-block -rotate-6 rounded-[0.3em] bg-pink px-[0.14em] py-[0.08em] align-top text-[0.42em] leading-none text-night">2027</span></h1>
         <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-          <p class="-rotate-3 bg-pink px-4 py-2 font-display text-lg text-night sm:text-2xl">{{ .Params.dates }}</p>
-          <p class="rotate-2 bg-nobility px-4 py-2 font-display text-lg text-lime sm:text-2xl">For students</p>
+          <p class="-rotate-3 rounded-full bg-pink px-5 py-2 font-display text-lg text-night sm:text-2xl">{{ .Params.dates }}</p>
+          <p class="rotate-2 rounded-full bg-nobility px-5 py-2 font-display text-lg text-lime sm:text-2xl">For students</p>
         </div>
         <p class="mt-8 max-w-3xl text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
         {{ partial "youth-register" (dict "r" .Params.registration "class" "mt-10") }}
@@ -94,11 +95,11 @@
       {{ with .Params.photo }}
         {{- /* Last year’s edition, as a big printed sticker: a white frame cut with the leaning cube and a hard dark shadow, like the tickets */ -}}
         <figure class="relative rotate-2 drop-shadow-[8px_8px_0_var(--color-nobility)]">
-          <div class="shape-cube bg-white p-3 sm:p-4">
-            <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" fetchpriority="high" class="shape-cube aspect-[4/3] w-full object-cover">
+          <div class="rounded-[2rem] bg-white p-3 sm:p-4">
+            <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" fetchpriority="high" class="aspect-[4/3] w-full rounded-[1.4rem] object-cover">
           </div>
-          <figcaption class="absolute -bottom-4 left-6 -rotate-3 bg-white px-3 py-1.5 font-display text-sm sm:text-base">Last year’s edition</figcaption>
-          <span class="shape-cube-alt absolute -top-5 right-8 h-10 w-14 bg-pink" aria-hidden="true"></span>
+          <figcaption class="absolute -bottom-4 left-6 -rotate-3 rounded-full bg-white px-4 py-1.5 font-display text-sm sm:text-base">Last year’s edition</figcaption>
+          <span class="absolute -top-5 right-8 size-12 rounded-full bg-pink" aria-hidden="true"></span>
         </figure>
       {{ end }}
     </div>
@@ -106,7 +107,7 @@
     {{- /* The two programmes as tickets: the stub, past a dashed cut, holds the dates and the arrow */ -}}
     <div class="container-site grid gap-5 pb-16 md:grid-cols-2 md:pb-24">
       {{ range $i, $t := .Params.tracks }}
-        <a href="#{{ $t.id }}" class="group flex bg-white shadow-[6px_6px_0_var(--color-nobility)] transition hover:-translate-y-1 hover:-rotate-1 motion-reduce:transition-none">
+        <a href="#{{ $t.id }}" class="group flex overflow-hidden rounded-3xl bg-white shadow-[6px_6px_0_var(--color-nobility)] transition hover:-translate-y-1 hover:-rotate-1 motion-reduce:transition-none">
           <span class="flex-1 p-6 sm:p-8">
             <span class="block text-sm font-bold tracking-widest uppercase {{ if $i }}text-pink-ink{{ else }}text-nobility/60{{ end }}">Ticket 0{{ add $i 1 }} · {{ $t.level }}</span>
             <span class="mt-2 block font-display text-2xl leading-tight uppercase sm:text-3xl">{{ $t.audience }}</span>
@@ -128,7 +129,7 @@
     <div class="marquee flex w-max font-display text-2xl uppercase sm:text-3xl">
       {{ range seq 2 }}
         <div class="flex shrink-0 items-center">
-          {{ range $.Params.topics }}<span class="px-6 whitespace-nowrap">{{ . }}</span><span class="shape-cube h-5 w-7 bg-pink"></span>{{ end }}
+          {{ range $.Params.topics }}<span class="px-6 whitespace-nowrap">{{ . }}</span><span class="size-5 rounded-full bg-pink"></span>{{ end }}
         </div>
       {{ end }}
     </div>
@@ -145,10 +146,10 @@
           {{ with .subtitle }}<p class="mt-5 text-xl leading-snug font-semibold text-pink-ink sm:text-2xl">{{ . }}</p>{{ end }}
           {{ with .photo }}
             <figure class="relative mt-10 drop-shadow-[8px_8px_0_var(--color-nobility)]">
-              <div class="shape-cube-alt bg-white p-3 sm:p-4">
-                <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="shape-cube-alt aspect-[4/3] w-full object-cover">
+              <div class="rounded-[2rem] bg-white p-3 sm:p-4">
+                <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="aspect-[4/3] w-full rounded-[1.4rem] object-cover">
               </div>
-              <span class="shape-cube absolute -bottom-4 left-[12%] h-10 w-16 bg-pink" aria-hidden="true"></span>
+              <span class="absolute -bottom-5 left-[12%] size-12 rounded-full bg-pink" aria-hidden="true"></span>
             </figure>
           {{ end }}
         </div>
@@ -163,11 +164,11 @@
                   <span class="mt-1 block font-display text-7xl text-pink sm:text-8xl">{{ .number }}</span>
                 </p>
                 <div class="sm:pt-6">
-                  {{ with .place }}<p class="inline-block {{ cond (modBool $d 2) "-rotate-2" "rotate-1" }} bg-nobility px-4 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
+                  {{ with .place }}<p class="inline-block {{ cond (modBool $d 2) "-rotate-2" "rotate-1" }} rounded-full bg-nobility px-5 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
                   {{ with .title }}<h4 class="mt-4 text-2xl leading-tight font-semibold sm:text-3xl">{{ . }}</h4>{{ end }}
                   {{ with .text }}<p class="mt-3 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
                   {{ with .extra }}
-                    <div class="mt-6 border-l-4 border-lime pl-5">
+                    <div class="mt-6 rounded-3xl bg-lime/30 p-5 sm:p-6">
                       {{ with .place }}<p class="text-sm font-bold tracking-widest text-nobility/70 uppercase">{{ . }}</p>{{ end }}
                       <h4 class="mt-1 text-2xl leading-tight font-semibold">{{ .title }}</h4>
                       {{ with .text }}<p class="mt-3 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
@@ -192,7 +193,7 @@
         <div class="text-center">
           <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 0{{ add $i 1 }} · {{ $t.audience }} · {{ $t.level }} · {{ $t.dates }}</p>
           <h2 class="mx-auto mt-5 max-w-5xl text-4xl leading-[1.02] text-night sm:text-6xl lg:text-7xl">{{ $t.title }}</h2>
-          {{ with $t.subtitle }}<p class="mx-auto mt-5 inline-block -rotate-1 bg-night px-4 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
+          {{ with $t.subtitle }}<p class="mx-auto mt-5 inline-block -rotate-1 rounded-full bg-night px-5 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
         </div>
         <div class="mx-auto mt-12 max-w-3xl">
           {{ partial "youth-about" (dict "t" $t "tag" "bg-lime text-nobility" "accent" "text-night" "line" "border-lime" "figgrid" "sm:grid-cols-3" "pointgrid" "sm:grid-cols-3") }}
@@ -203,9 +204,9 @@
           {{ range $d, $day := $t.days }}
             {{ $tilt := cond (modBool $d 2) "-rotate-2" "rotate-2" }}
             <li>
-              {{ if $d }}<span class="shape-cube mx-auto mb-14 block h-4 w-6 bg-lime" aria-hidden="true"></span>{{ end }}
+              {{ if $d }}<span class="mx-auto mb-14 block size-4 rounded-full bg-lime" aria-hidden="true"></span>{{ end }}
               <p class="font-display text-[clamp(2.6rem,9vw,7rem)] leading-none uppercase">{{ with .when }}{{ . }}{{ else }}{{ substr $day.weekday 0 3 }} {{ $day.number }}{{ end }}</p>
-              {{ with .place }}<p class="mt-4 inline-block {{ $tilt }} bg-lime px-4 py-1.5 text-lg font-bold text-nobility sm:text-xl">{{ . }}</p>{{ end }}
+              {{ with .place }}<p class="mt-4 inline-block {{ $tilt }} rounded-full bg-lime px-5 py-1.5 text-lg font-bold text-nobility sm:text-xl">{{ . }}</p>{{ end }}
               {{ with .label }}<p class="mt-5 text-sm font-bold tracking-widest uppercase">{{ . }}</p>{{ end }}
               {{ with .title }}<h4 class="mx-auto {{ if $day.label }}mt-1{{ else }}mt-5{{ end }} max-w-3xl text-2xl leading-tight font-semibold sm:text-3xl">{{ . }}</h4>{{ end }}
               {{ with .text }}<p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
