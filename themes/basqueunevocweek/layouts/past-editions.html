@@ -1,7 +1,7 @@
 {{- /* Past editions (content/past-editions.md), a page under About (asked in November 2026): fifteen years of annual summits, in videos.
   The page header names About above the title (`up`). Then:
   The opening: the number of years (`years`), huge in Krona One, next to the introduction (`intro`, `note`).
-  A ruler of the years, from the first edition to this one: a tick for every year, the years with an edition as links to it, this year in pink.
+  A ruler of the years, from an ellipsis (the summits began earlier) and the first edition with a video to this one: a tick for every year, the years with an edition as links to it, this year in pink.
   The timeline, newest first, down a thin line (on the left on phones, in the middle on large screens, the editions alternating sides): this year's summit on top, in pink, with a link to the programme; then each edition, its year large, its name, and its videos.
   A video is a card: its thumbnail cut as a cube with a pink play button, and its title as a link to YouTube, in a new tab. Nothing is embedded or loaded from YouTube (no cookies, no third-party requests): the thumbnails are kept on the site. */ -}}
 {{ define "main" }}
@@ -29,6 +29,8 @@
     {{ $first := index (sort $years) 0 }}
     <nav class="mt-20 md:mt-24" aria-label="Editions by year">
       <ol class="flex border-t-2 border-azure">
+        {{- /* The summits began before the first year with a video, so the ruler starts with an ellipsis (asked in November 2026) */ -}}
+        <li class="flex flex-col items-center pr-2 sm:pr-4" aria-hidden="true"><span class="h-2.5 w-px bg-azure/40"></span><span class="mt-1 font-display text-sm leading-none text-azure">…</span></li>
         {{ range seq $first $now }}
           {{ $y := . }}
           {{ if eq $y $now }}
