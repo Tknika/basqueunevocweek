@@ -16,22 +16,20 @@ morning:
   intro: "Two options to choose from."
   options:
     - title: "Visit to Companies"
-      groups:
-        - title: "First visit, one of"
-          items:
-            - "Mercedes-Benz Vitoria"
-            - "Gestamp"
-            - "RPK"
-        - title: "Araba Technology Park"
-          items:
-            - "Welcome and presentation by Miren Bilbao Larrauri, Director of the Park"
-        - title: "Then a visit to one of"
-          items:
-            - "Basquevolt"
-            - "CIC energiGUNE"
-            - "AVS"
-            - "CTA"
-            - "RPK"
+      # The companies to visit, from the organisers (November 2026), in place of the 2026 list: name, a link to its website (`url`), and its logo (`logo`, from its own website, November 2026), made monochrome in UNEVOC azure with no background (the darkest colour solid, the other paler), as the schools on 11 May
+      centres:
+        - name: "Viralgen (Viralgen Vector Core, S.L.)"
+          url: "https://viralgen.com/"
+          logo: "images/logo-company-viralgen.png"
+        - name: "Irizar e-mobility"
+          url: "https://irizar-emobility.com/eu/"
+          logo: "images/logo-company-irizar.svg"
+        - name: "Createch Medical"
+          url: "https://www.createchmedical.com/es/"
+          logo: "images/logo-company-createch.png"
+        - name: "Danobat Group"
+          url: "https://www.danobat.com/en"
+          logo: "images/logo-company-danobat.svg"
     - title: "Project Dissemination Day"
       location: "Tabakalera"  # where it takes place, shown under the title
       location_url: "https://www.google.com/maps/search/?api=1&query=Tabakalera%2C%20Donostia"  # its place on Google Maps
