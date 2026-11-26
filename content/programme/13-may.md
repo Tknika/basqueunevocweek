@@ -12,7 +12,6 @@ menus:
   main:
     parent: programme
 morning:
-  pending: true  # shows a "Pending · Not final yet" tag by the Morning heading and on its button in the programme (_partials/pending.html): remove it when the 2027 morning arrives
   intro: "Two options to choose from."
   options:
     - title: "Visit to Companies"
