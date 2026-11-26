@@ -3,10 +3,10 @@
   Each form lives on another site, and the button says so: an arrow out of a box, and "(opens in a new tab)" for screen readers; it opens in a new tab. Buttons are white with dark blue text (links) and turn pink on hover.
   While `url` is empty the button is shown, with the same hover, but does nothing (like the call for workshops).
   `lang`: the language of a name not in English (FP Euskadi's, in Basque), for screen readers.
-  `soon: true`: greyed out with a dashed line, not a link and not focusable, with a lime "Soon" tag: the form will open shortly. */ -}}
+  `soon: true`: greyed out (nobility/70: /50 failed the 4.5:1 contrast on haze) with a dashed line, not a link and not focusable, with a lime "Soon" tag: the form will open shortly. */ -}}
 {{ define "partials/registration-link" }}
   {{- if .soon }}
-    <div class="flex w-full items-center justify-between gap-4 border-2 border-dashed border-nobility/25 px-5 py-4 text-lg leading-snug font-semibold text-nobility/50">
+    <div class="flex w-full items-center justify-between gap-4 border-2 border-dashed border-nobility/25 px-5 py-4 text-lg leading-snug font-semibold text-nobility/70">
       <span><span{{ with .lang }} lang="{{ . }}"{{ end }}>{{ .name }}</span><span class="sr-only"> (not available yet)</span></span>
       <span class="shrink-0 bg-lime px-2 py-0.5 font-display text-[0.65rem] tracking-widest text-night uppercase" aria-hidden="true">Soon</span>
     </div>
