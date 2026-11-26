@@ -1,7 +1,60 @@
+{{- /* The registration button (`registration` in the front matter, asked in November 2026): one form, on another site, for both programmes. A dark sticker with a hard pink shadow, turning pink on hover; it says that it leaves the site (the external icon, and "(opens in a new tab)" for screen readers). While `url` is empty it is shown, with the same hover, but does nothing, like the other forms on the site. Takes r (the registration) and class. */ -}}
+{{ define "partials/youth-register" }}
+  {{ with .r }}
+    {{ $class := printf "group inline-flex items-center gap-3 bg-nobility px-7 py-4 font-display text-lg text-lime uppercase no-underline shadow-[6px_6px_0_var(--color-pink)] transition hover:-translate-y-0.5 hover:bg-pink hover:text-night hover:shadow-[6px_6px_0_var(--color-nobility)] motion-reduce:transition-none sm:text-xl %s" $.class }}
+    {{ $inner := printf `%s<span class="sr-only"> for the Student Hub (opens in a new tab)</span>%s` .label (partial "icon.html" (dict "name" "external" "class" "size-5 shrink-0")) }}
+    {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="{{ $class }}">{{ $inner | safeHTML }}</a>{{ else }}<span role="link" aria-disabled="true" class="{{ $class }} cursor-pointer">{{ $inner | safeHTML }}</span>{{ end }}
+  {{ end }}
+{{ end }}
+
+{{- /* What each programme is about, then its host institutions (as tilted stickers): the same on white and on pink. Takes t (the programme) and tag (the sticker's colours). */ -}}
+{{ define "partials/youth-about" }}
+  {{ with .t.intro }}
+    <div class="grid gap-4 text-lg leading-relaxed font-medium">
+      {{ range . }}<p>{{ . }}</p>{{ end }}
+    </div>
+  {{ end }}
+  {{ with .t.hosts }}
+    <h3 class="mt-10 font-display text-lg uppercase sm:text-xl">{{ .title }}</h3>
+    <ul class="mt-5 flex flex-wrap gap-3">
+      {{ range $h, $host := .items }}<li class="{{ cond (modBool $h 2) "-rotate-1" "rotate-1" }} {{ $.tag }} px-4 py-2 text-lg font-bold">{{ $host }}</li>{{ end }}
+    </ul>
+  {{ end }}
+{{ end }}
+
+{{- /* Learning objectives, as a list with small cube shards, beside the general information, as rows of label and value; then the programme's own note (it is preliminary). Takes t, shard (the shards' colour) and line (the rows' lines). */ -}}
+{{ define "partials/youth-details" }}
+  <div class="grid gap-12 text-left lg:grid-cols-2 lg:gap-16">
+    {{ with .t.objectives }}
+      <div>
+        <h3 class="font-display text-2xl uppercase sm:text-3xl">Learning objectives</h3>
+        <ul class="mt-6 grid gap-3">
+          {{ range . }}<li class="flex gap-3 text-lg leading-snug font-medium"><span class="shape-cube mt-[0.45em] h-2.5 w-3.5 shrink-0 {{ $.shard }}" aria-hidden="true"></span><span>{{ . }}</span></li>{{ end }}
+        </ul>
+      </div>
+    {{ end }}
+    {{ with .t.info }}
+      <div>
+        <h3 class="font-display text-2xl uppercase sm:text-3xl">General information</h3>
+        <dl class="mt-6 border-b {{ $.line }}">
+          {{ range . }}
+            <div class="grid gap-x-6 gap-y-1 border-t {{ $.line }} py-3 sm:grid-cols-[11rem_1fr]">
+              <dt class="text-sm font-bold tracking-widest uppercase">{{ .label }}</dt>
+              <dd class="text-lg leading-snug font-medium">{{ .value }}</dd>
+            </div>
+          {{ end }}
+        </dl>
+      </div>
+    {{ end }}
+  </div>
+  {{ with .t.footnote }}<p class="mt-10 text-left text-base font-semibold italic">{{ . }}</p>{{ end }}
+{{ end }}
+
 {{ define "main" }}
-{{- /* Student Hub speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year’s edition stuck on at an angle,  tickets for the two programmes, a dark moving band of topics and each programme as a line-up of days, the second one on pink. No UNEVOC blue here. */ -}}
+{{- /* Student Hub speaks to students, so it looks nothing like the rest of the site: a festival poster. Giant capitals on soft blurred patches of lime, sky and pink (.mesh-youth), a photo of last year’s edition stuck on at an angle, tickets for the two programmes, a dark moving band of topics and each programme with its days, the second one on pink as a line-up; the registration button in the opening and again at the end. No UNEVOC blue here.
+  Since November 2026 the two programmes are the 2027 ones, from the organisers: the International VET Skills Competition (VET students, EQF 4) and Global Citizenship in Action, an Erasmus+ Blended Intensive Programme (higher education students). */ -}}
 <div class="overflow-x-clip text-nobility">
-  {{- /* Not final yet: the same band as on the other pages, above the poster (_partials/pending.html) */ -}}
+  {{- /* Not final yet: the same band as on the other pages, above the poster (_partials/pending.html), when `pending` is set */ -}}
   {{ partial "pending.html" (dict "value" .Params.pending "style" "band") }}
   <section class="mesh-youth relative isolate overflow-hidden">
     <div class="container-site grid items-center gap-x-12 gap-y-10 pt-10 pb-14 md:pt-14 md:pb-20 lg:grid-cols-[3fr_2fr]">
@@ -12,6 +65,7 @@
           <p class="rotate-2 bg-nobility px-4 py-2 font-display text-lg text-lime sm:text-2xl">For students</p>
         </div>
         <p class="mt-8 max-w-3xl text-2xl leading-snug font-semibold tracking-tight sm:text-3xl">{{ .Params.intro }}</p>
+        {{ partial "youth-register" (dict "r" .Params.registration "class" "mt-10") }}
       </div>
 
       {{ with .Params.photo }}
@@ -34,6 +88,7 @@
             <span class="block text-sm font-bold tracking-widest uppercase {{ if $i }}text-pink-ink{{ else }}text-nobility/60{{ end }}">Ticket 0{{ add $i 1 }} · {{ $t.level }}</span>
             <span class="mt-2 block font-display text-2xl leading-tight uppercase sm:text-3xl">{{ $t.audience }}</span>
             <span class="mt-3 block font-semibold">{{ $t.title }}</span>
+            {{ with $t.subtitle }}<span class="mt-1 block text-sm font-medium text-nobility/70">{{ . }}</span>{{ end }}
           </span>
           <span class="flex w-20 shrink-0 flex-col items-center justify-center gap-3 border-l-2 border-dashed border-nobility/30 sm:w-28">
             <span class="font-display text-sm [writing-mode:vertical-rl]">{{ $t.dates }}</span>
@@ -57,14 +112,14 @@
   </div>
   <p class="sr-only">Topics: {{ delimit .Params.topics ", " }}.</p>
 
-  {{- /* The first programme, on white between the gradient above and the pink below (dark blue was too heavy, flat sky not liked): its title and photo on the left (they stay put while scrolling), the days on the right as rows, the date large in pink and the place on a dark sticker */ -}}
+  {{- /* The first programme, on white between the gradient above and the pink below: its title and photo on the left (they stay put while scrolling); on the right what it is about, the host institutions and the days as rows, the date large in pink and the place on a dark sticker; then the learning objectives and the general information across */ -}}
   {{ with index .Params.tracks 0 }}
-    <section id="{{ .id }}" class="bg-white py-20 md:py-28">
+    <section id="{{ .id }}" class="scroll-mt-20 bg-white py-20 md:py-28">
       <div class="container-site grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-16">
         <div class="lg:sticky lg:top-28 lg:self-start">
           <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 01 · {{ .audience }} · {{ .level }} · {{ .dates }}</p>
           <h2 class="mt-5 text-4xl leading-[1.02] sm:text-6xl">{{ .title }}</h2>
-          {{ with .note }}<p class="mt-5 max-w-2xl text-lg font-medium text-nobility/80">{{ . }}</p>{{ end }}
+          {{ with .subtitle }}<p class="mt-5 text-xl leading-snug font-semibold text-pink-ink sm:text-2xl">{{ . }}</p>{{ end }}
           {{ with .photo }}
             <figure class="relative mt-10 drop-shadow-[8px_8px_0_var(--color-nobility)]">
               <div class="shape-cube-alt bg-white p-3 sm:p-4">
@@ -74,61 +129,81 @@
             </figure>
           {{ end }}
         </div>
-        <ol class="border-b border-nobility/20">
-          {{ range $d, $day := .days }}
-            <li class="grid gap-x-8 gap-y-3 border-t border-nobility/20 py-8 sm:grid-cols-[11rem_1fr] sm:py-10">
-              <p class="leading-none">
-                <span class="block text-sm font-bold tracking-widest text-nobility/70 uppercase">{{ .weekday }}</span>
-                <span class="mt-1 block font-display text-7xl text-pink sm:text-8xl">{{ .number }}</span>
-              </p>
-              <div class="sm:pt-6">
-                {{ with .place }}<p class="inline-block {{ cond (modBool $d 2) "-rotate-2" "rotate-1" }} bg-nobility px-4 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
-                {{ with .text }}<p class="mt-4 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
-              </div>
-            </li>
-          {{ end }}
-        </ol>
+        <div>
+          {{ partial "youth-about" (dict "t" . "tag" "bg-lime text-nobility") }}
+          <h3 class="mt-16 font-display text-2xl uppercase sm:text-3xl">Programme of activities</h3>
+          <ol class="mt-6 border-b border-nobility/20">
+            {{ range $d, $day := .days }}
+              <li class="grid gap-x-8 gap-y-3 border-t border-nobility/20 py-8 sm:grid-cols-[9rem_1fr] sm:py-10">
+                <p class="leading-none">
+                  <span class="block text-sm font-bold tracking-widest text-nobility/70 uppercase">{{ .weekday }}</span>
+                  <span class="mt-1 block font-display text-7xl text-pink sm:text-8xl">{{ .number }}</span>
+                </p>
+                <div class="sm:pt-6">
+                  {{ with .place }}<p class="inline-block {{ cond (modBool $d 2) "-rotate-2" "rotate-1" }} bg-nobility px-4 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
+                  {{ with .title }}<h4 class="mt-4 text-2xl leading-tight font-semibold sm:text-3xl">{{ . }}</h4>{{ end }}
+                  {{ with .text }}<p class="mt-3 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
+                  {{ with .extra }}
+                    <div class="mt-6 border-l-4 border-lime pl-5">
+                      {{ with .place }}<p class="text-sm font-bold tracking-widest text-nobility/70 uppercase">{{ . }}</p>{{ end }}
+                      <h4 class="mt-1 text-2xl leading-tight font-semibold">{{ .title }}</h4>
+                      {{ with .text }}<p class="mt-3 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
+                    </div>
+                  {{ end }}
+                </div>
+              </li>
+            {{ end }}
+          </ol>
+        </div>
+      </div>
+      <div class="container-site mt-20">
+        {{ partial "youth-details" (dict "t" . "shard" "bg-pink" "line" "border-nobility/20") }}
       </div>
     </section>
   {{ end }}
 
-  {{- /* The other programmes as a festival line-up: the days centred, one after another, with the date in giant capitals; a photo, when there is one, before the days */ -}}
+  {{- /* The other programmes as a festival line-up on pink: the title and what it is about, then the days centred, one after another, with the date in giant capitals (a phase without a date, such as an online session, shows `when` instead), then the learning objectives and the general information */ -}}
   {{ range $i, $t := after 1 .Params.tracks }}{{ $i = add $i 1 }}
-    <section id="{{ $t.id }}" class="{{ if $i }}bg-pink text-night{{ else }}mesh-youth-alt{{ end }} py-20 md:py-28">
-      <div class="container-site text-center">
-        <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 0{{ add $i 1 }} · {{ $t.audience }} · {{ $t.level }} · {{ $t.dates }}</p>
-        <h2 class="mx-auto mt-5 max-w-5xl text-4xl leading-[1.02] sm:text-6xl lg:text-7xl">{{ $t.title }}</h2>
-        {{ with $t.note }}<p class="mx-auto mt-5 max-w-2xl text-lg font-medium {{ if $i }}text-night{{ else }}text-nobility/75{{ end }}">{{ . }}</p>{{ end }}
+    <section id="{{ $t.id }}" class="scroll-mt-20 bg-pink py-20 text-night md:py-28">
+      <div class="container-site">
+        <div class="text-center">
+          <p class="font-display text-sm tracking-widest uppercase sm:text-base">Ticket 0{{ add $i 1 }} · {{ $t.audience }} · {{ $t.level }} · {{ $t.dates }}</p>
+          <h2 class="mx-auto mt-5 max-w-5xl text-4xl leading-[1.02] text-night sm:text-6xl lg:text-7xl">{{ $t.title }}</h2>
+          {{ with $t.subtitle }}<p class="mx-auto mt-5 inline-block -rotate-1 bg-night px-4 py-1.5 text-lg font-bold text-lime sm:text-xl">{{ . }}</p>{{ end }}
+        </div>
+        <div class="mx-auto mt-12 max-w-3xl">
+          {{ partial "youth-about" (dict "t" $t "tag" "bg-lime text-nobility") }}
+        </div>
 
-        {{ with $t.photo }}
-          {{- /* Framed like the hero photo, but not rotated: a rotation with the cube cut drew a stray line under it */ -}}
-          <figure class="relative mx-auto mt-14 max-w-4xl drop-shadow-[8px_8px_0_var(--color-nobility)]">
-            <div class="shape-cube-alt bg-white p-3 sm:p-4">
-              <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="1600" height="1200" loading="lazy" class="shape-cube-alt aspect-[16/9] w-full object-cover">
-            </div>
-            <span class="shape-cube absolute -bottom-4 left-[12%] h-10 w-16 bg-lime" aria-hidden="true"></span>
-          </figure>
-        {{ end }}
-
-        <ol class="mt-16 grid gap-14">
+        <h3 class="mt-20 text-center font-display text-2xl uppercase sm:text-3xl">Programme of activities</h3>
+        <ol class="mt-14 grid gap-14 text-center">
           {{ range $d, $day := $t.days }}
             {{ $tilt := cond (modBool $d 2) "-rotate-2" "rotate-2" }}
-            {{ $tag := cond (gt $i 0) "bg-lime text-nobility" "bg-nobility text-lime" }}
             <li>
-              {{ if $d }}<span class="shape-cube mx-auto mb-14 block h-4 w-6 {{ if $i }}bg-lime{{ else }}bg-pink{{ end }}" aria-hidden="true"></span>{{ end }}
-              <p class="font-display text-[clamp(2.6rem,9vw,7rem)] leading-none uppercase">{{ substr .weekday 0 3 }} {{ .number }}</p>
-              {{ with .place }}<p class="mt-4 inline-block {{ $tilt }} {{ $tag }} px-4 py-1.5 text-lg font-bold sm:text-xl">{{ . }}</p>{{ end }}
+              {{ if $d }}<span class="shape-cube mx-auto mb-14 block h-4 w-6 bg-lime" aria-hidden="true"></span>{{ end }}
+              <p class="font-display text-[clamp(2.6rem,9vw,7rem)] leading-none uppercase">{{ with .when }}{{ . }}{{ else }}{{ substr $day.weekday 0 3 }} {{ $day.number }}{{ end }}</p>
+              {{ with .place }}<p class="mt-4 inline-block {{ $tilt }} bg-lime px-4 py-1.5 text-lg font-bold text-nobility sm:text-xl">{{ . }}</p>{{ end }}
+              {{ with .label }}<p class="mt-5 text-sm font-bold tracking-widest uppercase">{{ . }}</p>{{ end }}
+              {{ with .title }}<h4 class="mx-auto {{ if $day.label }}mt-1{{ else }}mt-5{{ end }} max-w-3xl text-2xl leading-tight font-semibold sm:text-3xl">{{ . }}</h4>{{ end }}
               {{ with .text }}<p class="mx-auto mt-4 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>{{ end }}
-              {{ with .morning }}
-                <p class="mt-5 inline-block {{ $tilt }} {{ $tag }} px-3 py-1 text-sm font-bold tracking-widest uppercase">Morning</p>
-                <p class="mx-auto mt-3 max-w-2xl text-lg leading-relaxed font-medium">{{ . }}</p>
-              {{ end }}
-              {{ with .afternoon }}
-                <p class="mt-5 text-sm font-bold tracking-widest uppercase">Afternoon · <span class="font-medium tracking-normal normal-case">{{ . }}</span></p>
-              {{ end }}
             </li>
           {{ end }}
         </ol>
+
+        <div class="mt-24">
+          {{ partial "youth-details" (dict "t" $t "shard" "bg-lime" "line" "border-night/25") }}
+        </div>
+      </div>
+    </section>
+  {{ end }}
+
+  {{- /* The registration again, at the end, on the poster's gradient */ -}}
+  {{ with .Params.registration }}
+    <section class="mesh-youth py-20 text-center md:py-28" aria-labelledby="register">
+      <div class="container-site">
+        <h2 id="register" class="font-display text-[clamp(2.4rem,8vw,6rem)] leading-[0.9] font-normal uppercase">Join the<br>Student Hub</h2>
+        <p class="mx-auto mt-6 max-w-2xl text-xl leading-snug font-semibold sm:text-2xl">{{ $.Params.dates }} 2027 · Basque Country</p>
+        {{ partial "youth-register" (dict "r" . "class" "mt-10") }}
       </div>
     </section>
   {{ end }}

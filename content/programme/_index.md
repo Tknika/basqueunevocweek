@@ -34,7 +34,7 @@ overview:
 student_hub:
   title: "Student Hub 2027"
   dates: "10-14 May"
-  text: "For HVET students (EQF 5-6) and VET students (EQF 4)"
+  text: "A skills competition for VET students (EQF 4) and an Erasmus+ programme for higher education students"  # the two 2027 programmes (November 2026)
 ---
 
 Three days of activities, every morning and afternoon. The conference takes place at the Kursaal on 12 May; on 11 and 13 May there are two options to choose from each morning.
