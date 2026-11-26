@@ -4,7 +4,7 @@ header_image: "images/kursaal-sky-pale-1200.jpg"
 weight: 5
 menus: main
 # Two different things, shown apart: the documents to download (cards, by the press-cards shortcode; icon: a name from
-# _partials/icon.html) and, at the end of the page, the media contact (a band of its own, by the press-contact shortcode).
+# _partials/icon.html), then past editions in short (the past-editions shortcode, a link to the page with the videos) and, at the end of the page, the media contact (a band of its own, by the press-contact shortcode).
 press:
   - title: "Press kit"
     icon: "document"
@@ -33,5 +33,7 @@ contact:
 ## Downloads
 
 {{< press-cards >}}
+
+{{< past-editions >}}
 
 {{< press-contact >}}

@@ -1,0 +1,23 @@
+{{- /* Past editions in short (content/past-editions.md, asked in November 2026), on About and in the press area (the past-editions shortcode): "Past editions" as an eyebrow, the years as a title, a link to the page, and the four latest editions as thumbnails with their year, each a link to its place on the page.
+  Takes class: classes for the section (its margins). */ -}}
+{{ with site.GetPage "/past-editions" }}
+  {{ $past := . }}
+  <section class="{{ $.class }}" aria-labelledby="past">
+    <p class="font-display text-xs tracking-widest text-pink-ink uppercase">{{ .Title }}</p>
+    <div class="mt-3 flex flex-wrap items-end justify-between gap-x-10 gap-y-4">
+      <h2 id="past" class="mt-0 scroll-mt-24 text-4xl sm:text-5xl"><span class="font-display text-azure">{{ .Params.years }}</span> {{ .Params.years_label }}</h2>
+      <a href="{{ .RelPermalink }}" class="group inline-flex items-center gap-2 text-lg font-semibold text-nobility no-underline transition hover:text-pink-ink">See the videos of past editions <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span></a>
+    </div>
+    <ul class="not-prose mt-8 grid list-none grid-cols-2 gap-4 p-0 lg:grid-cols-4 lg:gap-6">
+      {{ range $i, $e := first 4 .Params.editions }}
+        <li class="m-0 p-0">
+          <a href="{{ $past.RelPermalink }}#y{{ $e.year }}" class="group block no-underline">
+            <img src="{{ (index $e.videos 0).image | relURL }}" alt="" width="800" height="450" loading="lazy" class="{{ if modBool $i 2 }}shape-cube{{ else }}shape-cube-alt{{ end }} m-0 aspect-video w-full object-cover transition group-hover:brightness-90 motion-reduce:transition-none">
+            <span class="mt-3 block font-display text-2xl text-nobility transition group-hover:text-pink-ink">{{ $e.year }}</span>
+            {{ with $e.name }}<span class="mt-1 block font-semibold text-azure">{{ . }}</span>{{ end }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}
