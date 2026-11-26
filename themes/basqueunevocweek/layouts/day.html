@@ -42,16 +42,19 @@
             {{- /* Where the option takes place (`location`, asked in November 2026 for the Project Dissemination Day at Tabakalera); `location_url` links it to its place on Google Maps, in a new tab (a link only: nothing is loaded from Google) */ -}}
             {{ with $o.location }}<p class="mt-2 flex items-center gap-2 font-semibold text-azure">{{ partial "icon.html" (dict "name" "pin" "class" "size-5 shrink-0 text-pink-ink") }}<span>Location: {{ with $o.location_url }}<a href="{{ . }}" target="_blank" rel="noopener" class="text-nobility underline decoration-nobility/30 underline-offset-3 transition hover:text-pink-ink hover:decoration-pink-ink">{{ $o.location }}<span class="sr-only"> (opens Google Maps in a new tab)</span></a>{{ else }}{{ . }}{{ end }}</span></p>{{ end }}
           </header>
-          <div class="overflow-hidden bg-haze lg:self-start">
+          <div class="overflow-hidden bg-haze {{ if $o.stack }}lg:flex lg:flex-col{{ else }}lg:self-start{{ end }}">
             {{ with $o.centres }}
               {{- /* Each centre: its logo, in UNEVOC azure on the box's haze, with no background (a logo is never cut into the cube shape; on a white tile and in its own colours until November 2026, when a monochrome logo, better blended in, was asked for), then its name, a link to its website when it has a `url`, and its focus (pink); a `text` is folded under a "More" button (a <details>, no JavaScript). Six centres in two columns, with no big photo above. (Small photos cut as cubes until November 2026, when the logos were asked for instead.) */ -}}
-              <ul class="grid gap-x-6 gap-y-6 p-6 sm:grid-cols-2 sm:px-8">
+              {{- /* `stack: true` (13 May, asked in November 2026: next to the long Project Dissemination Day the four companies in two columns looked "unbalanced"): one centre per row, the logo larger on the left (centred in a slot of its own, as some logo files carry blank space) and the name on its right, between thin lines, and the box stretches to the height of the other option, its rows spread evenly over it. */ -}}
+              <ul class="{{ if $o.stack }}grid flex-1 auto-rows-fr divide-y divide-azure/15 px-6 sm:px-8{{ else }}grid gap-x-6 gap-y-6 p-6 sm:grid-cols-2 sm:px-8{{ end }}">
                 {{ range $centre := . }}
-                  <li>
-                    {{ with .logo }}<img src="{{ . | relURL }}" alt="" class="mb-3 h-12 w-auto max-w-full object-contain object-left sm:h-14">{{ end }}
+                  <li{{ if $o.stack }} class="flex flex-col justify-center gap-3 py-6 sm:flex-row sm:items-center sm:gap-8"{{ end }}>
+                    {{ with .logo }}<img src="{{ . | relURL }}" alt="" class="{{ if $o.stack }}h-12 w-auto max-w-52 object-contain object-left sm:h-16 sm:w-52 sm:max-w-none sm:shrink-0 sm:object-center{{ else }}mb-3 h-12 w-auto max-w-full object-contain object-left sm:h-14{{ end }}">{{ end }}
                     <div>
                     <p class="text-lg leading-snug font-semibold">{{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener" class="text-nobility underline decoration-nobility/30 underline-offset-3 transition hover:text-pink-ink hover:decoration-pink-ink">{{ $centre.name }}<span class="sr-only"> (opens in a new tab)</span></a>{{ else }}{{ .name }}{{ end }}</p>
                     {{ with .focus }}<p class="mt-0.5 text-sm font-semibold text-pink-ink">{{ . }}</p>{{ end }}
+                    {{- /* Where the centre is (`location`, asked in November 2026 for the companies on 13 May), with the pin icon */ -}}
+                    {{ with .location }}<p class="mt-1 flex items-start gap-1.5 text-sm font-semibold text-azure">{{ partial "icon.html" (dict "name" "pin" "class" "mt-0.5 size-4 shrink-0 text-pink-ink") }}<span><span class="sr-only">Location: </span>{{ . }}</span></p>{{ end }}
                     {{ with .text }}
                       <details class="group mt-1">
                         <summary class="inline-flex cursor-pointer list-none items-center gap-1 text-sm font-semibold text-nobility hover:text-pink-ink [&::-webkit-details-marker]:hidden">
