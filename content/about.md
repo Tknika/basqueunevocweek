@@ -3,7 +3,9 @@ title: "About"
 description: "Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide: the concept note of the congress, in short and to download."
 header_image: "images/conference-audience.jpg"
 weight: 1
-menus: main
+menus:
+  main:
+    identifier: about  # Past editions hangs from it (content/past-editions.md)
 layout: about
 # A visual summary of the concept note, after the organisers' brief (e-mail of 18 November 2026), in its order:
 # title, a sentence, the quote, the PDF to download, how (global ↔ local), what for (share, connect, celebrate),

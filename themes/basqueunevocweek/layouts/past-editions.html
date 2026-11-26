@@ -1,0 +1,104 @@
+{{- /* Past editions (content/past-editions.md), a page under About (asked in November 2026): fifteen years of annual summits, in videos.
+  The page header names About above the title (`up`). Then:
+  The opening: the number of years (`years`), huge in Krona One, next to the introduction (`intro`, `note`).
+  A ruler of the years, from the first edition to this one: a tick for every year, the years with an edition as links to it, this year in pink.
+  The timeline, newest first, down a thin line (on the left on phones, in the middle on large screens, the editions alternating sides): this year's summit on top, in pink, with a link to the programme; then each edition, its year large, its name, and its videos.
+  A video is a card: its thumbnail cut as a cube with a pink play button, and its title as a link to YouTube, in a new tab. Nothing is embedded or loaded from YouTube (no cookies, no third-party requests): the thumbnails are kept on the site. */ -}}
+{{ define "main" }}
+{{ partial "page-header.html" . }}
+{{ $editions := .Params.editions }}
+{{- /* This year: the year in the event's dates (hugo.toml) */ -}}
+{{ $now := index (findRE `\d{4}` site.Params.dates) 0 | int }}
+
+<div class="container-site py-16 md:py-24">
+  {{- /* The opening: the years, and the introduction */ -}}
+  <div class="grid items-end gap-x-16 gap-y-10 xl:grid-cols-[auto_minmax(0,1fr)]">
+    <p class="flex items-end gap-5">
+      <span class="font-display text-[clamp(7rem,24vw,15rem)] leading-[0.78] tracking-[-0.04em] text-azure">{{ .Params.years }}</span>
+      <span class="max-w-[9ch] pb-1 text-2xl leading-tight font-semibold tracking-tight sm:text-3xl">{{ .Params.years_label }}</span>
+    </p>
+    <div class="max-w-3xl xl:pb-2">
+      {{ with .Params.intro }}<p class="text-xl leading-relaxed text-pretty sm:text-2xl sm:leading-relaxed">{{ . }}</p>{{ end }}
+      {{ with .Params.note }}<p class="mt-5 text-lg text-nobility/70">{{ . }}</p>{{ end }}
+    </div>
+  </div>
+
+  {{- /* The ruler: every year from the first edition to this one */ -}}
+  {{ with $editions }}
+    {{ $years := slice }}{{ range . }}{{ $years = $years | append .year }}{{ end }}
+    {{ $first := index (sort $years) 0 }}
+    <nav class="mt-20 md:mt-24" aria-label="Editions by year">
+      <ol class="flex border-t-2 border-azure">
+        {{ range seq $first $now }}
+          {{ $y := . }}
+          {{ if eq $y $now }}
+            <li class="flex flex-1 flex-col items-center">
+              <span class="h-5 w-0.5 bg-pink" aria-hidden="true"></span>
+              <a href="#y{{ $y }}" class="mt-2 font-display text-[0.6rem] text-pink-ink transition hover:text-nobility max-sm:[writing-mode:vertical-rl] max-sm:rotate-180 sm:text-sm">{{ $y }}</a>
+            </li>
+          {{ else if in $years $y }}
+            <li class="flex flex-1 flex-col items-center">
+              <span class="h-5 w-0.5 bg-azure" aria-hidden="true"></span>
+              <a href="#y{{ $y }}" class="mt-2 font-display text-[0.6rem] text-nobility transition hover:text-pink-ink max-sm:[writing-mode:vertical-rl] max-sm:rotate-180 sm:text-sm">{{ $y }}</a>
+            </li>
+          {{ else }}
+            <li class="flex flex-1 flex-col items-center" aria-hidden="true">
+              <span class="h-2.5 w-px bg-azure/40"></span>
+            </li>
+          {{ end }}
+        {{ end }}
+      </ol>
+    </nav>
+  {{ end }}
+
+  {{- /* The timeline, newest first */ -}}
+  <ol class="relative mt-20 grid gap-16 before:absolute before:inset-y-0 before:left-3 before:w-0.5 before:bg-azure/20 md:mt-28 lg:gap-24 lg:before:left-1/2 lg:before:-translate-x-1/2">
+    {{- /* This year's summit, on top */ -}}
+    <li id="y{{ $now }}" class="relative scroll-mt-28 pl-12 lg:grid lg:grid-cols-2 lg:gap-24 lg:pl-0">
+      <span class="shape-cube absolute top-4 left-0 h-5 w-7 bg-pink lg:left-1/2 lg:-translate-x-1/2" aria-hidden="true"></span>
+      <div class="lg:text-right">
+        <h2 class="font-display text-6xl leading-none tracking-[-0.03em] text-pink sm:text-7xl">{{ $now }}</h2>
+        <p class="mt-4 text-2xl leading-tight font-semibold tracking-tight sm:text-3xl">{{ site.Params.summit }}</p>
+        <p class="mt-2 text-lg font-semibold">{{ site.Params.dates }} · {{ site.Params.venue }}</p>
+      </div>
+      <div class="mt-6 lg:mt-3">
+        {{ with site.GetPage "/programme" }}
+          <a href="{{ .RelPermalink }}" class="group inline-flex items-center gap-3 bg-nobility px-6 py-4 text-lg font-semibold text-white transition hover:bg-pink hover:text-night">See the programme <span aria-hidden="true" class="transition group-hover:translate-x-1 motion-reduce:transition-none">→</span></a>
+        {{ end }}
+      </div>
+    </li>
+
+    {{ range $i, $e := $editions }}
+      {{ $right := modBool $i 2 }}
+      <li id="y{{ $e.year }}" class="relative scroll-mt-28 pl-12 lg:grid lg:grid-cols-2 lg:gap-24 lg:pl-0">
+        <span class="shape-cube{{ if $right }}-alt{{ end }} absolute top-4 left-0.5 h-4 w-6 bg-azure lg:left-1/2 lg:-translate-x-1/2" aria-hidden="true"></span>
+        <div class="{{ if $right }}lg:col-start-2 lg:row-start-1{{ else }}lg:text-right{{ end }}">
+          <h2 class="font-display text-6xl leading-none tracking-[-0.03em] text-azure sm:text-7xl"><span class="sr-only">{{ with $e.name }}{{ . }}, {{ end }}</span>{{ $e.year }}</h2>
+          {{ with $e.name }}<p class="mt-4 text-2xl leading-tight font-semibold tracking-tight sm:text-3xl" aria-hidden="true">{{ . }}</p>{{ end }}
+        </div>
+        <ul class="mt-6 grid gap-10 lg:mt-3 {{ if $right }}lg:col-start-1 lg:row-start-1{{ end }}">
+          {{ range $j, $v := $e.videos }}
+            <li>
+              <a href="{{ $v.url }}" target="_blank" rel="noopener" class="group block">
+                <span class="relative block">
+                  <img src="{{ $v.image | relURL }}" alt="" width="800" height="450" loading="lazy" class="{{ if modBool (add $i $j) 2 }}shape-cube{{ else }}shape-cube-alt{{ end }} aspect-video w-full object-cover transition group-hover:brightness-90 motion-reduce:transition-none">
+                  <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                    <span class="shape-cube flex h-14 w-20 items-center justify-center bg-pink text-night transition group-hover:scale-110 motion-reduce:transition-none sm:h-16 sm:w-24">
+                      <svg viewBox="0 0 24 24" class="ml-1 size-7" fill="currentColor" focusable="false"><path d="M7 4.5v15l13-7.5z"/></svg>
+                    </span>
+                  </span>
+                </span>
+                <span class="mt-4 block text-xl leading-snug font-semibold text-nobility underline decoration-nobility/30 underline-offset-4 transition group-hover:text-pink-ink group-hover:decoration-pink-ink">{{ $v.title }}<span class="sr-only"> (video on YouTube, opens in a new tab)</span></span>
+                <span class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm font-semibold text-nobility/70">
+                  <span class="inline-flex items-center gap-1.5">Watch on YouTube {{ partial "icon.html" (dict "name" "external" "class" "size-4 shrink-0") }}</span>
+                  {{ with $v.lang }}<span aria-hidden="true">·</span><span>{{ . }}</span>{{ end }}
+                </span>
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </li>
+    {{ end }}
+  </ol>
+</div>
+{{ end }}
