@@ -11,7 +11,7 @@ disableKinds = ["taxonomy", "term"]
   # Asks search engines not to index the site. Set to false when the real content is published.
   noindex = true
   # The yearly event this one belongs to, shown above the title on the home and on About, so that it reads as an annual event (asked in November 2026).
-  summit = "Basque VET Annual Summit"
+  summit = "Basque VET Annual Summit 2027"
   # Shown on the home page, under the title (asked in November 2026).
   subtitle = "Basque UNEVOC Week"
   # Shown on the home page.
