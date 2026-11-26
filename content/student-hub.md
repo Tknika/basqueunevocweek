@@ -32,12 +32,18 @@ tracks:
     photo:
       image: "images/youth-camp-awards.jpg"
       alt: "Students with their awards on stage after a skills competition"
-    intro:
-      - "As part of the international conference organised by the Vice-Ministry of Vocational Education and Training of the Basque Government in collaboration with UNESCO-UNEVOC, an International VET Skills Competition will be held for students at EQF Level 4."
-      - "The competition will bring together students from different European countries, including students from Basque VET institutions, to work in international teams and demonstrate their professional and transversal competences."
-      - "Each institution will host a competition in a different professional field. The four competitions will run in parallel on the mornings of 11 and 12 May. Students will compete in international teams of 3–4 members at the host institution corresponding to their vocational specialisation."
-      - "The competitions will combine technical challenges with elements of collaborative challenge-based learning, inspired by the Basque ETHAZI learning model. Each technical challenge will incorporate a dimension of democratic culture, encouraging students to put democratic values into practice through cooperation, shared decision-making, responsibility and respect for diversity."
-      - "Teams will be assessed against predefined criteria covering both technical and transversal competences, with a winning team in each professional field."
+    # What it is about, shown visually (asked in November 2026: the five paragraphs of the Word file were too long to read):
+    # a short lead, four key figures and three points on how it works. Every fact comes from those paragraphs.
+    lead: "EQF Level 4 VET students from different European countries, including the Basque Country, compete in international teams to show their professional and transversal skills."
+    figures:
+      - { n: "4", text: "competitions in four professional fields, one at each host school" }
+      - { n: "3–4", text: "students in each international team" }
+      - { n: "2", text: "mornings of competition, 11 and 12 May, in parallel" }
+      - { n: "1", text: "winning team in each professional field" }
+    points:
+      - { icon: "bulb", title: "Technical challenges", text: "Real professional problems, solved together through challenge-based learning inspired by the Basque ETHAZI model." }
+      - { icon: "people", title: "Democratic culture", text: "Every challenge puts cooperation, shared decision-making, responsibility and respect for diversity into practice." }
+      - { icon: "trend", title: "Assessed on both", text: "Technical and transversal competences, against predefined criteria." }
     hosts:
       title: "Four Basque VET institutions host the competitions"
       items:
@@ -95,11 +101,17 @@ tracks:
     audience: "Higher education students"
     level: "Erasmus+ BIP"
     dates: "10-14 May"
-    intro:
-      - "Blended Intensive Programmes (BIPs) are short, intensive Erasmus+ programmes that combine physical mobility with collaborative virtual learning, fostering international cooperation and teamwork among higher education students from different countries."
-      - "Within the framework of the international conference organised by the Vice-Ministry of Vocational Education and Training of the Basque Government in collaboration with UNESCO-UNEVOC, Ikaslan Mobility is coordinating Global Citizenship in Action, with Easo Politeknikoa as the hosting institution."
-      - "The programme will bring together higher education students from different European countries to explore democratic culture and global citizenship through practical, participatory and collaborative learning experiences. Throughout the programme, students will work in international teams, exploring how democratic values are put into practice in different educational, social and professional contexts."
-      - "The programme is structured around three complementary phases: preparatory virtual learning, five days of physical mobility in the Basque Country and a follow-up virtual session, ensuring continuity between understanding, experiencing and applying democratic culture."
+    # What it is about, shown visually as for the Skills Competition (asked in November 2026): a short lead, key figures and three points.
+    # Every fact comes from the four paragraphs of the organisers' Word file.
+    lead: "Higher education students from different European countries explore democratic culture and global citizenship in international teams, through practical, participatory and collaborative learning."
+    figures:
+      - { n: "5", text: "days of physical mobility in the Basque Country" }
+      - { n: "2", text: "virtual sessions, before and after the week" }
+      - { n: "3", text: "ECTS credits at least, as academic recognition" }
+    points:
+      - { icon: "globe", title: "An Erasmus+ BIP", text: "A short, intensive programme that combines physical mobility with collaborative virtual learning." }
+      - { icon: "school", title: "Who runs it", text: "Coordinated by Ikaslan Mobility and hosted by Easo Politeknikoa, within the international conference." }
+      - { icon: "people", title: "Three phases", text: "Understand democratic culture online, experience it in the Basque Country, then apply it in a follow-up online session." }
     days:
       - when: "Before"
         place: "Online"
