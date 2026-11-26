@@ -10,6 +10,7 @@
   <img src="{{ printf "images/%s.jpg" $sky | relURL }}" srcset="{{ printf "images/%s-1200.jpg" $sky | relURL }} 1200w, {{ printf "images/%s.jpg" $sky | relURL }} 2400w" sizes="100vw" alt="{{ $alt }}" width="2400" height="1590" fetchpriority="high" class="shape-hero absolute inset-0 -z-10 size-full object-cover {{ if .frameLow }}object-[45%_100%]{{ else if .flipped }}object-[55%_20%]{{ else if eq .frameY "30%" }}object-[45%_30%]{{ else }}object-[45%_20%]{{ end }}">
 
   <div class="container-wide pt-24 lg:pt-32">
+    {{ partial "summit-label.html" (dict "class" "mb-4 lg:mb-6") }}
     <h1 class="max-w-[16ch] {{ if .light }}text-deep{{ else }}text-white{{ end }} font-sans text-5xl leading-[0.95] font-semibold tracking-[-0.035em] text-balance sm:text-7xl lg:text-[clamp(4.5rem,min(7vw,10svh),8.5rem)]">{{ site.Title }}</h1>
     {{- /* The subtitle under the title (`subtitle` in hugo.toml), in Krona One like the dates */}}
     {{ with site.Params.subtitle }}<p class="mt-4 {{ if $.light }}text-deep{{ else }}text-white{{ end }} font-display text-lg sm:text-xl lg:mt-5 lg:text-[clamp(1.25rem,min(2vw,3svh),2rem)]">{{ . }}</p>{{ end }}

@@ -4,7 +4,7 @@ Instructions for AI coding agents (and humans) working on this repository. Read 
 
 ## Project in one paragraph
 
-English-only static site for the UNESCO-UNEVOC Anniversary Conference & Open Days 2027 (11-13 May 2027, Donostia · San Sebastian; the title is `title` in `hugo.toml`; the site has no name of its own), built with **Hugo ≥ 0.146 (extended)** and **Tailwind CSS v4 via npm**, using a custom theme in `themes/basqueunevocweek`. The workflow in `.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`. It shares its technology with the `cyberlehia` site but not its design or content: keep the two separate.
+English-only static site for the UNESCO-UNEVOC Anniversary Conference & Open Days 2027 (11-13 May 2027, Donostia · San Sebastian; the title is `title` in `hugo.toml`; the site has no name of its own; it is a yearly event, shown as "Basque VET Annual Summit" (`params.summit`, `_partials/summit-label.html`) above the title on the home and on About, asked in November 2026), built with **Hugo ≥ 0.146 (extended)** and **Tailwind CSS v4 via npm**, using a custom theme in `themes/basqueunevocweek`. The workflow in `.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`. It shares its technology with the `cyberlehia` site but not its design or content: keep the two separate.
 
 ## Commands
 

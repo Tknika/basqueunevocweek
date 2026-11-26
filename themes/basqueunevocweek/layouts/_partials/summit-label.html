@@ -1,0 +1,2 @@
+{{- /* The annual event this one belongs to (`summit` in hugo.toml), above the title on the home and on About (asked in November 2026, so that the site shows it is a yearly event): Krona One in white, after a small lime cube shard. Takes class, extra classes. */ -}}
+{{ with site.Params.summit }}<p class="flex items-center gap-3 font-display text-base text-white sm:text-lg lg:text-xl {{ $.class }}"><span class="shape-cube block h-4 w-7 shrink-0 bg-lime" aria-hidden="true"></span>{{ . }}</p>{{ end }}
