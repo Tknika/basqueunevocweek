@@ -12,7 +12,7 @@ press:
     pending: true
     text: "The main information about the event in a single document: what it is, the programme, the speakers and contact details."
     file: "press/press-kit.pdf"
-    size: "PDF · 1.5 MB"
+    size: "PDF · 1.7 MB"
   # The same PDF as on the About page
   - title: "Concept note"
     icon: "bulb"

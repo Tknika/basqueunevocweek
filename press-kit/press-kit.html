@@ -2,7 +2,11 @@
 <!--
   Press kit of the event, printed to static/press/press-kit.pdf by `node scripts/make-press-kit.js`.
   A4 pages, same fonts, palette and cube-cut photos as the site. Texts come from the About page (the concept note),
-  hugo.toml, the programme pages and data/speakers.yaml: update them here by hand when those change.
+  hugo.toml, the programme pages and Past editions (content/past-editions.md): update them here by hand when those change.
+  Brought in line with the site in November 2026: the Basque VET Annual Summit 2027 (params.summit) on the cover and
+  at a glance; the programme with its real places (the six schools and Tknika on 11 May, the four companies and
+  Tabakalera on 13 May, Running and the Guided Tour in San Sebastian); and Past editions in place of the speakers,
+  as the Speakers page is hidden while the 2027 speakers are unknown (HIDDEN.md): bring them back here when it returns.
 -->
 <html lang="en">
 <head>
@@ -53,6 +57,9 @@
   .cover .label { position: absolute; top: 156mm; right: 18mm; font-family: "Krona One"; font-size: 21pt; line-height: 1; color: var(--night); background: var(--pink); padding: 8mm 10mm 8.5mm 11mm; clip-path: polygon(6% 0, 100% 8%, 95% 100%, 0 90%); }
   .cover .dates { position: absolute; top: 162mm; left: 18mm; font-family: "Krona One"; font-size: 17pt; line-height: 1.25; }
   .cover .dates small { display: block; font-family: "Instrument Sans"; font-size: 11pt; font-weight: 500; opacity: .9; }
+  /* The yearly summit this one belongs to (params.summit on the site), above the title, after a small lime shard as on the site */
+  .cover .summit { position: absolute; top: 187mm; left: 18mm; display: flex; align-items: center; gap: 3mm; font-family: "Krona One"; font-size: 11pt; line-height: 1; }
+  .cover .summit span { width: 6mm; height: 3.5mm; background: var(--lime); clip-path: polygon(10% 0, 100% 12%, 88% 100%, 0 86%); }
   .cover h1 { position: absolute; top: 196mm; left: 18mm; right: 18mm; color: #fff; font-size: 34pt; }
   .cover .sub { position: absolute; top: 236mm; left: 18mm; right: 40mm; font-size: 13pt; line-height: 1.35; }
   .cover .logos { position: absolute; left: 0; right: 0; bottom: 0; height: 26mm; background: #fff; display: flex; align-items: center; gap: 10mm; padding: 0 18mm; }
@@ -69,9 +76,9 @@
   .fact:nth-child(odd) { padding-right: 8mm; }
   .fact dt { font-size: 8pt; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--pink-ink); margin-bottom: 1mm; }
   .fact dd { color: var(--nobility); font-size: 11pt; }
-  .figures { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; margin-top: 11mm; }
+  .figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 11mm; }
   .figure { background: var(--haze); padding: 6mm 5mm; }
-  .figure .n { font-family: "Krona One"; font-size: 34pt; line-height: 1; color: var(--azure); }
+  .figure .n { font-family: "Krona One"; font-size: 28pt; line-height: 1; color: var(--azure); }
   .figure .t { margin-top: 3mm; color: var(--nobility); font-size: 9.5pt; }
   .contents { margin-top: 11mm; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2mm 6mm; font-size: 9.5pt; color: var(--nobility); }
   .contents span { font-family: "Krona One"; color: var(--pink-ink); font-size: 8pt; margin-right: 2mm; }
@@ -107,6 +114,8 @@
   .day .dn { font-family: "Krona One"; font-size: 22pt; line-height: 1.1; color: var(--azure); margin: 1mm 0 2mm; }
   .day h3 { min-height: 11mm; }
   .slot { border-top: 0.3mm solid rgb(18 106 180 / .25); padding: 2.5mm 0; font-size: 9pt; color: var(--nobility); }
+  /* "or" between the two options of a morning, in Krona One as on the site */
+  .slot i { display: block; font-style: normal; font-family: "Krona One"; font-size: 7pt; color: var(--pink-ink); margin: 1.2mm 0; }
   .slot b { display: block; font-size: 7.5pt; letter-spacing: .1em; text-transform: uppercase; color: var(--azure); font-weight: 600; }
   .day.main .dn { color: var(--pink); }
   .hub { margin-top: 9mm; display: grid; grid-template-columns: 1fr 1.3fr; gap: 0; background: var(--lime); color: var(--night); }
@@ -118,7 +127,25 @@
   .hub .track { background: #fff; padding: 3.5mm 4mm; font-size: 9pt; }
   .hub .track b { display: block; font-size: 10pt; }
 
-  /* ---------- Speakers ---------- */
+  /* ---------- Past editions (in place of the speakers while the Speakers page is hidden) ---------- */
+  .past-open { display: grid; grid-template-columns: auto 1fr; gap: 9mm; align-items: end; }
+  .past-open .n { font-family: "Krona One"; font-size: 64pt; line-height: .8; letter-spacing: -0.03em; color: var(--azure); }
+  .ruler { display: flex; margin: 11mm 0 9mm; border-top: 0.5mm solid var(--azure); }
+  .ruler span { flex: 1; text-align: center; padding-top: 4mm; position: relative; font-family: "Krona One"; font-size: 6.5pt; color: var(--nobility); }
+  .ruler span::before { content: ""; position: absolute; top: 0; left: 50%; width: 0.4mm; height: 2.6mm; background: var(--azure); }
+  .ruler span.gap::before { height: 1.4mm; opacity: .4; }
+  .ruler span.dots { flex: .6; color: var(--azure); }
+  .ruler span.dots::before { display: none; }
+  .ruler span.now { color: var(--pink-ink); }
+  .ruler span.now::before { background: var(--pink); }
+  .editions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6mm 5mm; }
+  .edition .th { aspect-ratio: 16 / 9; margin-bottom: 2.5mm; }
+  .edition .y { font-family: "Krona One"; font-size: 13pt; line-height: 1; color: var(--azure); }
+  .edition .nm { margin-top: 1mm; font-size: 8.5pt; line-height: 1.25; color: var(--nobility); }
+  .watch { margin-top: 9mm; background: var(--haze); padding: 5mm 6mm; color: var(--nobility); font-size: 10pt; }
+  .watch b { display: block; margin-top: 1mm; color: var(--azure); }
+
+  /* ---------- Speakers (not printed while the Speakers page is hidden: see HIDDEN.md) ---------- */
   .speakers { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
   .sp { display: grid; grid-template-columns: 15mm 1fr; gap: 4mm; align-items: center; padding: 3mm 0; border-bottom: 0.3mm solid rgb(18 106 180 / .18); }
   .sp .av { width: 15mm; height: 15mm; background: var(--haze); display: grid; place-items: center; font-family: "Krona One"; font-size: 8pt; color: var(--azure); }
@@ -154,6 +181,7 @@
   <div class="label">Press kit</div>
   <div class="dates">11-13 May 2027<small>Donostia · San Sebastian, Basque Country</small></div>
   <span class="shard lime"></span>
+  <p class="summit"><span></span>Basque VET Annual Summit 2027</p>
   <h1>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027</h1>
   <p class="sub">Celebrating 25 Years of UNESCO-UNEVOC and 10 Years of Tknika as a UNEVOC Centre</p>
   <div class="logos">
@@ -170,9 +198,9 @@
   <h2>Global connection for local change</h2>
   <p class="lead" style="margin-bottom:9mm">Three days in the Basque Country to share how vocational education and training systems around the world are tackling the same challenges in their own places, and to celebrate a joint anniversary.</p>
   <dl class="glance-grid">
-    <div class="fact"><dt>What</dt><dd>An international conference and open days on Technical and Vocational Education and Training (TVET)</dd></div>
-    <div class="fact"><dt>When</dt><dd>11-13 May 2027</dd></div>
-    <div class="fact"><dt>Where</dt><dd>Donostia · San Sebastian. The conference, on 12 May, at the Kursaal; visits and workshops at other venues in the Basque Country</dd></div>
+    <div class="fact"><dt>What</dt><dd>The Basque VET Annual Summit 2027: an international conference and open days on Technical and Vocational Education and Training (TVET)</dd></div>
+    <div class="fact"><dt>When</dt><dd>11-13 May 2027, with the Student Hub on 10-14 May</dd></div>
+    <div class="fact"><dt>Where</dt><dd>Donostia · San Sebastian. The conference, on 12 May, at the Kursaal; on 11 and 13 May, VET schools, Tknika, companies in Gipuzkoa and Tabakalera</dd></div>
     <div class="fact"><dt>Organised by</dt><dd>The Department of Education of the Basque Government and UNESCO-UNEVOC, with Tknika and FP Euskadi</dd></div>
     <div class="fact"><dt>For</dt><dd>Policymakers, TVET schools, employers, social partners, international organisations, researchers and students</dd></div>
     <div class="fact"><dt>Website</dt><dd>tknika.github.io/basqueunevocweek</dd></div>
@@ -180,13 +208,14 @@
   <div class="figures">
     <div class="figure"><div class="n">25</div><div class="t">years of the UNESCO-UNEVOC International Centre</div></div>
     <div class="figure"><div class="n">10</div><div class="t">years of Tknika as a UNEVOC Centre</div></div>
+    <div class="figure"><div class="n">15+</div><div class="t">years of annual summits on VET in the Basque Country</div></div>
     <div class="figure"><div class="n">3</div><div class="t">days of conference, workshops and visits</div></div>
   </div>
   <div class="contents">
     <div><span>01</span>About the gathering</div>
     <div><span>02</span>Purposes and audiences</div>
     <div><span>03</span>Programme</div>
-    <div><span>04</span>Speakers</div>
+    <div><span>04</span>Past editions</div>
     <div><span>05</span>Media contact</div>
   </div>
   <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 2</span></div>
@@ -250,25 +279,25 @@
   <h2>Three days, every morning and afternoon</h2>
   <div class="days">
     <div class="day">
-      <div class="ph cube"><img class="photo" src="../themes/basqueunevocweek/static/images/zubieta.jpg" alt=""></div>
+      <div class="ph cube"><img class="photo" src="../themes/basqueunevocweek/static/images/tknika-tk-light.jpg" alt=""></div>
       <div class="wd">Tuesday</div><div class="dn">11 May</div>
       <h3>Activities at other venues</h3>
-      <div class="slot"><b>Morning</b>Networking in TVET schools, or a visit to Tknika projects</div>
-      <div class="slot"><b>Afternoon</b>Discover San Sebastian</div>
+      <div class="slot"><b>Morning · two options</b>Networking in six VET schools of Gipuzkoa: Tolosaldea, Usurbil, Easo, Eagi, Don Bosco and Fraisoro<i>or</i>A visit to Tknika projects: Smart Home, Immersive Spaces, Industry 5.0 and BIO Laboratories</div>
+      <div class="slot"><b>Afternoon · Discover San Sebastian</b>Running along the coastline and its three beaches, or a guided tour of the city with a local guide</div>
     </div>
     <div class="day main">
       <div class="ph cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/kursaal.jpg" alt=""></div>
       <div class="wd">Wednesday</div><div class="dn">12 May</div>
       <h3>Conference at the Kursaal</h3>
-      <div class="slot"><b>Morning</b>Conference “Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide”</div>
+      <div class="slot"><b>Morning</b>Conference “Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide”. Its sessions and speakers will be announced on the website</div>
       <div class="slot"><b>Afternoon</b>Call for all participants to submit and present their own workshop</div>
     </div>
     <div class="day">
-      <div class="ph cube"><img class="photo" src="../themes/basqueunevocweek/static/images/palacio-europa-lcamp.jpg" alt=""></div>
+      <div class="ph cube"><img class="photo" src="../themes/basqueunevocweek/static/images/round-tables-bilbao.jpg" alt=""></div>
       <div class="wd">Thursday</div><div class="dn">13 May</div>
       <h3>Activities at other venues</h3>
-      <div class="slot"><b>Morning</b>Visits to companies, or the Project Dissemination Day</div>
-      <div class="slot"><b>Afternoon</b>Optional: guided visit and dinner at a traditional cider house</div>
+      <div class="slot"><b>Morning · two options</b>Visits to companies in Gipuzkoa: Viralgen, Irizar e-mobility, Createch Medical and Danobat Group<i>or</i>The Project Dissemination Day at Tabakalera, Donostia · San Sebastian, with round tables</div>
+      <div class="slot"><b>Afternoon · optional</b>Guided visit and dinner at a traditional cider house</div>
     </div>
   </div>
   <div class="hub">
@@ -285,7 +314,34 @@
   <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 5</span></div>
 </section>
 
-<!-- 6 · Speakers -->
+<!-- 6 · Past editions (from content/past-editions.md, November 2026) -->
+<section class="page">
+  <p class="eyebrow">04 · Past editions</p>
+  <h2>More than fifteen years of annual summits</h2>
+  <div class="past-open">
+    <div class="n">15+</div>
+    <p class="lead">For more than fifteen years, the Basque Country has gathered the people who make vocational education and training every year: teachers, centres, companies, policy makers and international partners. Over the years it has grown from the FP Euskadi congresses into a meeting open to the world.</p>
+  </div>
+  <div class="ruler"><span class="dots">…</span><span>2014</span><span>2015</span><span>2016</span><span>2017</span><span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span><span class="gap"></span><span>2025</span><span>2026</span><span class="now">2027</span></div>
+  <div class="editions">
+    <div class="edition"><div class="th cube"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2026-lcamp.jpg" alt=""></div><div class="y">2026</div><div class="nm">LCAMP</div></div>
+    <div class="edition"><div class="th cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2025-global-vet.jpg" alt=""></div><div class="y">2025</div><div class="nm">A Global VET</div></div>
+    <div class="edition"><div class="th cube"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2023-opening.jpg" alt=""></div><div class="y">2023</div></div>
+    <div class="edition"><div class="th cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2022-wfcp.jpg" alt=""></div><div class="y">2022</div><div class="nm">WFCP World Congress · TVET Excellence for All</div></div>
+    <div class="edition"><div class="th cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2021-fp-euskadi.jpg" alt=""></div><div class="y">2021</div><div class="nm">FP Euskadi 2021</div></div>
+    <div class="edition"><div class="th cube"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2020-centres-of-vocational-excellence.jpg" alt=""></div><div class="y">2020</div><div class="nm">Centres of Vocational Excellence Conference</div></div>
+    <div class="edition"><div class="th cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2019-fp-euskadi.jpg" alt=""></div><div class="y">2019</div><div class="nm">FP Euskadi 2019</div></div>
+    <div class="edition"><div class="th cube"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2018-fp-euskadi.jpg" alt=""></div><div class="y">2018</div><div class="nm">FP Euskadi 2018</div></div>
+    <div class="edition"><div class="th cube"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2017-fp-euskadi.jpg" alt=""></div><div class="y">2017</div><div class="nm">FP Euskadi 2017</div></div>
+    <div class="edition"><div class="th cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2016-fp-euskadi.jpg" alt=""></div><div class="y">2016</div><div class="nm">FP Euskadi 2016</div></div>
+    <div class="edition"><div class="th cube"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2015-fp-euskadi.jpg" alt=""></div><div class="y">2015</div><div class="nm">FP Euskadi 2015</div></div>
+    <div class="edition"><div class="th cube-alt"><img class="photo" src="../themes/basqueunevocweek/static/images/past/2014-fp-euskadi.jpg" alt=""></div><div class="y">2014</div><div class="nm">FP Euskadi 2014</div></div>
+  </div>
+  <div class="watch">Videos of past editions, from Tknika’s YouTube channel, on the event website:<b>tknika.github.io/basqueunevocweek/about/past-editions</b></div>
+  <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 6</span></div>
+</section>
+
+<!-- Speakers: not printed while the Speakers page is hidden (the 2027 speakers are unknown; HIDDEN.md). These are the 2026 speakers: bring the page back, with the 2027 ones, when the site shows them again.
 <section class="page">
   <p class="eyebrow">04 · Speakers</p>
   <h2>Who takes the stage</h2>
@@ -312,6 +368,7 @@
   <div class="more"><div class="n">29</div><div>more speakers lead the workshops on advanced manufacturing.</div></div>
   <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 6</span></div>
 </section>
+-->
 
 <!-- 7 · Media contact -->
 <section class="page contact">
@@ -322,7 +379,7 @@
     <p>For interviews, photos or more information:</p>
     <p class="mail">international@tknika.eus</p>
     <div class="cols">
-      <div><h3>Online</h3><p>Programme, speakers and practical information on the event website.</p><p style="margin-top:2mm;font-weight:600">tknika.github.io/basqueunevocweek</p></div>
+      <div><h3>Online</h3><p>Programme, past editions and practical information on the event website.</p><p style="margin-top:2mm;font-weight:600">tknika.github.io/basqueunevocweek</p></div>
     </div>
   </div>
   <div class="foot"><span>UNESCO-UNEVOC Anniversary Conference &amp; Open Days 2027 · Press kit</span><span><span class="draft">Draft</span> · 7</span></div>
