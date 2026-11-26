@@ -1,5 +1,5 @@
 {
-  "name": "basqueunevocweek-web",
+  "name": "basquevetsummit-web",
   "private": true,
   "scripts": {
     "dev": "hugo server",

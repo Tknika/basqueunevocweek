@@ -14,7 +14,7 @@ import { join } from 'node:path';
 const [, , browser, url, out] = process.argv;
 if (!browser || !url || !out) { console.error('usage: node scripts/print-pdf.mjs <browser> <url> <out.pdf>'); process.exit(2); }
 const port = 9400 + Math.floor(Math.random() * 500);
-const profile = mkdtempSync(join(tmpdir(), 'basqueunevocweek-pdf-'));   // a throwaway profile: never the one of an open browser
+const profile = mkdtempSync(join(tmpdir(), 'basquevetsummit-pdf-'));   // a throwaway profile: never the one of an open browser
 spawn(browser, ['--headless=new', '--disable-gpu', `--remote-debugging-port=${port}`, `--user-data-dir=${profile}`, 'about:blank'], { stdio: 'ignore' });
 const wait = ms => new Promise(r => setTimeout(r, ms));
 

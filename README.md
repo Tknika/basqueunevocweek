@@ -11,7 +11,7 @@ npm ci
 hugo server
 ```
 
-The site opens at <http://localhost:1313/basqueunevocweek/>.
+The site opens at <http://localhost:1313/basquevetsummit/>.
 
 ## Where things are
 
@@ -19,7 +19,7 @@ The site opens at <http://localhost:1313/basqueunevocweek/>.
 | --- | --- |
 | Texts of each page | `content/` |
 | Title, dates, venue, organisers | `hugo.toml` |
-| Design | `themes/basqueunevocweek/assets/css/main.css` |
-| Templates | `themes/basqueunevocweek/layouts` |
+| Design | `themes/basquevetsummit/assets/css/main.css` |
+| Templates | `themes/basquevetsummit/layouts` |
 
 Every push to `main` is built by `.github/workflows/pages.yml`, which also publishes it once GitHub Pages is enabled. Rules for contributors are in [AGENTS.md](AGENTS.md).

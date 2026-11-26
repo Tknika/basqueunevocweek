@@ -6,7 +6,7 @@ This folder is outside `content/`, so Hugo does not build it.
 
 ## How to restore it
 
-In `themes/basqueunevocweek/layouts/speakers.html`:
+In `themes/basquevetsummit/layouts/speakers.html`:
 
 1. Put back, after the other `where` lines at the top:
 

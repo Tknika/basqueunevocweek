@@ -68,6 +68,6 @@ const svg = `{{- /* Made by scripts/make-crowd-drawing.js: run it again instead 
 <svg viewBox="0 ${Y0} ${W} ${H - Y0}" class="{{ .class }}" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><g class="fill-azure stroke-white">${out}</g></svg>
 `;
 
-const file = path.join(__dirname, "..", "themes", "basqueunevocweek", "layouts", "_partials", "drawing-crowd.html");
+const file = path.join(__dirname, "..", "themes", "basquevetsummit", "layouts", "_partials", "drawing-crowd.html");
 fs.writeFileSync(file, svg);
 console.log(`${path.relative(process.cwd(), file)}: ${svg.length} bytes`);

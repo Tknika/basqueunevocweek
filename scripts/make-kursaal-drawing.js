@@ -113,7 +113,7 @@ const svg =
   g('stroke="#c3d13a" stroke-width="3"', layers.lime) +
   g('stroke-opacity=".85" stroke-width="1.6"', layers.line) +
   "</svg>\n";
-const out = path.join(__dirname, "../themes/basqueunevocweek/static/images/");
+const out = path.join(__dirname, "../themes/basquevetsummit/static/images/");
 
 // The large cube alone, in grey, for the white headers of the inner pages
 const cube = svg.replace(`viewBox="0 0 ${W} ${H}" width="${W}" height="${H}"`, 'viewBox="760 110 1200 400" width="1200" height="400"');

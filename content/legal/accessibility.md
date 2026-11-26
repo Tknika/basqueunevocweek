@@ -5,7 +5,7 @@ weight: 4
 
 Tknika, the owner of this website, is committed to making this website accessible, in accordance with Spanish Royal Decree 1112/2018 on the accessibility of the websites and mobile applications of the public sector.
 
-This accessibility statement applies to the website [tknika.github.io/basqueunevocweek](https://tknika.github.io/basqueunevocweek/).
+This accessibility statement applies to the website [tknika.github.io/basquevetsummit](https://tknika.github.io/basquevetsummit/).
 
 ## Compliance status
 

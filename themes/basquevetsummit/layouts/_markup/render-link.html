@@ -1,7 +1,7 @@
 {{- $u := urls.Parse .Destination -}}
 {{- $href := .Destination -}}
 {{- if and (not $u.IsAbs) (hasPrefix .Destination "/") -}}
-  {{- /* Drop the leading slash so the baseURL subpath (e.g. /basqueunevocweek/) is kept. Files (images/x.png) are language-neutral: relURL; pages: relLangURL. */ -}}
+  {{- /* Drop the leading slash so the baseURL subpath (e.g. /basquevetsummit/) is kept. Files (images/x.png) are language-neutral: relURL; pages: relLangURL. */ -}}
   {{- $p := strings.TrimPrefix "/" .Destination -}}
   {{- if path.Ext $u.Path -}}{{- $href = $p | relURL -}}{{- else -}}{{- $href = $p | relLangURL -}}{{- end -}}
 {{- end -}}

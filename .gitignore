@@ -4,5 +4,5 @@
 /.hugo_build.lock
 hugo_stats.json
 
-# Original images (full size); the web uses reduced copies in themes/basqueunevocweek/static/images/
+# Original images (full size); the web uses reduced copies in themes/basquevetsummit/static/images/
 _originals/

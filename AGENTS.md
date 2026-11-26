@@ -4,19 +4,19 @@ Instructions for AI coding agents (and humans) working on this repository. Read 
 
 ## Project in one paragraph
 
-English-only static site for the UNESCO-UNEVOC Anniversary Conference & Open Days 2027 (11-13 May 2027, Donostia · San Sebastian; the title is `title` in `hugo.toml`; the site has no name of its own; it is a yearly event, shown as "Basque VET Annual Summit 2027" (`params.summit`, `_partials/summit-label.html`) above the title on the home and on About, asked in November 2026), built with **Hugo ≥ 0.146 (extended)** and **Tailwind CSS v4 via npm**, using a custom theme in `themes/basqueunevocweek`. The workflow in `.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`. It shares its technology with the `cyberlehia` site but not its design or content: keep the two separate.
+English-only static site for the UNESCO-UNEVOC Anniversary Conference & Open Days 2027 (11-13 May 2027, Donostia · San Sebastian; the title is `title` in `hugo.toml`; the site has no name of its own; it is a yearly event, shown as "Basque VET Annual Summit 2027" (`params.summit`, `_partials/summit-label.html`) above the title on the home and on About, asked in November 2026), built with **Hugo ≥ 0.146 (extended)** and **Tailwind CSS v4 via npm**, using a custom theme in `themes/basquevetsummit`. The workflow in `.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`. It shares its technology with the `cyberlehia` site but not its design or content: keep the two separate.
 
 ## Commands
 
 ```sh
 npm ci                # once: installs Tailwind (required by Hugo)
-hugo server           # dev server on http://localhost:1313/basqueunevocweek/ (the baseURL subpath is kept)
+hugo server           # dev server on http://localhost:1313/basquevetsummit/ (the baseURL subpath is kept)
 hugo --gc --minify    # production build → public/
 ```
 
 There is no test suite. **A change is verified when:**
 1. `hugo --gc --minify` finishes with no `ERROR` and no `WARN` lines.
-2. The site is built under `/basqueunevocweek/` and no link misses the prefix: `grep -rhoE '(href|src)="?/[^" >]*' public --include=*.html | grep -vE '="?/basqueunevocweek/'` prints nothing.
+2. The site is built under `/basquevetsummit/` and no link misses the prefix: `grep -rhoE '(href|src)="?/[^" >]*' public --include=*.html | grep -vE '="?/basquevetsummit/'` prints nothing.
 3. For visual changes, check the pages at ~1440px and ~390px wide.
 
 ## Hard rules
@@ -66,4 +66,4 @@ The one drawing in use (asked in November 2026, as the call to action on the Abo
 - FP Euskadi logo is a small 111×109 PNG; replace it with an SVG or larger PNG if available.
 - `params.noindex = true` while the site is a placeholder: set it to `false` at launch.
 - **Legal pages** live in `content/legal/` (legal notice, privacy, accessibility statement; there is no cookies page, because the site uses no cookies: the privacy page says so), linked from a row at the bottom of the footer; the section itself has no page (`build.render: never`). The owner and data controller is Tknika: its name, CIF, address, phone, data protection officer and supervisory authority (AVPD) are copied from Tknika's own privacy policy (tknika.eus/politica-de-privacidad, as archived in October 2026). Contact for the site itself stays international@tknika.eus; data protection rights go to info@tknika.eus, as on Tknika's site. The accessibility statement has no enforcement procedure section, at the organisers' request (Royal Decree 1112/2018 asks for one: add it if Tknika names the unit that handles accessibility claims). While a legal fact is unknown, mark it with `{{< tbc "…" >}}` (a lime "[To be confirmed: …]"); none is left now. Update the privacy page when the call for workshops form or the registration opens (they will collect personal data). If anything ever sets cookies or stores data on the device, add a cookies page (and a consent banner if they are not strictly necessary). Keep the accessibility statement's list of non-accessible content up to date (now: the Student Hub band cannot be paused; the calendar PDF is not tagged).
-- The production domain is not decided; the site is meant to live at `tknika.github.io/basqueunevocweek/`.
+- The production domain is not decided; the site is meant to live at `tknika.github.io/basquevetsummit/`. Until November 2026 the site and its repository were called `basqueunevocweek` (Basque UNEVOC Week); they were renamed when it became the Basque VET Summit: GitHub redirects the old repository address, but not the old Pages address, `tknika.github.io/basqueunevocweek/`, which no longer works. The git tags made before the rename (`speakers-2026`, `programme-12-may-workshops`) still have the theme at `themes/basqueunevocweek/`.

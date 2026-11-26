@@ -1,6 +1,6 @@
-baseURL = "https://tknika.github.io/basqueunevocweek/"
+baseURL = "https://tknika.github.io/basquevetsummit/"
 title = "UNESCO-UNEVOC Anniversary Conference & Open Days 2027"
-theme = "basqueunevocweek"
+theme = "basquevetsummit"
 
 defaultContentLanguage = "en"
 enableRobotsTXT = true

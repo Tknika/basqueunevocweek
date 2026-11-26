@@ -63,6 +63,6 @@ const out = `{{- /* The map of the places of interest (Practical information), d
 </svg>
 `;
 
-const file = path.join(__dirname, "..", "themes", "basqueunevocweek", "layouts", "_partials", "drawing-places-map.html");
+const file = path.join(__dirname, "..", "themes", "basquevetsummit", "layouts", "_partials", "drawing-places-map.html");
 fs.writeFileSync(file, out);
 console.log(`Wrote ${path.relative(process.cwd(), file)}: ${W}×${H}, river ${riverWidth} units wide`);
