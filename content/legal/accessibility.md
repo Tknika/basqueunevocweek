@@ -15,7 +15,7 @@ This website is **partially compliant** with the standard UNE-EN 301549:2022 (wh
 
 - The band of topics that moves across the Student Hub page cannot be paused by the visitor. It stops for visitors who have chosen to reduce motion in their device's settings (WCAG 2.2.2).
 - The short silent video on the 13 May programme page plays in a loop and cannot be paused by the visitor. It is replaced by a still photo for visitors who have chosen to reduce motion in their device's settings (WCAG 2.2.2).
-- The calendar of the event (PDF) is not a tagged document, so screen readers cannot read it in order. The same information is on the programme pages of this website.
+- The agenda of the event (PDF) is not a tagged document, so screen readers cannot read it in order. The same information is on the programme pages of this website.
 - The concept note (PDF) is not a tagged document either. Its full text is on the About page of this website.
 
 ## Preparation of this statement

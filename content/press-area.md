@@ -19,7 +19,7 @@ press:
     text: "Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide: the idea behind the congress and who it is for."
     file: "press/concept-note.pdf"
     size: "PDF · 810 KB"
-  - title: "Calendar"
+  - title: "Agenda"  # "Calendar" until November 2026
     icon: "calendar"
     text: "The three days at a glance, morning and afternoon, with the Student Hub."
     file: "press/calendar.pdf"
