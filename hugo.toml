@@ -12,8 +12,7 @@ disableKinds = ["taxonomy", "term"]
   noindex = true
   # The yearly event this one belongs to, shown above the title on the home and on About, so that it reads as an annual event (asked in November 2026).
   summit = "Basque VET Annual Summit 2027"
-  # Shown on the home page, under the title (asked in November 2026).
-  subtitle = "Basque UNEVOC Week"
+  # subtitle: a line under the title on the home (_partials/home-hero.html); "Basque UNEVOC Week" was removed in November 2026, as asked.
   # Shown on the home page.
   dates = "11-13 May 2027"
   venue = "Donostia · San Sebastian"
