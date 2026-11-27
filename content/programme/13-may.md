@@ -18,10 +18,10 @@ morning:
       stack: true  # one company per row, the box as tall as the other option (layouts/day.html)
       # The companies to visit, from the organisers (November 2026), in place of the 2026 list: name, a link to its website (`url`), its logo (`logo`, from its own website, November 2026) and where it is (`location`, from the address on its own website), made monochrome in UNEVOC azure with no background (the darkest colour solid, the other paler), as the schools on 11 May
       centres:
-        - name: "Viralgen (Viralgen Vector Core, S.L.)"
+        - name: "Viralgen"
           url: "https://viralgen.com/"
           logo: "images/logo-company-viralgen.png"
-          location: "Gipuzkoa Science and Technology Park, Donostia · San Sebastian"
+          location: "Donostia, Gipuzkoa"
         - name: "Irizar e-mobility"
           url: "https://irizar-emobility.com/eu/"
           logo: "images/logo-company-irizar.svg"
