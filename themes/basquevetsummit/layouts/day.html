@@ -73,6 +73,11 @@
               {{ with $o.video }}
                 <video autoplay muted loop playsinline{{ with $o.image }} poster="{{ . | relURL }}"{{ end }} aria-hidden="true" class="aspect-video w-full bg-haze object-cover motion-reduce:hidden"><source src="{{ . | relURL }}" type="video/mp4"></video>
                 {{ with $o.image }}<img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="hidden aspect-video w-full object-cover motion-reduce:block">{{ end }}
+              {{- /* A `logo` takes the photo's place (the Tknika visit on 11 May, asked in November 2026): the logo (monochrome in UNEVOC azure, like the schools'), centred on the box's haze in a band as tall as a photo would be, never cut into the cube shape; `alt` names it */ -}}
+              {{ else with $o.logo }}
+                <div class="flex aspect-[2/1] items-center justify-center px-10 py-8">
+                  <img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="max-h-full w-auto max-w-[75%] object-contain">
+                </div>
               {{ else with $o.image }}
                 <figure>
                   <img src="{{ . | relURL }}" alt="{{ $o.alt }}" loading="lazy" class="aspect-[2/1] w-full object-cover {{ $o.position }}">

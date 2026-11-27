@@ -50,10 +50,9 @@ morning:
           url: "https://fraisoroeskola.eus"
           logo: "images/logo-centre-fraisoro.png"
     - title: "Visit to Tknika projects"
-      image: "images/tknika-auditorium-tv.jpg"
-      # Show the lower part of the photo, so the screen is not cut off
-      position: "object-[50%_80%]"
-      alt: "Tknika auditorium seen from the front, wooden rows of desks under a lattice of wooden slats"
+      # Tknika's logo in place of the photo of its auditorium (asked in November 2026), monochrome in UNEVOC azure like the schools' logos (the lime "Tk" paler)
+      logo: "images/logo-tknika-azure.png"
+      alt: "Tknika, the Basque VET Applied Research Centre"
       groups:
         - title: "Projects"
           items:
