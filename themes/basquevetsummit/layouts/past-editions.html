@@ -1,7 +1,7 @@
 {{- /* Past editions (content/past-editions.md), a page under About (asked in November 2026): fifteen years of annual summits, in videos.
   The page header names About above the title (`up`). Then:
   The opening: the number of years (`years`), huge in Krona One, next to the introduction (`intro`, `note`).
-  A ruler of the years, from the first congress (2001) to this one: a tick for every year, the years with an edition as links to it, this year in pink; the labels stand on end, as the years are many. (From 2014 with an ellipsis before it until the 2001 congress was added, November 2026.)
+  A ruler of the years, from an ellipsis (the summits began earlier, in 2001) and the first edition with a video to this one: a tick for every year, the years with an edition as links to it, this year in pink. (Starting at 2001 was tried in November 2026 and looked odd.)
   The timeline, newest first, down a thin line (on the left on phones, in the middle on large screens, the editions alternating sides): this year's summit on top, in pink, with a link to the programme; then each edition, its year large, its name, and its videos.
   A video is a card: its thumbnail cut as a cube with a pink play button, and its title as a link to YouTube, in a new tab. Nothing is embedded or loaded from YouTube (no cookies, no third-party requests): the thumbnails are kept on the site. */ -}}
 {{ define "main" }}
@@ -29,17 +29,19 @@
     {{ $first := index (sort $years) 0 }}
     <nav class="mt-20 md:mt-24" aria-label="Editions by year">
       <ol class="flex border-t-2 border-azure">
+        {{- /* The summits began long before the first year with a video (the 1st congress was in 2001, as the introduction says), so the ruler starts with an ellipsis; 2001 itself on the ruler and in the timeline looked odd (November 2026) */ -}}
+        <li class="flex flex-col items-center pr-2 sm:pr-4" aria-hidden="true"><span class="h-2.5 w-px bg-azure/40"></span><span class="mt-1 font-display text-sm leading-none text-azure">…</span></li>
         {{ range seq $first $now }}
           {{ $y := . }}
           {{ if eq $y $now }}
             <li class="flex flex-1 flex-col items-center">
               <span class="h-5 w-0.5 bg-pink" aria-hidden="true"></span>
-              <a href="#y{{ $y }}" class="mt-2 font-display text-[0.6rem] text-pink-ink transition hover:text-nobility [writing-mode:vertical-rl] rotate-180 sm:text-xs lg:text-sm">{{ $y }}</a>
+              <a href="#y{{ $y }}" class="mt-2 font-display text-[0.6rem] text-pink-ink transition hover:text-nobility max-sm:[writing-mode:vertical-rl] max-sm:rotate-180 sm:text-sm">{{ $y }}</a>
             </li>
           {{ else if in $years $y }}
             <li class="flex flex-1 flex-col items-center">
               <span class="h-5 w-0.5 bg-azure" aria-hidden="true"></span>
-              <a href="#y{{ $y }}" class="mt-2 font-display text-[0.6rem] text-nobility transition hover:text-pink-ink [writing-mode:vertical-rl] rotate-180 sm:text-xs lg:text-sm">{{ $y }}</a>
+              <a href="#y{{ $y }}" class="mt-2 font-display text-[0.6rem] text-nobility transition hover:text-pink-ink max-sm:[writing-mode:vertical-rl] max-sm:rotate-180 sm:text-sm">{{ $y }}</a>
             </li>
           {{ else }}
             <li class="flex flex-1 flex-col items-center" aria-hidden="true">

@@ -99,7 +99,4 @@ editions:
         url: "https://www.youtube.com/watch?v=8hO2dE3K_sE&list=PLOYSs5_FlYNscXZYNyB9ysWaq9_NVrk3I&index=208"
         image: "images/past/2014-fp-euskadi.jpg"
         lang: "In English"
-  # The first one (from the organisers, November 2026): no video, so its place in the timeline has only its name.
-  - year: 2001
-    name: "1st International Congress of Vocational Education and Training (VET) of the Basque Country"
 ---
