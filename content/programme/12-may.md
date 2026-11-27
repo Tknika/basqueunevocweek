@@ -16,8 +16,9 @@ morning:
   conference:
     title: "Conference: “Global Challenges, Local Solutions — Connecting TVET Ecosystems Worldwide”"
     venue: "Kursaal, Donostia · San Sebastian"
-    image: "images/conference-audience.jpg"
-    alt: "A full auditorium listening to a speaker on stage at a previous LCAMP conference"
+    # The Kursaal auditorium full, seen from the stage (from the organisers, November 2026; original in _originals/kursaal-hall-audience.jpeg), its orange light toned down with ffmpeg (colorbalance towards blue, saturation 0.7)
+    image: "images/kursaal-hall-audience.jpg"
+    alt: "The Kursaal auditorium full of participants, seen from the stage"
     # The 2027 programme is unknown: only registration, the coffee break, the closing and lunch are sure.
     # `tba: true` shows a slot as "To be announced" (dashed, with an outlined tag). The 2026 sessions are in archive/12-may-morning-2026.md (see HIDDEN.md).
     sessions:
