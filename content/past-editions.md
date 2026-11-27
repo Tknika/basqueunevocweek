@@ -1,6 +1,6 @@
 ---
 title: "Past editions"
-description: "More than fifteen years of annual summits on vocational education and training in the Basque Country, in videos from past editions."
+description: "More than twenty-five years of annual summits on vocational education and training in the Basque Country, in videos from past editions."
 # A page under About (asked in November 2026), at /about/past-editions/ although it is its own file: about.md is a single page, not a section.
 url: "/about/past-editions/"
 layout: past-editions
@@ -12,9 +12,9 @@ menus:
   main:
     parent: about
 # The opening: the figure, its label and the introduction
-years: "15+"  # more than fifteen: the summits began before 2014, the first year with a video (asked in November 2026)
+years: "25+"  # more than twenty-five: the first congress was held in 2001 (asked in November 2026; until then "15+", from the first year with a video, 2014)
 years_label: "years of annual summits"
-intro: "For more than fifteen years, the Basque Country has gathered the people who make vocational education and training every year: teachers, centres, companies, policy makers and international partners. Over the years it has grown from the FP Euskadi congresses into a meeting open to the world, with the Centres of Vocational Excellence Conference and the WFCP World Congress to international networks such as LCAMP."
+intro: "The 1st International Congress of Vocational Education and Training (VET) of the Basque Country was held in 2001. Since then, for more than twenty-five years, the Basque Country has gathered the people who make vocational education and training every year: teachers, centres, companies, policy makers and international partners. Over the years it has grown from the FP Euskadi congresses into a meeting open to the world, with the Centres of Vocational Excellence Conference and the WFCP World Congress to international networks such as LCAMP."
 note: "Watch moments from past editions. The videos are on Tknika's YouTube channel and open in a new tab."
 # The editions, newest first. From the organisers' list of videos (Word file, November 2026); each name and video title comes from the video itself on YouTube.
 # year; name: the edition, when the video names it; videos: title, the YouTube link (url), a thumbnail (images/past/, taken from YouTube's own and kept on the site, so the page loads nothing from YouTube), and lang (the language of the video, when its title says so).
@@ -99,4 +99,7 @@ editions:
         url: "https://www.youtube.com/watch?v=8hO2dE3K_sE&list=PLOYSs5_FlYNscXZYNyB9ysWaq9_NVrk3I&index=208"
         image: "images/past/2014-fp-euskadi.jpg"
         lang: "In English"
+  # The first one (from the organisers, November 2026): no video, so its place in the timeline has only its name.
+  - year: 2001
+    name: "1st International Congress of Vocational Education and Training (VET) of the Basque Country"
 ---
